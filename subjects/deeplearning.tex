@@ -1,0 +1,60 @@
+\chapter{Deep Learning \& AI}
+
+\section{}
+
+
+\subsubsection*{Generative Adversarial Networks}
+
+Read \cite{goodfellow2014generative}
+
+
+
+
+\section{ML Finance Project}
+
+\subsubsection*{\href{https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/}{example w/ multivariate time series in PyTorch}}
+
+
+\begin{quest}
+\item
+	\cloze
+	Neural networks can be constructed using the \pyth{torch.nn} package.
+
+\item
+	Import the package for constructing neural networks in PyTorch.
+	\begin{ans}
+		\pyth{import torch.nn as nn}
+	\end{ans}
+
+\item \cloze Seaborn comes with built-in datasets.
+
+\item Load seaborn's flights dataset.
+	\begin{ans}
+		\pyth{flight_data = sns.load_dataset("flights")}
+	\end{ans}
+
+\item
+	Why must time series data be scaled for sequence predictions?
+	\begin{ans}
+		When a network is fit on unscaled data, it is possible for large inputs to slow down the learning and convergence of your network and in some cases prevent the network from effectively learning your problem.
+	\end{ans}
+
+\item
+	sklearn import for scaling data?
+	\begin{ans}
+		\pyth{from sklearn.preprocessing import MinMaxScaler}
+	\end{ans}
+\end{quest}
+
+
+
+
+
+\begin{quote}
+We know the field is fast moving. If the reader looking for more recent free reading resources, there are some good introductory/tutorial/survey papers on Arxiv; I happen to be compiling a list of them.
+\end{quote}
+
+ One of said review papers \cite{raghu2020survey}
+
+\cite[hello]{raghu2020survey}
+
