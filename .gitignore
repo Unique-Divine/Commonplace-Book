@@ -1,3 +1,8 @@
+# Jupyter checkpoints
+**checkpoint.ipyn**
+**checkpoint.ipy**
+**_checkpoints**
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -244,3 +249,6 @@ TSWLatexianTemp*
 
 # generated if using elsarticle.cls
 *.spl
+
+# videos
+**.mp4
