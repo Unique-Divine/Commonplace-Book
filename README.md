@@ -1,6 +1,10 @@
 <!-- Author: Unique Divine -->
 
-Yo
+This repo is to keep a backup of my commonplace book.
+
+
+
+
 ---
 
 
