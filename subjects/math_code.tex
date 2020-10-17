@@ -1,184 +1,4 @@
-
-\chapter{Daily Scratch}
-\section{Random}
-
-\subsection*{Who is François Chollet?}
-\begin{itemize}
-\item
-	works on deep learning at Google in Mountain View, CA.
-\item
-	creator of the Keras deep-learning library
-\item
-	contributor to the TensorFlow machine-learning framework.
-\item
-	wrote a book on deep learning that is very applied rather than theoretical.
-\end{itemize}
-
-\begin{quote}
-``We know the field is fast moving. If the reader looking for more recent free reading resources, there are some good introductory/tutorial/survey papers on Arxiv; I happen to be compiling a list of them''. - Auto Snipe
-\end{quote}
-
- One of said review papers \cite{raghu2020survey}
-
-
-\hrule
-\section{Algo Trading}
-
-\subsection{ML Finance Project}
-
-\paragraph*{Terms to Learn: } NLP, bag of words, stop words, stemming, tokenizing, term-frequency inverse document frequency, bigrams, unigrams, Dow Jones Industrial Average (DJIA) index
-
-\begin{quotation}
-	`` The preprocessing for the text data involved three parts: removing stop words, stemming, and tokenizing. I first removed common words like "the" and "a". This also included removing non-standard english words, such as emojis and words in other languages. The next step was performing stemming, which turns words like "running" to "run". From there, I tried many methods of tokenizing the corpus, including bag of words, term frequency–inverse document frequency, and using bigrams and unigrams. For this particular dataset, a bag of words model using unigrams worked the best.
-
-	Using our data from the bag of words model, I merged each day with whether or not the Dow Jones Industrial Average (DJIA) index will move up or down for the next day. I thought the movement of the DJIA would able to capture the health of the overall economy while not giving too much information into how tech stocks are specifically doing...
-
-	The top words associated with DJIA moving up are "gadafi", "Iran" and "sanctions". ''
-\end{quotation}
-
-
-\subsection{\href{https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/}{Time Series in Pytorch | Introductory Example}}
-
-\begin{quest}
-	\item
-	\cloze
-	Neural networks can be constructed using the \pyth{torch.nn} package.
-
-	\item
-	Import the package for constructing neural networks in PyTorch.
-	\begin{ans}
-		\pyth{import torch.nn as nn}
-	\end{ans}
-
-	\item \cloze Seaborn comes with built-in datasets.
-
-	\item Load seaborn's flights dataset.
-	\begin{ans}
-		\pyth{flight_data = sns.load_dataset("flights")}
-	\end{ans}
-
-	\item
-	Why must time series data be scaled for sequence predictions?
-	\begin{ans}
-		When a network is fit on unscaled data, it is possible for large inputs to slow down the learning and convergence of your network and in some cases prevent the network from effectively learning your problem.
-	\end{ans}
-
-	\item
-	sklearn import for scaling data?
-	\begin{ans}
-		\pyth{from sklearn.preprocessing import MinMaxScaler}
-	\end{ans}
-\end{quest}
-
-\section{Daily Schedule (when free)}
-
-Lex Fridman posted a video today (2020 Aug 27), detailing  \href{https://youtu.be/0m3hGZvD-0s}{his daily} schedule outside of work commitments. The stages are as follows:
-
-\begin{tabular}{lllll}
-	(1) Morning & (2) Mantra  &  (3) Deep work I & (4) Medium depth  & (5) Exercise \\
-	(6) Shower & (7) Deep work II & (8) Eat & (9) Shallow work  & (10) Paper reading \\
-\end{tabular}
-
-I'll go into a bit more depth on the sections below and try to implement some of these practices in my daily schedule to see what I can learn from Lex.
-
-\begin{enumerate}
-\item
-	Morning
-
-\item
-	Mantra / Daily Review
-	\begin{itemize}
-	\item
-		Rules \& constraints
-	\item
-		Gratitude
-	\item
-		Long-term goals
-	\item
-		Short-term goals
-	\item
-		Core principles
-	\end{itemize}
-
-\item
-	Deep Work I (4 hr)
-
-\item
-	Social Media and Music Practice
-
-\item
-	Exercise
-
-	Exercise every day, no matter what. Even if injured, find a body part and exercise it.
-
-\item
-	Shower
-
-\item
-	Deep Work II (4 hr)
-
-\item
-	Eat
-
-	2k calories, all your nutrients
-	vegetables, protein, and fat
-
-\item
-	Shallow Work (1 hr)
-
-\item
-	Paper Reading (1 hr)
-\end{enumerate}
-
-
-%%%%%%%%%%%%%%%%%%%%%%
-\section{Software Projects}
-%%%%%%%%%%%%%%%%%%%%%%
-
-
-\subsection{Portfolio Overview}
-
-\paragraph*{Key factors for a Good Portfolio}
-\begin{itemize}
-\item Completeness
-\item Functionality
-\item Readability
-\item Documentation/information
-\end{itemize}
-
-\subsection{Solve all of your mysteries}
-
-The time it takes programmers to finish projects varies wildly. This section will go over why some people are spending 50+ hours on projects that should be done in 5.
-
-\begin{itemize}
-\item
-	Faster programmers can explan their code and strategy even if it  doesn't work.
-\item
-	Faster programmers dig deep and really try to understand the functions, the classes, the API's that are at their disposal so that they can apply them to solve problems.
-\item
-	Slower programmers are trying to look for a shortcut. They want to use stack overflow or some other site. This difference may not be noticeable on smaller beginner projects, but over time this difference becomes huge and will ultimately be crucial to one's long-term growth and flexibility.
-\item
-	Never take code on faith
-
-	\begin{itemize}
-	\item
-		If code is in your program, you should take time to learn about what it does
-	\item
-		Find some documentation. Read about the functions and classes used and DO NOT move forward until you understand each piece of code.
-	\end{itemize}
-\item
-	Read documentation
-\item
-	Solve ALL of your mysteries
-	\begin{itemize}
-	\item
-		You wrote a bunch of code, thought you knew what it did, and it's behaving mysteriously. A lot of times, people will try a couple of thing. They'll sort of randomly try stuff and even if the problem goes away and they don't really know why, they just move on. This is a bad idea.
-	\item
-		When you don't understand a bug, you are destined to repeat it. You need to understand why that bug occurred. Get out the documentation. Get a second pair of eyes, whatever you need to do. But, understand why this behavior is occurring.
-	\end{itemize}
-\end{itemize}
-
-
+\chapter{Math \& Code}
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -189,156 +9,152 @@ Start Sep 16 (Mike Dane Tutorial Series)
 
 \subsection{Intro to Hugo -\href{https://youtu.be/qtIqKaDlqXo}{(video)} }
 \begin{itemize}
-\item
+	\item
 	Hugo is a static site generator.
-\item
+	\item
 	Static website generators allow you to compromise between writing a bunch of static html pages and using a heavy, and potentially expensive, content management system.
-\item
+	\item
 	Why Hugo? It's extremely fast.
-\item
+	\item
 	2 kinds of websites, dynamic and static. Dyanmic ex. Facebook. Facebook pages are dynamically generated for each user. For static websites, what you see is what you get.
-\item
+	\item
 	Static websites are notoriously harder to maintain b/c you lack some fo the flexibility of things  on a dynamic site. Usually you can't use much conditional logic, functions, or variables.
-\item
+	\item
 	However, static pages are extremely fast.
-\item
+	\item
 	Hugo is great for a blog, portfolio website, etc.
-\item
+	\item
 	Hugo doesn't explicity require you to write a single line of HTML code.
-\item
+	\item
 	Flexibility | With that said, if you want to go in and change every little detail of the layout of the site, you cna do that. You can write as much of the HTML and have as much control as you'd like.
-\item
+	\item
 	Hugo is 100\% free and open-source.
 \end{itemize}
 
 \subsection{Intalling Hugo on Windows - \href{https://youtu.be/G7umPCU-8xc?list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3}{(video)} }
 \begin{itemize}
-\item
+	\item
 	Mine's already installed. I'll skip this for now.
-\item
+	\item
 	a
-\item
+	\item
 	a
 \end{itemize}
 
 \subsection{Creating a new site - \href{https://youtu.be/sB0HLHjgQ7E?list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3}{(video)} }
 \begin{itemize}
-\item skip, a bit too easy
+	\item skip, a bit too easy
 
 \end{itemize}
 
 \subsection{Installing \& Using Themes - \href{https://youtu.be/L34JL_3Jkyc?list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3}{(video)} }
 \begin{itemize}
-\item my themes are already installed
+	\item my themes are already installed
 \end{itemize}
 
 \subsection{Creating \& Organizing Content - \href{https://youtu.be/0GZxidrlaRM?list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3}{(video)} }
 \begin{itemize}
-\item
+	\item
 	Hugo has 2 types of content: single pages and list pages
-\item
+	\item
 	List content lists other content on the site. You can call this a list page.
-\item
+	\item
 	Individual blog posts are single pages.
-\item
+	\item
 	Your posts should not just be in the content directory. They should be in directories inside the content directory.
-\item
+	\item
 	A list page is automatically created for directories inside the content folder.  Hugo automatically does this. Note, this only occurs for directories at the ``root" level of the content directory. For example:  \texttt{content/post/} would generate a list page at \texttt{site.com/post/}, but \texttt{content/post/dir0} would not.
-\item
+	\item
 	If you want a list page to be generated for a dir that is not at the root level of the content dir, you have to create an \textbf{index filed}, \texttt{\_index.md}. For a convenient and efficient way to do this from the cmd, use \texttt{hugo new post/dir0/\_index.md} (above above example), then there will be a list page for dir0. 	Content can also be added to\texttt{\_index.md} and it should show up on the page.
-\item
+	\item
 	Additionally, for list pages that are aautomatically generate by hugo, you can edit the content by adding an index.md to those as well. Ex. \texttt{~content/post/\_index.md}.
 \end{itemize}
 
 \subsection{Front Matter- \href{https://youtu.be/Yh2xKRJGff4?list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3 }{(video)} }
 \begin{itemize}
-\item
+	\item
 	Front matter in Hugo is what is commonly called meta data.
-\item
+	\item
 	Front matter is data about our content files.
-\item
+	\item
 	The metadata automatically generated by Hugo at the top of md files when using \texttt{hugo new } is front matter
-\item
+	\item
 	Front matter is stored in key-value pairs
-\item
+	\item
 	Front matter can be written in 3 different languages: YAML, TOML, and JSON
-\item
+	\item
 	The defualt lang for front matter in Hugo is YAML
-\item
+	\item
 	YAML - indicated by ``--'',
-\item
+	\item
 	TOML - indicated by "+++" and uses "=" instead of ":",
-\item
+	\item
 	JSON - indicated
-\item
+	\item
 	You can create your own custom front matter variables.
-\item
+	\item
 	Front matter is super powerful in its utility.
 \end{itemize}
 
 
 \subsection{Archetypes - \href{https://youtu.be/bcme8AzVh6o?list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3 }{(video)} }
 \begin{itemize}
-\item
+	\item
 	How does the default front matter from using \texttt{hugo new ~.md} get selected? Short answer: archetypes
-\item
+	\item
 	An archetype is basically the default front matter template for when you create a new content file.
-\item
+	\item
 	Archetypes are modified under \texttt{static/themes/archetypes/default.md}
-\item
+	\item
 	Suppose your content dir has a subdirectory, \texttt{content/dir0}. If you wanted to create an archetype for the files in dir0, you'd simply create \texttt{dir0.md} inside the archetypes dir.
 \end{itemize}
 
 \subsection{Shortcodes - \href{https://youtu.be/2xkNJL4gJ9E?list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3 }{(video)} }
 \begin{itemize}
-\item
+	\item
 	Shortcodes are predefined chunks of HTML that you can insert into your markdown files.
-\item
+	\item
 	Let's say you have a md file that you want to spice up by adding in some custom HTML. For instance, maybe you'd like to embed a YouTube video. Normally this would require lots of HTML that you'd have to paste it. Shortcodes can allow you to sidestep this. Hugo comes with a YouTube video shortcode predefined.
-\item
-	 General shortcode syntax \texttt{{{< shortcode\_name param0 >}}}
-\item
+	\item
+	General shortcode syntax \texttt{{{< shortcode\_name param0 >}}}
+	\item
 	Youtube shortcode | For a YouTube video with url, ``youtube.com/watch?v=random-text", the shortcode we'd use to embed would be \texttt{{{< youtube random-text >}}} because ``random-text'' is the id of the youtube video and the only parameter for that shortcode.
 \end{itemize}
 
 \subsection{Taxonomies - \href{https://youtu.be/pCPCQgqC8RA?list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3 }{(video)}}
 \begin{itemize}
-\item
+	\item
 	Taxonomies in hugo are basically ways that you can logically group different pieces of content together in order to organize it in a more efficient way.
-\item
+	\item
 	Hugo provids 2 defualt taxonomies: tags \& categories
-\item
+	\item
 	All taxonomy information is declared in front matter.  In YAML, tags has the syntax \texttt{tags: ["tag0", "tag1", $\ldots$]}
 \end{itemize}
 
 \subsection{Templates - \href{https://youtu.be/gnJbPO-GFIw}{(video)}}
 \begin{itemize}
-\item
+	\item
 	Templates here mostly refers to HTML templates. If you're not comfortable writing HTML, CSS, and coding for the web, templates might be a little bit above your head.
-\item
+	\item
 	A hugo theme is actually made up of hugo templates.
-\item
+	\item
 	Any template that you use in Hugo is going to be inside \texttt{themes/theme-name/layouts}. This is where all the templates live.
-\item
+	\item
 	\texttt{~/layouts/default} usually contains a default style for list and single pages by use of \texttt{list.html} and \texttt{single.html}.
 \end{itemize}
 
 \subsection{List Templates - \href{https://youtu.be/8b2YTSMdMps}{(video)}}
 \begin{itemize}
-\item
+	\item
 	List templates give default HTML layout to list content files.
-\item
+	\item
 
 \end{itemize}
 
 \subsection*{Resources}
 \begin{itemize}
-\item
+	\item
 	\href{https://www.linkedin.com/learning/learning-static-site-building-with-hugo-2/build-a-static-site-with-hugo?resume=false}{A clear and concise beginner hugo tutorial}
-\item
+	\item
 	\href{https://youtu.be/yfoY53QXEnI}{CSS Crash Course for Absolute Beginners}
 \end{itemize}
-
-
-
-
