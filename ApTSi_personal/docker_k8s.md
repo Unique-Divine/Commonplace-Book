@@ -1,14 +1,32 @@
 
-# Docker & K8s Introduction
+# Docker & K8s Introduction <!-- omit in toc -->
 
-Kubernetes is AKA K8s
-- built by Google based on their experience running containers in production
-- now an open-source project
-- probably the most popular container orchestration technologies
-- To understand Kubernetes, two fundamental concepts must first be understood: Containers & Orchestration
+## Welcome 
+
+### Contents <!-- omit in toc -->
+- [Welcome](#welcome)
+- [Why use Docker and K8s?](#why-use-docker-and-k8s)
+  - [Realistic Case Scenario:](#realistic-case-scenario)
+  - [Docker Basic Concepts](#docker-basic-concepts)
+  - [OS concepts](#os-concepts)
+  - [Containers vs virtual machines:](#containers-vs-virtual-machines)
+  - [Containers vs images (Docker):](#containers-vs-images-docker)
+- [What is Docker?](#what-is-docker)
+- [Docker Install (Windows)](#docker-install-windows)
+  - [0. Running `docker run hello-world` fails.](#0-running-docker-run-hello-world-fails)
+- [References](#references)
+- [Kubernetes Concepts](#kubernetes-concepts)
+
 
 Containers
-- Docker is the most popular container technology
+- simplify and accelerate worflow when working with mutliple languages, frameworks, architectures, and discontinuous interfaces
+- **Docker** is the most popular container technology
+
+Kubernetes AKA K8s
+- built by Google based on their experience running containers in production
+- now an open-source project
+- probably the most popular **container orchestration** technology
+- To understand Kubernetes, two fundamental concepts must first be understood: Containers & Orchestration
 
 ## Why use Docker and K8s? 
 
@@ -50,17 +68,27 @@ OS (def):
 > An interface between a computer user and computer hardware. A software which performs all the basic tasks like file management, memory management, process managemenet, handling input and output, and controlling peripheral devices such as disk drives and printers. 
 
 https://youtu.be/rmf04ylI2K0?t=369
+All operating systems consist of an OS kernel and a set of application software.
+
+- **[OS Kernel][OS Kernel]**: A program that connects the application software to the hardware of the computer. Facilitates the interaction between hardware and software components.
+- **Application software**- This can consist of different UIs, drivers, compilers, file managers, etc. For example, different linux operating systems all use a Unix kernel but have different application software.
+
+[OS Kernel]: https://en.wikipedia.org/wiki/Kernel_(operating_system)
+
+Docker containers share the same underlying kernel. This means you won't be able to run a Windows-based container on an Ubuntu kernel. For that, we'd require Docker on a Windows server. Docker is not meant to virtualize and run different OS kernels on the same hardware. The main purpose of Docker is to containerize applications for deployment. 
 
 
-Virtual Machines:
+### Containers vs virtual machines:
+
+Virtual machines, through the use of a [hypervisor](https://www.vmware.com/topics/glossary/content/hypervisor) or virtual machine montor VMM, can run differnet kernels on the same hardware. However, this causes high utilization of underlying computational resources. VMs also consume much more disk space as each VM is on the order of GBs.
+
+Containers take up disk space on the order of MBs, have lower utilization, and as a result, can boot up much faster.
 
 
-Containers vs virtual machines:
 
-
-Container vs docker image:
-- Docker image: A package or template just like a VM template in the virtualization world. Used to create containers.
-- Container: A running instance of a docker image that is isolated and has its own set of processes.
+### Containers vs images (Docker):
+- **Docker image**: A package or template just like a VM template in the virtualization world. Used to create containers.
+- **Container**: A running instance of a docker image that is isolated and has its own set of processes.
 
 Advantage of using containers:
 
@@ -104,10 +132,14 @@ This fixed my installation and I was able to successfully use `docker run hello-
 
 
 ## References
-- [Prakhar Srivastav. *Docker for Beginners*](https://docker-curriculum.com/)
-- [Docker 101 Tutorial](https://www.docker.com/101-tutorial)
-- [KodeKloud (2018). *Docker introduction in 15 minutes*](https://youtu.be/rmf04ylI2K0)
-- [Operating System Tutorial](https://www.tutorialspoint.com/operating_system/index.htm#:~:text=An%20Operating%20System%20(OS)%20is%20an%20interface%20between%20a%20computer,as%20disk%20drives%20and%20printers.)
+
+- [Prakhar Srivastav. *Docker for Beginners*](https://docker-curriculum.com/) 
+- [Docker 101 Tutorial](https://www.docker.com/101-tutorial) 
+- [KodeKloud (2018). *Docker introduction in 15 minutes*](https://youtu.be/rmf04ylI2K0) 
+- [Operating System Tutorial][Operating System Tutorial]
+
+[Operating System Tutorial]: https://www.tutorialspoint.com/operating_system/index.htm#:~:text=An%20Operating%20System%20(OS)%20is%20an%20interface%20between%20a%20computer,as%20disk%20drives%20and%20printers.
+
 ----
 
 ## Kubernetes Concepts
@@ -121,9 +153,18 @@ If a docker host was to fail,
 large applications with 1000s of containers
 
 
-Container orchestration:
+Container orchestration: A set of tools and scripts that can  help host containers in the production environment. 
+- Consists of multiple docker hosts that can host constainers so that if one container fails, the application will be acessible through the other hosts. 
+
+
+Kubernetes CLI is known as "kube control". Example kubernetes command to generate a cluster:
+```
+kubectl run --replicas=100 my-web-server
+```
+
+Other tools for container orchestration: Docker Swarm, Mesos
 
 
 
-- Tools for container orchestration: Docker Swarm, Kubernetes, Mesos
+
 
