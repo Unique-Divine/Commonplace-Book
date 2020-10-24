@@ -1,4 +1,4 @@
-\chapter{Deep Learning \& AI}
+\chapter{AI \& Deep Learning}
 
 \section{Important Papers}
 
@@ -153,8 +153,11 @@ We know the field is fast moving. If the reader looking for more recent free rea
 
 \cite[hello]{raghu2020survey}
 
-\section{Deep Learning for Genomic Risk Scores}
+\chapter{Bioinformatics}
 
+\section{Deep Learning for Genomic Prediction}
+
+original title: DL for Genomic Risk Scores
 \begin{quotation}
 ``
 A central aim of computational genomics is to identify variants (SNPs) in the genome which increase risks for diseases. Current analyses apply linear regression to identify SNPs with large associations, which are collected into a function called a Polygenic Risk Score (PRS) to predict disease for newly genotyped individuals. This project is broadly interested in whether we can improve performance of genomic risk scores using modern machine learning techniques.
@@ -343,3 +346,62 @@ This project is designed for students with experience in machine learning topics
 \item
 
 \end{itemize}
+
+\section{Computational Genomics (course, Rob Edwards)}
+
+This section details my notes from \href{https://www.youtube.com/watch?v=WuoHFKm4vXo\&list=PLpPXw4zFa0uLMHwSZ7DMeLGjIUgo1IBbn\&index=1}{Rob Edwards's open source course} at San Diego State University (Copyright 2018).
+
+What will be learned in this course?
+
+We'll use cutting-edge tools to analyze microbial genomes.
+
+By the time we're done with the course, you'll have the ability to:
+\begin{itemize}
+\item use Amazon Web Services to analyze genomes
+\item use existing bioinformatics applications
+\item describe how algorithms used in bioinformatics work
+\item download, identify, and analyze data from public repositories
+\item critically analyze genomes and metagenomes
+\end{itemize}
+
+\subsection{Central Dogma of Biology}
+\href{https://www.youtube.com/watch?v=FRlNkKhbMAY&list=PLpPXw4zFa0uLMHwSZ7DMeLGjIUgo1IBbn&index=7}{[lecture video]}
+
+Dogma (def):
+\begin{enumerate}
+\item
+a principle or set of principles laid down by an authority as incontrovertibly true."the Christian dogma of the Trinity". "the rejection of political dogma." "the classic dogma of objectivity in scientific observation". "the difficulty of resisting political dogma".
+\item
+Characterized by assertion of unproved or unprovable principles. A doctrine that is proclaimed as true without proof. "he believed all the Marxist dogma". "dogmatic writings".
+\end{enumerate}
+
+\paragraph*{In Essence:} DNA is the genetic code. DNA is converted to messenger RNA (mRNA) through a process called transcription. There are two other types of RNA: tRNA and rRNA. mRNA is converted into proteins. Proteins are comprised of amino acids. In mRNA, nitrogenous bases consitute what's called a codon. A codon encodes for one amino acid. mRNA is read sequentially, one codon at a time, to give sequences of amino acids that make up a protein. [bonus] There's also a "reverse" transcription that certain viruses can do, where mRNA is converted back into DNA. Humans don't normally do that. Bacteria don't normally do that. Viruses do. \textbf{Bottom Line: }DNA is essentially the standard code for all living organisms as far as we know.
+
+DNA's alphabet: A C  G T
+
+RNA's alphabet:  A C G U
+
+DNA gets transcribed into RNA in a sequence-depended fashion.
+
+DNA has a direction. One side of a strand is 5', "the 5 prime band", and one is 3'. This direction is 5' to 3'.
+
+DNA lines up in pairs of sequences with bases aligned in complementary pairs. These pairs are called "reverse compliments"
+
+RNA is made with what's called a template strand.
+
+\subsection{What does it mean to sequence a genome?}
+
+\begin{quest}
+\item
+	What's a genome
+
+	\begin{ans}
+		Humans have 23 pairs of chromosomes. Each pair consists of a chromosome from each parent.
+
+		All of the DNA contained in one cell is called the genome. We have one copy of the genome in nearly every cell in our body. Human genomes are $\approx99.8\%$  identical to that of every other human being. The other $0.2\%$ of the genome is what is of high interest to healthcare professionals as understanding it can help in the prediction, prevention, diagnosis, and treatment of disease.
+	\end{ans}
+
+\end{quest}
+
+
+
