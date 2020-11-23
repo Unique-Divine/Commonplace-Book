@@ -1,9 +1,9 @@
 \documentclass[11pt, fancy, bibstyle=apalike, cite=authoryear]{elegantbook}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%
+% -------------------------------------------------------------
 %				Packages
-
+% -------------------------------------------------------------
 \usepackage[ruled,vlined]{algorithm2e}
 
 %\usepackage[style=authoryear,
@@ -17,17 +17,39 @@
 
 \usepackage{wrapfig}
 \usepackage{pdfpages} % include PDFs
+\usepackage{xcolor}
 
+% Enable consolas for monofont
+\usepackage{inconsolata}
+
+% Code block options
+\usepackage{listings}
+	\lstloadlanguages{C++,C,Python,bash,Java}
+\lstnewenvironment{cpp}[0]{
+	\lstset{
+		language=C++,
+	    basicstyle=\small\ttfamily,
+	    keywordstyle=\color{cyan}\ttfamily,
+	    stringstyle=\color{red}\ttfamily,
+		showstringspaces=false,
+	    commentstyle=\color{magenta}\ttfamily,
+	    morecomment=[l][\color{magenta}]{\#}
+		otherkeywords={=, +, [, ], (, ), \{, \}, *}
+	}
+}{}
+
+% For hyperlinks
 \usepackage{hyperref}
-\hypersetup{
-	colorlinks=true,
-	linkcolor=cyan,
-	filecolor=magenta,
-	urlcolor=cyan,
-	citecolor=green
-}
+	\hypersetup{
+		colorlinks=true,
+		linkcolor=cyan,
+		filecolor=magenta,
+		urlcolor=cyan,
+		citecolor=green
+	}
 
-
+%				Python Code Blocks
+% -------------------------------------------------------------
 \usepackage{pythonhighlight}
 %	Python snippit
 %		\begin{python}
@@ -39,8 +61,9 @@
 %	load external Python file from line 23 to line 50
 %		\inputpython{python_file.py}{23}{50}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%
+% -------------------------------------------------------------
 % 				Custom environments
+% -------------------------------------------------------------
 % \newenvironment{<env-name>}[<n-args>][<default>]{<begin-code>}{<end-code>}
 \newenvironment{quest}{\begin{enumerate}[label=\bfseries Q: ]\bfseries}
 	{\end{enumerate}}
@@ -48,8 +71,9 @@
 
 \def\cloze{\textbf{(cloze) }}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%
-% Title Details
+% -------------------------------------------------------------
+% 				Cover Information
+% -------------------------------------------------------------
 \title{Daily Notes}
 \subtitle{2020 \LaTeX{} doc}
 \author{Unique Divine}
@@ -63,17 +87,16 @@
 
 
 
-%%%%%%%%%
+% -------------------------------------------------------------
 \begin{document}
-%%%%%%%%%
 
 \maketitle
 \frontmatter
 \tableofcontents
 
-%-------
-% Body
-%-------
+
+% 			Body
+
 \mainmatter
 
 \include{subjects/intro}
@@ -90,36 +113,48 @@
 % Bibliography
 \bibliography{master_references}
 
-%%%%%%%%%
+
 \end{document}
-%%%%%%%%%
+% -------------------------------------------------------------
 
 % Template Recipes
+\begin{comment}
+% bold text
+\textbf{}
 
-%Bold Text:
-%	\textbf{}
+% Inline code:
+\lstinline{code}
 
-%Inline code:
-%	\lstinline{code}
-
-%Note environment:
-%	\begin{note}
-%
-%	\end{note}
+% Note environment:
+\begin{note}
+	content
+\end{note}
 
 %Remark environment:
-%	\begin{remark}
-%	  On Overleaf, please use \hologo{XeLaTeX} to compile articles in Chinese and \hologo{pdfLaTeX} to compile articles in English.
-%	\end{remark}
+\begin{remark}
+	On Overleaf, please use \hologo{XeLaTeX} to compile articles in Chinese and \hologo{pdfLaTeX} to compile articles in English.
+\end{remark}
 
 %Listing (code) environment.
-%	\begin{lstlisting}
-%	tlmgr update --self
-%	tlmgr update --all
-%	print("hello world")
-%	\end{lstlisting}
+\begin{lstlisting}
+tlmgr update --self
+tlmgr update --all
+print("hello world")
+\end{lstlisting}
 
 %Assumption environment:
-%	\begin{assumption}
-%		assumptions
-%	\end{assumption}
+\begin{assumption}
+	assumptions
+\end{assumption}
+\end{comment}
+
+
+
+
+
+
+
+
+
+
+
