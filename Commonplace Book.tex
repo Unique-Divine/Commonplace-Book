@@ -17,18 +17,32 @@
 
 \usepackage{wrapfig}
 \usepackage{pdfpages} % include PDFs
-\usepackage{xcolor}
+\usepackage{xcolor, color, soul}
+	% https://en.wikibooks.org/wiki/LaTeX/Colors
+
+	% Highlight monospace text like markdown
+	\definecolor{lightGray}{RGB}{230, 230, 230}
+	\sethlcolor{lightGray}
+
+\newcommand\code[2][black]
+	{
+	\textcolor{#1}{\hl{\texttt{#2}}}
+	}
 
 % Enable consolas for monofont
 \usepackage{inconsolata}
 
 % Code block options
 \usepackage{listings}
-	\lstloadlanguages{C++,C,Python,bash,Java}
+% To add in a source file directly: \lstinputlisting[language=Python]{source.py}
+
+
+\lstloadlanguages{C++,C,Python,bash,Java}
+
 \lstnewenvironment{cpp}[0]{
 	\lstset{
 		language=C++,
-	    basicstyle=\small\ttfamily,
+	    basicstyle=\smaller\ttfamily,
 	    keywordstyle=\color{cyan}\ttfamily,
 	    stringstyle=\color{red}\ttfamily,
 		showstringspaces=false,
@@ -37,6 +51,44 @@
 		otherkeywords={=, +, [, ], (, ), \{, \}, *}
 	}
 }{}
+\lstnewenvironment{java}[0]{
+	\lstset{
+		language=Java,
+	    basicstyle=\smaller\ttfamily,
+	    keywordstyle=\color{cyan}\ttfamily,
+	    stringstyle=\color{red}\ttfamily,
+		showstringspaces=false,
+	    commentstyle=\color{magenta}\ttfamily,
+	    morecomment=[l][\color{magenta}]{\#}
+		otherkeywords={=, +, [, ], (, ), \{, \}, *}
+	}
+}{}
+\lstnewenvironment{bash}[0]{
+	\lstset{
+		language=bash,
+	    basicstyle=\smaller\ttfamily,
+	    keywordstyle=\color{cyan}\ttfamily,
+	    stringstyle=\color{red}\ttfamily,
+		showstringspaces=false,
+	    commentstyle=\color{magenta}\ttfamily,
+	    morecomment=[l][\color{magenta}]{\#}
+		otherkeywords={=, +, [, ], (, ), \{, \}, *}
+	}
+}{}
+\lstnewenvironment{python}[0]{
+	\lstset{
+		language=Python,
+	    basicstyle=\smaller\ttfamily,
+	    keywordstyle=\color{cyan}\ttfamily,
+	    stringstyle=\color{red}\ttfamily,
+		showstringspaces=false,
+	    commentstyle=\color{magenta}\ttfamily,
+	    morecomment=[l][\color{magenta}]{\#}
+		otherkeywords={=, +, [, ], (, ), \{, \}, *}
+	}
+}{}
+
+
 
 % For hyperlinks
 \usepackage{hyperref}
@@ -51,25 +103,34 @@
 %				Python Code Blocks
 % -------------------------------------------------------------
 \usepackage{pythonhighlight}
-%	Python snippit
-%		\begin{python}
-%			def f(x):
-%			return x
-%		\end{python}
-%	inline Python
-%		\pyth{ <code>  }
-%	load external Python file from line 23 to line 50
-%		\inputpython{python_file.py}{23}{50}
+\begin{comment}
+% Python code block
+\begin{python}
+	def f(x):
+	return x
+\end{python}
+
+% inline Python
+\pyth{ <code>  }
+
+% load external Python file from line 23 to line 50
+\inputpython{python_file.py}{23}{50}
+\end{comment}
+
+
+
 
 % -------------------------------------------------------------
 % 				Custom environments
 % -------------------------------------------------------------
 % \newenvironment{<env-name>}[<n-args>][<default>]{<begin-code>}{<end-code>}
-\newenvironment{quest}{\begin{enumerate}[label=\bfseries Q: ]\bfseries}
+\newenvironment{quest}{\begin{enumerate}[label=\textbf{Q: }]\bfseries}
 	{\end{enumerate}}
 \newenvironment{ans}{\par\normalfont}{}
 
 \def\cloze{\textbf{(cloze) }}
+
+
 
 % -------------------------------------------------------------
 % 				Cover Information
@@ -84,7 +145,6 @@
 \extrainfo{Victory won\rq t come to us unless we go to it. }
 \logo{logo-blue.png}
 \cover{cover.jpg}
-
 
 
 % -------------------------------------------------------------
@@ -104,14 +164,23 @@
 \part{Practical Reference}
 \include{subjects/metalearning}
 \include{subjects/deeplearning}
-\include{subjects/math_code}
-\include{subjects/quotes}
+
+\part{Math \& Code}
+
+\include{code/java}
+\include{code/git}
+\include{code/c++}
+\include{code/webdev}
+\include{code/algorithms}
+\include{code/unlabeled}
+
 
 \part{Journal}
+\include{subjects/quotes}
 \include{subjects/journal}
 
 % Bibliography
-\bibliography{master_references}
+\bibliography{Commonplace Book}
 
 
 \end{document}
