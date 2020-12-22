@@ -1,0 +1,82 @@
+% -----------------------------------------------------
+\chapter{Git}
+% -----------------------------------------------------
+
+Git (cookbook)
+
+\section{Fundamental Concepts}
+
+\subsection{Local branch vs. remote branch}
+\begin{itemize}
+\item \textbf{local branch}:  a branch only the local user can see. It exists only on your local machine.
+
+	\begin{itemize}
+	\item  Ex. Create local branch named "myNewBranch":
+
+	\code{git branch myNewBranch }
+	\end{itemize}
+
+\item
+\textbf{remote branch}: a branch on a remote location (in most cases `origin`). Local branches can be pushed to `origin` (a remote branch), where other users can track it.
+
+	\begin{itemize}
+	\item Ex. Push local branch, "myNewBranch", to the remote, "origin" so that a new branch named "myNewBranch" is created on the remote machine ("origin"):
+
+	\code{git push -u origin myNewBranch}
+	\end{itemize}
+
+
+\item
+\textbf{remote tracking branch}: A local copy of a remote branch.
+
+When `myNewBranch` is pushed to `origin` using the command above, a remote tracking branch named `origin/myNewBranch` is created on your local machine.
+\end{itemize}
+
+\textbf{local tracking branch}: a local branch that is tracking another branch.
+
+source(s): \href{https://stackoverflow.com/questions/16408300/what-are-the-differences-between-local-branch-local-tracking-branch-remote-bra}{SNce \& Brian Webster. stackoverflow.com}
+
+\subsection{HEAD, master, and origin}
+
+I highly recommend the book "Pro Git" by Scott Chacon. Take time and really read it, while exploring an actual git repo as you do.
+
+\begin{itemize}
+\item \textbf{HEAD}: the current commit your repo is on. Most of the time HEAD points to the latest commit in your current branch, but that doesn't have to be the case. HEAD really just means "what is my repo currently pointing at".
+
+ In the event that the commit HEAD refers to is not the tip of any branch, this is called a "detached head".
+
+\item
+\textbf{master}: the name of the default branch that git creates for you when first creating a repo. In most cases, "master" means "the main branch". Most shops have everyone pushing to master, and master is considered the definitive view of the repo. But it's also common for release branches to be made off of master for releasing. Your local repo has its own master branch, that almost always follows the master of a remote repo.
+
+\item
+ \textbf{origin}: the default name that git gives to your main remote repo. Your box has its own repo, and you most likely push out to some remote repo that you and all your coworkers push to. That remote repo is almost always called origin, but it doesn't have to be.
+
+\item
+\code{HEAD} is an official notion in git. \code{HEAD} always has a well-defined meaning. \code{master} and \code{origin} are common names usually used in git, but they don't have to be.
+\end{itemize}
+
+
+source:  \href{https://stackoverflow.com/questions/8196544/what-are-the-git-concepts-of-head-master-origin}{HEAD, master, and origin. Matt Greer \& Jacqueline P. via stackoverflow.com}
+
+\subsection{Large File Storage}
+
+https://git-lfs.github.com/
+
+
+\section{Git\S 2}
+
+\subsection{SSH keys}
+
+An SSH key is an alternative to username/password authorization on GitHub. This will allow you to bypass entering your username and password for future GitHub commands.
+
+
+SSH keys come in pairs, a public key that gets shared with services like GitHub, and a private key that is stored only on your computer. If the keys match, you're granted access.
+
+The cryptography behind SSH keys ensures that no one can reverse engineer your private key from the public one.
+
+\url{https://jdblischak.github.io/2014-09-18-chicago/novice/git/05-sshkeys.html}
+
+Generating a new SSH key: Follow \url{https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent}
+
+
+

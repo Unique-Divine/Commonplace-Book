@@ -1,0 +1,76 @@
+
+% -----------------------------------------------------
+\chapter{C++}
+% -----------------------------------------------------
+
+C++ source code files end with a .cpp extension.
+
+Hello world program: Run these and find out which one works.
+
+\begin{cpp}
+#include <iostream>
+
+int main()
+{
+    std::cout << "Hello, world!";
+    return 0;
+}
+\end{cpp}
+
+Compiling and executing the C++ program:
+\begin{enumerate}
+\item
+Step 1 is to install the gcc compiler.
+
+\code{hi}
+
+
+\item
+Verify the install of g++ and gdb with
+\code{whereis g++} and \code{whereis gdb}
+
+To install gdb (linux or WSL), use \code{sudo apt-get install build-essential gdb}
+
+\end{enumerate}
+
+
+\paragraph*{\href{https://www.openmp.org//wp-content/uploads/openmp-examples-4.5.0.pdf}{Open MP}}
+
+To import:
+\begin{cpp}
+#include <omp.h>
+\end{cpp}
+
+People use OpenMP for shared memory parallelization.
+
+
+\subsection*{Header files}
+
+C++ programs consist of more than just .cpp files. They also use **header files**, which can have a .h extension, .hpp extension, or even none at all.
+
+\begin{quest}
+\item What is a \texttt{.h} file?
+\begin{ans}
+header file
+\end{ans}
+
+
+\item What is the purpose of a header file?
+\begin{ans}
+Header files allow us to put declarations in one location and then import them wherever we need them. This can save a lot of typing in multi-file programs.
+\end{ans}
+
+\item What's contained in a \texttt{.h} file?
+\begin{ans}
+..
+\end{ans}
+\end{quest}
+
+
+\subsection*{References \& Further Reading}
+\begin{itemize}
+\item
+	\href{https://www.tutorialspoint.com/cprogramming/c_header_files.htm}{C header files}
+\item
+	\href{https://www.learncpp.com/cpp-tutorial/header-files/}{learncpp.com/.../header-files}
+\end{itemize}
