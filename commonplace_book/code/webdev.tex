@@ -1,9 +1,6 @@
-
 % -----------------------------------------------------
-
 \chapter{Web development}
 % -----------------------------------------------------
-
 
 % -----------------------------------------------------
 \section{Hugo Web Design}
@@ -13,42 +10,30 @@ Start Sep 16 (Mike Dane Tutorial Series)
 
 \subsection{Intro to Hugo -\href{https://youtu.be/qtIqKaDlqXo}{(video)} }
 \begin{itemize}
-	\item
-	Hugo is a static site generator.
-	\item
-	Static website generators allow you to compromise between writing a bunch of static html pages and using a heavy, and potentially expensive, content management system.
-	\item
-	Why Hugo? It's extremely fast.
-	\item
-	2 kinds of websites, dynamic and static. Dyanmic ex. Facebook. Facebook pages are dynamically generated for each user. For static websites, what you see is what you get.
-	\item
-	Static websites are notoriously harder to maintain b/c you lack some of the flexibility of things  on a dynamic site. Usually you can't use much conditional logic, functions, or variables.
+	\item	Hugo is a static site generator.
+	\item Static website generators allow you to compromise between writing a bunch of static html pages and using a heavy, and potentially expensive, content management system.
+	\item Why Hugo? It's extremely fast.
+	\item 2 kinds of websites, dynamic and static. Dyanmic ex. Facebook. Facebook pages are dynamically generated for each user. For static websites, what you see is what you get.
+	\item Static websites are notoriously harder to maintain b/c you lack some of the flexibility of things  on a dynamic site. Usually you can't use much conditional logic, functions, or variables.
 	\item
 	However, static pages are extremely fast.
 	\item
 	Hugo is great for a blog, portfolio website, etc.
-	\item
-	Hugo doesn't explicity require you to write a single line of HTML code.
-	\item
-	Flexibility | With that said, if you want to go in and change every little detail of the layout of the site, you cna do that. You can write as much of the HTML and have as much control as you'd like.
-	\item
-	Hugo is 100\% free and open-source.
+	\item Hugo doesn't explicity require you to write a single line of HTML code.
+	\item Flexibility | With that said, if you want to go in and change every little detail of the layout of the site, you cna do that. You can write as much of the HTML and have as much control as you'd like.
+	\item Hugo is 100\% free and open-source.
 \end{itemize}
 
 \subsection{Intalling Hugo on Windows - \href{https://youtu.be/G7umPCU-8xc?list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3}{(video)} }
 \begin{itemize}
-	\item
-	Mine's already installed. I'll skip this for now.
-	\item
-	a
-	\item
-	a
+	\item Mine's already installed. I'll skip this for now.
+	\item a
+	\item a
 \end{itemize}
 
 \subsection{Creating a new site - \href{https://youtu.be/sB0HLHjgQ7E?list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3}{(video)} }
 \begin{itemize}
 	\item skip, a bit too easy
-
 \end{itemize}
 
 \subsection{Installing \& Using Themes - \href{https://youtu.be/L34JL_3Jkyc?list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3}{(video)} }
@@ -127,38 +112,111 @@ Start Sep 16 (Mike Dane Tutorial Series)
 
 \subsection{Taxonomies - \href{https://youtu.be/pCPCQgqC8RA?list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3 }{(video)}}
 \begin{itemize}
-	\item
-	Taxonomies in hugo are basically ways that you can logically group different pieces of content together in order to organize it in a more efficient way.
-	\item
-	Hugo provids 2 defualt taxonomies: tags \& categories
-	\item
-	All taxonomy information is declared in front matter.  In YAML, tags has the syntax \texttt{tags: ["tag0", "tag1", $\ldots$]}
+	\item Taxonomies in hugo are basically ways that you can logically group different pieces of content together in order to organize it in a more efficient way.
+	\item Hugo provids 2 defualt taxonomies: tags \& categories
+	\item All taxonomy information is declared in front matter.  In YAML, tags has the syntax \texttt{tags: ["tag0", "tag1", $\ldots$]}
 \end{itemize}
 
 \subsection{Templates - \href{https://youtu.be/gnJbPO-GFIw}{(video)}}
 \begin{itemize}
-	\item
-	Templates here mostly refers to HTML templates. If you're not comfortable writing HTML, CSS, and coding for the web, templates might be a little bit above your head.
-	\item
-	A hugo theme is actually made up of hugo templates.
-	\item
-	Any template that you use in Hugo is going to be inside \texttt{themes/theme-name/layouts}. This is where all the templates live.
-	\item
-	\texttt{~/layouts/default} usually contains a default style for list and single pages by use of \texttt{list.html} and \texttt{single.html}.
+	\item Templates here mostly refers to HTML templates. If you're not comfortable writing HTML, CSS, and coding for the web, templates might be a little bit above your head.
+	\item A hugo theme is actually made up of hugo templates.
+	\item Any template that you use in Hugo is going to be inside \texttt{themes/theme-name/layouts}. This is where all the templates live.
+	\item \texttt{~/layouts/default} usually contains a default style for list and single pages by use of \texttt{list.html} and \texttt{single.html}.
 \end{itemize}
 
 \subsection{List Templates - \href{https://youtu.be/8b2YTSMdMps}{(video)}}
 \begin{itemize}
-	\item
-	List templates give default HTML layout to list content files.
-	\item
-
+	\item List templates give default HTML layout to list content files.
+	\item .
 \end{itemize}
 
 \subsection*{Resources}
 \begin{itemize}
-	\item
-	\href{https://www.linkedin.com/learning/learning-static-site-building-with-hugo-2/build-a-static-site-with-hugo?resume=false}{A clear and concise beginner hugo tutorial}
-	\item
-	\href{https://youtu.be/yfoY53QXEnI}{CSS Crash Course for Absolute Beginners}
+	\item \href{https://www.linkedin.com/learning/learning-static-site-building-with-hugo-2/build-a-static-site-with-hugo?resume=false}{A clear and concise beginner hugo tutorial}
+	\item \href{https://youtu.be/yfoY53QXEnI}{CSS Crash Course for Absolute Beginners}
+\end{itemize}
+
+
+\section{HTTP, TCP, IP}
+
+\subsection{HTTP}
+
+\begin{quest}
+	\item \cloze HTTP = Hypertext Transfer Protocol
+	\item Give me a brief overview of HTTP.
+	\begin{ans}
+		HTTP is a protocol that allows the fetching of resources such as HTML documents. It allows web-based apps to communicate and exchange data. 
+
+		HTTP is a client-server protocol. This means requests are initiated by a recipient, usually the web browser, and a complete document is constructed from the files fetched such as text, layout description, images, videos, scripts, etc.
+		\begin{itemize}
+			\item The client is the one making the request.
+			\item The server responds to this request. 
+		\end{itemize}
+	\end{ans}
+\end{quest}
+
+\paragraph*{Three important things about HTTP} 
+\begin{enumerate}
+	\item HTTP is connectionless: After making the request, the client disconnects from the server. Then when the response is ready, the server re-establishes the connection again and delivers the response. 
+	\item HTTP can deliver any sort of data. 
+	\item HTTP is stateless: The client and server know about each other only during the current request. If the current request closes and the two computers want to connect again, they need to provide information to each other anew. In other words, statelessness means that the connection between the browser and the server is lost once the transaction ends.  
+\end{enumerate}
+
+To learn about requests and repsonses: \url{https://youtu.be/eesqK59rhGA?t=275}
+
+
+
+\subsection{TCP/IP}
+
+The internet protocol suite is the conceptual model and set of communications protocols used in the internet and similar computer networks. It is commonly known as TCP/IP because the foundational protocols in the suite are the Transmission Control Protocol (TCP) and Internet Protocol (IP). 
+
+Communication prootocl: A system of rules that allow two or more entitites of a communications system to transmit information via any kind of variation of a physical quantity. 
+
+\paragraph*{Internet Protocol (IP):} IP has the task of delivering packets from from the source host to the destination host solely based on the IP addresses in the packet headers. For this purpose, IP defines packet structures that encapsulate the data to be delivered.It also defines addressing methods that are used to label the datagrame with source and destination information. 
+
+\begin{itemize}
+	\item (network) packets: Formatted units of data carried by a packet-switched network. A packet consists of control information and user data; the latter is also known as the payload. Control information provides data for delivering the payload (e.g. source and destination network addresses, error detection codes, or sequencing information).  
+\end{itemize}
+
+\begin{quest}
+	\item What's an IP address?
+	\begin{ans}
+		An Internet Protocol address, or IP address, is a numerical label assigned to each device connected to a computer network tha tuses the Internet Protocol for communication. 
+	\end{ans}
+\end{quest}
+
+\paragraph*{Bandwitdth (computing):} (Computing) bandwitdth is the maximum rate of data transfer across a given path. Bandwidth can be characterized as network bandwidth, data bandwidth, or digital bandwidth. 
+
+Computing bandwidth is different from the bandwidth defined in the field of signal processing, signal bandwidth. Signal bandwidth is the frequency range between lowest and highest attainable frequency while meeting a well-defined impairment level in signal power. It's measured in hertz.
+
+In relation to internet protocol, we often talk about consume dbandwidth in bit/s, which corresponds to achieved throughput or goodput, i.e. the avg rate of successful data transfer through a communication path. 
+
+\begin{quest}
+	\item Why is network bandwidth an average rate instead of a current rate?
+	\begin{ans}
+		A channel with $v_\beta$ may not necessarily transmit data at $v_t$ rate since protocols, encryption, and other factors can add overhead. For instance, internet traffic often uses TCP, which requires a three-way handshake for each transaction. TCP is efficient, but it does add significant overhead compared to simpler protocols. Additionally, data packets may be lost, further reducing the data throughput. 
+	\end{ans}
+
+	\item Packet loss?
+	\begin{ans}
+		Packet loss occurs when one or more packets of data travelling across a computer network fail to reach their destination. Packet loss is either caused by errors in data transmission, typically across wireless networks, or network congestion. Packet loss is measured as a percentage of packets lost with respect to packets sent.
+	\end{ans}
+
+	\item Packet switching?
+	\begin{ans}
+		Packet switching is a method of grouping data that is transmitted over a digital netowrk into packets. Packets are made of a header and a payload. Data in the header is used by networking hardware to direct the packet to its destination, where the payload is extracted and used by application software. Packet switching is the primary basis for data communications in computer networks worldwide.
+	\end{ans}
+	\item 
+\end{quest}
+
+
+
+
+
+
+\subsection*{Resources}
+\begin{itemize}
+	\item \url{https://en.wikipedia.org/wiki/Internet_protocol_suite}
+	\item .
 \end{itemize}
