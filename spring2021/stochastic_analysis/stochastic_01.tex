@@ -1,99 +1,103 @@
 \chapter{Introduction, Intelligent Agents}
 
-\section{Lec. 1: Syllabus \& Logistics}
-Prof will go over the expecations: expectations in terms of time commitment, workload, etc. We'll also talk about what you'll get out of this course.
+% ---------------------------------------
+\section{Probability Theory I [Lec. 0, Jan 11]}
+% ---------------------------------------
 
-Prof has taught this class twice before, so this is the third iteration.
-\begin{mybox}{green}{Important shorthands I'll be using:}
-	\begin{itemize}
-	\item Prof $\equiv$ the professor, Tony Dear
-	\item h $\equiv$ hour(s); min $\equiv$ minute(s)
-	\end{itemize}
-\end{mybox}
+\subsection{Course Overview}
+
+The course will be non-traditional. It's not going to be your typical course found in a statistics or pure math department. What we'll do is present tools from stochastic analysis that are often useful in research and in industry for modeling physical systems.
+
+The usual treatment of this subject is to go over some theoretical results and then talk about a few applications in finance. What we want to look at is the applications of this field in applied math. For instance, elliptic partial differential eqs, monte carlo methods, etc. This will cover the first few chapters of the textbook.
+
+The goal is to gain an overall intuition for the subject, so we're not going to talk about all of the technical details. This doesn't mean we'll have fallacies in all of our derivations. It just means that we won't prove everything so that we can save time. We'll mostly look at the big picture and the connection to different things. We'll talk about why certain abstract things are actually useful.
+
+Consequently, you'll see a lot of jumps. We'll also review elementary knowledge in this area and computing.
+
+The first few homeworks will be a recap of some probability theory that we'll use. Limiting theorems, random variables, and distributions. The rest of the homework is mostly on projects. We will sometimes have simple derivations, schemes, code implementations of course concepts.
 
 
-\paragraph*{Plan for Today}
-\begin{itemize}
-\item Syllabus and logistics
-\item Definition, foundations, and modern capabilities of AI
-\item Properties of \textbf{task environments}
-\item Structure and types of \textbf{intelligent agents}
-\end{itemize}
+Today won't even be a review. We'll just mention what knowledge you will need.
 
-Reading: Today's material will correspond to chapters 1 and 2 of the textbook.
+\subsection{Probability Theory Review}
 
-\subsection*{Course Expectations}
-\begin{itemize}
-\item MS-level (4k) CS course
-	\begin{itemize}
-	\item
-		Your peers: Mostly CS undergrads, CS grads, and SEAS grad
-	\item
-		Some taking first 4k course, others first CS course
-	\item
-		Must be able to learn independently, keep up with course reading
-	\end{itemize}
-
-\item \textbf{Coursework}:
-	\begin{itemize}
-	\item
-		Both \textbf{programming} AND \textbf{quantitative analysis (math: probability theory, maybe some linear algebra)}
-	\end{itemize}
-
-\item \textbf{Attendance}:
-	\begin{itemize}
-		\item not required, but try your best to attend live
-		\item recordings uploaded by CVN within 24 hours of each lecture
-	\end{itemize}
-\item \textbf{Half-semester course / Immersive Course}:
-	\begin{itemize}
-	\item
-		covering \textbf{same material as full semester twice as fast} as usual
-	\item
-		expect \textbf{workload equivalent to 2 regular courses}
-
-	\item
-		University requires 18 h total weekly (6 h in class, 12 h outside of class) for immersive courses
-	\end{itemize}
-
-\item \textbf{Enrollment}
-	\begin{itemize}
-	\item
-		Section 001 (Fall A) closes Friday 9/11 and section 002 (Fall B) closes Friday 9/18
-	\item \textbf{Auditing}: Students interested in auditing and who do not intend to enroll in Fall B may petition to audit by completing this form: \url{https://forms.gle/x8xJugaNa4JcKE4G6}. \emph{If flexible, you're encouraged to audit Fall B --fewer students, better experience for everyone}
-	\end{itemize}
-\end{itemize}
-
-\subsection*{Grade Breakdown}
-
-\paragraph*{Assessments:} Quizzes (25\%), Homework (40\%), 	Final Exam (35\%)
-
-\paragraph*{Grading: } Grade determined based on two scales:
 \begin{enumerate}
-\item a fixed standard scale (A is 90\%+, B is 80\%+, etc.) as well as
-\item a curved scale relative to all other students,
+	\item probability spaces: ($\Omega, F, \pr$) = sample space, $\sigma$-algebra, probability measure
+
+	A sigma alebra has a few properties (in first few chapters of textbook). "countable union"
+	\begin{itemize}
+		\item $\phi \in F$
+		\item $A\in F \implies A^c\in F$
+		\item $\{ A_i\}_{i=1}^\infty \in F \implies \cup A_i \in F$
+	\end{itemize}
+
+	A probability measure is a function that maps between 0 and 1. $\pr: f\to [0,1]$.
+	\begin{itemize}
+		\item $E_1 \subseteq E_2 \implies \pr(E_1) \leq \pr(E_2)$
+		\item Boole's Inequality: $\pr(\bigcup\limits_{i=1}^\infty E_1)  \leq \sum\limits_i \pr(E_i)$ 
+		\item Inclusion-Exclusion: $\pr(E_1\cup E_2) = \pr(E_1) + \pr(E_2) - \pr(E_1 \cap E_2)$
+	\end{itemize}
+	
+	\item  Conditional Probability 
+	\begin{itemize}
+		\item independence def.
+		\item conditional prob. def.,  Bayes' Thm
+		\item Law of total prob.: Let $\{E_i\}$ be pairwise disjoint s.t. $\bigcup_i E_i = \Omega$ and $\pr(E_i) > 0$. Then, $\pr(E) = \sum_i \pr(E|E_i) \pr(E_i) = \sum_i \pr(E\cap E_i)$. 
+	\end{itemize}
+	
+	\item \textbf{Random Variables}.
+	
+	A random variable is a measurable real-valued function, $X(\omega): \Omega\to \mathbb{R}$.
+
+	Measurable $\equiv \; \forall x, \; \{\omega | X(\omega) \leq x\} \subset F $ 
+
+	Distribution: The probability distribution function, $\pr(X\leq x) = F_X(x)$.  
+	If \[\exists f_X(x)\text{ s.t. }F_X(x) = \int\limits_{-\infty}^x f_X(t)dt, \;\; \forall x,\] 
+	then $f_X$ is a PDF and  $F_X$ is a CDF.
+
+	Expectation: $\expec[X] = \int\limits_{\Omega} x f_X(t)dt$. Sometimes we write this more simply as 
+	\[\expec[X] = \int\limits_\Omega X d\pr = \int\limits_{-\infty}^\infty x f_X(x) dx.\] 
+
+	Thm: $X\geq 0 \implies \expec[X] \geq 0$. 
+
+	\[ \expec[a + bX] = a + b\expec[X]	 \]
+
+	\[ \expec[aX + bY] = a\expec[X] + b\expec[Y] \]
+
+	\[ \{X_i\}_i\text{ independent }\implies \expec[\prod_i X_i] = \prod_i \expec[X_i] \]
 \end{enumerate}
-where the average of the latter is around a B to B+. We will calculate your grade according to both scales and give you the higher of the two. It is thus possible
-for everyone to receive an A in the course, but impossible for everyone to fail the course.
 
-\subsubsection*{Next page includes:}
-\begin{itemize}
-	\item Course description
-	\item Objectives
-	\item Prerequisites
-	\item Topics covered
-	\item Reading Assignments
-	\item Assessments and Grading
-	\item Lectures and Quizzes
-	\item Homework
-	\item Late Submissions and Drops
-	\item Regrading
-	\item Academic Conduct and Integrity
-\end{itemize}
+Variance: Var($X$) = $\expec[(X - \expec[X])^2]$
 
-\section{Lec. 1: Jan 13}
+\[ 
+	\text{Cov}(X, Y) = \expec[(X - \expec[X])(Y - \expec[Y])]
+\]
+
+\[
+	\text{Corr}(X, Y) = \frac{ \text{Cov}(X, Y)}{ \sqrt{\sigma_X^2 \sigma_Y^2} }	
+\]
+
+Also note that $\sigma_X^2 = \expec[X^2] - \expec[X]^2$
+
+\[ \Var(a + bX) = b^2 \Var(X) \]
+
+\[ \Var(X + Y) = \Var(X) + \Var(Y) + 2\text{Cov}(X, Y) \]
 
 
+% ---------------------------------------
+\section{Probability Theory II [Lec. 1, Jan 13]}
+% ---------------------------------------
+
+Moment inequalities
+
+Thm Markov's Ineq
+
+If $\expec[X] <\infty$, then 
+\[ \pr(|X| \geq a) \leq \frac{\expec[|X|]}{a}, \;\; a\geq 0 . \]
+
+\begin{proof}
+	
+\end{proof}
 
 theorem:
 $\phi$ is monotone increasing
@@ -106,6 +110,8 @@ Take $\phi(x) = x^2$.
 \implies \pr(|x - \expec[x]| \geq a) \leq \frac{ \expec(|x - \expec[x]|^2) }{ a^2 }
 \end{aligned}
 \]
+
+
 
 
 Why si this useful? It means that if you knwo how to control the variance, then you know how to control the probability. In the more general case, $\phi$ might be the third (or other higher order) moments.
@@ -223,6 +229,7 @@ There is a final project, and you'll have more information about it throughout t
 A homework will come out next week on Monday. There's a link on courseworks to the office hours and the syllabus section.
 \end{note}
 
+\section{[Lec. 2, Jan 20]}
 
 
-\section{Reading: Artificial Intelligence Intro (Book ch.1)}
+
