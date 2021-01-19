@@ -1,0 +1,231 @@
+\documentclass[11pt, fancy, bibstyle=apalike, cite=authoryear]{elegantbook}
+
+
+% -------------------------------------------------------------
+%				Packages
+% -------------------------------------------------------------
+\usepackage[ruled,vlined]{algorithm2e}
+
+%\usepackage[style=authoryear,
+%	bibstyle=authoryear,
+%	citestyle=authoryear,
+%	natbib=true,
+%	hyperref=true,
+%	backref=true,
+%	abbreviate=true]{biblatex}
+%	\addbibresource{master_references.bib}
+
+\usepackage{wrapfig}
+\usepackage{pdfpages} % include PDFs
+\usepackage{xcolor, color, soul}
+	% https://en.wikibooks.org/wiki/LaTeX/Colors
+
+	% Highlight monospace text like markdown
+	\definecolor{lightGray}{RGB}{230, 230, 230}
+	\sethlcolor{lightGray}
+
+\newcommand\code[2][black]
+	{
+	\textcolor{#1}{\hl{\texttt{#2}}}
+	}
+
+% Enable consolas for monofont
+\usepackage{inconsolata}
+
+% Code block options
+\usepackage{listings}
+% To add in a source file directly: \lstinputlisting[language=Python]{source.py}
+
+
+\lstloadlanguages{C++,C,Python,bash,Java}
+
+\lstnewenvironment{cpp}[0]{
+	\lstset{
+		language=C++,
+	    basicstyle=\smaller\ttfamily,
+	    keywordstyle=\color{cyan}\ttfamily,
+	    stringstyle=\color{red}\ttfamily,
+		showstringspaces=false,
+	    commentstyle=\color{magenta}\ttfamily,
+	    morecomment=[l][\color{magenta}]{\#}
+		otherkeywords={=, +, [, ], (, ), \{, \}, *}
+	}
+}{}
+\lstnewenvironment{java}[0]{
+	\lstset{
+		language=Java,
+	    basicstyle=\smaller\ttfamily,
+	    keywordstyle=\color{cyan}\ttfamily,
+	    stringstyle=\color{red}\ttfamily,
+		showstringspaces=false,
+	    commentstyle=\color{magenta}\ttfamily,
+	    morecomment=[l][\color{magenta}]{\#}
+		otherkeywords={=, +, [, ], (, ), \{, \}, *}
+	}
+}{}
+\lstnewenvironment{bash}[0]{
+	\lstset{
+		language=bash,
+	    basicstyle=\smaller\ttfamily,
+	    keywordstyle=\color{cyan}\ttfamily,
+	    stringstyle=\color{red}\ttfamily,
+		showstringspaces=false,
+	    commentstyle=\color{magenta}\ttfamily,
+	    morecomment=[l][\color{magenta}]{\#}
+		otherkeywords={=, +, [, ], (, ), \{, \}, *}
+	}
+}{}
+\lstnewenvironment{python}[0]{
+	\lstset{
+		language=Python,
+	    basicstyle=\smaller\ttfamily,
+	    keywordstyle=\color{cyan}\ttfamily,
+	    stringstyle=\color{red}\ttfamily,
+		showstringspaces=false,
+	    commentstyle=\color{magenta}\ttfamily,
+	    morecomment=[l][\color{magenta}]{\#}
+		otherkeywords={=, +, [, ], (, ), \{, \}, *}
+	}
+}{}
+
+
+
+% For hyperlinks
+\usepackage{hyperref}
+	\hypersetup{
+		colorlinks=true,
+		linkcolor=cyan,
+		filecolor=magenta,
+		urlcolor=cyan,
+		citecolor=green
+	}
+
+%				Python Code Blocks
+% -------------------------------------------------------------
+%\usepackage{pythonhighlight}
+\begin{comment}
+% Python code block
+\begin{python}
+	def f(x):
+	return x
+\end{python}
+
+% inline Python
+\pyth{ <code>  }
+
+% load external Python file from line 23 to line 50
+\inputpython{python_file.py}{23}{50}
+\end{comment}
+
+
+
+
+% -------------------------------------------------------------
+% 				Custom environments
+% -------------------------------------------------------------
+% \newenvironment{<env-name>}[<n-args>][<default>]{<begin-code>}{<end-code>}
+\newenvironment{quest}{\begin{enumerate}[label=\textbf{Q: }]\bfseries}
+	{\end{enumerate}}
+\newenvironment{ans}{\par\normalfont}{}
+
+\def\cloze{\textbf{(cloze) }}
+
+
+
+% -------------------------------------------------------------
+% 				Cover Information
+% -------------------------------------------------------------
+\title{Daily Notes}
+\subtitle{2020 \LaTeX{} doc}
+\author{Unique Divine}
+\institute{Elegant\LaTeX{} Program}
+\date{April 12, 2020}
+%\version{3.11}
+\bioinfo{Bio}{Information}
+\extrainfo{Victory won\rq t come to us unless we go to it. }
+\logo{logo-blue.png}
+\cover{cover.jpg}
+
+
+
+
+% -------------------------------------------------------------
+\begin{document}
+
+\maketitle
+\frontmatter
+\tableofcontents
+
+
+% 			Body
+
+\mainmatter
+
+\include{subjects/intro}
+
+\part{Practical Reference}
+\include{subjects/metalearning}
+\include{subjects/deeplearning}
+
+\part{Math \& Code}
+
+\include{code/java}
+\include{code/git}
+\include{code/c++}
+\include{code/webdev}
+\include{code/algorithms}
+\include{code/unlabeled}
+
+
+\part{Journal}
+\include{subjects/quotes}
+\include{subjects/journal}
+
+\bibliography{references}
+
+\end{document}
+
+
+% -------------------------------------------------------------
+
+% Template Recipes
+\begin{comment}
+% bold text
+\textbf{}
+
+% Inline code:
+\lstinline{code}
+
+% Note environment:
+\begin{note}
+	content
+\end{note}
+
+%Remark environment:
+\begin{remark}
+	On Overleaf, please use \hologo{XeLaTeX} to compile articles in Chinese and \hologo{pdfLaTeX} to compile articles in English.
+\end{remark}
+
+%Listing (code) environment.
+\begin{lstlisting}
+tlmgr update --self
+tlmgr update --all
+print("hello world")
+\end{lstlisting}
+
+%Assumption environment:
+\begin{assumption}
+	assumptions
+\end{assumption}
+\end{comment}
+
+
+
+
+
+
+
+
+
+
+
