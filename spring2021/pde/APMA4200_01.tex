@@ -1,7 +1,126 @@
+\chapter{ODE Solving}
+
+\section{Variation of Parameters}
+
+I'll assume knowledge of how to solve homogeneous ODE such as the following ones. 
+
+\begin{quest}
+	\item $v = v(t)$. Solve $v'' + v = 0$. 
+	\begin{ans}
+		\[\boxed{v(t) = c_0 \cos(t) + c_1 \sin(t)}.\]
+	\end{ans}
+
+	\item $v = v(t)$. Solve $v'' - v = 0$.
+	\begin{ans}
+		\[ \boxed{ v(t) = c_0 \cosh(t) + c_1 \sinh(t)  }.\]
+	\end{ans}
+
+	\item How do we solve the more general $av''(t) + bv'(t) + c = f(t)$ for a general $f(t)$? 
+	\begin{ans}
+		Method of variation of parameters
+	\end{ans}
+\end{quest} 
+
+Without any proof for why the method works, I'll go over how to use it. First, I'll need to talk about Cramer's rule and Wronskians. 
+
+\subsection{Cramer's Rule}
+
+Cramer's rule can be used to solve linear systems of equations that have a unique solution. We'll focus on systems of the following form since it will be relevant for variation of parameters:
+
+\begin{gather*}
+	X c' = \beta \\
+	\begin{bmatrix}
+		x_0 & x_1 \\
+		x_0' & x_1' \\
+	\end{bmatrix}  \begin{bmatrix}
+		c'_0 \\ c'_1 
+	\end{bmatrix} = \begin{bmatrix}
+		0 \\ f
+	\end{bmatrix},
+\end{gather*}
+where everything is a function of the same variable (let's call it $t$).
+
+ \begin{note}
+	$X$ is a called a ``Wronskian'' of $x_0$ and $x_1$. 
+	\[ X = W(x_0, x_1) = \begin{bmatrix}
+		x_0(t) & x_1(t) \\
+		x_0'(t) & x_1'(t) \\
+	\end{bmatrix} \]
+\end{note}
+
+This system has a unique solution if and only if $\det(X) \neq 0$. Let's suppose that's true. Since $\det(X) = x_0 x_1' - x_1 x_0' \neq 0$, we can easily solve for $c = X^{-1}\beta$. 
+\begin{gather*}
+	\begin{bmatrix}
+		c'_0 \\ c'_1
+	\end{bmatrix} = \frac{1}{x_0 x_1' - x_1 x_0'} 
+	\begin{bmatrix}
+		x_1' & -x_1 \\
+		-x_0'& x_0 
+	\end{bmatrix} 
+	\begin{bmatrix}
+		0 \\ f
+	\end{bmatrix} = \frac{1}{\det(W(x_0, x_1))} \begin{bmatrix}
+		-x_1 f \\
+		x_0 f
+	\end{bmatrix}
+\end{gather*}
+
+Equivalently, we could apply Cramer's Rule, which gives us the same answer from computing determinants. It's also requires less memorization. 
+
+\[ c_0' = \frac{
+	\begin{vmatrix}
+	 0 & x_1 \\
+	 f & x_1' \\
+	\end{vmatrix}}
+	{\det W(x_0, x_1)}, \;\;\;
+	c_1' = \frac{
+		\begin{vmatrix}
+			x_0 & 0 \\
+			x_0' & f \\
+		\end{vmatrix}}
+		{\det W(x_0, x_1)}.\]
+
+Either way, we can solve for the desired coefficients since we know the value of their derivatives. 
+\[ c_0(t) =  \int_0^t c_0'(t) \d t  +  d_0 \]
+\[ c_1(t) =  \int_0^t c_1'(t) \d t  +  d_1 \]
+
+
+\subsection{Method of undetermined coefficients}
+
+The method of undetermined coefficients involves making educated guesses about the form of the particular solution to an ODE based on the form of non-homogeneous portion. 
+
+A key pitfall of this method is that the form needed for the initial guess is not obvious. It's often better to use variation of parameters with Cramer's rule. 
+
+\begin{quest}
+	\item Find the particular solution to $y'' + 4y' + 3y = 3x$. 
+	\begin{ans}
+		The non-homogeneous component is a polynomial, so we assume particular solutions of polynomial form up to the order of the compoment, i.e. $Ax + B$.
+		\begin{gather*}
+			y_p = Ax + B \\
+			\eval{\left( y'' + 4y' + 3y \right) }_{y_p} 
+				= 0 + 4(A) + 3(Ax+ B) = 3x \\
+			(3A)x + (4A + 3B) = 3x + 0 \\
+			\therefore \;\; 4A + 3B = 0 \text{ and } 3A = 3.\\
+			\therefore \;\;\; A = 1,\;\; B = -1. \\
+		\therefore \;\; \boxed{ y_p = x - 1 } 
+		\end{gather*}
+	\end{ans}
+	
+	\item Find the homogeneous solutions to $y'' + 4y' + 3y = 3x$. 
+	\begin{ans}
+		Assume exponential solutions of the form $y_h(x) = e^{mx}$: 
+		\begin{gather*}
+			(m^2 + 4m + 3) e^{mx} = 0 \\
+			m^2 + 4m + 3 = 0 \tag{$e^{mx} \neq 0$}\\
+			(m + 3)(m + 1) = 0 \\
+			m = \{-3, -1\}. \\ 
+			\therefore \;\; \boxed{y_h = c_0 e^{-3x} + c_1 e^{-x}}
+		\end{gather*}
+	\end{ans}
+\end{quest}
+
 \chapter{Heat Equation}
 
-\section{Lec. 1: Syllabus \& Logistics}
-Prof will go over the expecations: expectations in terms of time commitment, workload, etc. We'll also talk about what you'll get out of this course.
 
 \section{Equilibrium Temperature distribution (Haberman \S 1.4)}
 
@@ -57,4 +176,46 @@ The simple problem of heat flow:
 	\item 
 \end{quest}
 
+
+
+
+\subsection*{Lec. 3}
+
+How do we find $B_n$?
+
+Fourier's trick.
+Multipl by
+
+\[ f(x) = \sum\limits_{n=1}^\infty B_n \sin (\frac{n\pi}{L} x) \]
+
+Orthogonality condition for sine 
+\[ 
+	\int\limits_0^L \sin(\npiell x) \sin(\mpiell x) \d x 
+	= \begin{cases}
+		\frac{L}{2} & m=n \\
+		0 & m\neq n
+	\end{cases}
+\]
+
+$ B_m  = \frac{2}{L} \int\limits_0^L f(x) \sin(\frac{m\pi}{L} x) \d x  $
+
+\subsubsection*{Example - Diffusion Eq.}
+Given: 
+\begin{gather*}
+	\partial_t  = k\partial_x^2 u \;\; t>0, x\in (0, L) \\
+	u(0, t) = u(L, t) = 0 \\
+	u(x, 0) = 1 \\
+\end{gather*}
+
+We just derived the solution to this general eq., which is 
+\[ u(x, t) = \sum\limits_{n=1}^\infty B_n  e^{-k(\frac{n\pi}{L})^2  t} \sin (\frac{n\pi}{L}x) .\]
+
+\[\begin{aligned}
+	B_n &= \frac{2}{L} \int\limits_0^L f(x) \sin(\frac{n\pi}{L} x) \d x 
+		= \frac{2}{L} \int\limits_0^L \sin(\frac{n\pi}{L} x) \d x  \\
+		&= \frac{2}{L} \eval{
+			\left( -\cos (\frac{n\pi}{L} x) \right)
+		}
+\end{aligned}
+	\]
 

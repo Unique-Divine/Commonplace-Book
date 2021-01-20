@@ -229,7 +229,104 @@ There is a final project, and you'll have more information about it throughout t
 A homework will come out next week on Monday. There's a link on courseworks to the office hours and the syllabus section.
 \end{note}
 
-\section{[Lec. 2, Jan 20]}
+\section{Convergence of RVs I [Lec. 2, Jan 20]}
+
+\subsection{Probability Theory III}
+
+\subsubsection*{Thm. Kolmogorow Strong Law of Large Numbers}
+
+Let $\{ X_n\}$ be i.i.d. RVs with $\expec[X_n] = \mu < \infty$. Then, 
+\[ 
+	\pr \left( \lim\limits_{n\to\infty} \dfrac{S_n}{n} = \mu \right) = 1.
+\]
+
+In real analysis, when do we say that a sequence of numbers converges? 
+\[ \forall \epsilon > 0 , \exists N \text{ s. t. } |x_n - x| \leq \epsilon \;\; \forall n\geq N. \]
+
+\subsubsection*{Central Limit Theorem} 
+
+If we take a random sample and have convergence, how fast will we see convergence? This is given by the Central Limit Theorem. 
+
+Let $\{X_n\}$ be i.i.d. with 
+\[\begin{aligned}
+	\expec[X_n] &= \mu, \\
+	\Var(X_n) &= \sigma^2, \\
+	S_n &= \left(\sum\limits_{k=1}^n \frac{(X_k - \mu)}{n} \right) \frac{\sqrt{n}}{\sigma}
+		= \frac{1}{\sqrt{n}} \sum\limits_{k=1}^n \frac{(X_k - \mu)}{\sigma}.
+\end{aligned}\]
+
+Then, the sum will be a Guassian RV. 
+\[ \lim\limits_{n\to \infty} \pr(S_n \leq x)  = \Psi(X),\] where $\Psi(X)$ is the CDF of $\mathcal{N}(0, 1)$. The speed of convergence is $\frac{1}{\sqrt{n}}$. 
+
+\begin{proof}
+	Calculate the characteristic function. 
+	\[\begin{aligned}
+		\phi_{S_n}(t) &= \expec[e^{it}S_n] 
+			= \expec\left[\prod\limits_{k=1}^n 
+				\exp\left(
+					\frac{it}{\sqrt{n}} \left(
+						\frac{X_n - \mu}{\sigma}
+						\right) 
+					\right) 
+				\right] \\ 
+		&= \prod\limits_{k=1}^n \phi\left(\frac{t}{\sqrt{n}\sigma}\right)
+		= \phi^n \left(\frac{t}{\sqrt{n}\sigma}\right)
+	\end{aligned}
+	\]
+
+	\begin{gather*}
+		\because \phi'(t) = \expec[i(X_k - N) e^{it()}], \therefore \phi(0) = 1. \\
+		\phi'(0) = 0 \\
+		\phi''(0) = -1 
+	\end{gather*}
+
+	Taylor expand
+	\begin{align*}
+		= (1 - \frac{t^2}{2n\sigma^2}  + O(n^2)) \\
+		\phi_{S_n}(t) \xrightarrow[]{n\to\infty} e^{ \frac{ -t^2 }{ 2 } }
+	\end{align*}
+
+\end{proof}
+
+The above concludes the recap of what you are assumed to know from a previous probability course. 
+
+
+\subsection{Convergence}
+
+\paragraph*{Def [Convergence in Law/Distribution]: } $\{X_n\}$ converges to $X$ in law (or in distribution) if 
+\[ \lim\limits_{n\to\infty} F_n(X) = F(x), \; \forall \{ x | \text{$x$ is continuous} \}. \]
+
+Notation: $X_n \xrightarrow[]{D} X$ 
+
+This is an extremely weak type of convergene. 
+
+\paragraph*{Def [Convergence in Probability]: } 
+$\{X_n\}$ converge in probability to ... if 
+\[ \forall \epsilon > 0, \; \lim\limits_{n\to\infty} \pr\left( |X_n - X| >\epsilon \right).  \]
+
+Notation: $X_n \xrightarrow[]{\pr} X$. 
+
+\paragraph*{Almost Sure Convergence (Def): } This is also called convergence w/ prob 1. $\{X_n\}$ converges to $X$ almost surely if 
+\[ \pr (\lim\limits_{n\to\infty} X_n = X) = 1 .\]
+For each realization, you draw a sequence. Very strong. This is the convergence you see in terms of numbers. Notation: $X_n \xrightarrow[]{\text{a.s.}} X$. There's also something called ``sure convergence'', but we won't worry about it. 
+
+\paragraph*{Convergence in $\ell^p$ norm (Def): } AKA convergence in mean. $\{ X_n \}$ converges to $X$ in the $\ell^p$ norm if 
+\[ 
+	\lim\limits_{n\to\infty} \expec\left[ |X_n - X|^p \right] = 0.	
+\]
+For this definition to make sense, we require $\expec[|X_n|^p] < \infty$. When $p=1$, is it called convergence in mean. $p=2 \implies$ convergence in mean-square. 
+
+\paragraph*{ (Thm): } 
+\begin{itemize}
+	\item $X_n \xrightarrow[]{\text{a.s.}} X \implies X_n \xrightarrow[]{\pr} X$
+
+	and $\implies X_n \xrightarrow[]{D} X$. 
+	\item $X_n \xrightarrow[]{\ell^p} X \implies X_n \xrightarrow[]{\pr} X$. 
+	\item $X_n \xrightarrow[]{\ell^p} X \implies X_n \xrightarrow[]{\ell^q} X, \;\; 1 \leq q \leq p$. 
+\end{itemize}
+
+
+
 
 
 
