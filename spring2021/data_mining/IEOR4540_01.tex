@@ -1,175 +1,48 @@
-\chapter{Introduction, Intelligent Agents}
+\chapter{Attention with Performers [Lec. 2]}
 
-\section{Lec. 2}
+We're going to talk about exciting applications with sequential data. Today, we'll focus on bioinformatics. Last time we talked about transformers. Today, we'll 
 
-If a function has one ontinuous derivative, then $f$ is convex over a convex set $S$.
-
-\begin{gather}
-\iff f(y) \geq f(x) + \nabla f(x)^T (y-x), \forall x, y\in S. \\
-\nabla f(x) = \left( \frac{\partial f}{ \partial x_1}, \cdots, \frac{\partial f}{\partial x_n} \right) \\
-\end{gather}
-
-\begin{proof}
-"$\Rightarrow$":
-
-Since $f$ is convex on $S$, then $\forall x, y \in S$ and $0< \alpha \leq 1$,
-
-\begin{gather}
-f(\alpha y + (1 - \alpha) x ) \leq \alpha f(y) + (1 - \alpha) f(x) \\
-\implies \frac{ f(\alpha y + (1-\alpha) x)}{\alpha } \leq f(y) + \frac{ (1-\alpha) f(x)}{\alpha} \\
-\implies \frac{ f(x + \alpha (y-x) ) }{ \alpha } - \frac{ f(x) }{ \alpha } \leq f(y) - f(x) \\
-\implies \boxed{ \frac{ f(x + \alpha(y-x) ) - f(x) }{\alpha }  } \leq f(y) - f(x) \\
-\lim\limits_{\alpha\to 0} \frac{ f(x + \alpha(y - x)) - f(x) } { \alpha }
-	= \nabla f(x) \cdot (y-x)
-	= \nabla f(x)^T (y-x)  \\
-\implies f(y) \geq f(x) + \nabla f(x)^T (y-x) \\
-\end{gather}
-
-"$\Leftarrow$":
-
-Let $t = \alpha x + (1-\alpha) y, \;\; 0\leq \alpha \leq 1.$ Then, $t\in S$ ($S$ is convex and $x,y\in S$).
-\begin{gather*}
-\implies f(y) \geq f(t) + \nabla f(t)^T (y-t) \\
-f(x) \geq f(t) + \nabla f(t)^T (x-t) \\
-\therefore \;\; \alpha f(x) + (1 - \alpha ) f(y) \geq [\alpha + (1-\alpha)] f(t)
-	+ \alpha \nabla f(t)^T (x-t) + (1 - \alpha) \nabla f (t) ^T (y- t)
-	= f(t) + \alpha \nabla f(t)^T x + (1-\alpha) \nabla f(t)^T y - \nabla f(t)^T t \\
-= f(t) = f(\alpha x + (1-\alpha)y) \\
-\end{gather*}
-
-$\implies$ $f$ is a convex fn on a convex set $S$.
-\end{proof}
-
-Case II: If a one-dim fn $f$ is a twice differentiable (two continuous derivatives) then $f$ is convex on a convex set $S$, i.e.
-\[f''(x) \geq 0, \;\; \forall x\in S.\]
-In a multidim case, we define a hessian matrix.
-\[ \nabla ^2 f(x) = \begin{pmatrix}
-f_{x_1x_1} & \cdots & f_{x_1x_n} \\
-\vdots & \ddots & \vdots \\
-f_{x_nx_1} & \cdots & f_{x_nx_n}
-\end{pmatrix} \]
-If $y^T\nabla^2 f(x) y \geq 0 \; \forall y \neq 0$ (Hessian matrix is positive semi-definite), then ($\iff$) $f$ is convex on a convex set $S$. Alternatively, we can check the eigenvalues of $\nabla^2 f(x)$
-
-\paragraph*{Convex optimization problem: }Recall that the $\max f(x) = \min - f(x)$. The convex optimization problem is defined by the following scenario. We hope to
-\[\begin{aligned}
-\text{Find $\min f(x)$ s.t. }\\
-g_i(x) \leq 0 , i\in I \\
-g_i(x) = 0, i\in \epsilon ,
-\end{aligned}\]
-where $f(x)$ is convex, $g_{i\in I}$ are convex, and $g_{i\in \epsilon}$ are affine.
-
-First, let's show that $D_1 = \{ x | g_{i\in I}(x) \leq 0 \}$ is a convex set. This means that $\forall x_1, x_2 \in D_1$, we want to verify \[\alpha x_1 + (1-\alpha) x_1 \in D_1, \; 0\leq \alpha \leq 1,\]
-\[g_i(\alpha x_1 + (1-\alpha) x_2 ) \leq \alpha g_i(x_1) + (1-\alpha) g_i(x_2)\text{ and }g_i(x_1), g_i(x_2) \leq 0 \]
-
-Second, for the affine function $f(x) = a^Tx + b, \; a\in \mathbb{R}^n, b\in \mathbb{R}$,
-\[D_2 = \{ x| g_{i\in \epsilon}(x) = 0  \} \] is a convex set.
-
-\[\begin{aligned}
-g_i ...
-= \alpha (a^T x_1 + b ) + (1-\alpha) (a^Tx_2 + b) \\
-= \alpha g_i(x_1) + (1-\alpha) g_i(x_2) = 0 \\
-\implies \alpha x_1 + (1-\alpha) x_2 \in D_2.
-\end{aligned}\]
-
-If $D_1$ is convex and $D_2$ is convex, then $D_1 \cap D_2$ is convex (exercise).
-
-$\implies$ $S$ is convex.
-
-\subsection*{THm:} Global solution of convex optimization problems. Let $x_*$ be a local minimizer of a convex optim problem. Then $x_*$ is also a global minimizer. If the objective function is strictly convex, then $x_*$ is the unique global minimizer.
-
-\begin{proof}
-(By contradiction) Let $x_*$ be a local minimizer and suppose it is not a global minimizer. Then, there exists some point $y\in S$ s.t. $ f(y) < f(x_*) $.
-\end{proof}
-
-Take $0 < \alpha < 1$, then $f$ is convex on $S$.
-\begin{gather*}
-f(\alpha x_* + (1-\alpha) y) \leq \alpha f(x_*) + (1-\alpha) f(y) \\
-< \alpha f(x_*) + (1-\alpha) f(x_*) \\
-= f(x_*).
-\end{gather*}
-
-This means there are points $\alpha x_* + (1-\alpha ) y$ that are arbitrarily close to $x_*$ ($\alpha \to 1$) s.t. $f(\alpha x_* + (1-\alpha ) y) < f(x_*)$ (contradiction with local minimizer).
-
-Proof for global minimizer (exercise) - hint: use contradiction.
-
-General optimization algorithm (iterative methods).
-
-\paragraph*{Algorithm 1: }
-\begin{enumerate}
-\item Input the initial guess $x_0$.
-\item For $k=0, 1, \ldots$,
-	\begin{enumerate}
-	\item If $x_k$ is optimal, stop. (test optimality)
-	\item Determine $x_{k+1}$. Update $x_k \to x_{k+1}$. (determine new points)
-	\end{enumerate}
-\end{enumerate}
-
-\paragraph*{Algorithm 2: }
-\begin{enumerate}
-\item Input initial guess $x_0$.
-\item For $k = 0 , 1, \ldots$,
-	\begin{enumerate}
-	\item If $x_k$ is optimal, stop.
-	\item Determine a search direction, $p_k$
-	\item Determine a step length $\alpha_k$ that leads to an improved estimation of the solution: $x_{k+1} = x_k + \alpha_kp_k$.
-	\end{enumerate}
-\end{enumerate}
-
-In the above algorithm, $p_k$ is called the \textbf{descent direction} and $\alpha_k$ the \textbf{line search}.
+\paragraph*{softmax attention: } 
 \begin{itemize}
-\item
-For an unconstrained optimization problem, we typically require $p_k$ to be a descent direction of the function of $f$ at point $x_k$ s.t. \[ f(x_k + \alpha p_k) < f(x_k) , \; 0< \alpha < \epsilon.\]
-
-\item
-For a constrained problem,
-\[ f(x_k + \alpha p_k) < f(x_k) \text{ and } x_k + \alpha p_k \in S, \; \alpha \in[0, \epsilon],
-\] where $\epsilon$ is a small positive number.
-
-\item After we have $p_k$, then $\min\limits_{\alpha \geq 0} f(x_k + \alpha p_k)$.
+	\item Comprehensive Guide to the Attention Mechanism \href{https://www.analyticsvidhya.com/blog/2019/11/comprehensive-guide-attention-mechanism-deep-learning/}{[blog post]}
+	\item Attention is all you need \href{https://arxiv.org/pdf/1706.03762.pdf}{[paper]}.
 \end{itemize}
 
-When we have a convergent algorithm and want to quantify how fast it converges, we describe this with \textbf{rate of convergence}. The rate of convergence describes how quickly the estimates of the solution approach the exact solution.
-
-We say that the sequence ${x_k}$ converges to $x_*$ with rate $r\geq 1$ and rate constant $c$ if
-\[ \lim_{k\to\infty} \frac{ \norm{e_{k+1}} }{ \norm{e_k}^r } = c\text{ and }c < \infty.\]
-\begin{align*}
-&e_k = x_k - x_*,
-	\;\; e_{k+1} = x_{k+1} - x_*
-	\tag{ $\lim\limits_{k\to\infty} x_k = x_*$ }  \\
-& \norm{e_{k+1}} \approx c\norm{e_k}^r,
-	\;\; \norm{e_k} \approx c\norm{e_{k-1}}^r \\
-& \implies \;\;
-	\frac{ \norm{ e_{k+1} } }
-		{ \norm{ e_k } }
-		\approx \left( \frac{ \norm{ e_k } }{ \norm{ e_{k-1} } } \right)^r \\
-&\implies \;\;
-	r_k \approx \frac
-		{
-			\log \frac
-			{
-				\norm{e_{k+1} }
-			}
-			{
-				\norm{e_k}
-			}
-		}
-		{ \log \frac{ \norm{e_k} }{ \norm{ e_{k-1} } }
-		}
-\end{align*}
-
-$r=1$ is linear convergence
-
+\paragraph*{Why do we need better memorization and attention in ML?}
 \begin{itemize}
-\item
-$0 < c < 1$ is error reduced by a constant factor.
-\item
-$c > 1$ is divergence.
-\item
-$c = 1$ is oscillating
-\item
-$c = 0$ is superlinear convergence
+	\item "Developmental Robotics: A Complex Dynamical SYstem ith Several Spatiotemporal scales."
+	\item Memory is key to AI and currently existing sequential RNNs fail to memorize well. 
+	\item Attention dimensions: spatial and temporal. - read the paper.
+	\item Standard attention mechanisms are effectively parallelizable and avoid catastrophic forgetting but are not scalable. ``It used more memory and more computation per real interaction..." - DeepMind nav by sight.
+	\item 2 applications: 1. DeepMind policy nagivating simply by sight. 2.  Robotic arm solving Hanoi towers. 
+\end{itemize}
+
+What attention mechanisms essentially do is take a sequence of tokens and learn the relationships between them. We say that the model learns how a token ``attends'' another token. 
+
+\paragraph*{Attention matrix: }Think of the attention matrix as a similarity matrix between tokens. The elements are scalars that capture the relevance between tokens. 
+
+A sequence consists of $L$ tokens. Each token has dimension $d$. The attention matrix, $A$, is $A\in M_{L\times L }$. We perform transformtions on the input data seq (which is $L$ by $d$) by multiplying either by $W_Q \in \mathcal{T}_{D_B \times d \times L}$, where $D_B$ is the batch dimension and $\mathcal{T}$ denotes the space of tensors (I'm thinking of them as Tensorflow tensors or PyTorch tensors). Then,
+\[ \text{softmax attention } 
+	= \exp\left( \frac{\bm{q}\bm{k}^T}{ d_{QK}} \right) \]
+QK-pairs refer to ``queries" and ``keys".  Space and time complexity is quadratic in the number of tokens, i.e. $O(L^2)$. So, it's not super scalable. 
+
+\includegraphics[width=0.9\textwidth]{local_attention.png}
+
+One way to make the attention architecture more scalable would be to only look at local attention, or attention in the neighborhood of each token. Graph attention is another possibility. 	
+
+We talked about how the  attention matrix could roughly be though of as a similarity matrix. In ML, we refer to similarity matrices as kernels. 
+
+
+\subsubsection*{Terms to look up:}
+\begin{itemize}
+	\item dense attention vs. sparse attention
+	\item attend (verb)
+	\item attention matrix
+	\item queries and keys in attention
+	\item performer model
+	\item kernelizable in ``attention is kernelizable''. Also, \href{https://en.wikipedia.org/wiki/Kernel_method}{kernel methods} in general
+	\item partition function 
 \end{itemize}
 
 
-$r = 2$ quadratic convergence
-
+Usually, you take some row representation of you data.

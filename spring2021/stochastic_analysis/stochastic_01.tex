@@ -326,7 +326,88 @@ For this definition to make sense, we require $\expec[|X_n|^p] < \infty$. When $
 \end{itemize}
 
 
+\section{Markov Chains [Lec. 3, Jan 25]}
 
+Stochastic process:
 
+$X_t(\omega), t\in T$. $T$ is $\mathbb{R}$ or $\mathbb{N}$. Hence, $X_t(\omega): \Omega \to \mathbb{R}$ or $X_t(\omega): T\to \mathbb{R}$. In the latter case, it is called a trajectory or sample path. 
 
+This is a very wide set of functions, so we'll restrict our focus to something more specific to build intuition. 
+
+\subsection{Discrete time finite Markov chains}
+
+Discrete in time means the parameterization is on a discrete set. Said another way, any countable set can be mapped onto it in a one-to-one manner. 
+
+\paragraph*{Markov chain (Def): }$\{X_n\}_{n\in\mathbb{N}}$ is a Markov chain if 
+\[
+	\pr( X_{n+1} = x_{n+1}| \{X_k = x_k\}_{k=1}^n) =  \pr ( X_{n+1} = x_{n+1} | X_n = x_n ).
+\]
+Intuitive definition: The next state is only dependent upon the current state. 
+
+\paragraph*{Ex. 1 - Markov chain: } 
+\begin{gather*}
+	\zeta_k := \text{ i.i.d. R.V. s.t.}
+		\begin{cases}
+			1 & \pr = 0.4 \\
+			-1 & \pr = 0.6 
+		\end{cases} \\
+	X_n := \suml_{k=1}^n \zeta_k \text{ is then Markovian.} \\
+	\implies X_{n+1} = \suml_{k=1}^{n+1} \zeta_k = X_n + \zeta_{n+1}. \\
+	\pr( X_{n + 1} = x_{n + 1}| \{ X_k = x_k\}_{k=1}^n )
+		= \pr(  X_{n + 1} = x_{n + 1}| X_n = x_n ) 
+	\pr( X_{n+1} = X_n + 1 | X_n = x_n) = 0.4 \\
+	\pr( X_{n+1} = X_n - 1 | X_n = x_n) = 0.6 \\	
+\end{gather*}
+
+Having both probabilities set to 0.5 is called symmetric random walk. 
+
+\paragraph*{Finite Markov chain (Def): }A Markove chain is finite if its state space is finite. In Ex. 1, the Markov chain is not finite because its state space is infinite and countable. You could make it finite by taking the modulus and condensing the state space. 
+
+\paragraph*{Ex. 2 - Boolean Stock Market: }
+\[
+\begin{aligned}
+	X_n = 
+		\begin{cases}
+		1 & \text{bull year} \\
+		-1 & \text{bear year} 
+		\end{cases}	\\
+	\pr(X_n = 1 | X_n = 1) := \\
+	\pr(X_n = -1  | X_n = -1 ) := 0.4
+\end{aligned}	
+\]
+TODO: (above)
+
+\subsubsection*{Chapman-Kalmogorov Eq. (Thm): } 
+Let $\{ X_n\}$ be a Markov chain starting in state, $X_0 = i$. Assume the state space, $S$, is countable. Then, 
+\[ \pr( X_n = j | X_0 = i ) 
+	= \suml_{k\in S} \pr( X_n = j | X_m = k ) \pr( X_m = k | X_0 = i ), \;\; \forall 1\leq m \leq n-1. \]
+
+But what does this mean? Suppose you have a countable sequence of events, $\{ E_k \}_{k=1}^\infty$ s.t. $\bigcup_{k=1}^\infty E_k = \Omega$ and $E_k \cap E_{k'} = \phi, \forall k, k'$. And, $\pr(F) = \suml_{k=1}^\infty \pr( F \cap E_k ) $. So, Chapman-Kalmogorov is basically the law of total probability twisted a bit. 
+
+You have a process in which you're jumping from state $i$ to state $j$. This theorem states that the probability of such an setup is the sum of all possible intermediate jumps. 
+
+\begin{proof}
+	\begin{align*}
+		\pr( X_n = j | X_0 = i) 
+			&= \suml_{k\in S} \pr \left( X_n = j \cap X_m = k | X_0 = i \right) \\
+			&= \suml_{k\in S} \pr \left( X_n = k | X_m = k \cap X_0 = i \right) 
+				\pr (X_m = k | X_0 = i ) \\
+			&= \suml_{k\in S} \pr( X_n = j | X_m = k ) \pr( X_m = k | X_0 = i) \tag{Markov assumption}
+	\end{align*}
+\end{proof}
+
+\paragraph*{Invariant distribution of stationary Markov chains: } Let $S = \{ 1, 2, \ldots, I \}$ be a countable set of states. Don't be alarmed by these integers in $S$. These are just labels for the states similar to how we labeled bear and bull markets 1 and -1 in Ex. 2. With this state, we can define the transition probability. 
+
+\paragraph*{Transition probability (Def): } The transition probability at step $n$ is 
+\[ 
+	\pr_{kj}^{(n)} = \pr (X_{n+1} = j | X_n = k ) .
+\] 
+The superscript means ``at step [superscript]". The order of the symbols in the subscript indicates the order of events, so you may see $\pr_{kj}^{(n)} = \pr (X_n = j | X_0 = k)$ to mean the same thing in another text. In our notation, it means ``transition from state $k$ to $j$."  If $\pr_{kj}^{(n)}$ is independent of $n$, we say that the MC is \textbf{stationary}. 
+
+\paragraph*{Stationary transition matrix: } With a stationary transition probability $\pr_{kj}$, a stationary transition matrix can be defined as $P = (P_{kj})_{kj\in S}$. 
+Its columns are probability vectors.
+\begin{itemize}
+	\item $P_{kj} \geq 0\; \forall k, j$. 
+	\item $\suml_{j\in S} P_{kj} = 1 \;\; \forall k \in S $.  
+\end{itemize}
 
