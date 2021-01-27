@@ -1,0 +1,119 @@
+\chapter{Laplace's Eq.}
+
+\begin{itemize}
+	\item Book \S 2.5
+	\item Start: Lecture 4, 1-26 
+\end{itemize}
+
+\section{Rectangle}
+
+\begin{quest}
+	\item Can we use separation of variables for $\nabla^2 u = 0$ with all nonhomogeneous BCs, and if so, under what conditions?
+	\begin{ans}
+		We can use separation of variables, however particular solutions that individually satisfy each BC must be added together with superposition. 
+	\end{ans}
+
+	\item Why is superposition of particular solutions justified in the context of Laplace's Eq.? 
+	\begin{ans}
+		Because Laplace's Eq. is a linear PDE ($\mathcal{L}(u) = 0 $).
+	\end{ans}
+
+	\item What are dirichlet BCs in the context of $\nabla^2 u(x, y) = 0$? 
+	\begin{ans}
+		\begin{align*}
+			u(0, y) = f_0(y) \\
+			u(L, y) = f_1(y)  \\
+			u(x, 0) = g_0(x) \\
+			u(x, H) = g_1(x) 
+		\end{align*}
+	\end{ans}
+
+	\item Let $\phi'' + \lambda \phi = 0$ with $\phi = \phi(x)$, $x\in [0, L]$, and $\phi(0) = \phi(L) = 0$. What are the eigenvalues and eigenfunctions?
+	\begin{ans}
+		The ODE solution is $\phi(x) = c_0 \sin (\sqrt{\lambda} x) + c_1 \cos (\sqrt{\lambda} x)$. Plug in the BCs. 
+		\begin{gather*}
+			\lambda_n = \left( \npiell \right)^2, \;\; n\in \mathbb{Z}^+ \\
+			\phi_n(x) = \sin \left( \npiell x \right) 
+		\end{gather*}
+	\end{ans}
+\end{quest}
+
+
+Derivation for Laplace's Eq. in a rectangle:
+
+$u(x, y) = u_{f0} + u_{f1} + u_{g0} + u_{g1}$
+
+$u_{g0}(x, 0) = g_0(x), \;\;u_{g0}(x, H) = u_{g0}(0, y) = u_{g0}(L, y) = 0$.
+
+Using superposition, 
+\[ u(x, y) = \suml_{n=1}^\infty A_n \sin(\npiell x) \sinh (\npiell (y-H)) \].
+
+To find the coefficients, $A_n$, we use orthogonality. 
+\begin{gather*}
+	g_0(x) := u(x, 0) = \suml_{n=1}^\infty A_n \sin (\npiell x) \sinh ( \npiell (-H) )  \\
+	\implies \; A_n = \frac{1}{\sinh(\npiell (-H) )} \frac{2}{L} \intl_0^2 
+		\sin(\npiell x) g_0(x) \d x
+\end{gather*} 
+
+
+\section{Circular Disk}
+
+PDE: 
+\[\begin{aligned}
+	\nabla^2 u (r, \theta) = 0 
+		&= \frac{1}{r} \partial_r (r \partial_r u) + \frac{1}{r^2} \partial_\theta^2 u \\
+		&= \frac{1}{r} \partial_r u + \partial_r^2 u + \frac{1}{r^2} \partial_\theta^2 u \\
+	r \in (0, R)
+\end{aligned}
+ \]
+
+BCs: 
+\begin{gather*}
+	u(R, \theta) =\Theta(\theta) \tag{Outer edge depends only on angle} \\
+	|u(0, \theta)| < \infty \tag{finite at origin} \\
+	u(r, \pi) = u(r, -\pi) \tag{periodic I} \\
+	\partial_\theta u (r, \pi) = \partial_\theta u(r, -\pi) \tag{periodic II}
+\end{gather*}
+
+Separate variables:
+\[\begin{aligned}
+	u(r, \theta) = G(r) \Theta(\theta) &\;\;\; \nabla^2 u = 0 \\
+	0	&= \Theta \frac{1}{r} \partial_r ( r \partial_r G) + \frac{1}{r^2} G \partial_\theta^2 \Theta \\
+	0	&= \frac{1}{Gr} \partial_r ( r \partial_r G) + \frac{1}{r^2 \Theta} \partial_\theta^2 \Theta = -\lambda + \lambda \\
+	\therefore \; & \boxed{ \Theta'' + \lambda \Theta = 0 } \\
+	& \boxed{ r\partial_r ( r\partial_r G) - \lambda G = 0 }
+\end{aligned}\]
+
+Evaluate with BCs in $\theta$:
+\begin{gather*}
+	\partial_\theta^2 \Theta + \lambda \Theta = 0. \;\; \Theta(\pi) = \Theta(-\pi). \;\; \Theta'(\pi) = \Theta'(-\pi) \\
+	\therefore \;\; \boxed{\lambda_n = n^2, n\in \mathbb{N}. \;\; \phi_n = c_0 \sin(n\theta) + c_1 \cos (n \theta) } 
+\end{gather*}
+
+Evaluate with BCs in $r$: 
+\begin{gather*}
+	r\partial_r ( r\partial_r G) - \lambda G = 0 \\
+	\implies r^2 G'' + rG' - \lambda G = 0 \\
+\end{gather*}
+Let $G(r) = r^p$. 
+\begin{gather*}
+	(p(p-1) + p - \lambda) r^p  = 0 \\
+	p^2  = \lambda  = n^2. \; \implies p = \pm n \\
+	\therefore \; G(r) = r^{\pm n}
+\end{gather*}
+In order to figure whether to take + or - $n$, impose the finite boundary condition:
+\[ |G(0)| < \infty. \lim_{r\to 0} r^n = ; 0. \;\;\; \lim_{r\to 0} r^{-n} = \infty \]
+Thus, $G(r) = r^n$.
+
+So far, the general solution is 
+\[u(r, \theta) = G(r) \Theta(\theta) = \suml_{n=0}^\infty A_n r^n \cos(n\theta) + \suml_{n=1}^\infty B_n r^n \sin(n\theta) \]
+
+Last BC at $r=R$:
+\begin{gather*}
+	f(\theta) := u(R, \theta) = \suml_{n=0}^\infty A_n R^n \cos (n\theta) + \suml_{n=1}^\infty B_n R^n \sin(n\theta) \\
+	A_0 = \frac{1}{2\pi} \intl_{-\pi}^\pi f(\theta) \d \theta \\
+	A_n = \frac{1}{\pi R^n} \intl_{-\pi}^\pi f(\theta \cos (n\theta)) \d \theta \\
+	B_n = \frac{1}{\pi R^n} \intl_{-\pi}^\pi ...
+\end{gather*}
+
+
