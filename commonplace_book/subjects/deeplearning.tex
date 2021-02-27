@@ -1,12 +1,43 @@
-\chapter{AI \& Deep Learning}
+%------------------------------------------------------
+\chapter{Reinforcement Learning}
 
-\section{Important Papers}
+\cite{sorokin2015deep}
 
-\cite{goodfellow2016deep}
 
-\cite{Sing1503:Comment}
 
-\section{Generative Adversarial Networks}
+
+\url{https://causalai.net/r26.pdf}
+
+\href{https://paperswithcode.com/methods/area/reinforcement-learning}{Papers with Code - RL}
+
+\href{https://paperswithcode.com/task/representation-learning}{Papers with Code - Representation Learning}
+
+\href{https://paperswithcode.com/paper/near-optimal-representation-learning-for}{	Near-Optimal Representation Learning for Hierarchical Reinforcement Learning}
+
+\href{https://arxiv.org/pdf/1911.08265.pdf}{Mastering Atari, Go, Chess and Shogi by Planning with a Learned Model, 2020}
+
+"... deep RL algorithm based on the
+maximum entropy reinforcement learning framework. In this framework, the actor aims to maximize expected reward while also maximizing entropy. That is, to succeed at the task while acting as randomly as possible" - \href{https://arxiv.org/pdf/1801.01290.pdf}{Soft Actor-Critic: Off-Policy Maximum ENtropy Deep RL w/ a Stochastic Actor} 
+
+
+% --------------------------------------------
+\chapter{Attention Mechanism}
+
+
+
+
+\href{https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf}{Attention is All You Need, 2016}
+
+\href{https://arxiv.org/pdf/2009.14794.pdf}{Rethinking Attention with Performers}
+
+
+
+
+
+%------------------------------------------------------
+\chapter{Generative Adversarial Networks}
+
+
 
 \subsection{GANs \cite{goodfellow2014generative}}
 
@@ -91,6 +122,7 @@ After several steps of training, if $G$ and $D$ have enough capacity, they will 
 }
 The gradient-based updates can use any standard gradient-based learning rule.
 \end{algorithm}
+
 \paragraph*{Note: }
 \begin{itemize}
 \item
@@ -103,9 +135,13 @@ The gradient-based updates can use any standard gradient-based learning rule.
 
 The adversarial nets framework does not require a Markov chain for sampling. Because adversarial nets do not require feedback loops during generation, they are better able to leverage piece-wise linear units [19, 9, 10], which improve the performance of backpropagation but have problems with unbounded activation when used in a feedback loop.
 
+\cite{Sing1503:Comment}
 
 
-\section{ML Finance Project}
+
+
+%------------------------------------------------------
+\chapter{ML Finance Project}
 
 \subsubsection*{\href{https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/}{example w/ multivariate time series in PyTorch}}
 
@@ -153,6 +189,8 @@ We know the field is fast moving. If the reader looking for more recent free rea
 
 \cite[hello]{raghu2020survey}
 
+
+%------------------------------------------------------
 \chapter{Bioinformatics}
 
 \section{Deep Learning for Genomic Prediction}
@@ -406,9 +444,13 @@ RNA is made with what's called a template strand.
 
 \end{quest}
 
+\begin{itemize}
+	\item Human genome 3.1 billion bp (base pairs), i.e. 3.1 Gbp
+	\item bacteria 100 kbp - 2Mbp
+	\item This means that the computational overhead of studying bacterial genomes is much smaller and can be done on a standard personal computer.
+\end{itemize}
 
-Human genome 3.1 billion bp (base pairs), i.e. 3.1 Gbp
 
-bacteria 100 kbp - 2Mbp
 
-This means that the computational overhead of studying bacterial genomes is much smaller and can be done on a standard personal computer.
+
+
