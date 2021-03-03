@@ -1,6 +1,88 @@
 %------------------------------------------------------
 \chapter{Reinforcement Learning}
 
+\section{Getting Started}
+
+From Lex Fridman's intro lecture on deep reinforcement learning \href{}{[video]}.
+
+Deep reinforcement learning (RL) is perhaps one of the most exciting fields in artificial intelligence (AI). It marries the beauty and power of deep neural networks to represent and comprehend the world with the ability to act on that understanding. That's basically what the creation of intelligent beings is. Recent breakthroughs in RL captivate our imagination and inspire us.  
+
+RL at high level: An agent has to make a sequence of decisions. 
+
+\paragraph*{Types of Learning:}
+4 learning domains within machine learning: Supervised, semi-supervised, unsupervised, and reinforcement. People often think that supervised learning is the only domain that requires manual labeling, however in reality, all types of machine learning are "supervised" in some way by a loss function. Every type of machine learning is supervised learning to a degree. These names for the domains tell us about the cost of human labor required to obtain that supervision.
+\begin{itemize}
+	\item Supervised learning: "teach by example"; RL: "teach by experience"
+\end{itemize}
+
+\paragraph*{RL in humans: }
+Humans appear to learn to walk (and do many other activities) through "very few examples" of trial and error. \textbf{How} is an open question. Possible answers: 
+\begin{itemize}
+	\item Hardware: 230 million years of bipedal movement data
+	\item Imitation learning: Observation of other humans walking
+	\item Algorithms: Better than backpropagation and stochastic gradient descent
+\end{itemize}
+
+Current spot: \url{https://youtu.be/zR11FLZ-O9M?t=757}
+
+
+\section{Review Paper: \cite{arulkumaran2017deep}}
+
+Deep learaning is enabling reinforcement learning (RL) to scale to problems that were previously intactable, such as learning to play video games directly from pixels.  Deep reinforcement learning algorithms are also applied to robotics, allowing control policies for robots to eb learned directly from camera inputs in the real world. 
+\paragraph*{Topics covered: }Value-based methods, policy-based methods, central algorithms in deep reinforcement learning such as the deep Q-network, trust region policy otpimisation, and asnchronous advantage actor-critic. Conclude with several current areas of research within the field. 
+
+Primary goal of the field of artificial intelligence (AI) is to produce fully autonomous agents that interact with their environments to learn optimal behaviours, improving over time through trial and error. Reinforcement learning is a principled mathematical framework for experience-driven autonomous learning. RL is a general way of approaching optimisation problems by trial and error.
+
+The most important property of deep learning is that deep neural networks can automatically find compact low-dimensional representations (features) of high-dimensional data (e.g., images, text and audio) 
+
+
+the use of
+deep learning algorithms within RL defining the field of
+“deep reinforcement learning” (DRL)
+
+For a more comprehensive survey of recent efforts in
+DRL, including applications of DRL to areas such as natural
+language processing [106, 5], we refer readers to the overview
+by Li [78]
+
+
+The first, kickstarting the revolution in DRL,
+was the development of an algorithm that could learn to play
+a range of Atari 2600 video games at a superhuman level,
+directly from image pixels [84]. Providing solutions for the
+instability of function approximation techniques in RL, this
+work was the first to convincingly demonstrate that RL agents
+could be trained on raw, high-dimensional observations, solely
+based on a reward signal. The second standout success was
+the development of a hybrid DRL system, AlphaGo, that
+defeated a human world champion in Go [128], paralleling the
+historic achievement of IBM’s Deep Blue in chess two decades
+earlier [19] and IBM’s Watson DeepQA system that beat the
+best human Jeopardy! players [31].
+
+
+AlphaGo
+was composed of neural networks that were trained using
+supervised and reinforcement learning, in combination with
+a traditional heuristic search algorithm
+
+
+In a step towards even more capable agents,
+DRL has been used to create agents that can meta-learn (“learn
+to learn”) [29, 156], allowing them to generalise to complex
+visual environments they have never seen before
+
+One of the
+driving forces behind DRL is the vision of creating systems
+that are capable of learning how to adapt in the real world.
+
+
+
+
+
+
+
+
 \cite{sorokin2015deep}
 
 
