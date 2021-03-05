@@ -3,7 +3,7 @@
 
 \section{Getting Started}
 
-From Lex Fridman's intro lecture on deep reinforcement learning \href{}{[video]}.
+From Lex Fridman's intro lecture on deep reinforcement learning \href{https://youtu.be/zR11FLZ-O9M?t=0}{[video]}.
 
 Deep reinforcement learning (RL) is perhaps one of the most exciting fields in artificial intelligence (AI). It marries the beauty and power of deep neural networks to represent and comprehend the world with the ability to act on that understanding. That's basically what the creation of intelligent beings is. Recent breakthroughs in RL captivate our imagination and inspire us.  
 
@@ -28,7 +28,7 @@ Current spot: \url{https://youtu.be/zR11FLZ-O9M?t=757}
 
 \section{Review Paper: \cite{arulkumaran2017deep}}
 
-Deep learaning is enabling reinforcement learning (RL) to scale to problems that were previously intactable, such as learning to play video games directly from pixels.  Deep reinforcement learning algorithms are also applied to robotics, allowing control policies for robots to eb learned directly from camera inputs in the real world. 
+Deep learning is enabling reinforcement learning (RL) to scale to problems that were previously intractable, such as learning to play video games directly from pixels.  Deep reinforcement learning algorithms are also applied to robotics, allowing control policies for robots to eb learned directly from camera inputs in the real world. 
 \paragraph*{Topics covered: }Value-based methods, policy-based methods, central algorithms in deep reinforcement learning such as the deep Q-network, trust region policy otpimisation, and asnchronous advantage actor-critic. Conclude with several current areas of research within the field. 
 
 Primary goal of the field of artificial intelligence (AI) is to produce fully autonomous agents that interact with their environments to learn optimal behaviours, improving over time through trial and error. Reinforcement learning is a principled mathematical framework for experience-driven autonomous learning. RL is a general way of approaching optimisation problems by trial and error.
@@ -79,9 +79,39 @@ that are capable of learning how to adapt in the real world.
 
 
 
+\section{Mine}
+
+
+\subsection*{\href{https://en.wikipedia.org/wiki/Q-learning}{Q-learning}}
+\begin{quest}
+	\item \cloze Q-learning is a model-free RL algorithm.
+	
+	\cloze Q-learning gets is name because the agent learns the quality of actions to know how to act. 
+
+	\cloze In Q-learning, "Q" function is computed to maximize expected rewards for an action taken in a given state.  
+	
+	\cloze "Model-free" means that an agent does not require a model of the environment.
+	
+	\cloze For set of states $S$ and set of actions $A$, the Q-function is a map s.t. $Q:S\times A\to \mathbb{R}$.
+	
+	\item In Q-learning, $Q$ is updated according to 
+	\[ Q_{\text{new}}(s, a) := Q(s, a) 
+		+ \alpha \cdot 
+			\left( r + \gamma \max\limits_{a'\in A} Q(s', a') 
+			- Q(s, a) \right) \].
+	\begin{itemize}
+		\item $Q(s, a)$: The "quality" fn. at the current state $s$
+		\item $\alpha$: The learning rate. $0 \leq \alpha \leq 1$. Values close to 1 make faster changes to $Q$.  
+		\item $r$: Reward received when moving from $s \to s'$
+		\item $\gamma$: The discount factor. Quantifies how much to "discount" the 
+		\item $\max\limits_{a_b\in A} Q(s', a_b)$: Estimate of optimal future Q-value. This would be the highest $Q(s'|a_b)$, where $a_b$ is the "best" action and $s'$ is the next state.  
+	\end{itemize}
+\end{quest} 
 
 
 
+
+\section{Collection of Refs}
 
 \cite{sorokin2015deep}
 
