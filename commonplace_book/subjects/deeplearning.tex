@@ -26,7 +26,71 @@ Humans appear to learn to walk (and do many other activities) through "very few 
 Current spot: \url{https://youtu.be/zR11FLZ-O9M?t=757}
 
 
-\section{Review Paper: \cite{arulkumaran2017deep}}
+\subsection*{3 Types of RL}
+There are countless ways to taxonomize all of the reinforcement learning algorithms. At the highest level, there are model-based algos and model-free algos. We generally put algorithms under 3 categories: model-based, value-based, and policy-based. 
+
+\paragraph*{Model-based: }
+\begin{itemize}
+	\item Learn a model of the world, then plan using the model. As an agent interacts with the environment, it constructs a model for what the dynamics of the world might be. 
+	\item Better sample efficiency. Once you have a model, you can do all kinds of reasoning that doesn't require experiencing each scenario.  
+	\item In chess and in Go, the model is given to you. The agent knows the rules of the game. 
+\end{itemize}
+
+\begin{quest}
+	\item What is meant by ``model" is model-based learning? 
+	\begin{ans}
+		In this context,  a model of the environment would be a function which predicts state transitions and rewards.
+	\end{ans}
+	
+	\cloze AlphaZero is the reinforcement learning algorithm that learned to play Chess and Shogi. 
+
+	\cloze AlphaZero is a famous example of a model-based algorithm. 
+
+	\href{https://arxiv.org/pdf/1712.01815.pdf}{[AlphaZero paper, 2017]}
+
+	\item If model-based methods are more sample efficient when they work, what is the advantage of model-free methods?
+	\item \cloze Q-functions are also called action-value functions. 
+	
+	\item And what's te difference between action-value function and state-value function?
+	\begin{ans}
+		THe state-value function returns the value of achieving a certain state, whereas the action-value function returns the value for choosing an action in a state. 
+	\end{ans}
+	
+	\item Why are Q-functions sometimes called action-value functions?
+	\begin{ans}
+		Because the Q-function gives us the value for taking an action in some state. 
+	\end{ans} 
+\end{quest}
+
+Note that, as of 2018, model-free methods are more popular and have been more extensively developed and tested than model-based methods.
+
+
+\paragraph*{Value-based: } 
+\begin{itemize}
+	\item Learn the state or state-action value. Value-based methods look to estimate the quality of states and the possible actions performed in them. This quality of the state is then used to pick a ``best'' action. 
+	\item Act by choosing the best action in a state. This is considered indirect learning of a ``policy''.
+\end{itemize}  
+
+\paragraph*{Policy-based: }
+\begin{itemize}
+	\item Learn the stochastic policy function that maps state to action.
+	\item Directly learn a policy function. In other words, take as input the representation (or representation of that world) and output an action. This action will be stochastic. 
+	\item Act by sampling policy. 
+	\item Exploration is baked in. Why? The output action is stochastic, meaning it's a r.v. 
+\end{itemize}
+
+
+Great resource for learning about deep reinforcement learning: Open AI Spinning Up \href{https://spinningup.openai.com/en/latest/user/introduction.html}{[link]}
+
+
+
+
+
+\includegraphics[width=0.9\linewidth]{rl_algos_taxonomies}
+
+\section{Review Paper: }
+
+\cite{arulkumaran2017deep}
 
 Deep learning is enabling reinforcement learning (RL) to scale to problems that were previously intractable, such as learning to play video games directly from pixels.  Deep reinforcement learning algorithms are also applied to robotics, allowing control policies for robots to eb learned directly from camera inputs in the real world. 
 \paragraph*{Topics covered: }Value-based methods, policy-based methods, central algorithms in deep reinforcement learning such as the deep Q-network, trust region policy otpimisation, and asnchronous advantage actor-critic. Conclude with several current areas of research within the field. 
@@ -82,7 +146,7 @@ that are capable of learning how to adapt in the real world.
 \section{Mine}
 
 
-\subsection*{\href{https://en.wikipedia.org/wiki/Q-learning}{Q-learning}}
+\subsection*{\href{https://en.wikipedia.org/wiki/-learning}{Q-learning}}
 \begin{quest}
 	\item \cloze Q-learning is a model-free RL algorithm.
 	
@@ -97,7 +161,7 @@ that are capable of learning how to adapt in the real world.
 	\item In Q-learning, $Q$ is updated according to 
 	\[ Q_{\text{new}}(s, a) := Q(s, a) 
 		+ \alpha \cdot 
-			\left( r + \gamma \max\limits_{a'\in A} Q(s', a') 
+			\left( r + \gamma \max\limits_{a_b\in A} Q(s', a_b) 
 			- Q(s, a) \right) \].
 	\begin{itemize}
 		\item $Q(s, a)$: The "quality" fn. at the current state $s$
@@ -109,6 +173,9 @@ that are capable of learning how to adapt in the real world.
 \end{quest} 
 
 
+
+\section{DQN }
+\cite{mnih2015human}
 
 
 \section{Collection of Refs}
