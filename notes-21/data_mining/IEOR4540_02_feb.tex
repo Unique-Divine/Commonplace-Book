@@ -1,0 +1,52 @@
+\chapter{Transformers (cont.) [Lec. 5]}
+Feb. 22
+
+
+\subsubsection*{Positional encoding}
+
+\href{https://paperswithcode.com/paper/attention-is-all-you-need}{Attention Is All You Need}. 
+This section refers to positional encoding 
+You have a positional encoding, add it to your one hot vector. That's how you encode time. That's how you encode positions in your sequence. 
+
+Enriched row embedding
+
+Gieven $x_t$, a one-hot vector, and $f(t)$, where $t$ is a positional encoding. We add $x_t + f(t)$. 
+
+\subsubsection*{Multiple-head mechanism}
+
+\begin{itemize}
+	\item \href{https://paperswithcode.com/method/multi-head-attention}{Multi-Head Attention [article] - Lilian Weng}
+	\item \href{https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/fec78a687210851f055f792d45300d27cc60ae41/transformer/SubLayers.py#L9}{[PyTorch code]}
+\end{itemize}
+
+Multi-head Attention is a module for attention mechanisms which runs through an attention mechanism several times in parallel. The independent attention outputs are then concatenated and linearly transformed into the expected dimension. Intuitively, multiple attention heads allows for attending to parts of the sequence differently (e.g. longer-term dependencies versus shorter-term dependencies). 
+\begin{gather}
+	\text{MultiHead}(Q, K, V) = H W_0 \\
+	H = [h_1, \ldots, h_h], \quad h_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)
+\end{gather}
+The above $W$ terms are learnable parameter matrices and $h_i$ denotes the $i$th ``head''. Note that scaled dot-product attention is most commonly used in this module, although in principle, it can be swapped out for other types of attention mechanism. 
+
+The multi-head attention mechanism was introduced by Vaswani et al. in \href{https://paperswithcode.com/paper/attention-is-all-you-need}{Attention Is All You Need}.
+
+
+$L$ is the length of the sequence, $b$ is the batch dim, and $d$ is the dimensionality of the token embedding. The data is an $L \times b\times d$ tensor. 
+
+As in standard NNs, transformers process data in batches. 
+
+The idea of multiple-head attention is to use a couple different attention models in parellel.  
+
+If you take a specific attention model, what you're essentially doing is learning 3 matrices, $W_Q, W_X,$ and $W_V$. Let $\mathcal{T}$ be the space of tensors. $W_Q \in \mathcal{T}_{L\times d_{QK} \times b}, W_K \in \mathcal{T}_{L \times d_{QK} \times b }, W_V \in \mathcal{T}_{L \times d \times b }$.  
+
+
+\subsubsection*{Terms to look up:}
+\begin{itemize}
+	\item positional encoding
+	\item mutliple-head mechanism
+\end{itemize}
+
+\chapter{The Unreasonable Effectiveness of ES}
+
+A Tale of Hadamard-Minitaurs and Toeplitz-Walkers.
+
+Fancy finite difference replacing backpropagation
+

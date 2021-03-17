@@ -1,0 +1,244 @@
+\chapter{March - Stochastic Analysis }
+
+\section{Homework 4}
+
+
+\begin{definition}{Covariance of r.v.s}{}
+	\begin{gather*}
+		\text{Cov}(X, Y) = \E[(X - \E(X))(Y - \E[Y])] \\
+		\Var(X) = \text{Cov}(X, X) = \E[(X - \E[X])^2] = \E[X^2] - \E[X]^2
+	\end{gather*}
+\end{definition}
+
+\cloze Two r.v.'s $X$ and $Y$ are called uncorrelated if $\text{Cov}(X, Y) = 0$. 
+
+\subsection*{Q1 | Standard Wiener process}
+Let $\{ W_t\}_{t\geq 0}$ be a standard Wiener processes. Evaluate the following quantities. 
+
+\begin{enumerate}[label=(\roman*)] 
+\item % 1 i 
+$\E[W_t^4]$.
+
+\item % 1 ii
+$\E[(W_t - W_s + W_z)^2], \quad t, s, z \in [0, 1].$
+\end{enumerate} % end Q1
+
+\subsubsection*{Q1 i}
+Here, I'm tasked with finding the expectation of a Brownian motion. Expectiations are defined by $\E(f(X)) = \int f(s) \rho_X(s) \d s$, where $\rho_X$ is the PDF of r.v. $X$. 
+
+So, if we wanted to compute $\E[W_t^4]$, this would be 
+\begin{gather*}
+	\E[f(W_t)] = \int f(w) \rho_{W_t}(w) \d w	 \\
+	\E[W_t^4] = \int w^4 \rho_{W_t}(w) \d w \tag{1} 
+\end{gather*}
+What then is $\rho_{W_t}$? Well, we know that $\{W_t\}$ is a standard Brownian motion. Thus by the normality of increment property for a Brownian motion, $W_t - W_s \sim \mathcal{N}(0, t-s)$ for all $t >s \geq 0$. Since the motion is standard, $W_0 = 0$, which implies that $W_t - W_0  = W_t \sim \mathcal{N}(0, t)$ for all $t > 0$. 
+\[ W_t \sim\mathcal{N}(0, t) \iff \rho_{W_t}(w) = \frac{1}{\sqrt{2\pi t}} \exp\left(\frac{-w^2}{2t} \right) \tag{2} \]
+
+Part (i) can be completed by computing the integral in Eq. 1 using the PDF (Eq. 2).
+
+\subsubsection*{Q1 ii}
+
+Computing $\E[(W_t - W_s + W_z)^2], \quad t, s, z \in [0, 1]$ isn't as straightforward. 
+\begin{quest}
+	\item Are the $W_s$ and $W_z$ terms still standard, and how could I tell?
+	\begin{ans}
+		Yes, defining $\{W_t\}_{t\geq 0}$ as a standard Weiner process with $t\in[0, 1]$ implies that $W_s$ and $W_z$ would just denote  $\eval{W_t}_{t=s}$ and $\eval{W_t}_{t=z}$, respectively (as long as $s, z \in[0, 1]$). 
+	\end{ans}
+	\item Derive the expectation of a standard Wiener process. 
+	\begin{ans}
+		These follow directly from the definitions. If $\{B_t\}$ is a standard B.M. , then $B_0 = 0$ and $B_t- B_s \sim \mathcal{N}(0, t-s)$ for $0\leq s <t\in[0, 1]$. Thus, it's clear from $\E[B_t - B_s] = 0$ that $\E B_t = \E[B_t - B_0] = 0$ too.  
+	\end{ans}
+	\item What is the expecation of a nonstandard Wiener process?
+	\begin{ans}
+		TODO 
+	\end{ans}
+\end{quest}
+
+% Q2 Solution
+\begin{enumerate}[label=(\roman*)] 
+\item % 2 i
+$\{X_t\}_{t\geq 0}$ with $X_t:= W_t - tW_1$ is a Brownian bridge.
+
+\begin{mybox}{cyan}{}
+\begin{align*}
+m(t) = \E X_t 
+	&= \E[W_t - tW_1] \\
+	&= \E W_t - t\E W_1 , \quad W_t\sim\mathcal{N}(0, t), 
+		W_1 \sim \mathcal{N}(0, 1)\\
+\therefore\quad & \boxed{ m(t) =  0 } \\
+K(s,t) = \Cov(X_t, X_s) 
+	&= \Cov(W_t - tW_1, W_s - sW_1) \\
+	&= \Cov(W_t, W_s - sW_1) -t\Cov(W_1, W_s - s W_1) \\
+	&= \Cov(W_t, W_s) -s\Cov(W_t, W_1) 
+		-t\Cov(W_1, W_s) \\ &\quad  + st\Cov(W_1, W_1) \\
+	&= \min(s,t) - s\min(t, 1) -t\min(1, s) + st\min(1, 1) \\
+	&= \min(s, t) - st - st + st \\
+\therefore\quad& \boxed{ K(s, t) = \min(s, t) - st }.
+\end{align*}
+
+$\{X_t\}$ fits the definition for a Brownian bridge. 
+\end{mybox} % end 2 i
+
+\item % 2 ii
+$\{Y_t\}_{t\geq 0 }$ with $Y_t := (1- t) W_{t/(1-t)}$ for $0\leq t < 1,$ $Y_1 = 0$ is a Brownian bridge.
+
+\begin{mybox}{cyan}{}
+
+\end{mybox} % end 2 ii 
+\end{enumerate} % end Q2
+
+\begin{definition}{Brownian bridge}{}
+	A Brownian bridge $\{X_t\}$ is a Gaussian stochastic process s.t. $X_t \equiv B_t - tB_1$, where $\{B_t\}_{t\geq 0}$ is a standard Brownian motion.  
+\end{definition}
+
+\begin{fact}{Brownian bridge covariance}{}
+Let $\{X_t\}_{t\geq 0}$ be a Brownian bridge defined by $X_t:= W_t - tW_1$.
+\begin{align*}
+K(s,t) = \Cov(X_t, X_s) 
+	&= \Cov(W_t - tW_1, W_s - sW_1) \\
+	&= \Cov(W_t, W_s - sW_1) -t\Cov(W_1, W_s - s W_1) \\
+	&= \Cov(W_t, W_s) -s\Cov(W_t, W_1) 
+		-t\Cov(W_1, W_s) + st\Cov(W_1, W_1) \\
+	&= \min(s,t) - s\min(t, 1) -t\min(1, s) + st\min(1, 1) \\
+	&= \min(s, t) - st - st + st \\
+\therefore\quad& \boxed{ K(s, t) = \min(s, t) - st }.
+\end{align*}
+\end{fact}
+
+\begin{fact}{Brownian bridge expectation}{}
+Let $\{X_t\}_{t\geq 0}$ be a Brownian bridge defined by $X_t:= W_t - tW_1$.
+\begin{align*}
+m(t) = \E X_t 
+	&= \E[W_t - tW_1] \\
+	&= \E W_t - t\E W_1 , \quad W_t\sim\mathcal{N}(0, t), 
+		W_1 \sim \mathcal{N}(0, 1)\\
+\therefore\quad & \boxed{ m(t) =  0 } \\
+\end{align*}
+\end{fact}
+
+
+\subsection{Q2 - Brownian Bridge}
+Prove a stochastic process $\{X_t\}$ is a Brownian bridge. This involves proving the process has mean function $m(t) = 0$ and covariance function $K(s, t) = \min(s, t) - st$ for $s,t\in[0,1]$. 
+
+\begin{quest}
+	\item What is a Guassian process? ``standard Brownian bridge is a Gaussian process with continuous paths...''
+	\begin{ans}
+		\S 5.4 Guassian Processes (E et al., 2020)
+
+		\cloze A stochastic process $\{ X_t \}_{t\geq 0}$ is called a Guassian process if its finite-dimensional distributions $\mu_{ \{t_i\}_{i=1}^k }$ are consistent Gaussian measures for any $0\leq t_1 < t_2 < \cdots < t_k$. 
+
+		\cloze A gaussian process $\{ X_t\}$ is determined once its mean and covariance function, 
+		\[
+			m(t) = \E X_t \quad\text{ and }\quad 
+			K(s, t) = \E\left[ (X_s - m(s))(X_t - m(t)) \right],
+		\]
+		are specified.
+
+		\cloze It is well known that a Guassian random vector $\bm{X} \in M_{n\times 1}$, where $X_i = \bm{X}_i$ are random variable components of $\bm{X}$, is completely characterized by its first and second moments, 
+		\[
+			\bm{m} = \E\bm{X} \quad\text{ and }\quad
+			\bm{K} = \E\left[ (\bm{X} - \bm{m}) (\bm{X} - \bm{m})^T \right]. 	
+		\] In component form, 
+		\[ m_i = \E X_i \quad\text{ and }\quad 
+			\bm{K}_{ij} = \E \left[ (X_i - m_i) (X_j - m_j) \right].
+		\] 
+
+		\cloze Using $\bm{m}$ and $\bm{K}$, one can represent $\bm{X}$ via its characteristic function, 
+		\[ \E e^{i\bm{\epsilon}\cdot \bm{X}} = \E e^{i\bm{\epsilon}^T\bm{X}}
+			= e^{i\bm{\epsilon}^T \bm{m} 
+				- \frac{1}{2} \bm{\epsilon}^T\bm{K} \bm{\epsilon} } .\]
+	\end{ans}
+
+	\item What is a characteristic function in general? 
+	\begin{ans}
+	Source: \href{https://en.wikipedia.org/wiki/Characteristic_function_(probability_theory)}{wikipedia - chacteristic function}
+
+	\cloze In probability theory and statistics, the charactristic function of any real-valued stochatic variable completely defines its probability distribution.
+
+	\cloze If a random variable admits a probability density fn. (PDF), then the characteristic fn. is the Fourier transform of the PDF. 
+
+	\cloze The characteristic function always exists when treated as a function of a real-valued argument, unlike the moment-generating function. 
+
+	\cloze Similar to the cumulative distribution function (CDF), the characteristic fn. provides an alternative way to describe a stochastic variable. 
+
+	\cloze For random variable, $X$, the characteristic function is defined by  $\phi_X(t) \equiv \E e^{itX}$.
+
+	\cloze If a random variable admits a probability density fn. (PDF), then the characteristic function is its dual, which means that each of them is a Fourier transform of the other. 
+
+	\cloze If a rand.var. has a moment-generating fn., $M_X(t)$, then the domain of the characteristic fn. can be extended to the complex plane: $ \phi_X(-it) = M_X(t)$. Note however that the characteristic fn. of a distribution always exists, even when the prob. density fn. and moment-generating fn. do not. 
+	\end{ans}
+
+	\item How do we find covariance functions?
+	\begin{ans}
+		First, let's recall some definitions about variance and covariance. 
+		\cloze 
+		\begin{gather*}
+			\text{Cov}(X, Y) = \E[(X - \E(X))(Y - \E[Y])] \\
+			\Var(X) = \text{Cov}(X, X) = \E[(X - \E[X])^2] = \E[X^2] - \E[X]^2
+		\end{gather*}
+
+		\cloze Two r.v.'s $X$ and $Y$ are called uncorrelated if $\text{Cov}(X, Y) = 0$. 
+
+		All of these definitions extend to the vector case. 
+
+		\cloze If $\bm{X}\in \mathbb{R}^d$ is a stochastic vector s.t. each component $X_k \in \bm{X}$ is a random variable, then the covariance matrix of $\bm{X}$ is defined as 
+		\[ \text{Cov}(\bm{X}) = \E\left[ (\bm{X} - \E\bm{X}) (\bm{X} - \E\bm{X})^T \right]. \]
+		This is expectation of the dyadic (outer) matrix product of 
+		$\bm{X} - \E\bm{X}$ and itself. 
+	\end{ans}
+\end{quest}
+
+\subsection{Q3 - Karhunen-Loeve}
+Q3: Derive the Karhunen-Loeve expansion for the standard Brownian bridge. \emph{Hint: you will need to find eigenpairs of the operator 
+$\mathcal{K}f := \int_0^1 K(s,t) f(s)\d s$ on $L^2([0, 1])$ as what we did for the standard Brownian motion.}
+
+\begin{quest}
+	\item Karhunen-Loeve expansion?
+	\begin{ans}
+		page 112 of E et al., Thm. 5.13
+	\end{ans}
+\end{quest}
+
+\subsection{Q4 - Generators}
+Q4: Find the generator of the standard Brownian bridge. 
+
+generator = infitestimal generator
+
+\subsection{Q5 - Fractional Brownian motion}
+Q5: A stochastic process $\{ B_t^H \}_{t\geq 0}$ is called a \textbf{fractional Brownian motion} if it is a Gaussian process with mean $m(t) = 0$ and covariance 
+\[ K(s, t) = \frac{1}{2} (t^{2H} + s^{2H} - |t - s|^{2H} ), 
+	\quad s, t \in [0, T].\] 
+The parameter $H\in(0,1)$ is called the Hurst index. Prove that $\{B_t^H\}$ has the following properties: ... 
+
+\begin{enumerate}
+\item % 5 i
+(Self-similarity): $B_{\beta t}^H$ has the same distribution as $\beta^H B_t^H$ for any $\beta > 0$;
+
+\item % 5 ii
+(Stationary increment): $B_t^H - B_s^H$ has the same distribution as $B_{t-s}^H$ for $0 \leq s < t$.
+
+\item % 5 iii
+$\{B_t^H\}_{t\geq 0}$ with $B_0^H = 0$ and $H = \frac{1}{2}$ is a standard Brownian motion.
+\end{enumerate} % end Q5
+
+``has the same distribution'' $\to$ Is a good way to go about 
+
+
+
+
+
+
+\href{https://en.wikipedia.org/wiki/Probability-generating_function}{Probability-generating function}
+
+\href{https://en.wikipedia.org/wiki/Generating_function}{Generating function}
+
+\subsection{Reading Assignments}
+\begin{itemize}
+	\item Review \S 6.1-6.7 of E, Li \& Vanden-Ejinden
+	\item Review Lecture Notes 02 (D-E)
+\end{itemize}
+
+\subsection{References - HW4}
+\begin{itemize}
+  \item \href{http://web.math.ku.dk/noter/filer/vidsand12.pdf}{problem 1 on  bottom of page 6}
+\end{itemize}

@@ -1,0 +1,281 @@
+\chapter{Laplace's Eq.}
+
+\begin{itemize}
+	\item Book \S 2.5
+	\item Start: Lecture 4, 1-26 
+\end{itemize}
+
+\section{Rectangle - Laplace}
+
+\begin{quest}
+	\item Can we use separation of variables for $\nabla^2 u = 0$ with all nonhomogeneous BCs, and if so, under what conditions?
+	\begin{ans}
+		We can use separation of variables, however particular solutions that individually satisfy each nonhomogeneous BC must be added together with superposition. 
+	\end{ans}
+
+	\item Why is superposition of particular solutions justified in the context of Laplace's Eq.? 
+	\begin{ans}
+		Because Laplace's Eq. is a linear PDE ($\mathcal{L}(u) = 0 $).
+	\end{ans}
+
+	\item Let $\phi'' + \lambda \phi = 0$ with $\phi = \phi(x)$, $x\in [0, L]$, and $\phi(0) = \phi(L) = 0$. What are the eigenvalues and eigenfunctions?
+	\begin{ans}
+		The ODE solution is $\phi(x) = c_0 \sin (\sqrt{\lambda} x) + c_1 \cos (\sqrt{\lambda} x)$. Plug in the BCs. 
+		\begin{gather*}
+			\lambda_n = \left( \npiell \right)^2, \;\; n\in \mathbb{Z}^+ \\
+			\phi_n(x) = \sin \left( \npiell x \right) 
+		\end{gather*}
+	\end{ans}
+\end{quest}
+
+
+Derivation for Laplace's Eq. in a rectangle:
+
+$u(x, y) = u_{f0} + u_{f1} + u_{g0} + u_{g1}$
+
+$u_{g0}(x, 0) = g_0(x), \;\;u_{g0}(x, H) = u_{g0}(0, y) = u_{g0}(L, y) = 0$.
+
+Using superposition, 
+\[ u(x, y) = \suml_{n=1}^\infty A_n \sin(\npiell x) \sinh (\npiell (y-H)) \].
+
+To find the coefficients, $A_n$, we use orthogonality. 
+\begin{gather*}
+	g_0(x) := u(x, 0) = \suml_{n=1}^\infty A_n \sin (\npiell x) \sinh ( \npiell (-H) )  \\
+	\implies \; A_n = \frac{1}{\sinh(\npiell (-H) )} \frac{2}{L} \intl_0^2 
+		\sin(\npiell x) g_0(x) \d x
+\end{gather*} 
+
+
+\section{Circular Disk - Laplace}
+$u = u(r, \theta), r\in(0, R), \theta\in(-\pi, \pi)$.
+PDE: 
+\begin{align*}
+\nabla^2 u (r, \theta) = 0 
+	= \frac{1}{r} \partial_r (r \partial_r u) + \frac{1}{r^2} \partial_\theta^2 u 
+	= \frac{1}{r} \partial_r u + \partial_r^2 u + \frac{1}{r^2} \partial_\theta^2 u	 
+\end{align*}
+
+BCs: 
+\begin{gather*}
+	u(R, \theta) = \Theta(\theta) \tag{Outer edge B.C.} \\
+	|u(0, \theta)| < \infty \tag{finite at origin} \\
+	u(r, \pi) = u(r, -\pi) \tag{periodic I} \\
+	\partial_\theta u (r, \pi) = \partial_\theta u(r, -\pi) \tag{periodic II}
+\end{gather*}
+
+Separate variables:
+\[\begin{aligned}
+	u(r, \theta) = G(r) \Theta(\theta) &\;\;\; \nabla^2 u = 0 \\
+	0	&= \Theta \frac{1}{r} \partial_r ( r \partial_r G) + \frac{1}{r^2} G \partial_\theta^2 \Theta \\
+	0	&= \frac{1}{Gr} \partial_r ( r \partial_r G) + \frac{1}{r^2 \Theta} \partial_\theta^2 \Theta = -\lambda + \lambda \\
+	\therefore \; & \boxed{ \Theta'' + \lambda \Theta = 0 } \\
+	& \boxed{ r\partial_r ( r\partial_r G) - \lambda G = 0 }
+\end{aligned}\]
+
+BCs in $\theta$:
+\begin{gather*}
+	\partial_\theta^2 \Theta + \lambda \Theta = 0. \;\; \Theta(\pi) = \Theta(-\pi). \;\; \Theta'(\pi) = \Theta'(-\pi) \\
+	\therefore \;\; \boxed{\lambda_n = n^2, n\in \mathbb{N}. \;\; \phi_n = c_0 \sin(n\theta) + c_1 \cos (n \theta) } 
+\end{gather*}
+
+BCs in $r$: 
+\begin{gather*}
+	r\partial_r ( r\partial_r G) - \lambda G = 0 \\
+	\implies r^2 G'' + rG' - \lambda G = 0 \\
+\end{gather*}
+Let $G(r) = r^p$. 
+\begin{gather*}
+	(p(p-1) + p - \lambda) r^p  = 0 \\
+	p^2  = \lambda  = n^2. \; \implies p = \pm n \\
+	\therefore \; G(r) = r^{\pm n}
+\end{gather*}
+In order to figure whether to take + or - $n$, impose the finite boundary condition:
+\[ |G(0)| < \infty. \lim_{r\to 0} r^n = ; 0. \;\;\; \lim_{r\to 0} r^{-n} = \infty \]
+Thus, $G(r) = r^n$.
+
+So far, the general solution is 
+\[ u(r, \theta) = G(r) \Theta(\theta) 
+	= \suml_{n=0}^\infty A_n r^n \cos(n\theta) 
+		+ \suml_{n=1}^\infty B_n r^n \sin(n\theta) \]
+
+Last BC at $r=R$:
+\begin{gather*}
+	f(\theta) := u(R, \theta) = \suml_{n=0}^\infty A_n R^n \cos (n\theta) + \suml_{n=1}^\infty B_n R^n \sin(n\theta) \\
+	A_0 
+		= \frac{\int f(\theta) \d\theta}
+			{\int\d\theta}  
+		=  \frac{1}{2\pi} \intl_{-\pi}^\pi f(\theta) \d \theta \\
+	A_n 
+		= \frac{1}{\pi R^n} \intl_{-\pi}^\pi 
+			f(\theta) \cos (n\theta) \d \theta \\
+	B_n = \frac{1}{\pi R^n} \intl_{-\pi}^\pi ...
+\end{gather*}
+
+\chapter{Fourier Series}
+
+Book \S 3
+
+The Fourier series of $f(x)$ on $x\in[-L, L]$ is 
+\begin{gather*}
+	f \approx a_0 + \suml_{n=1}^\infty a_n \cos (\npiell x) + \suml_{n=1}^\infty b_n \sin(\npiell x) \\
+	a_0 = \frac{1}{2L} \intl_{-L}^L f(x) \d x \\
+	a_n = \frac{1}{L} \intl_{-L}^L f(x) \cos (\npiell x) \d x \\
+	b_n = \frac{1}{L} \intl_{-L}^L f(x) \sin(\npiell x) \d x
+\end{gather*}
+
+Thm: $f$ piecewise smooth $\implies$ $f$ has finitely many corners and jumps. 2 results from this
+
+\begin{example}
+	\[ f(x) = \begin{cases}
+		0 & x\in [-\pi, 0) \\
+		2 & x\in [ 0, \pi]
+	\end{cases}\]
+
+	Fourier Coefficients
+	\begin{align*}
+		a_0 = \frac{1}{2\pi} \intl_{-\pi}^\pi f(x) \d x\\
+		a_n = \frac{1}{\pi} \intl_{-\pi}^\pi f(x) \cos (nx) \d x = \frac{1}{\pi} \intl_0^\pi 2 \cos(nx) \d x \\
+		b_n = \frac{1}{\pi} \intl_{-\pi}^\pi f(x) \sin(nx) \d x
+	\end{align*}
+
+	\begin{align*}
+		f &\approx 1 + \suml_{\text{$n$ odd}} \frac{4}{n\pi} \sin(nx) \\
+		&= 1 + \suml_{k=0}^\infty \frac{4}{(2k+1)\pi} \sin(n x) \tag{let $n = 2k+1$}
+	\end{align*}
+
+	At $x=0$, $f$ is not continuous. We have $f(0) = 2$. 
+	
+	At $x = \frac{\pi}{2}$:
+	\begin{align*}
+	2 = 1 + \frac{4}{\pi} \suml_{n=1}^\infty \frac{1}{2k+1} \sin((2k+1)\frac{\pi}{2}) \\
+		\suml \frac{\sin((2k+1)\frac{\pi}{2})}{2k+1} = \frac{\pi}{2} \\ 
+		\sin(\frac{(2k+1)\pi}{2}) ...
+	\end{align*}
+\end{example}
+
+\section{Fourier Series of Odd/Even Functions}
+
+An odd function integrated over symmetric interval is 0. Thus, the Fourier series of an odd function only has $\sin()$ terms. Similarly, the Fourier series of an even function has only $\cos()$ terms. 
+
+\begin{quest}
+	\item When does the Fourier Series have discontinuities?
+	\begin{ans}
+		\textbf{General Fourier Series:} A general Fourier Series for $f$ on $x\in (-L, L)$ is continuous as long as $f(x)$ is continuous and $f(-L) = f(L)$.
+		
+		\textbf{Cosine Series:} A coine series will be continuous as long as $f$ is continuous and $f(L) = f(-L)$ with $f$ extended in an even way
+
+		\textbf{Sine Series:} A sine series will be continuous if $f$ is continuous, $f(0)=0$, and $f(L) = 0$. 
+	\end{ans}
+\end{quest}
+
+Term by term time differentiation
+
+When can one term by term differentiate a Fourier Series w.r.t. $x$? 
+
+
+\section{Fourier Sine Series}
+
+Recall that the temperature $u(x,t)$, in a 1-D rod $x\in(0,L)$ with $u(0,t)=u(L,t)=0$ satisfies 
+\[ u(x,t) = \suml_{n=1}^\infty B_n \phi_n(x) e^{-\lambda_n kt},
+	\quad \sqrt{\lambda_n} = \npiell , 
+	\quad \phi_n(x) = \sin(\sqrt{\lambda_n} x). \]
+The initial condition, $f(x) = \sum_{n} B_n \phi_n(x)$ is a series of sines, however our Fourier series defintion is defined over $x\in[-L, L]$, not $x\in[0, L]$. Also, $f(x)$ is not necessarily odd. In this sutation, we get the Fourier sine series by \textbf{extending  $f(x)$}. The odd extension of $f(x)$ is piecewise smooth as long as $f$ is piecewise smooth for $x\in[0, L]$. 
+
+\begin{quest}
+\item What is the Fourier sine series?
+	\begin{ans}
+	The Fourier sine series of $f(x)$ is the Fourier series of the odd extension of $f(x)$. 
+	\end{ans}
+\item $f(x) = x$ on $x\in[0, L]$. Derive the Fourier sine series of $f(x)$. 
+	\begin{ans}
+		Sine series representation: $x \sim \suml_{n=1}^\infty B_n \sin(\npiell x) , x\in[0, L] $. 
+		The sine series is equal to $f$ on $x\in(-L, L)$ becuase there's no jump discontinuity at 0. If there was one, we could only say that $x = \suml_{n=1}^\infty B_n \sin(\npiell x), x\in(0, L)$.
+
+		Thus, the Fourier sine series of $f(x)=x$ is 
+		\begin{gather*}
+			x = \suml_{n=1}^\infty B_n \sin(\npiell x), x\in(-L, L).  \\
+			B_n = \frac{1}{(\frac{L}{2})} \intl_0^L 
+				f(x) \sin(\npiell x) \d x 
+				= \frac{2}{L} \intl_0^L x \sin(\npiell x) = \frac{2L}{n\pi} (-1)^{n+1}.   
+		\end{gather*} 
+		Use integration by parts to do the integral. 
+	\end{ans}
+\item Given $f(x) = \cos(\frac{\pi}{L} x)$ for $x\in[0, L]$. What is the Fourier sine series of $f(x)$? Only set up the problem. You need not solve. 
+\begin{ans}
+Fourier sine series representation: 
+$\cos(\frac{\pi}{L} x) \sim \suml_{n=1}^\infty B_n \sin(\npiell x), x\in[0, L]$. 
+
+This function has jump discontinuities at both 0 and $L$, so the equality between $f$ and its sine series holds only for $x\in(0, L)$ but not at $x=0$ or $x=L$. 
+\begin{align*}
+	&\therefore \quad \boxed{ \cos(\frac{\pi}{L} x) 
+		= \suml_{n=1}^\infty B_n \sin(\npiell x), \quad x\in(0, L) } \\
+	& \boxed{ B_n = \frac{1}{(\frac{L}{2})} 
+		\intl_0^L \cos(\frac{\pi}{L} x)
+		 \sin(\npiell x) \d x  } 
+		= \begin{cases}
+			0 &\text{$n$ odd} \\
+			\frac{4n}{\pi(n^2-1)} &\text{$n$ even} 
+		\end{cases}
+\end{align*} 
+\end{ans} 
+\end{quest}
+
+\section{Appendix A: Orthogonality relations for sine and cosine}
+
+\subsection*{Asymmetric Boundaries}
+
+\begin{align*}
+&\int_0^L \sin(\npiell x) \sin(\mpiell x) \d x 
+  =	\frac{L}{2} \delta_{mn}
+	= \begin{cases}
+		0  &\quad m \neq n \\
+		L/2 &\quad m = n, 
+	\end{cases} \\
+&\int_0^L \cos(\npiell x) \cos(\npiell x) \d x 
+	= \frac{L}{2} (1 + \delta_{n0}) \delta_{mn} 
+	= \begin{cases}
+		0 &\quad n\neq m \\
+		L/2 &\quad n = m \neq 0 \\
+		L &\quad n = m = 0 
+	\end{cases}
+\end{align*}
+
+\subsection*{Symmetric Boundaries}
+ 
+\begin{align*}
+	&\int_{-L}^L \sin(\npiell x) \sin(\mpiell x) \d x 
+	  = L \delta_{nm}
+	  = \begin{cases}
+			0  &\quad m \neq n \\
+			L &\quad m = n \neq 0 , 
+		\end{cases} \\
+	&\int_{-L}^L \cos(\npiell x) \cos(\npiell x) \d x 
+		= L (1 + \delta_{n0})\delta_{nm}	
+		= \begin{cases}
+			0 &\quad n\neq m \\
+			L &\quad n = m \neq 0 \\
+			2L &\quad n = m = 0  
+		\end{cases} \\
+  &\int_{-L}^L \sin(\npiell x)\cos(\mpiell x) \d x 
+	 = 0 
+\end{align*}
+
+
+
+\chapter{Sturm-Louivile}  
+
+\section{Exam 1 - \S 1-5}
+
+\subsection{Exam 1 Info}
+\begin{itemize}
+	\item Today and Thursday not on exam
+	\item Next Tuesday there's a review session that will basically be an office hours.
+	\item There's a study guide on Courseworks. Ideally, you'll have done this before next Tuesday.
+	\item Exam is next Thursday (Feb 25). No lecture. Exam is 90 minutes long and available from 9am EST Thursday to 9am EST on Friday. No typed solutions.
+	\item There are free points available for completing an easy Gradescope ``quiz''. Must be done before 10am Monday Feb 22.
+\end{itemize}
+
+
+
+
+

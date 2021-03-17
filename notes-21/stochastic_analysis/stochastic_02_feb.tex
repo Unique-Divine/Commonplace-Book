@@ -1,0 +1,52 @@
+\chapter{Feb. }
+
+\section{Hwk 3}
+
+\subsection{Q 7 - Brownian Motion }
+\begin{definition}{Brownian motion / Wiener process}{}
+	A Wiener process is a stochastic process $\{ W_t \}_{t\geq 0 }$ with three properties: continuity of path, normality of increment, and independent increment.
+
+	\cloze In Brownian motion, normality of increment means that $\forall t> s \geq 0$, $ W_t - W_s \sim \mathcal{N}(0, t-s)$.
+
+	\cloze In Brownian motion, independence of increment means that $\forall t \geq s\geq 0 $, $ W_t - W_s $ is independent of $ W_{s'} $ $\forall \{ s' \mid 0 \leq s' \leq s \}$. 
+
+	\cloze TODO (continuity of path)
+\end{definition}
+
+\begin{quest}
+\item \cloze A Wiener process is also known as a Brownian motion.  
+
+\cloze A Brownian motion is type of stochastic process.
+
+\cloze A Brownian motion is said to be standard if $ W_0 = 0 $. 
+
+\item Why is a Wiener process, $\{ W_t \}_{t \geq 0}$, called standard if $ W_0 = 0 $. 
+\begin{ans}
+	This follows from the normality of increment property: $\forall t > s \geq 0, W_t - W_s\sim \mathcal{N}(0, t-s)$. Thus, \[ W_0 = 0 \implies \eval{W_t - W_s}_{s=0} = W_t - W_0 = W_t \sim \mathcal{N}(0, t). \]
+	In other words, $W_t$ has a standard normal distribution. 
+\end{ans}
+\end{quest}
+
+\begin{fact}{Standard Brownian motion covariance}{}
+$\Cov(B_t, B_s) = \min(s, t)$
+\end{fact}
+
+\subsection{Q 6 - Infitestimal generator}
+
+\subsection{Q 2 - Metroplis Hastings Explained}
+\href{http://people.duke.edu/~kh269/teaching/notes/MetropolisExplanation.pdf}{Awesome notes}
+
+Notes from homework 3:
+\begin{itemize}
+  \item \href{http://web.math.ku.dk/noter/filer/vidsand12.pdf}{problem 1 on  bottom of page 6}
+	\item \href{http://www.columbia.edu/~ks20/FE-Notes/4700-07-Notes-BM.pdf}{Columba IEOR 4700 Brownian notes}
+	\item \href{https://www.math.unl.edu/~sdunbar1/MathematicalFinance/Homework/2005Fall/489f05h6_soln.pdf}{Advanced Mathematical Finance Hwk solutions}
+	\item \href{http://www.columbia.edu/~ks20/stochastic-I/stochastic-I.html}{Karl Sigman - Notes on Stochastic Modeling I}
+	\item \href{http://www.columbia.edu/~ks20/4404-Sigman/Simulation-Sigman.html}{Karl Sigman - Notes on Simulation}
+	\item \href{https://ccrma.stanford.edu/~dattorro/matrixcalc.pdf}{Matrix derivatives }
+	\item \href{https://math.stackexchange.com/questions/1710343/where-to-start-stochastic-processes}{Recommended books on stochastic processes}
+	\item \href{https://faculty.math.illinois.edu/~rsong/488f02/ch8.pdf}{Markov Chains - Illinois}
+\end{itemize}
+
+
+
