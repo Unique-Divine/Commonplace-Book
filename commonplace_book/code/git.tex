@@ -78,4 +78,10 @@ The cryptography behind SSH keys ensures that no one can reverse engineer your p
 Generating a new SSH key: Follow \href{https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent}{Generating a new SSH key and adding it to the ssh-agent [article]}
 
 
+%-------------------------------------------------
+\section{Permanently removing files from commit history}
+
+WHy do this? You may have commited a password, some other sensitive information, or a large file that you want to remove from github. If the change is only a few commits back, you can 	``rebase'' changes out of the history. I actually need to do this for a much older set of files and accidentally uploaded a textbook that takes up almost a GB of space. 
+
+\code{git filter-branch --index-filter 'git rm --cached --ignore-unmatch path_to_file_to_erase' HEAD --prune-empty --tag-name-filter cat -- --all}
 
