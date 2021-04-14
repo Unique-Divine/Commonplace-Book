@@ -1,5 +1,5 @@
 %------------------------------------------------------
-\chapter{Reinforcement Learning}
+\chapter{Deep Reinforcement Learning}
 
 \section{Getting Started}
 
@@ -177,10 +177,9 @@ that are capable of learning how to adapt in the real world.
 \section{DQN }
 \cite{mnih2015human}
 
-
 \section{Collection of Refs}
 
-\cite{sorokin2015deep}
+Deep Attention Recurrent Q-Network. 2015. \cite{sorokin2015deep}  
 
 
 
@@ -208,6 +207,69 @@ maximum entropy reinforcement learning framework. In this framework, the actor a
 \href{https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf}{Attention is All You Need, 2016}
 
 \href{https://arxiv.org/pdf/2009.14794.pdf}{Rethinking Attention with Performers}
+
+\section{Image + Attention}
+\subsection{Facebook AI Research applies Transformer architecture to streamline object detection models. 2020.}
+\begin{itemize}
+	\item Tags:
+	\item Affiliations: Facebook AI
+	\item \href{https://ai.facebook.com/research/publications/end-to-end-object-detection-with-transformers}{[paper]}
+	\item \href{https://venturebeat.com/2020/05/28/facebook-ai-research-applies-transformer-architecture-to-streamline-object-detection-models/}{[article]}  
+\end{itemize}
+
+\subsection{Attention Agent: Neuroevolution of Self-Interpretable Agents. Tang, Ngyuen, and Ha. 2020.} 
+\begin{itemize}
+	\item Tags: interpretability, evolutionary algorithm, transformer, self-attention, deep RL, image input
+	\item Affiliations: Google Brain, Google Japan
+\end{itemize}
+
+
+
+\subsection{CURL: Contrastive Unsupervised Representations for Reinforcement Learning. Srinivas et al., 2020.}
+\begin{itemize}
+	\item Tags: unsupervised, representation learning, deep RL, CNN, image input
+	\item Affiliations
+\end{itemize}
+
+\subsection{M-CURL: Masked Contrastive Representation Learning for Reinforcement Learning. Zhu et al., 2020.}
+\begin{itemize}
+	\item Tags: masked training, representation learning, sample efficiency, self-supervised, CNN, transformer, deep RL, BERT, contrastive learning, image input
+	\item Affiliations: 1. Uniersity of Science an Technology of China. 2. Microsoft Research
+\end{itemize}
+
+Improving sample efficiency is a key research problem in reinforcement learning (RL). Contrastive Unsupervised representations for Reinforcement Learning (CURL).
+
+
+\begin{quest}
+	\item Besides the involvement masked training, what's the key difference between M-CURL and CURL?
+	\begin{ans}
+		M-CURL deals with videos (seqs of images) rather than individual images. Although consecutive frames are highly correlated, CURL handles them independently. M-CURL's main improvement, outside of getting improved performance on several benchmarks, is that it takes into consideration the correlation between sequential frames.  
+
+		This is where the transformer comes in. The Transformer, together with a CNN encoder, leverages the correlation of consecutive input frames to reproduce missing features in masked frames.  
+	\end{ans}
+	
+	\item Why use Transformers, specifically?
+	\begin{ans}
+		The input in this paper was a sequence of images rather than a single image. Transformers (Waswani et al., 2017) are the current state-of-the-art module for modeling sequences and capturing their interdependencies.  
+	\end{ans}
+
+	\item The authors call the Transformer module an "auxilliary Transformer". What makes it auxiliary? 
+
+	\item CNN encoder of what? What's being encoded? And what is meant by "encode" here?
+	\begin{ans}
+
+	\end{ans}
+
+	\item Why discard the Transformer during action selection?
+
+	\item Policy network? What does it do? What is it made up of? What are its inputs?
+
+	\item Contrastive learning?
+\end{quest}
+
+
+
+
 
 
 
