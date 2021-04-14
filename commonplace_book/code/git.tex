@@ -86,3 +86,34 @@ WHy do this? You may have commited a password, some other sensitive information,
 \code{git filter-branch --force --index-filter "git rm --cached --ignore-unmatch PathToSensitiveFile" --prune-empty --tag-name-filter cat -- --all}
 
 All you need to change is the \code{PathToSensitiveFile} item. Once you've used this command for all of the files you'd like to get rid of, update the origin by typing \code{git push origin --force --all}. 
+
+
+\section{Branching}
+
+Suppose your application is stable. Later, you discover a gigantic bug that was passing silently. You want to write some tests, fix the bug, and eventually have a stable, passing application once again. To do this, you'd create a branch for the fix and push the branch to the remote so that all of the developers on your team can collaborate and make the fix.  
+
+Once all of the necessary changes have been made and the application is stable, someone from the team would commit merge the commits from the other branch into master. Since the commit history from the branch will have been saved to master, the new branch could be deleted without loss of information (if you no longer wanted to work on this branch).  
+
+View branches: 
+\code{git branch}
+
+Switch branches: 
+\code{git checkout [branch-name]}
+
+\subsection{Merging}
+
+Merge the specified branch's history into the current one.
+\code{git merge [branch]}
+
+\subsection{Deleting branches}
+
+Delete local branch
+\code{git branch -d [branch-name]}
+
+Delete remote branch
+\code{git push origin --delete [branch-name]}
+
+
+% TODO: Write about git-flow and branching models 
+%  https://nvie.com/posts/a-successful-git-branching-model/
+
