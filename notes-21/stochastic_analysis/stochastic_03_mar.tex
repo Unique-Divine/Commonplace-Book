@@ -2,7 +2,6 @@
 
 \section{Homework 4}
 
-
 \begin{definition}{Covariance of r.v.s}{}
 	\begin{gather*}
 		\text{Cov}(X, Y) = \E[(X - \E(X))(Y - \E[Y])] \\
@@ -12,7 +11,7 @@
 
 \cloze Two r.v.'s $X$ and $Y$ are called uncorrelated if $\text{Cov}(X, Y) = 0$. 
 
-\subsection*{Q1 | Standard Wiener process}
+\subsection{Standard Wiener process (Q1)}
 Let $\{ W_t\}_{t\geq 0}$ be a standard Wiener processes. Evaluate the following quantities. 
 
 \begin{enumerate}[label=(\roman*)] 
@@ -42,7 +41,7 @@ Computing $\E[(W_t - W_s + W_z)^2], \quad t, s, z \in [0, 1]$ isn't as straightf
 \begin{quest}
 	\item Are the $W_s$ and $W_z$ terms still standard, and how could I tell?
 	\begin{ans}
-		Yes, defining $\{W_t\}_{t\geq 0}$ as a standard Weiner process with $t\in[0, 1]$ implies that $W_s$ and $W_z$ would just denote  $\eval{W_t}_{t=s}$ and $\eval{W_t}_{t=z}$, respectively (as long as $s, z \in[0, 1]$). 
+		Yes, defining $\{W_t\}_{t\geq 0}$ as a standard Wiener process with $t\in[0, 1]$ implies that $W_s$ and $W_z$ would just denote  $\eval{W_t}_{t=s}$ and $\eval{W_t}_{t=z}$, respectively (as long as $s, z \in[0, 1]$). 
 	\end{ans}
 	\item Derive the expectation of a standard Wiener process. 
 	\begin{ans}
@@ -54,6 +53,38 @@ Computing $\E[(W_t - W_s + W_z)^2], \quad t, s, z \in [0, 1]$ isn't as straightf
 	\end{ans}
 \end{quest}
 
+\subsection{Brownian Bridge (Q2)}
+
+\begin{definition}{Brownian bridge}{}
+	A Brownian bridge $\{X_t\}$ is a Gaussian stochastic process s.t. $X_t \equiv B_t - tB_1$, where $\{B_t\}_{t\geq 0}$ is a standard Brownian motion.  
+\end{definition}
+
+\begin{fact}{Brownian bridge covariance}{}
+	Let $\{X_t\}_{t\geq 0}$ be a Brownian bridge defined by $X_t:= W_t - tW_1$.
+	\begin{align*}
+	K(s,t) = \Cov(X_t, X_s) 
+		&= \Cov(W_t - tW_1, W_s - sW_1) \\
+		&= \Cov(W_t, W_s - sW_1) -t\Cov(W_1, W_s - s W_1) \\
+		&= \Cov(W_t, W_s) -s\Cov(W_t, W_1) 
+			-t\Cov(W_1, W_s) + st\Cov(W_1, W_1) \\
+		&= \min(s,t) - s\min(t, 1) -t\min(1, s) + st\min(1, 1) \\
+		&= \min(s, t) - st - st + st \\
+	\therefore\quad& \boxed{ K(s, t) = \min(s, t) - st }.
+	\end{align*}
+	\end{fact}
+	
+	\begin{fact}{Brownian bridge expectation}{}
+	Let $\{X_t\}_{t\geq 0}$ be a Brownian bridge defined by $X_t:= W_t - tW_1$.
+	\begin{align*}
+	m(t) = \E X_t 
+		&= \E[W_t - tW_1] \\
+		&= \E W_t - t\E W_1 , \quad W_t\sim\mathcal{N}(0, t), 
+			W_1 \sim \mathcal{N}(0, 1)\\
+	\therefore\quad & \boxed{ m(t) =  0 } \\
+	\end{align*}
+	\end{fact}
+
+
 % Q2 Solution
 \begin{enumerate}[label=(\roman*)] 
 \item % 2 i
@@ -61,17 +92,18 @@ $\{X_t\}_{t\geq 0}$ with $X_t:= W_t - tW_1$ is a Brownian bridge.
 
 \begin{mybox}{cyan}{}
 \begin{align*}
-m(t) = \E X_t 
+m(t) &\equiv \E X_t  \\
 	&= \E[W_t - tW_1] \\
 	&= \E W_t - t\E W_1 , \quad W_t\sim\mathcal{N}(0, t), 
 		W_1 \sim \mathcal{N}(0, 1)\\
 \therefore\quad & \boxed{ m(t) =  0 } \\
-K(s,t) = \Cov(X_t, X_s) 
+K(s,t) &\equiv \Cov(X_t, X_s). \\
 	&= \Cov(W_t - tW_1, W_s - sW_1) \\
 	&= \Cov(W_t, W_s - sW_1) -t\Cov(W_1, W_s - s W_1) \\
 	&= \Cov(W_t, W_s) -s\Cov(W_t, W_1) 
 		-t\Cov(W_1, W_s) \\ &\quad  + st\Cov(W_1, W_1) \\
-	&= \min(s,t) - s\min(t, 1) -t\min(1, s) + st\min(1, 1) \\
+	&= \min(s,t) - s\underbrace{\min(t, 1)}_{t} 
+		- t \underbrace{\min(1, s)}_{s} + st\min(1, 1) \\
 	&= \min(s, t) - st - st + st \\
 \therefore\quad& \boxed{ K(s, t) = \min(s, t) - st }.
 \end{align*}
@@ -80,44 +112,43 @@ $\{X_t\}$ fits the definition for a Brownian bridge.
 \end{mybox} % end 2 i
 
 \item % 2 ii
-$\{Y_t\}_{t\geq 0 }$ with $Y_t := (1- t) W_{t/(1-t)}$ for $0\leq t < 1,$ $Y_1 = 0$ is a Brownian bridge.
+$\{Y_t\}_{t\geq 0 }$ with $Y_t := (1- t) W_{\frac{t}{1-t}}$ for $0\leq t < 1,$ $Y_1 = 0$ is a Brownian bridge.
 
 \begin{mybox}{cyan}{}
-
+\begin{quest}
+	\item Derive the covariance function $K(s,t)$ for $\{Y_t\}$. 
+	\begin{ans}
+		\begin{align*}
+			K(s, t) 
+				&\equiv \Cov(Y_s, Y_t) 
+					= \Cov((1-t) W_{\frac{t}{1-t}}, (1-s) W_{\frac{s}{1-s}}) \\
+				&= (1-t)(1-s)\Cov( W_{\frac{t}{1-t}}, W_{\frac{s}{1-s}} )
+		\end{align*}
+		Since $\Cov(W_t, W_s) = \min(s, t)$, 
+		\[ K(s, t) = (1-t)(1-s)\min\left( \frac{t}{1-t}, \frac{s}{1-s} \right) \]
+		Consider the case $s < t $, where $s, t\in [0, 1]$.
+		\begin{gather*}
+			s < t \iff -s > -t \\
+			1 - s > 1 - t \\
+			\frac{1}{1 - s} < \frac{1}{1-t} \implies \frac{s}{1 - s} < \frac{t}{1-t}
+		\end{gather*}
+		Thus, if $s < t$, $\min(\frac{t}{1-t}, \frac{s}{1-s}) = \frac{s}{1-s}$. 
+		\begin{align*}
+			&\therefore\quad K(s, t) = \begin{cases}
+				(1 - t) s &,\quad s < t \\
+				(1 - s) t &,\quad s > t    
+			\end{cases}  
+			= \begin{cases}
+				s - st &,\quad s < t \\
+				t - st &,\quad s > t 
+			\end{cases} \\
+			& \boxed{ K(s, t) = \min(s, t) - st } 
+		\end{align*}
+	\end{ans}
+\end{quest}
 \end{mybox} % end 2 ii 
 \end{enumerate} % end Q2
 
-\begin{definition}{Brownian bridge}{}
-	A Brownian bridge $\{X_t\}$ is a Gaussian stochastic process s.t. $X_t \equiv B_t - tB_1$, where $\{B_t\}_{t\geq 0}$ is a standard Brownian motion.  
-\end{definition}
-
-\begin{fact}{Brownian bridge covariance}{}
-Let $\{X_t\}_{t\geq 0}$ be a Brownian bridge defined by $X_t:= W_t - tW_1$.
-\begin{align*}
-K(s,t) = \Cov(X_t, X_s) 
-	&= \Cov(W_t - tW_1, W_s - sW_1) \\
-	&= \Cov(W_t, W_s - sW_1) -t\Cov(W_1, W_s - s W_1) \\
-	&= \Cov(W_t, W_s) -s\Cov(W_t, W_1) 
-		-t\Cov(W_1, W_s) + st\Cov(W_1, W_1) \\
-	&= \min(s,t) - s\min(t, 1) -t\min(1, s) + st\min(1, 1) \\
-	&= \min(s, t) - st - st + st \\
-\therefore\quad& \boxed{ K(s, t) = \min(s, t) - st }.
-\end{align*}
-\end{fact}
-
-\begin{fact}{Brownian bridge expectation}{}
-Let $\{X_t\}_{t\geq 0}$ be a Brownian bridge defined by $X_t:= W_t - tW_1$.
-\begin{align*}
-m(t) = \E X_t 
-	&= \E[W_t - tW_1] \\
-	&= \E W_t - t\E W_1 , \quad W_t\sim\mathcal{N}(0, t), 
-		W_1 \sim \mathcal{N}(0, 1)\\
-\therefore\quad & \boxed{ m(t) =  0 } \\
-\end{align*}
-\end{fact}
-
-
-\subsection{Q2 - Brownian Bridge}
 Prove a stochastic process $\{X_t\}$ is a Brownian bridge. This involves proving the process has mean function $m(t) = 0$ and covariance function $K(s, t) = \min(s, t) - st$ for $s,t\in[0,1]$. 
 
 \begin{quest}
@@ -242,3 +273,224 @@ $\{B_t^H\}_{t\geq 0}$ with $B_0^H = 0$ and $H = \frac{1}{2}$ is a standard Brown
 \begin{itemize}
   \item \href{http://web.math.ku.dk/noter/filer/vidsand12.pdf}{problem 1 on  bottom of page 6}
 \end{itemize}
+
+
+
+\section{Hwk 5}
+
+Q2: 3/16 
+
+
+
+\section{Lecture 3-08}
+
+Motivation: applications where you want to model the impact of nooise 
+
+
+study diffeqs of the form $D_t X_t = b(X_t, t) + \sigma(X_t, t) D_t W_t$, where $D_t$ denotes a derivative operator with respect to $t$, $W_t$ denotes a r.v. that is part of a Wiener process, $\sigma(X_t, t)$ is a drift term. 
+
+Remember that Brownian motion has the property that every interval  is independent of everything else. If you naively think of $D_t W_t$ as $\d W_t$, then clearly you have a noise term.  Can we differentiate $W_t$ with respect to $t$? In general, no. 
+
+High level description: We have a physical system $\dot{X_t} = b(X_t, t)$ plus a noise term $\sigma(X_t, t) D_t W_t$. 
+
+If we can't differentiate the quantity $W_t$, what is meant by the $D_t W_t$ term? What this usually means is that you have an ODE, 
+\[ \d X_t = b(X_t, t)\d t + \sigma(X_t, t) \d W_t. \]
+This is slightly better because it looks like this might make sense. This might still not be a good way to understand this becuase $\d W_t$ is still questionable. If we were to intergrate, we'd get 
+\[ X_t - X_0 = \int_0^t b(X_s, s)\d s + \int_0^t \sigma(X_s, s) \d W_s. \] 
+
+We can't normally compute $\int \sigma(X_s, s) \d W_s$, but we can get it through some summations. This integral form we've written down is the right way to understand the stochastic ODE. 
+
+\begin{example}
+	$A$ is a finite sum within the interval  $t\in \{t_0,\ldots, t_N\}$ defined by: 
+	\[ \E[A] := \sum_{j=0}^{N-1} \left[ W_{t_j} (W_{t_{j+1}} - W_{t_j}) \right]. \]				
+	The interval $W_{t_{j+1}} - W_{t_j}$ is is independeent of $W_{t_j}$ since these are part of a Wiener process.   \textbf{TODO: Explain.} 
+	\[\therefore \quad \E A 
+		= \sum_{t=t_j}^{t_{N-1}} \E W_t \E (W_{t+1} - W_t)
+		= 0 .\]
+	Let's have $B$ give a right-side summation. In this case, $W_{t_{j+1}} - W_{t_j}$ is not independent of $W_{t_{j+1}}$ because $W_{t_{j+1}}$ is not in the "past". We do, however, know that the difference $W_{t_{j+1}} - W_{t_j}$ has a Guassian distribution.
+\begin{align*}
+	\E B 
+	&:= \sum_{j=0}^{N-1} 
+		\E [W_{t_{j+1}} 
+		(W_{t_{j+1}} - W_{t_j}) ] \\
+	&= \sum_{j=0}^{N-1} 
+	\E [(W_{t_{j+1}} - W_{t_j} 
+		+ W_{t_j})(W_{t_{j+1}} - W_{t_j}) ] \\
+	&= \sum_{j=0}^{N-1} 
+		\E \left[  
+			(W_{t_{j+1}} - W_{t_j})^2 + 
+			W_{t_j} (W_{t_{j+1}} - W_{t_j} ) 
+			\right]   \\ 
+	&= \sum_{t = t_0}^{t_{N-1}} \E (W_{t+1} - W_t)^2 
+		+ \E W_t \underbrace{ \E (W_{t+1} - W_t) }_{=0} \\
+	&= \sum_{t = t_0}^{t_{N-1}} 
+		\Var (W_{t+1} - W_t) 
+		\tag{ $W_{t+1} - W_t \sim \mathcal{N}(0, t+1-t) 
+			= \mathcal{N}(0, 1)$ } \\
+	&= \sum_{t = t_0}^{t_{N-1}} 1  \\ 
+	&= T = \text{card} (\{ t \}),  \quad \text{the total length of the interval}
+\end{align*} 
+\end{example}
+
+CLass Q: Why not expand the expecation directly? A: We don't know how to compute it. 
+\begin{proof}
+	$\E [ W_{t_{j+1}} (W_{t_{j+1}} - W_{t_j}) ] 
+		= \E [W_{t_{j+1}}^2 - W_{t_{j+1}}W_{t_j}  ]$. We know 
+	$\E W_{t_{j+1}}^2$ because that's just the variance, but we don't know how to compute $W_{t_{j+1}} W_{t_j}$. 
+\end{proof}
+
+We know that jump terms such as $W_{t+1} - W_t$ are independent of the history and know how they are distributed, so it is advantageous to look to for them when computing expectations.
+\begin{align*}
+\E [ W_{t_{j+1}} (W_{t_{j+1}} - W_{t_j}) ] 
+	&= \E [W_{t_{j+1}}^2 - W_{t_{j+1}}W_{t_j}  ] \\
+	&= \underbrace{ \E W_{t_{j+1}}^2 }_{t_{j+1}}
+		- \E \left[  
+		\underbrace{ W_{t_{j+1}} W_{t_j} }_{\min(t_{j+1}, t_j) = t_j 
+		} \right] \\
+	&= t_{j+1} - t_j
+\end{align*}
+
+\subsection{Ito's integral}
+
+\[ \int_0^T \sigma(X_t, t) \d W_t  
+	\approx \sum_{j=1}^{N-1}
+	\sigma(X_{t_j}, t_j) [W_{t_j} - W_{t_j}].
+\]
+
+The Ito integral uses the approximation defined by $\E A$ in the previous example. The differences in the Brownian motion are taken between $t_{i+1}$ and $t_i$. 
+
+\begin{definition}{Simple measurable function}{}
+For any simple simple measurable fn, \textemdash What are simple fns?
+For a measurable fn $f$ with  $w\in \{W_t\}$ and $t\in\{t_0, t_N\}$,  it is simple if
+$f(w, t)= \sum_{j=0}^n \beta_j (w) X(t_j, t_{j+1}) $, where 
+\[ \int_0^T f(W, t) \d W_t = \sum \beta_j [W_{t_{j+1}} - W_{t_j}] \]
+In this definition, the Brownian motion $\{W_t\}$ is independent of $\{beta\}$. 
+\end{definition}
+
+\begin{definition}{Integral of L-2 stochastic function}{}
+FOr a general measurable function, we use a sequence of simple functions to approximate $f(w, t)$:  We define our integral for the usual $\ell$-2 function by the limit 
+\[ \int_0^T f(w, t) \d W_t 
+	\equiv \lim_{k\to\infty} \int \phi_k (w, t) \d W_t.  \]
+What we're basically saying here is that if you have a fn, you can approximate it as a sequence of simple fns.
+\end{definition} 
+
+\begin{theorem}{Ito integral expectation}{}
+$\E [\int_0^T f(w, t) \d W_t] = 0$.
+\end{theorem}
+
+\begin{proof}
+If $f(w, t)$ is simple, then 
+\[ \E \int_0^T f(w, t) \d W_t  
+	= \E \left[ \sum_i \beta_i (W_{t_{i+1}} - W_{t_i})  \right] 
+	\propto \E (W_{t_{i+1}} - W_{t_i})  ) 
+	= 0 \]
+\end{proof}
+
+\begin{theorem}{Ito isometry}{}
+$ \E \left[  \left( \int_0^T f(w, t) \d W_t \right)^2 \right] = \E \left[ \int_0^T  f^2(w, t) \d t \right] ,$ the time integral of the square of $f$. 
+\end{theorem}
+
+\begin{proof}
+Shorthand notation $\to$ $W_{t_{i+1}} - W_{t_i} := \Delta W_{i}$:
+\begin{align*}
+\E \left[  \left( \int_0^T f(w, t) \d W_t \right)^2 \right] 
+	&= \E \left( \sum_i \beta_i ( W_{t_{i+1}} - W_{t_i} ) \right)^2 \\
+	&= \E \sum_{i,k} \beta_i \beta_k \Delta W_i \Delta W_k 
+		= \E \left[ \sum_{i=k} ("") + \sum_{i\neq k} ("" ) \right] \\
+	&= \E \left[ \sum_i \beta_i^2 (\Delta W_i )^2 
+		+ 2 \sum_{i< k} \beta_i \beta_k \Delta W_i \Delta W_k \right]
+		\tag{time symmetry} \\  
+	&= \sum_i \E\beta_i^2  
+		\underbrace{ \E (\Delta W_{t_i})^2 }_{=\Var W_{t_i} = \Delta t_i}
+		+ 2 \sum_{i < k} 
+			\underbrace{  
+				\E [\beta_i \beta_k \Delta W_i \Delta W_k]
+			 }_{=0\quad\text{by independence} } \\ 
+	&= \sum_i \E \beta_i^2 \cdot \Delta t_i 
+	  = \E \sum_i \beta_i^2\Delta t_i \\
+	&= \E \left[ \int_0^T  f^2(w, t) \d t \right]
+\end{align*}
+\end{proof}
+
+With Iso isometry and the definition of the integral of a stochastic function, we have NEXT
+
+Tuesday morning OH now avaialble. 
+
+\subsubsection{Final project questions:}
+\begin{quest}
+	\item ``Did you assign anything about the final project? Currently, I don't know exactly what I need to do for that."
+	\begin{ans}
+		A: Given papers to read. See how far you can go and basically what they are. If you want to bring your own project,  that will be great. Otherwise, I have plenty of stuff for you. Stochastic wave equations. Wednesday's office hour is still there. 
+	\end{ans}
+	
+	\item Questin about midterm exam 
+	\begin{ans} The midterm will be like this. It's open everything except the internet. Find an open library, open desk, whatever, and to give you some ideas about it, for instance, what we talked about today. If I give you a simple example, I can ask you to calculate a stochastic integral, or tell me what idea you'd have if I told you I wanted to study convergence of a Markov chain with $x$ property. It's not a traditional exam, where you need to know super exact information. It's just some random questions to see if you're okay with what we've talked about. I know this is not clear enough, but that's the plan. 
+	\end{ans}
+
+	\item ``Will you release what information about what topics will be on [the midterm] or some practice problems to work on beforehand?''
+	\begin{ans}
+	A: That's a good idea. Topics: basically everything we talked about and nothing beyond that. I'll give you a sample exam just to get ready and see the format of the problems. 
+	\end{ans}
+
+	\item ``Will it be online?'' 
+	\begin{ans}
+	A: Online. It will be your typical 90 minute window. However, there won't be many of the problem solving type questions that you're used to; there will be \emph{understanding} questions. For example, describe what you know about Brownian motion. 
+	\end{ans}
+
+	\item Date info
+	\begin{ans}
+	The midterm is almost all the way at the end of the semester. 
+	\end{ans}
+\end{quest}
+ 
+\section{Lecture 3-10}
+
+\href{https://cvn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=56294e98-70c7-4526-a119-ace701137c35}{[video]}
+
+Continue discussion on Ito's integrals. If you have a fn $f(w,t)$ and want to understand integrals like $\int_0^T f(w, t) \d W_t$. We partition the domain $\{t\} = \{t_0 , \cdots, t_N\}$. $T = \text{card}\{ t\}$. 
+\begin{itemize}
+	\item Simple $f = \sum_{j=0}^{N-1} \beta_j X(t_j, t_{j+1})$
+	\[ \int_0^T f \d W_t := \sum_{j=0}^{N-1} \beta_j \Delta W_j \]
+	\item General $f$. 
+\begin{gather*} 
+	\exists \{ \underbrace{ \phi_k }_{\text{simple}} \} \to f(w, t) \\
+	\iff \quad 
+		\int_0^T f(w, t) \d W_t 
+		:= \lim_{k\to\infty} \int_0^T \phi_k \d W_t  
+\end{gather*}
+\end{itemize}
+
+\begin{itemize}
+	\item $\E \int f(w, t) \d W_t = 0 $ 
+	\item (Ito Isometry):
+		$\E \left( \int f(w, t) \d W_t \right)^2 = \E \int f^2(w, t) \d t $
+	\item $\int_0^T f\d W_t = \int_0^s f \d W_t + \int_s^T f \d W_t$
+	\item $\int_0^T (c_0f + c_1g)\d W_t = c_0 \int f\d W_t + c_1 \int g\d W_t  $ 
+	\item Define $Y_t := \int_0^t f(w, s) \d W_s$, where $W_s$ is part of a Wiener process. Then this process has continuous trajectories \emph{almost surely}. 
+\end{itemize}
+
+\begin{example}
+$\int_0^t W_s \d W_s = ?$
+\begin{align*}
+&\approx \sum_{j=0}^{N-1} W_{s_j} [W_{s_{j+1}} - W_{s_j}] \\
+&= \sum ( W_{s_j}W_{s_{j+1}} - W_{s_j}^2) \\
+&= \sum (W_{s_{j+1}}^2 - W_{s_j}^2 
+	- W_{s_{j+1}}^2 + W_{s_j} W_{s_{j+1}})  \tag{add 0} \\
+&= \sum \left(  \frac{ W_{s_{j+1}}^2 - W_{s_j}^2 }{ 2 } 
+	+ \frac{ W_{s_{j+1}}^2 - W_{s_j}^2 
+		- 2W_{s_{j+1}}^2 + 2 W_{s_j} W_{s_{j+1}} }
+		{ 2 }
+	\right) \\
+&= \sum \left(  \frac{ W_{s_{j+1}}^2 - W_{s_j}^2 }{ 2 } \right)
+	+  \sum \frac{ - (W_{s_{j+1}}^2 - W_{s_j}^2)^2 } { 2 } \\
+&= - \sum \frac{ W_{s_{j+1}}^2 - W_{s_j}^2 }{ 2 } 
+	- \frac{1}{2} \sum (W_{s_{j+1}} - W_{s_j})^2
+\end{align*}
+Notice the term on the right is the jump in Brownian motion. The jump squared is what? That is just the difference $s_{j+1} - s_j$. Recall that the increment in Brownian motion $W_t - W_s\sim \mathcal{N}(0, t-s)$. The increment squared is a variance term, so it will come out to $\sum s_{j+1} - s_j = t$ since we're integrating $\int_0^t$. 
+
+What about the term on the left side? This is a summation that clearly gives $\frac{1}{2} W_t^2.$ The term $ W_{s_{j+1}}^2 - W_{s_j}^2 $ is not the difference squared; it's the squared difference. When you add them all together, you get the final value squared $W_t^2$. 
+\[ \therefore\quad 
+	\boxed{ \int_0^t W_s \d W_s 
+	= \frac{1}{2} W_t^2 - \frac{t}{2} }. \]
+\end{example}
+

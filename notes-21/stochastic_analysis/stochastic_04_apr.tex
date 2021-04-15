@@ -1,0 +1,16 @@
+\chapter{April - Stochastic Analysis }
+
+\section{}
+
+
+Date: April 5
+
+Stochastic gradient descent (SGD) methods: Refer to the class of gradient descenet methods in which a small subset, often called a batch, of randomly seleted components of an objective fn. $\phi(w)$ is used to calculate the descent direction at each iteration. 
+
+We are tryign to minimize a functional $\phi(w)$. In real applications, we can say this functional is a sum of smaller functionals $\phi_j$ s.t. 
+\[ \phi(w) = \frac{1}{N} \sum_{j=1}^N \phi_j(w) 
+	= \E [\phi(w, \omega)] \]. Usually calculating the gradient of $\phi$ is too expensive, so you we instead find a different way to do it. One naive way to go about this is that, instead of taking the gradient of the whole objective fn., we compute the gradient of individual components. Take 1 data point and compute the gradient there. 
+
+Date: April 7. 
+
+Many people said they'd prefer to work on the project next week. There was one suggestion to have prof keep lecturing and make attendence optional for next week. There will still be two lectures recorded next week. 
