@@ -1,0 +1,154 @@
+\section{Higher-Dimensioal PDEs}
+
+Lecture 11, \S 7 of Haberman - post midterm
+
+Wei Chung (TA) office hours now Thursday \@ 4pm
+
+7.4 Statements of Theorems for Helmholtz Eq. 
+
+\begin{enumerate}
+  \item There may be eigenfunctions $\phi_\lambda$ for a single $\lambda$ that are lineraly independent.
+  \item If $\lambda_1 \neq \lambda_2$, then $\phi_{\lambda_1}$ and $\phi_{\lambda_2}$ are orthogonal. 
+\end{enumerate}
+\begin{gather*}
+  \laplacian \phi + \lambda \phi = 0 \text{ in region }R \\
+  \text{ on boundary }\partial R \\
+\end{gather*}
+
+\begin{example}
+Given: \begin{gather*}
+  \laplacian \phi + \lambda \phi = 0 \\
+  \phi = \phi(x, y) \\
+  \text{Domain: }(x, y) \in A
+\end{gather*}
+Derive the Rayleigh quotient for $\lambda$. 
+
+To get the RQ fo $\lambda$, multiply the Helmholtz eq. by $\phi$. 
+\begin{align*}
+  \to \quad
+    & \phi\nabla^2\phi + \phi \lambda \phi = 0 \\
+  \phi\lambda \phi &= -\phi\nabla^2\phi \\
+  \phi\lambda \phi \d A &= -\phi\nabla^2\phi \d A \\
+  \therefore\quad \lambda 
+    &= \frac{-\iint_{\mathbb{R}^2} \phi\nabla^2\phi \d A}
+      {\iint_{\mathbb{R}^2} |\phi|^2 \d A } \tag{1}
+\end{align*}
+Since $\laplacian\phi = \text{div(grad}\phi) = \nabla\cdot (\nabla\phi)$, this term can be expanded using the product rule for derivatives:
+\begin{align*}
+  &\frac{\d }{\d x} (fg) = \frac{\d f}{\d x} g + f\frac{\d g}{\d x} \\
+  &\implies \nabla(fg) = \nabla f \cdot g + f \cdot \nabla g \\
+  &\text{Let $f:= \phi$ and $g:= \nabla \phi$. Then, }\\
+  &\nabla(fg) = \nabla(\phi\nabla\phi) 
+    = \nabla\phi\cdot \nabla\phi + \phi\nabla\cdot (\nabla \phi) \\
+  &\nabla(\phi\nabla\phi) = |\nabla \phi|^2 + \phi\laplacian\phi \\
+  &\therefore\quad \phi\laplacian\phi 
+    = \nabla\cdot (\phi\nabla\phi) - |\nabla\phi |^2 \tag{2}
+\end{align*} 
+From eq. 1 and 2, 
+\begin{align*}
+\lambda 
+  &= \frac{-\iint_{A} \nabla \cdot(\phi\nabla\phi)\d A
+    + \iint_{A} |\nabla \phi|^2 \d A}
+  {\iint_{A} |\phi|^2 \d A } 
+\end{align*}
+By Green's theorem, $\iint_A \nabla \cdot \vec{F} \d A 
+= \oint_{\partial A} \vec{F} \cdot \hat{n} \d \ell $, 
+where $\d \ell$ denotes an infitesimal line element, and $\vec{F}$ is a field over the domain of $A$, and $\partial A$ denotes the boundary of $A$. Hence, 
+\[ \boxed{ 
+  \lambda 
+  = \frac{-\iint_{\partial A} (\phi\nabla\phi)\cdot \hat{n} \d \ell 
+    + \iint_{A} |\nabla \phi|^2 \d A}
+  {\iint_{A} |\phi|^2 \d A }
+} \]
+\end{example}
+
+\begin{example}
+  Redo the previous example with the Sturm-Louiville eq. instead of the Helmholtz. 
+
+  Given: 
+  \begin{gather*}
+    \nabla (p\nabla\phi) + q\phi + \lambda\sigma \phi = 0\\
+    \phi = \phi(\vec{x}), p = p(\vec{x}), q = q(\vec{x}), 
+      \sigma = \sigma(\vec{x}) \\
+    \vec{x} := (x, y).  \\
+    \vec{x} \in \text{ region $R$ with boundary curve $\partial R$}.  
+  \end{gather*}
+
+I'm going to call the region $A$ for area. 
+\begin{align*}
+&\implies \lambda \sigma \phi 
+  = - \nabla\cdot(p\nabla \phi) - q\phi  \\  
+& \lambda \sigma \phi \d A 
+  = - \nabla\cdot(p\nabla \phi)\d A - q\phi \d A  \\
+& \phi \lambda \sigma \phi \d A 
+  = - \phi \nabla\cdot(p\nabla \phi)\d A - \phi q\phi \d A  \\
+& \lambda \sigma |\phi|^2 \d A 
+  = - \phi \nabla\cdot(p\nabla \phi)\d A - q|\phi|^2 \d A  \\
+& \therefore \quad \lambda 
+  = \frac{ - \iint_A \phi \nabla\cdot(p\nabla \phi)\d A 
+    - \iint_A q|\phi|^2 \d A  }
+    { \iint_A \sigma |\phi|^2 \d A} \tag{3} 
+\end{align*}
+\end{example}
+
+\section{Dirac Delta}
+
+he dirac delta $\delta(x - a)$ is a functional.
+\begin{itemize}
+  \item functional: A function that inputs a function and outputs a function. 
+\end{itemize}
+
+It's an "infinitely thin spike" at a single point and 0 everywhere else. 
+\[ \delta(x - a) = \begin{cases}
+  \infty  &,\quad  x = a  \\
+  0 &, \quad \text{ else } 
+\end{cases}\] This isn't the full description of the delta functional. It's most important property is that it integrates to 1. 
+\begin{gather*}
+  \int_{\mathcal{B}} f(x) \delta(x - x_0) \d x = f(x_0)
+    \quad\text{ if }x_0\in\mathcal{B}  \tag{1} \\
+  \therefore \quad 
+    \int_{-\infty}^{+\infty} \delta (x - a) \d x = 1, 
+    \quad a\in\mathbb{R} \\
+\end{gather*}
+
+Intuition: If you're within some boundary containing the spike and integrate over it, you get 1 because the spike is infinitely thin (and infinitely tall). If you're integrating over a function and the spike is at $x_0$, the integral will evaluate to the function's value at $x_0$ (Eq. 1).
+
+\paragraph*{Other properties}
+\begin{itemize}
+  \item  Notice that you only get a spike at $\delta(0)$.  Thus, (Fact) \boxed{ \delta(x) = \delta(-x) } because $0 = -0$. A more general formula for this deals with transformations of the arguments
+  \item (Fact) \boxed{\delta (k x) = \frac{1}{|k|} \delta(x)}. I'll state this property without proof. Note that it justifies my above claim: $\delta(-x) = \frac{1}{1} \delta (x) $.  
+  
+  Why would I use this? What if you have $\int_\mathbb{R} f(x)  \delta(3x - 2) \d x  $? It's a bit hard to interpret where the nonzero portion is because the answer is not to evaluate $f(3x-2)$. Instead, use 
+  \begin{gather*}
+    \delta(3x - 2) = \delta (3 (x - \frac{2}{3})) = \frac{1}{3} \delta(x - \frac{2}{3}) \\ 
+    \therefore \quad 
+    \int_\mathbb{R} f(x)  \delta(3x - 2) \d x  
+    = \frac{1}{3}\int_\mathbb{R} f(x)  \delta(x - \frac{2}{3}) \d x = \frac{1}{3} f(\frac{2}{3})  
+  \end{gather*}
+\end{itemize} 
+
+A common notation you'll sometimes see is $\delta_{nm} = \begin{cases}
+  1 \quad &, n = m \\ 0 \quad &,  n \neq m 
+\end{cases}$. This is called the Kronecker-delta. It's a similar concept but has a different meaning. 
+\begin{gather*}
+  \int_0^L \sin(\npiell x) \sin(\mpiell x) \d x = \frac{L}{2} \delta_{nm} \\
+  \int_{-L}^{+L} \sin(\npiell x) \sin(\mpiell x) \d x = L \delta_{nm}
+\end{gather*}
+
+
+\section{Final Exam Review}
+
+\paragraph*{Suggested Problems}
+\begin{itemize}
+  \item Chapter 7: 7.3.1, 7.3.4, 7.5.2, 7.5.7, 7.5.8 7.6.1, 7.6.2, 7.7.3, 7.7.9 7.9.1, 7.9.2
+  \item Chapter 8: 8.2.2, 8.3.1, 8.4.1, 8.4.4 8.6.1, 8.6.2, 8.6.7
+  \item Chapter 9: 9.3.6, 9.3.11, 9.3.14, 9.4.5, 9.4.7, 9.5.3, 9.5.4, 9.5.6
+  \item Chapter 10: 10.3.8, 10.3.11, 10.4.4, 10.4.6, 10.4.7ab, 10.4.9
+\end{itemize}
+
+
+
+
+
+
+
