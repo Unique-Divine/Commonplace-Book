@@ -159,16 +159,16 @@ that are capable of learning how to adapt in the real world.
 	\cloze For set of states $S$ and set of actions $A$, the Q-function is a map s.t. $Q:S\times A\to \mathbb{R}$.
 	
 	\item In Q-learning, $Q$ is updated according to 
-	\[ Q_{\text{new}}(s, a) := Q(s, a) 
+	$$ Q_{\text{new}}(s, a) := Q(s, a) 
 		+ \alpha \cdot 
-			\left( r + \gamma \max\limits_{a_b\in A} Q(s', a_b) 
-			- Q(s, a) \right) \].
+			\left( r + \gamma \max_{a_b\in A} Q(s', a_b) 
+			- Q(s, a) \right) $$.
 	\begin{itemize}
 		\item $Q(s, a)$: The "quality" fn. at the current state $s$
 		\item $\alpha$: The learning rate. $0 \leq \alpha \leq 1$. Values close to 1 make faster changes to $Q$.  
 		\item $r$: Reward received when moving from $s \to s'$
 		\item $\gamma$: The discount factor. Quantifies how much to "discount" the 
-		\item $\max\limits_{a_b\in A} Q(s', a_b)$: Estimate of optimal future Q-value. This would be the highest $Q(s'|a_b)$, where $a_b$ is the "best" action and $s'$ is the next state.  
+		\item $\max_{a_b\in A} Q(s', a_b)$: Estimate of optimal future Q-value. This would be the highest $Q(s'|a_b)$, where $a_b$ is the "best" action and $s'$ is the next state.  
 	\end{itemize}
 \end{quest} 
 
@@ -268,13 +268,6 @@ Improving sample efficiency is a key research problem in reinforcement learning 
 \end{quest}
 
 
-
-
-
-
-
-
-
 %------------------------------------------------------
 \chapter{Generative Adversarial Networks}
 
@@ -291,7 +284,7 @@ Improving sample efficiency is a key research problem in reinforcement learning 
 \item
 	$D$: a discriminative model that estimates the probability that a sample came from the training data rather than $G$
 \end{itemize}
-The training procedure for $G$ is to maximize the probability of $D$ making a mistake. This framework corresponds to a minimax two-player game. In the space of arbitrary functions $G$ and $D$, a unique solution exists, with $G$ recovering the training data distribution and $D$ equal to $\frac{1}{2}$ everywhere. In the case where $G$ and $D$ are defined by multilayer perceptrons, the entire system can be trained with backpropagation. There is no need for any Markov chains or unrolled approximate inference networks during either training or generation of samples.
+The training procedure for $G$ is to maximize the probability of $D$ making a mistake. This framework corresponds to a minimax two-player game. In the space of arbitrary functions $G$ and $D$, a unique solution exists, with $G$ recovering the training data distribution and $D$ equal to \texttt{$\frac{1}{2}$} everywhere. In the case where $G$ and $D$ are defined by multilayer perceptrons, the entire system can be trained with backpropagation. There is no need for any Markov chains or unrolled approximate inference networks during either training or generation of samples.
 
 
 \paragraph*{Introduction: }
@@ -317,7 +310,7 @@ Goodfellow et al. present a theoretical analysis of adversarial nets, essentiall
 
 Figure 1 explains this approach: GANs are trained by simultaneously updating the discriminative distribution, $D$, so that it discriminates between samples from the data generating distribution, $p_{\bm{x}}$, and those of the generative distribution $p_g$ (G).
 
-After several steps of training, if $G$ and $D$ have enough capacity, they will reach a point at which both cannot improve because $p_g=p_{\text{data}}$. The discriminator is unable to differentiate b/w the two distributions, i.e. $D(\bm{x})=\frac{1}{2}$.
+After several steps of training, if $G$ and $D$ have enough capacity, they will reach a point at which both cannot improve because $p_g=p_{\text{data}}$. The discriminator is unable to differentiate b/w the two distributions, i.e. \texttt{$D(\bm{x})=\frac{1}{2}$} .
 
 
 \begin{algorithm}[H]
@@ -690,8 +683,5 @@ RNA is made with what's called a template strand.
 	\item bacteria 100 kbp - 2Mbp
 	\item This means that the computational overhead of studying bacterial genomes is much smaller and can be done on a standard personal computer.
 \end{itemize}
-
-
-
 
 
