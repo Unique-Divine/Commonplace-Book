@@ -5,10 +5,6 @@
 - [Introduction](#introduction)
   - [A Commonplace (Book)](#a-commonplace-book)
   - [Why? | The Purpose of this Commonplace Book](#why--the-purpose-of-this-commonplace-book)
-    - [We are at war.](#we-are-at-war)
-    - [Save Hours on Research](#save-hours-on-research)
-    - [Find Unexpected Connections](#find-unexpected-connections)
-    - [Focus future Learning](#focus-future-learning)
 - [Metalearning & Doing](#metalearning--doing)
   - [Ultralearning](#ultralearning)
   - [Project Proposals](#project-proposals)
@@ -48,20 +44,22 @@ utilize each piece of wisdom you have obtained.
 [^1]: ["What Is a Commonplace Book?" (Article)](https://www.masterclass.com/articles/how-to-keep-a-commonplace-book#who-uses-commonplacing)
 ## Why? | The Purpose of this Commonplace Book 
 
-### We are at war.
+<!-- 
+**We are at war**
 
 Constantly seeking out new experiences and opportunities to grow. We
 employ active recall methods, watch videos, lectures, and seminars. We
 listen to mentors and podcasts, captivated by the new insights and
 perspectives that enter our psychology.
 
-As voracious learners, we are in a forever war
+As voracious learners, we are in a forever war 
+-->
 
-### Save Hours on Research
+**Save Hours on Research**
 
-### Find Unexpected Connections
+**Find Unexpected Connections**
 
-### Focus future Learning
+**Focus future Learning**
 
 
 ---  
