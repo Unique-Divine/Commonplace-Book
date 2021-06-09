@@ -1,9 +1,14 @@
+# Commonplace Book
 
+Unique Divine
+
+Created May 2020
 
 ## Contents      <!-- omit in toc -->
 
+- [Commonplace Book](#commonplace-book)
 - [Introduction](#introduction)
-  - [A Commonplace (Book)](#a-commonplace-book)
+  - [What is a Commonplace (Book)?](#what-is-a-commonplace-book)
   - [Why? | The Purpose of this Commonplace Book](#why--the-purpose-of-this-commonplace-book)
 - [Metalearning & Doing](#metalearning--doing)
   - [Ultralearning](#ultralearning)
@@ -26,7 +31,7 @@
 
 # Introduction
                         
-## A Commonplace (Book) 
+## What is a Commonplace (Book)? 
 
 A commonplace book is a system for writing down and sorting all manner
 of tidbits: quotes, anecdotes, observations, and information gleaned
@@ -42,7 +47,14 @@ utilize each piece of wisdom you have obtained.
 [^1]
 
 [^1]: ["What Is a Commonplace Book?" (Article)](https://www.masterclass.com/articles/how-to-keep-a-commonplace-book#who-uses-commonplacing)
+
 ## Why? | The Purpose of this Commonplace Book 
+
+**Save Hours on Research**: Beginners and intermediate learners often marvel at the way masters of subjects like mathematics and computer programming seem to effortlessly call upon related knowledge during presentations, lectures, and tutorials. Eventually, it starts to seem as though there's an insurmountably vast space of knowledge that these masters have already acquired and memorized, and in order for someone to reach a similar level of abilty,  he or she'd have to retain the majority of this vast space too. I've found that this is often not the case. 
+
+**Find Unexpected Connections**
+
+**Focus future Learning**
 
 <!-- 
 **We are at war**
@@ -55,13 +67,6 @@ perspectives that enter our psychology.
 As voracious learners, we are in a forever war 
 -->
 
-**Save Hours on Research**
-
-**Find Unexpected Connections**
-
-**Focus future Learning**
-
-
 ---  
 <!-- ------------------------------------------------------------------- -->
 <!--                  Metalearning & Doing                    -->
@@ -69,9 +74,11 @@ As voracious learners, we are in a forever war
 
 # Metalearning & Doing
 
+<!-- TODO Add chapter description. -->
+
 ## Ultralearning
 
-**Ultralearning**: It's about learning quickly and effectively. - It's a strategy - self-directed - intense - rapid speed with great efficiency
+**Ultralearning** is a strategy for learning quickly and effectively. It's self-directed, intense, and ruthlessly efficient.
 
 > "Despite their idiosyncrasies, the ultralearners had a lot of shared traits. They usually worked alone, often toiling for months and years without much more than a blog entry to announce their efforts. Their interests tended toward obsession. They were aggressive about optimizing their strategies, fiercely debating the merits of esoteric concepts such as interleaving practice, leech thresholds, or keyword mnemonics. Above all, they cared about learning. Their motivation to learn pushed them to tackle intense projects, even if it often came at the sacrifice of credentials or conformity."
 
@@ -90,15 +97,15 @@ As voracious learners, we are in a forever war
 
 #### Ultralearning [Core Message (YouTube)](https://youtu.be/4xCiHppPfEs)
 
-- A lot of what's taught in school is theory useful for PhD students.
-- An ultralearning project is about building skills, not just knowledge.
+- A lot of what's taught in school is theory that's only useful for PhD students.
+- An ultralearning project is about building skills, not just building knowledge.
 
 #### To Start Any Ultralearning Project 
 
 1.  Make and **follow a Metalearning map**. Think hard about what you want to be able to do by the end of your ultralearning project. Then identify what skills will be critical to your success.
-    - what concepts do I need to understand?
-    - what facts do I need to memorize?
-    - what procedures do I need to practice?  
+    - What concepts do I need to understand?
+    - What facts do I need to memorize?
+    - What procedures do I need to practice?  
 
 2.  **Design and use practice drills**
     -   Based on the info from metalearning, design drills.
@@ -615,6 +622,8 @@ Feynman: Knowing versus Understanding  [[video]](https://youtu.be/NM-zWTU7X-k)
 > "This contest, Brian is biggest competitor because this year we are very close. I must look what he do, but still I looking what I do and if I be better than me, I will be winner. " - Žydrūnas Savickas [[video]](https://youtu.be/gAVZU94zLkU?t=3875)
 
 > "Nothing else matters except sitting down everyday and trying. Why is this so important? Because when we sit down day after day and keep grinding, something mysterious starts to happen. A process is set into motion by which, inevitably and infallibly, heaven comes to our aid." - Steven Pressfield, The War of Art
+
+> "Nobody changes because someone tells them to. People change because they're inspired to change. " - Peter Sage
 
 --- 
 
