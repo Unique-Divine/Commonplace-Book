@@ -16,7 +16,7 @@ Created May 2020
     - [2.1.3. Project Proposals](#213-project-proposals)
   - [2.2. Reading, Notetaking, and Depth of Processing](#22-reading-notetaking-and-depth-of-processing)
     - [2.2.1. Learning Deeply: Knowing versus Understanding](#221-learning-deeply-knowing-versus-understanding)
-    - [2.2.2. How to Take Effective Notes When Reading - Aun Abdi (December, 2020)](#222-how-to-take-effective-notes-when-reading---aun-abdi-december-2020)
+    - [2.2.2. How to Take Effective Notes When Reading](#222-how-to-take-effective-notes-when-reading)
     - [2.2.3. How to read scientific papers](#223-how-to-read-scientific-papers)
   - [2.3. Software Projects](#23-software-projects)
   - [2.4. Endurance](#24-endurance)
@@ -260,87 +260,7 @@ As long as everything gets done, consider this mini project a success.
 - Gain high-level understanding of the keywords, enough that you could explain these concepts off the top of your head. Understand how they work and their significance.
 - [Intro to PyTorch | Tutorial](https://youtu.be/pWrwyOsho5A)
 
-##### 2.1.3.2.1. Libraries | PyTorch 
-
-ignite, fastai, skorch
-
 #### 2.1.3.3. Blogging
-
-#### 2.1.3.4. Python DS Handbook
-
-It's Tuesday, August 18th and there are about two weeks until the
-semester starts.
-
-I could definitely do with improving my Python data analysis
-fundamentals before the semester starts. Both the Python DS Handbook and
-Wes Mickinney's book are awesome resources that I could use to up my
-skills. So here, I'm proposing a 6 day project to quickly and
-efficiently milk these resources.
-
-#### 2.1.3.5. Motivation: 
-
-I've been trailing off on too many tangents. My recent project involving
-LSTMs sent me on an RNN binge that turned into a neural network binge
-that turned into a deep learning and AI binge. This isn't necessarily a
-bad thing. Some of that playful curiosity and interest was reignited in
-delving in this exploration. Heck, I even started reading academic
-papers for fun again.
-
-Perhaps I'd lost sight of my true mission because I got too engrossed in
-the daily grind and tasks in front of me. Stopping to consider my
-interests didn't even cross my mind because lately I keep having to put
-out new fires. So, I took a step back. I wrote, I thought, and I've read
-a lot in the past few days. I burned through dozens of books and
-articles, particularly on finance, investing, deep learning,
-metalearning, and productivity. And, I'm ready to go back and apply some
-more of what I've learned.
-
-#### 2.1.3.6. Proposal: 
-
-You (I) have 6 full days to accomplish the follow, starting now:
-
-- Read (and highlight), note-take from Python DS Handbook.
-    -   This is a pace of roughly 40 pages per day. Try to get through 100 a day.
-    1.  **Skim**. Search for interesting content you want to learn and relevant sections. Mark or record these sections for reading.
-    2.  **Read and Highlight** the sections you want to learn in more detail.
-- Create content from the notes in the DS Handbook. This includes but is not limited to
-    -   creating anki cards
-    -   adding to your cookbook
-- Depending on how early you finish, you can decide whether you'd gain more from going through Wes's book or some other resource.
-- **Also**, study 1-2 hours of Japanese to catch up on reps each day and exercise 30 minutes minimum.
-
-#### 2.1.3.7. Reflection 
-
-##### 2.1.3.7.1. At a high level, tell me what happened: 
-
-Surprise surprise. I didn't finish the reading goal, however this does
-not mean that the project was a failure. I believe I discovered pretty
-quickly in working on this reading project that I wasn't making the most
-time-efficient gains from taking a bottom-up approach to NumPy.
-
-##### 2.1.3.7.2. What to change for future projects: 
-
-I saw specific examples of NumPy concepts that would've helped me so
-much in my recent ML for Finance course. And the crazy thing was, I
-didn't need to know a lot of this info cold. I would've benefit just as
-much from having the familiarity of recognizing what utilities were even
-possible. Even just reading through the sections on broadcasting,
-masking, and universal functions would've helped me greatly.
-
-If I could go back in time 3 months, I would read and highlight through
-this book cover to cover. I would take notes on some of the concepts and
-utilities available and potentially add them to a cookbook instead of
-making Anki card active recall questions of everything.
-
-The time saved using the text as a reference instead of a tutorial
-would've helped me spend more time working on end-to-end projects, where
-my learning environment was stimulating, motivating, and had clear
-transferable value to potential employers and others around me.
-
-##### 2.1.3.7.3. Key Takeaways: 
-
-1.  Read first.
-2.  Archive.
 
 ---
 
@@ -354,46 +274,67 @@ Feynman: Knowing versus Understanding  [[video]](https://youtu.be/NM-zWTU7X-k)
 
 ---
 
-###  2.2.2. How to Take Effective Notes When Reading - Aun Abdi (December, 2020) 
+###  2.2.2. How to Take Effective Notes When Reading 
 
-Aun has been reading a book and a half per week for the past two years.
+Aun Abdi has been reading a book and a half per week for the past two years.
 He describes his process for getting the most out of what he reads in
 this video.
 
-1.  Have your reading accessories ready. Make sure that you are ready
-    for reading. Aun uses two pens and a highlighter to jot down notes
-    both in the book and in a notebook on the side.
-2.  Have a question in mind before you start. In general, ask lots of
-    questions and look into them.
-3.  Whilst you read, highlight and write down any ideas that resonate with you. Anything that keeps you engaged and active in the reading process is a plus. Pro tip: Make sure to read the full page/section before you highlight or take any notes. This helps prevent you from highlighting everything instead of prioritizing the important bits.
-4.  Some people don't like that notetaking breaks their flow. If you find this happening, take notes after full chapters. You might find that this helps with retention because it requires extra efforts for active recall. Try writing a summary at the close of a chapter.
-5.  Write down some principles you want to put into action after reading every book, especially if it's a productivity book or a book about a specific skill. Aun recommends drafting 5-10 principles up with each book that fits this description.
-6.  Review sessions. Derived from *The 7 Habits of Highly Effective People*: Sharpening the saw. Review your notes rigorously. Aun does this every single week and schedules in time to do so. This can be as simple as transferring notes from a notebook to the computer. Schedule at least an hour every single week to review your notes.
+1.  **Preparation**: Have your reading accessories ready. Make sure that you are ready for reading. Aun uses two pens and a highlighter to jot down notes both in the book and in a notebook on the side.
+2.  **Question everything**: Have a question in mind before you start. In general, ask lots of questions and look into them.
+3.  **Resonance**: Whilst you read, highlight and write down any ideas that resonate with you. Anything that keeps you engaged and active in the reading process is a plus. 
+    - Pro tip: Make sure to read the full page/section before you highlight or take any notes. This helps prevent you from highlighting everything instead of prioritizing the important bits.
+    - Some people don't like that notetaking breaks their flow. If you find this happening, take notes after full chapters. You might find that this helps with retention because it requires extra efforts for active recall. Try writing a summary at the close of a chapter.
+4.  **Action items**: Write down some principles you want to put into action after reading every book, especially if it's a productivity book or a book about a specific skill. Aun recommends drafting 5-10 principles up with each book that fits this description.
+6.  **Review**: Review sessions. Derived from *The 7 Habits of Highly Effective People*: Sharpening the saw. Review your notes rigorously. Aun does this every single week and schedules in time to do so. This can be as simple as transferring notes from a notebook to the computer. Schedule at least an hour every single week to review your notes.
 
-Having a structured reading routine and structured notetaking strategy
-is of paramount importance for effective learning. This is key to
-getting the most out of what you read.
+Having a structured reading routine and structured notetaking strategy is of paramount importance for effective learning. This is key to getting the most out of what you read.
 
-##### 2.2.2.0.1. Maximizing Your Understanding of Books.  
+How many times have you read something, got to the end of the page, and forgot what you just read? And you go back and you reread it, and you still don't know what you read? That's a big problem because you're wasting your most valuable asset: your time. 
+
+> "The key to reading comprehension is asking more questions... Questions are the answer." 
+
+Never just pick up a book and read it. Never just listen to a podcast. You must go into a state where you're going to be more receptive. 
+
+A simple notetaking method for maximizing retention and expansion of knowledge:
+1. **Capture and create**: Split a page in half. On one side, take notes and on the other make notes. One side for capturing and one side for creating. 
+2. What are you creating? What goes on this side? Write down your impressions about what you're capturing. If you get distracted, it's better that you get distracted using your imagination on the "create" side of the page because this will both speed up your learning process and make things stick. 
+3. And what are the main questions you should try to answer in the create section?
+   1. **How** → How can I use this? Make the things that are going to yield the highest return as simple and easy to understand as you can. 
+   2. **Why** → Why must I use this? Who's counting on you to win today? Some people are willing to do much more for other people than they'll do for themselves. Who's counting on you to be at your best? You need to find your motivation in your reading so that you can complete the task and remember key information. 
+   > "If it's not a must, you're not going to do it because you have plenty other things to do." - Jim Kwik. 
+   > "Reasons reap results."- Jim Kwik. 
+   3. **When** → When will I use this? The calendar is one of the strongest productivity tools you have. Many say they want to work out or worry about self care and self love. You may know lots of actionable information, but how does your calendar reflect that? 
+
+> "If you're not going to use what you're learning [from reading], you're no better off than someone who can't read at all." - Jim Kwik. 
+
+
+Information, Inspiration, Implementation -> Integration
+
+When you learn something, it becomes a part of who you are; it becomes integrated. Integration connects the head, heart, and hands.  
+
+
+##### References:                             <!-- omit in toc -->
+- Aun Abdi. December, 2020. 
+- Jim Kwik. 2019. 
+
+#### 2.2.2.1. Maximizing Your Understanding of Books.  
 
 - Bill Gates takes notes in the margins of books.
 - Maintenance rehearsal versus elaborative rehearsal $\to$ You want elaborative rehearsal with your reading, new pieces of information hooking into old memories. Taking notes in the margin will help you do this.
 
 Reference: R.C. Waldun. 2018. 
 
-#####  2.2.2.0.2. Get the Most Out of Your Books - Be an Active Reader. 
+####  2.2.2.2. Get the Most Out of Your Books - Be an Active Reader. 
 
-Active listening: Requires understanding, full concentration,
-recollection of the conversation, and minimizes confusion.
+Active listening: Requires understanding, full concentration, recollection of the conversation, and minimizes confusion.
 
-By engaging with a book, arguing with the text, asking questions, and
-writing a lot while reading, we can perform active reading too.
+By engaging with a book, arguing with the text, asking questions, and writing a lot while reading, we can perform active reading too.
 
 -   Helps with retention
 -   Makes transfer from book to real life more likely
 
-Don't become a collector. Are you more concerned with the content of the
-book or its appearance. Remember the reason you opened a book.
+Don't become a collector. Are you more concerned with the content of the book or its appearance. Remember the reason you opened a book.
 
 Marginalia
 
