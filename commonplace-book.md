@@ -260,6 +260,10 @@ As long as everything gets done, consider this mini project a success.
 - Gain high-level understanding of the keywords, enough that you could explain these concepts off the top of your head. Understand how they work and their significance.
 - [Intro to PyTorch | Tutorial](https://youtu.be/pWrwyOsho5A)
 
+##### 2.1.3.2.1. Libraries | PyTorch 
+
+ignite, fastai, skorch
+
 #### 2.1.3.3. Blogging
 
 ---
@@ -313,17 +317,18 @@ Information, Inspiration, Implementation -> Integration
 
 When you learn something, it becomes a part of who you are; it becomes integrated. Integration connects the head, heart, and hands.  
 
+Date: 21年5月23日
 
 ##### References:                             <!-- omit in toc -->
 - Aun Abdi. December, 2020. 
 - Jim Kwik. 2019. 
+- R.C. Waldun. 2018.
+- The Art of Improvement. 2019. [[video]](https://youtu.be/muc5dTN8_yE)
 
 #### 2.2.2.1. Maximizing Your Understanding of Books.  
 
 - Bill Gates takes notes in the margins of books.
 - Maintenance rehearsal versus elaborative rehearsal $\to$ You want elaborative rehearsal with your reading, new pieces of information hooking into old memories. Taking notes in the margin will help you do this.
-
-Reference: R.C. Waldun. 2018. 
 
 ####  2.2.2.2. Get the Most Out of Your Books - Be an Active Reader. 
 
@@ -337,8 +342,6 @@ By engaging with a book, arguing with the text, asking questions, and writing a 
 Don't become a collector. Are you more concerned with the content of the book or its appearance. Remember the reason you opened a book.
 
 Marginalia
-
-Reference: The Art of Improvement. 2019. [[video]](https://youtu.be/muc5dTN8_yE)  
 
 ---
 
@@ -583,6 +586,8 @@ I can appreciate the beauty of a flower. At the same time, I see much more about
 > "Nothing else matters except sitting down everyday and trying. Why is this so important? Because when we sit down day after day and keep grinding, something mysterious starts to happen. A process is set into motion by which, inevitably and infallibly, heaven comes to our aid." - Steven Pressfield, The War of Art
 
 > "Nobody changes because someone tells them to. People change because they're inspired to change. " - Peter Sage
+
+> "You have to be odd to be number one" - Dr. Seuss
 
 --- 
 

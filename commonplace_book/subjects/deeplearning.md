@@ -1,15 +1,18 @@
+# Artificial Intelligence & Deep Learning Commonplace <!-- omit in toc -->
 
+#### Table of Contents <!-- omit in toc -->
 
-- [Artificial Intelligence & Deep Learning](#artificial-intelligence--deep-learning)
-  - [Deep Reinforcement Learning](#deep-reinforcement-learning)
+- [§1. Transformers and the Attention Mechanism](#1-transformers-and-the-attention-mechanism)
+  - [Image + Attention](#image--attention)
+  - [Transformer Architecture](#transformer-architecture)
+    - [Positional embeddings](#positional-embeddings)
+    - [Intro to Attention](#intro-to-attention)
+- [§2. Deep Reinforcement Learning](#2-deep-reinforcement-learning)
     - [Review Paper:](#review-paper)
-  - [Mine](#mine)
-    - [Q-learning](#q-learning)
-  - [Attention Mechanism](#attention-mechanism)
-    - [Image + Attention](#image--attention)
-  - [Generative Adversarial Networks](#generative-adversarial-networks)
+    - [Mine (Deep RL)](#mine-deep-rl)
+- [§3. Generative Adversarial Networks](#3-generative-adversarial-networks)
     - [Vanilla GANs](#vanilla-gans)
-  - [Bioinformatics](#bioinformatics)
+- [Bioinformatics](#bioinformatics)
     - [Deep Learning for Genomic Prediction](#deep-learning-for-genomic-prediction)
     - [Computational Genomics (course, Rob Edwards)](#computational-genomics-course-rob-edwards)
 - [Python](#python)
@@ -21,9 +24,123 @@
 
 ---
 
-# Artificial Intelligence & Deep Learning
 
-## Deep Reinforcement Learning
+
+<!-- ------------------------------------------------------------------ -->
+<!-- ------------------------------------------------------------------ -->
+
+---
+
+# §1. Transformers and the Attention Mechanism
+
+---
+
+<!-- ------------------------------------------------------------------ -->
+<!-- ------------------------------------------------------------------ -->
+
+
+Papers to mine:
+- [Attention is All You Need, 2016](https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
+- Rethinking Attention with Performers. Choromanski et al. 2021. [[paper]](https://arxiv.org/pdf/2009.14794.pdf)
+  - Tags: transformer, efficient transformer
+  - Affiliations: Google Brain
+
+
+## Image + Attention
+
+#### Facebook AI Research applies Transformer architecture to streamline object detection models. 2020.
+
+-   Tags:
+-   Affiliations: Facebook AI
+-   [[paper]](https://ai.facebook.com/research/publications/end-to-end-object-detection-with-transformers)
+-   [[article]](https://venturebeat.com/2020/05/28/facebook-ai-research-applies-transformer-architecture-to-streamline-object-detection-models/)
+
+#### Attention Agent: Neuroevolution of Self-Interpretable Agents. Tang, Ngyuen, and Ha. 2020.
+
+-   Tags: interpretability, evolutionary algorithm, transformer, self-attention, deep RL, image input
+-   Affiliations: Google Brain, Google Japan
+
+#### CURL: Contrastive Unsupervised Representations for Reinforcement Learning. Srinivas et al., 2020.
+
+-   Tags: unsupervised, representation learning, deep RL, CNN, image input
+-   Affiliations
+
+#### M-CURL: Masked Contrastive Representation Learning for Reinforcement Learning. Zhu et al., 2020.
+
+- Tags: masked training, representation learning, sample efficiency, self-supervised, CNN, transformer, deep RL, BERT, contrastive learning, image input
+- Affiliations: 1. University of Science an Technology of China. 2. Microsoft Research
+
+Improving sample efficiency is a key research problem in reinforcement learning (RL). Contrastive Unsupervised representations for Reinforcement Learning (CURL).
+
+Q: Besides the involvement masked training, what’s the key difference between M-CURL and CURL?  
+A: M-CURL deals with videos (seqs of images) rather than individual images. Although consecutive frames are highly correlated, CURL handles them independently. M-CURL’s main improvement, outside of getting improved performance on several benchmarks, is that it takes into consideration the correlation between sequential frames.
+
+This is where the transformer comes in. The Transformer, together with a CNN encoder, leverages the correlation of consecutive input frames to reproduce missing features in masked frames.
+
+Q: Why use Transformers, specifically?  
+A: The input in this paper was a sequence of images rather than a single image. Transformers (Waswani et al., 2017) are the current state-of-the-art module for modeling sequences and capturing their interdependencies.
+
+Q: The authors call the Transformer module an "auxiliary Transformer". What makes it auxiliary?
+
+Q: CNN encoder of what? What’s being encoded? And what is meant by "encode" here?
+
+Q: Why discard the Transformer during action selection?
+
+Q: Policy network? What does it do? What is it made up of? What are its inputs?
+
+Q: Contrastive learning?
+
+## Transformer Architecture
+
+### Positional embeddings
+
+positional embedding is synonymous with positional encoding 
+
+Transformers proven to work well on any kind of data, especially when there is a large amount of data to train on with self-supervision.
+Transformers do not process inputs sequentially but all at one time (in parallel). For each element of the input, information is combined from the other elements through self-attention. Each element does this aggregation on its own independently of what the other elements do. The transformer architecture does not model the order of the input anywhere. Thus, positional information in the input sequence must be explicitly encoded. 
+
+Positional embeddings are identifiers or hints that tell the Transformer where an element of the input lies within the sequence. These positional embeddings are then added to the original vector representation of the input sequence. Positional embeddings are order, or position, vectors added to vectors for the Transformers to know the order of the sequence. 
+
+Positional embeddings requirements:
+1. Every position must have the same identifier regardless of the length of the input sequence length or what the input is. I.e., swapping out sequence should not change the positional embedding vector. 
+2. The values of a positional embedding should not be too large, or they will push vectors into super distinct subspaces, where the positional similarity is too powerful for semantic similarity to take effect in the vector space. 
+
+In "Attention is All You Need", the choice of positional embeddings was not obvious. We'll discuss simple examples. 
+1. Let's say we have an input sequence $x$. Why not use integer encodings for each element of $x$, i.e. a linear function? These integer values are too large. People tend to aim for keeping the values in a positional embedding between 0 and 1.
+2. What about a sigmoid? It's bounded between 0 and 1 and can handle values that are infinitely large. → We also want variability in the positional embeddings. The sigmoid doesn't differentiate values that are extremely positive or extremely negative because it's asymptotic at the ends. An example of a function that has some variability and still accepts all reals would be sine and cosine.   
+
+What are some issues with sine and cosine? These functions are periodic, meaning that we'll see the same positional embedding at different values. What's a possible solution? Use such a low frequency for the trig functions such that, even for the longest sequence lengths, our function will not repeat. This solves some of the aforementioned problems, but it's still not optimal because:
+- the positional embeddings must push far enough in the vector space to make reasonable clusters, but they also shouldn't push too far or their signal will outshine that of the semantic information. Distances between points in the representation space should not be dominated by either positional or semantic information. What's the solution here? → Herein lies using the alternating sine and cosines with increasing frequency. 
+- (Video notes in progress)
+
+
+##### References: 
+- AI Coffee Break with Letita. 2021. Positional embeddings in transformers EXPLAINED | Demystifying positional encodings. [[video]](https://youtu.be/1biZfFLPRSY)
+- AI Coffee Break with Letita. 2021. Self Attention with Relative Position Representations – Paper explained. [[video]](https://youtu.be/DwaBQbqh5aE)  
+
+Date: 21年8月1日
+
+### Intro to Attention 
+
+Neural Machine Translation by Jointly Learning to Align and Translate. Badhanau, Cho, and Bengio. 2016. [[paper]](https://arxiv.org/pdf/1409.0473.pdf)
+
+- What is machine translation?
+- What makes neural machine translation neural?
+- 
+
+
+<!-- ------------------------------------------------------------------ -->
+<!-- ------------------------------------------------------------------ -->
+
+---
+
+# §2. Deep Reinforcement Learning
+
+---
+
+<!-- ------------------------------------------------------------------ -->
+<!-- ------------------------------------------------------------------ -->
+
 
 #### Getting Started
 
@@ -124,9 +241,9 @@ In a step towards even more capable agents, DRL has been used to create agents t
 
 One of the driving forces behind DRL is the vision of creating systems that are capable of learning how to adapt in the real world.
 
-## Mine
+### Mine (Deep RL)
 
-### [Q-learning](https://en.wikipedia.org/wiki/Q-learning)
+#### [Q-learning](https://en.wikipedia.org/wiki/Q-learning)
 
 Q-learning is a model-free RL algorithm.
 
@@ -154,7 +271,6 @@ $$Q_{\text{new}}(s, a) := Q(s, a)
 - $\max_{a_b\in A} Q(s', a_b)$: Estimate of optimal future Q-value. This would be the highest $Q(s'|a_b)$, where $a_b$ is the "best" action and $s'$ is the next state.
 
 
-
 #### Collection of Refs
 
 Deep Attention Recurrent Q-Network. 2015.
@@ -177,66 +293,21 @@ Learning](https://paperswithcode.com/paper/near-optimal-representation-learning-
 learning framework. In this framework, the actor aims to maximize
 expected reward while also maximizing entropy. That is, to succeed at
 the task while acting as randomly as possible" - [Soft Actor-Critic:
-Off-Policy Maximum ENtropy Deep RL w/ a Stochastic
+Off-Policy Maximum Entropy Deep RL w/ a Stochastic
 Actor](https://arxiv.org/pdf/1801.01290.pdf)
 
----
 
-## Attention Mechanism
-
-[Attention is All You Need,
-2016](https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
-
-[Rethinking Attention with
-Performers](https://arxiv.org/pdf/2009.14794.pdf)
-
-### Image + Attention
-
-#### Facebook AI Research applies Transformer architecture to streamline object detection models. 2020.
-
--   Tags:
--   Affiliations: Facebook AI
--   [[paper]](https://ai.facebook.com/research/publications/end-to-end-object-detection-with-transformers)
--   [[article]](https://venturebeat.com/2020/05/28/facebook-ai-research-applies-transformer-architecture-to-streamline-object-detection-models/)
-
-#### Attention Agent: Neuroevolution of Self-Interpretable Agents. Tang, Ngyuen, and Ha. 2020.
-
--   Tags: interpretability, evolutionary algorithm, transformer, self-attention, deep RL, image input
--   Affiliations: Google Brain, Google Japan
-
-#### CURL: Contrastive Unsupervised Representations for Reinforcement Learning. Srinivas et al., 2020.
-
--   Tags: unsupervised, representation learning, deep RL, CNN, image input
--   Affiliations
-
-#### M-CURL: Masked Contrastive Representation Learning for Reinforcement Learning. Zhu et al., 2020.
-
-- Tags: masked training, representation learning, sample efficiency, self-supervised, CNN, transformer, deep RL, BERT, contrastive learning, image input
-- Affiliations: 1. Uniersity of Science an Technology of China. 2. Microsoft Research
-
-Improving sample efficiency is a key research problem in reinforcement learning (RL). Contrastive Unsupervised representations for Reinforcement Learning (CURL).
-
-Q: Besides the involvement masked training, what’s the key difference between M-CURL and CURL?  
-A: M-CURL deals with videos (seqs of images) rather than individual images. Although consecutive frames are highly correlated, CURL handles them independently. M-CURL’s main improvement, outside of getting improved performance on several benchmarks, is that it takes into consideration the correlation between sequential frames.
-
-This is where the transformer comes in. The Transformer, together with a CNN encoder, leverages the correlation of consecutive input frames to reproduce missing features in masked frames.
-
-Q: Why use Transformers, specifically?  
-A: The input in this paper was a sequence of images rather than a single image. Transformers (Waswani et al., 2017) are the current state-of-the-art module for modeling sequences and capturing their interdependencies.
-
-Q: The authors call the Transformer module an "auxilliary Transformer". What makes it auxiliary?
-
-Q: CNN encoder of what? What’s being encoded? And what is meant by "encode" here?
-
-Q: Why discard the Transformer during action selection?
-
-Q: Policy network? What does it do? What is it made up of? What are its inputs?
-
-Q: Contrastive learning?
+<!-- ------------------------------------------------------------------ -->
+<!-- ------------------------------------------------------------------ -->
 
 ---
 
-## Generative Adversarial Networks
+# §3. Generative Adversarial Networks
+
+---
+
+<!-- ------------------------------------------------------------------ -->
+<!-- ------------------------------------------------------------------ -->
 
 ### Vanilla GANs 
 
@@ -293,7 +364,7 @@ problems with unbounded activation when used in a feedback loop.
 
 ---
 
-## Bioinformatics
+# Bioinformatics
 
 ### Deep Learning for Genomic Prediction
 
