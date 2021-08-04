@@ -2,10 +2,13 @@
 
 #### Table of Contents <!-- omit in toc -->
 
-- [§1. Transformers and the Attention Mechanism](#1-transformers-and-the-attention-mechanism)
-  - [Transformer Architecture](#transformer-architecture)
+- [§1. Transformers](#1-transformers)
+  - [§1.1 Vanilla Transformer Architecture](#11-vanilla-transformer-architecture)
+    - [Arbitrary-length inputs](#arbitrary-length-inputs)
+    - [Multi-Head Attention](#multi-head-attention)
     - [Positional embeddings](#positional-embeddings)
-    - [Intro to Attention](#intro-to-attention)
+    - [Alignment Score Functions](#alignment-score-functions)
+  - [§1.2 Bidirectional Encoder Representations from Transformers (BERT)](#12-bidirectional-encoder-representations-from-transformers-bert)
   - [Image + Attention](#image--attention)
 - [§2. Deep Reinforcement Learning](#2-deep-reinforcement-learning)
     - [Review Paper:](#review-paper)
@@ -31,23 +34,70 @@
 
 ---
 
-# §1. Transformers and the Attention Mechanism
+# §1. Transformers
 
 ---
 
 <!-- ------------------------------------------------------------------ -->
 <!-- ------------------------------------------------------------------ -->
 
+The Transformer is revolutionary and disruptive. It is one of the most influential breakthroughs in AI in the past decade as Transformers have pushed or approached the state-of-the-art (SOTA) in almost every area of deep learning, leaving recurrent neural networks (RNNs) and convolutional neural networks (ConvNets) behind. 
+
+The Transformer architecture was created in the [Attention is All You Need][vaswani-2017-attention] paper in 2017.  This paper presented improvements to soft attention and made it possible to do sequence to sequence (seq2seq) modeling without the use of sequence-aligned recurrent units (RNNs). The Transformer is entirely built on self-attention mechanisms (§1.1).
 
 Papers to mine:
-- [Attention is All You Need, 2016](https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
+- Attention is All You Need. Vaswani et al. 2017.[[paper]][vaswani-2017-attention]
 - Rethinking Attention with Performers. Choromanski et al. 2021. [[paper]](https://arxiv.org/pdf/2009.14794.pdf)
   - Tags: transformer, efficient transformer
   - Affiliations: Google Brain
 
+[vaswani-2017-attention]: https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf
+
 ---
 
-## Transformer Architecture
+## §1.1 Vanilla Transformer Architecture
+
+
+---
+
+### Arbitrary-length inputs
+
+
+---
+
+### Self-attention <!-- omit in toc -->
+
+
+Self-attention is when a model makes predictions for each part of an input sample using other parts the same sample. A self-attention module returns the same number of outputs as inputs it receives. 
+
+All Transformer-based architectures rely on self-attention. 
+
+Broad categories of attention:
+- **Self-attention** relates different positions of the same input sequence. Self-attention is also referred to as intra-attention.
+- **Soft attention** is when a model attends to the entire input state space. Soft attention is a.k.a. global attention.
+- **Hard attention** is when a model attends to part of the input state space, i.e. a patch of an input image or a chunk of an input sequence. Hard attention is a.k.a. local attention.
+
+- [ ] Q: What makes it self-attention as opposed to just attention?
+
+Each layer of a neural network has inputs, potential activations, and outputs. RNNs additionally have states of the layers. When an attention mechanism is used, a model takes input from the activations or states of some layer. If this layer that the inputs are taken from is the same layer that the attention mechanism is applied to, this process is called **self-attention** because a layer is attending to itself. 
+
+Ex. Each word in a sequence attends to every other word in the same sequence. Self-attention captures the relationship between words in the sequence. 
+
+Attention is often applied to transfer information from encoder to decoder, meaning that the decoder neurons receive input from the encoder states/outputs. This would not be self-attention because two different components (encoder and decoder) are connected. Self attention is applied within one component. 
+
+Ex. In the BERT architecture, there is no decoder, only self-attention within the encoder.
+
+Ex. Self-attention (**intra-attention**) models dependencies between different parts of a sequence. To use a previous example, we could try to get the semantic relationship between words in a sentence. Non-self-attention (**inter-attention**) models could look at dependencies between different sequences, such as those between a text and its translation to another language. Note however that self-attention is also extremely effective at translation tasks (hence Transformers).
+
+Ex. Inter-attention can quantify dependencies between an image and its description. 
+
+- [ ] How does self-attention work?
+
+---
+
+### Multi-Head Attention
+
+---
 
 ### Positional embeddings
 
@@ -77,25 +127,42 @@ What are some issues with sine and cosine? These functions are periodic, meaning
 
 Date: 21年8月1日
 
-### Intro to Attention 
+---
 
-Neural Machine Translation by Jointly Learning to Align and Translate. Badhanau, Cho, and Bengio. 2016. [[paper]](https://arxiv.org/pdf/1409.0473.pdf)
+### Alignment Score Functions
 
-- What is machine translation?
-- What makes neural machine translation neural?
-- 
+Each type of attention has an alignment score function. Some examples of alignment score functions are  content-base, additive, location-based, general, dot-product, and scaled dot-product.
 
-Attention types:
-- Self-attention relates different positions of the same input sequence. 
-- Soft attention is when a model attends to the entire input state space.
-- Hard attention is when a model attends to part of the input state space, i.e. a patch of an input image or a chunk of an input sequence. 
-
+Alignment score functions dictate how inputs are multiplied and added together to get the attention score. They do not dictate whether the mechanism is self-attention or inter-attention. 
 
 - [ ] Q: 
+
+Neural Machine Translation by Jointly Learning to Align and Translate. Badhanau, Cho, and Bengio. 2016. [[paper]][badhanau-2017-neural]
+
+[badhanau-2017-neural]: https://arxiv.org/pdf/1409.0473.pdf
+
+- [ ] Q: What is machine translation?
+- [ ] Q: What makes neural machine translation neural?
+
+#### Types of alignment score functions
+
+- [ ] Q: Why use scaled dot-product attention instead of regular dot-product attention? A: Multiplying by a scaling factor of $\frac{1}{\sqrt{n}}$ helps deal with problem that, when the input is large, the softmax function may have an extremely small gradient, leading to inefficient learning. 
+
+---
+
+## §1.2 Bidirectional Encoder Representations from Transformers (BERT)
+
+
+BERT: pre-Training of Deep Bidirectional Transformers for Language Understanding. Devlin et al. 2019.
+- Tags: transfer learning, pre-training, Transformer, NLP, masked language model, bidirectional
+- Affiliations: Google AI Language
+- [[paper]](https://arxiv.org/pdf/1810.04805.pdf)
 
 ---
 
 ## Image + Attention
+
+---
 
 #### Facebook AI Research applies Transformer architecture to streamline object detection models. 2020.
 
