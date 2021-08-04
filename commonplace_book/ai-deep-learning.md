@@ -3,10 +3,10 @@
 #### Table of Contents <!-- omit in toc -->
 
 - [§1. Transformers and the Attention Mechanism](#1-transformers-and-the-attention-mechanism)
-  - [Image + Attention](#image--attention)
   - [Transformer Architecture](#transformer-architecture)
     - [Positional embeddings](#positional-embeddings)
     - [Intro to Attention](#intro-to-attention)
+  - [Image + Attention](#image--attention)
 - [§2. Deep Reinforcement Learning](#2-deep-reinforcement-learning)
     - [Review Paper:](#review-paper)
     - [Mine (Deep RL)](#mine-deep-rl)
@@ -45,50 +45,7 @@ Papers to mine:
   - Tags: transformer, efficient transformer
   - Affiliations: Google Brain
 
-
-## Image + Attention
-
-#### Facebook AI Research applies Transformer architecture to streamline object detection models. 2020.
-
--   Tags:
--   Affiliations: Facebook AI
--   [[paper]](https://ai.facebook.com/research/publications/end-to-end-object-detection-with-transformers)
--   [[article]](https://venturebeat.com/2020/05/28/facebook-ai-research-applies-transformer-architecture-to-streamline-object-detection-models/)
-
-#### Attention Agent: Neuroevolution of Self-Interpretable Agents. Tang, Ngyuen, and Ha. 2020.
-
--   Tags: interpretability, evolutionary algorithm, transformer, self-attention, deep RL, image input
--   Affiliations: Google Brain, Google Japan
-
-#### CURL: Contrastive Unsupervised Representations for Reinforcement Learning. Srinivas et al., 2020.
-
--   Tags: unsupervised, representation learning, deep RL, CNN, image input
--   Affiliations
-
-#### M-CURL: Masked Contrastive Representation Learning for Reinforcement Learning. Zhu et al., 2020.
-
-- Tags: masked training, representation learning, sample efficiency, self-supervised, CNN, transformer, deep RL, BERT, contrastive learning, image input
-- Affiliations: 1. University of Science an Technology of China. 2. Microsoft Research
-
-Improving sample efficiency is a key research problem in reinforcement learning (RL). Contrastive Unsupervised representations for Reinforcement Learning (CURL).
-
-Q: Besides the involvement masked training, what’s the key difference between M-CURL and CURL?  
-A: M-CURL deals with videos (seqs of images) rather than individual images. Although consecutive frames are highly correlated, CURL handles them independently. M-CURL’s main improvement, outside of getting improved performance on several benchmarks, is that it takes into consideration the correlation between sequential frames.
-
-This is where the transformer comes in. The Transformer, together with a CNN encoder, leverages the correlation of consecutive input frames to reproduce missing features in masked frames.
-
-Q: Why use Transformers, specifically?  
-A: The input in this paper was a sequence of images rather than a single image. Transformers (Waswani et al., 2017) are the current state-of-the-art module for modeling sequences and capturing their interdependencies.
-
-Q: The authors call the Transformer module an "auxiliary Transformer". What makes it auxiliary?
-
-Q: CNN encoder of what? What’s being encoded? And what is meant by "encode" here?
-
-Q: Why discard the Transformer during action selection?
-
-Q: Policy network? What does it do? What is it made up of? What are its inputs?
-
-Q: Contrastive learning?
+---
 
 ## Transformer Architecture
 
@@ -128,6 +85,118 @@ Neural Machine Translation by Jointly Learning to Align and Translate. Badhanau,
 - What makes neural machine translation neural?
 - 
 
+Attention types:
+- Self-attention relates different positions of the same input sequence. 
+- Soft attention is when a model attends to the entire input state space.
+- Hard attention is when a model attends to part of the input state space, i.e. a patch of an input image or a chunk of an input sequence. 
+
+
+- [ ] Q: 
+
+---
+
+## Image + Attention
+
+#### Facebook AI Research applies Transformer architecture to streamline object detection models. 2020.
+
+-   Tags:
+-   Affiliations: Facebook AI
+-   [[paper]](https://ai.facebook.com/research/publications/end-to-end-object-detection-with-transformers) [[article]](https://venturebeat.com/2020/05/28/facebook-ai-research-applies-transformer-architecture-to-streamline-object-detection-models/)
+
+#### An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale. Dosovitsky et al., 2021. 
+
+-   Tags: Transformer, image recognition, CNNs, scale
+-   Affiliations: Google AI
+-   [[paper]](https://arxiv.org/abs/2010.11929) [[article]](https://ai.googleblog.com/2020/12/transformers-for-image-recognition-at.html) [[code]](https://paperswithcode.com/paper/an-image-is-worth-16x16-words-transformers-1)
+
+A pure Transformer applied directly to sequences of image patches can perform well on image classification tasks. Vision Transformer (ViT) attains comparable results to state-of-the-art ConvNets while requiring substantially fewer computational resources to train. 
+
+##### Preliminary questions
+1. How does it require fewer computational resources?
+2. What are these excellent results?
+3. What was the architecture size?
+4. How did the pre-training work?
+5. What are the components of the architecture?
+6. Why use those components in the architecture?
+
+Transformers are self-attention based architectures. 
+
+Transformers are considered to have been made by Vaswani et al. in 2017 in Attention is all you need.
+
+The dominant approach for using Transformers in NLP has been to pre-train on a large text corpus and then fine-tune to a smaller task-specific dataset. This was the central theme of the initial BERT paper (BERT: Pre-training of deep bidirectional transformers for language understanding. Devlin et al. 2019.).
+
+In large-scale image recognition, classic ResNet-like architectures are still state of the art  (below papers).
+- Exploring the limits of weakly supervised pretraining. Mahajan et al. 2018.
+- Self-training with noisy student improves ImageNet classification. Xie et al. 2020.
+- Big Transfer (BiT). Kolesnikov et al. 2020.
+
+A standard Transformer is applied directly to images by splitting an image into patches and then providing the sequence of linear embeddings of these patches as an input to the Transformer. Image patches are treated like tokens (words) in an NLP application. Image classification is then a standard supervised training procedure. 
+
+In which ways are ConvNets better or worse than Transformers?
+Transformers, when compared to ResNets of comparable size, are outperformed by a few percentage points in accuracy when trained on mid-sized datasets such as ImageNet without strong regularization. Why? Because Transformers lack certain biases inherent to ConvNets such as translational equivariance and locality. Consequently, Transformers don't generalize as well when trained on insufficient amounts of data. 
+
+However, when trained on datasets of 14M-300M images, the large scale training outdoes inherent bias of ConvNets, approaching or beating the state-of-the-art on multiple image recognition benchmarks.
+
+Common image recognition benchmarks:
+- ImageNet
+- ImageNet-ReaL
+- CIFAR-100
+- VTAB suite of 19 tasks
+
+Vision Transformer (ViT) gets excellent results when pre-trained at sufficient scale and transferred to tasks with fewer data points. 
+
+The related work section of the paper gives a thorough review of some of the recent breakthroughs in applications of attention to image-based tasks. 
+
+Naive application of self-attention to an image would require that each pixel attends to every other pixel. -> quadratic cost in the number of pixels -> doesn't scale to realistic image sizes
+
+- [ ] Q: What's the alternative?
+
+
+
+
+The Transformer encoder consists of alternating layers of multiheaded self-attention and MLP blocks. 
+
+- [ ] Q: Is there such thing as a single-headed attention?
+
+Come back to this paper after deep-diving on Vaswani's paper. You've read maybe 5 pages so far. 
+
+
+
+
+#### Attention Agent: Neuroevolution of Self-Interpretable Agents. Tang, Ngyuen, and Ha. 2020.
+
+-   Tags: interpretability, evolutionary algorithm, Transformer, self-attention, deep RL, image input
+-   Affiliations: Google Brain (Google AI), Google Japan
+
+#### CURL: Contrastive Unsupervised Representations for Reinforcement Learning. Srinivas et al., 2020.
+
+-   Tags: unsupervised, representation learning, deep RL, CNNs, image input
+-   Affiliations
+
+#### M-CURL: Masked Contrastive Representation Learning for Reinforcement Learning. Zhu et al., 2020.
+
+- Tags: masked training, representation learning, sample efficiency, self-supervised, CNNs, transformer, deep RL, BERT, contrastive learning, image input
+- Affiliations: 1. University of Science an Technology of China. 2. Microsoft Research
+
+Improving sample efficiency is a key research problem in reinforcement learning (RL). Contrastive Unsupervised representations for Reinforcement Learning (CURL).
+
+Q: Besides the involvement masked training, what’s the key difference between M-CURL and CURL?  
+A: M-CURL deals with videos (seqs of images) rather than individual images. Although consecutive frames are highly correlated, CURL handles them independently. M-CURL’s main improvement, outside of getting improved performance on several benchmarks, is that it takes into consideration the correlation between sequential frames.
+
+This is where the transformer comes in. The Transformer, together with a CNN encoder, leverages the correlation of consecutive input frames to reproduce missing features in masked frames.
+
+Q: Why use Transformers, specifically?  
+A: The input in this paper was a sequence of images rather than a single image. Transformers (Waswani et al., 2017) are the current state-of-the-art module for modeling sequences and capturing their interdependencies.
+
+Q: The authors call the Transformer module an "auxiliary Transformer". What makes it auxiliary?
+
+Q: CNN encoder of what? What’s being encoded? And what is meant by "encode" here?
+
+Q: Why discard the Transformer during action selection?
+
+Q: Policy network? What does it do? What is it made up of? What are its inputs?
+
+Q: Contrastive learning?
 
 <!-- ------------------------------------------------------------------ -->
 <!-- ------------------------------------------------------------------ -->
