@@ -75,17 +75,41 @@ A single encoder layer is composed of two main blocks, the multi-head attention 
 
 #### Input embeddings
 
+
+#### Sequence transduction models
+
+What is transduction? 
+
+> transduce: to convert (something, such as energy or a message) into another form. "Essentially, sense organs transduce physical energy into a nervous signal." - [Merriam-Webster Dictionary](https://www.merriam-webster.com/dictionary/transduce) (online).
+
+Thus, it's safe to assume that sequence transduction models are loosely defined as models that convert a sequence into another form. Here ar e some examples of transduction models (mostly from NLP). 
+- Transliteration: Generating words in a target form given examples in a source form.
+- Spelling Correction: Predicting correct word spelling (sequence of letters) given incorrect word spelling (sequence of letters).
+- Machine Translation: Generating sentences in a target language (sequences of words) given sentences in a source language.
+- Speech Recognition: Predicting sequences of text given sequences of audio.
+- Protein Secondary Structure Prediction: Generating 3D structure of protein given sequences of amino acids.
+- Text-to-Speech, or speech synthesis: Generating audio given text sequences.
+- Signal processing transduction: Generating electrical energy within a system given an audio signal (sound waves). This is done by a transducer. 
+
+Transduction is closely related to the concepts of deductive and inductive reasoning. **Deductive reasoning** is taking a general theory to make a claim about specific observations, whereas inductive reasoning is taking specific observations to form a general theory. 
+
+Ex. When my niece, Kambri, was 4 years old, she noticed that most adults she came across existed in mom-dad pairs. She'd met my girlfriend at the time and, when eating the French toast sticks and eggs we made her for breakfast, she asked, "Uncle 'Nique, are you a daddy too?" Her thought process: Uncle Unique is an adult, male, and has a female companion. Therefore, he's  probably a daddy. This is an example of deductive reasoning because my niece was confirming her theory about moms and dads with a specific observation (me).  
+
+In machine learning, logic, and statistical inference, **transduction is the combination of induction and deduction to go from specific training observations to specific test observations**. Consider machine translation. English sentence → model → Spanish sentence. Here, the model acts as the "general theory". 
+
 Sequence transduction models (unknown term)
 - "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder."
 - "sequence modeling and transduction problems such as language modeling and machine translation"
 - "Attention mechanisms have become an integral part of compelling sequence modeling and transduction models in various tasks, allowing modeling of dependencies without regard to their distance in the input or output sequences."
 
-Just as in other sequence transduction models, learned embeddings are used to convert the input tokens and output tokens to vectors of dimension $d_{\text{model}}$. 
+Just as in other sequence transduction models, the Transformer uses learned embeddings. These learned embeddings convert input tokens and output tokens into vectors of dimension $d_{\text{model}}$. 
 
 
 
 ##### References
 - Attention is All You Need. Vaswani et al. 2017. [[paper]][vaswani-2017-attention]
+- Transduction (machine learning). [Wikipedia](https://en.wikipedia.org/wiki/Transduction_(machine_learning)).
+- Gentle Introduction to Transduction in Machine Learning. Brownlee. 2017. [[article]](https://machinelearningmastery.com/transduction-in-machine-learning/)
 
 ---
 
