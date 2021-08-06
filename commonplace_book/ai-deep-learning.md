@@ -4,6 +4,7 @@
 
 - [§1. Transformers](#1-transformers)
   - [§1.1 Vanilla Transformer Architecture](#11-vanilla-transformer-architecture)
+    - [Input Embeddings and the Encoder Stack](#input-embeddings-and-the-encoder-stack)
     - [Arbitrary-length inputs](#arbitrary-length-inputs)
     - [Multi-Head Attention](#multi-head-attention)
     - [Positional embeddings](#positional-embeddings)
@@ -43,25 +44,89 @@
 
 The Transformer is revolutionary and disruptive. It is one of the most influential breakthroughs in AI in the past decade as Transformers have pushed or approached the state-of-the-art (SOTA) in almost every area of deep learning, leaving recurrent neural networks (RNNs) and convolutional neural networks (ConvNets) behind. 
 
-The Transformer architecture was created in the [Attention is All You Need][vaswani-2017-attention] paper in 2017.  This paper presented improvements to soft attention and made it possible to do sequence to sequence (seq2seq) modeling without the use of sequence-aligned recurrent units (RNNs). The Transformer is entirely built on self-attention mechanisms (§1.1).
+The Transformer architecture was created in "[Attention is All You Need][vaswani-2017-attention]".  This paper presented improvements to soft attention and made it possible to do sequence to sequence (seq2seq) modeling without the use of sequence-aligned recurrent units (RNNs). The Transformer is entirely built on self-attention mechanisms (§1.1).
 
 Papers to mine:
-- Attention is All You Need. Vaswani et al. 2017.[[paper]][vaswani-2017-attention]
 - Rethinking Attention with Performers. Choromanski et al. 2021. [[paper]](https://arxiv.org/pdf/2009.14794.pdf)
   - Tags: transformer, efficient transformer
   - Affiliations: Google Brain
-
-[vaswani-2017-attention]: https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf
 
 ---
 
 ## §1.1 Vanilla Transformer Architecture
 
+The Vanilla Transformer was created by a research team at Google AI in "Attention if All You Need" ([Vaswani et al., 2017][vaswani-2017-attention]). The Vanilla Transformer was originally used for machine translation and consists of an encoder-decoder structure.
+
+The Transformer encoder and decoder are actually stacks of layers. The encoder is a stack of encoder layers and the decoder is a stack of decoder layers. This diagram shows an example of one encoder layer and one decoder layer.
+
+![](img/vanilla-transformer-encoder-decoder.png)
+
+[vaswani-2017-attention]: https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf
+
+Encoder: Takes in a sequence, $\bm{x}$, and generates an a sequence of continuous representation vectors, $\bm{z}_{enc}$. These representations are then used as input for the decoder.
+
+Decoder: Takes the sequence of representations, $\bm{z}_{enc}$, created by the encoder and generates a new output sequence, $\bm{y}$. 
+
+Note that $\bm{x} = (x_1, \ldots, x_n)$ and $\bm{z} = (z_1, \ldots, z_n)$ must be equidimensional, whereas $\bm{y} = (y_1, \ldots, y_m)$ can have a different dimension. In the context of machine translation, this says that an input sentence represented by $\bm{x}$ with length $n$ may translate to an output sentence represented by $\bm{y}$ with length $m$ and $n$ doesn't necessarily equal $m$.  
+
+### Input Embeddings and the Encoder Stack
+
+A single encoder layer is composed of two main blocks, the multi-head attention block and a feed-forward block. Before a sequence can be passed into encoder stack, it has to be embedded and given positional encodings/ embeddings.  
+
+#### Input embeddings
+
+Sequence transduction models (unknown term)
+- "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder."
+- "sequence modeling and transduction problems such as language modeling and machine translation"
+- "Attention mechanisms have become an integral part of compelling sequence modeling and transduction models in various tasks, allowing modeling of dependencies without regard to their distance in the input or output sequences."
+
+Just as in other sequence transduction models, learned embeddings are used to convert the input tokens and output tokens to vectors of dimension $d_{\text{model}}$. 
+
+
+
+##### References
+- Attention is All You Need. Vaswani et al. 2017. [[paper]][vaswani-2017-attention]
 
 ---
 
 ### Arbitrary-length inputs
 
+
+- [ ] Q: If the vanilla Transformer is an encoder-decoder architecture why use it instead of the RNN based encoder-decoder?  
+
+RNN models have several problems. They are slow to train and cannot deal with long sequences. An RNN encoder-decoder
+- [ ] Q: Why are RNNs slow?
+- [ ] Q: Why can't RNNs deal with long sequences?
+
+RNNs need data to be processed sequentially. A more precise way of saying this is, the elements of a given input vector must be processed in sequential order rather than in parallel. That's a big problem. This recurrent process doesn't make efficient use of modern GPUs and TPUs, which are designed for parallel computation.
+
+> "RNNs are so slow that truncated backpropagation was introduced to limit the number of timesteps in the backward pass, estimating gradients to update the weights rather an doing backpropagation fully." - Jingles (Hong Jing)
+
+Long-term dependency problems in RNNs
+
+One reason that RNNs can't handle long sequences is that the have vanishing or exploding gradients if the input sequence gets too long. This can result in NaNs (Not a Number) popping up in the losses in the training process. Long Short-Term Memory (LSTM) networks were introduced in 1997 (Hochreiter and Schmidhuber) to address these problems. LSTMs have improved memory and can handle longer sequences than traditional RNNs, however they are even slower to train. 
+
+In RNNs, each hidden state $h_i$ has dependencies on the previous hidden state $h_{i-1}$. Consequently, the embeddings made by the encoder must be computed one at a time. Transformers have no concept of a time step. **An entire input sequence is passed into a Transformer encoder in parallel**, and the "time step" information is integrated via position embeddings.  
+
+Transformer Encoder
+
+
+```python
+# Ex. Transformer Encoder (conceptual pseudo code)
+sentence = get_input_sentence() # Input an English sentence.
+for word_idx, word in enumerate(sentence): 
+    # This part is written as a loop for clarity, but it's typically in parallel
+    semantic_vec = compute_embedding(word)
+    position_embedding = encode_position(position = word_idx)
+    word_representation = semantic_vec + position_embedding
+```
+1. Input an English sentence. 
+2. Each word in the sentence is converted into an embedding to represent meaning/semantics called a context vector.
+3. Add a position embedding to the context vector of each word in the sentence.
+
+
+#### References
+- Illustrated Guide to Transformer: A component by component breakdown analysis. [[article]](https://jinglescode.github.io/2020/05/27/illustrated-guide-transformer/)
 
 ---
 
@@ -157,6 +222,9 @@ BERT: pre-Training of Deep Bidirectional Transformers for Language Understanding
 - Tags: transfer learning, pre-training, Transformer, NLP, masked language model, bidirectional
 - Affiliations: Google AI Language
 - [[paper]](https://arxiv.org/pdf/1810.04805.pdf)
+
+
+BERT does not include a Transformer decoder.
 
 ---
 
