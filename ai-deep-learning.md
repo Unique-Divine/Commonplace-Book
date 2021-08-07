@@ -5,7 +5,7 @@
 - [§1. Transformers](#1-transformers)
   - [§1.1 Vanilla Transformer Architecture](#11-vanilla-transformer-architecture)
     - [Input Embeddings and the Encoder Stack](#input-embeddings-and-the-encoder-stack)
-    - [Arbitrary-length inputs](#arbitrary-length-inputs)
+    - [Why use Transformers over RNNs?](#why-use-transformers-over-rnns)
     - [Multi-Head Attention](#multi-head-attention)
     - [Positional embeddings](#positional-embeddings)
     - [Alignment Score Functions](#alignment-score-functions)
@@ -19,12 +19,6 @@
 - [Bioinformatics](#bioinformatics)
     - [Deep Learning for Genomic Prediction](#deep-learning-for-genomic-prediction)
     - [Computational Genomics (course, Rob Edwards)](#computational-genomics-course-rob-edwards)
-- [Python](#python)
-    - [ML Finance Project](#ml-finance-project)
-- [Algorithms](#algorithms)
-  - [Algorithms](#algorithms-1)
-  - [Design Patterns](#design-patterns)
-  - [C++](#c)
 
 ---
 
@@ -44,7 +38,7 @@
 
 The Transformer is revolutionary and disruptive. It is one of the most influential breakthroughs in AI in the past decade as Transformers have pushed or approached the state-of-the-art (SOTA) in almost every area of deep learning, leaving recurrent neural networks (RNNs) and convolutional neural networks (ConvNets) behind. 
 
-The Transformer architecture was created in "[Attention is All You Need][vaswani-2017-attention]".  This paper presented improvements to soft attention and made it possible to do sequence to sequence (seq2seq) modeling without the use of sequence-aligned recurrent units (RNNs). The Transformer is entirely built on self-attention mechanisms (§1.1).
+The Transformer architecture was introduced in "[Attention is All You Need][vaswani-2017-attention]".  This paper presented improvements to soft attention and made it possible to do sequence to sequence (seq2seq) modeling without the use of RNNs. The Transformer is entirely built on self-attention mechanisms (§1.1).
 
 Papers to mine:
 - Rethinking Attention with Performers. Choromanski et al. 2021. [[paper]](https://arxiv.org/pdf/2009.14794.pdf)
@@ -73,16 +67,13 @@ Note that $\bm{x} = (x_1, \ldots, x_n)$ and $\bm{z} = (z_1, \ldots, z_n)$ must b
 
 A single encoder layer is composed of two main blocks, the multi-head attention block and a feed-forward block. Before a sequence can be passed into encoder stack, it has to be embedded and given positional encodings/ embeddings.  
 
-#### Input embeddings
-
-
 #### Sequence transduction models
 
 What is transduction? 
 
 > transduce: to convert (something, such as energy or a message) into another form. "Essentially, sense organs transduce physical energy into a nervous signal." - [Merriam-Webster Dictionary](https://www.merriam-webster.com/dictionary/transduce) (online).
 
-Thus, it's safe to assume that sequence transduction models are loosely defined as models that convert a sequence into another form. Here ar e some examples of transduction models (mostly from NLP). 
+Thus, it's safe to assume that sequence transduction models are loosely defined as models that convert a sequence into another form. Here are some examples of transduction models (mostly from NLP). 
 - Transliteration: Generating words in a target form given examples in a source form.
 - Spelling Correction: Predicting correct word spelling (sequence of letters) given incorrect word spelling (sequence of letters).
 - Machine Translation: Generating sentences in a target language (sequences of words) given sentences in a source language.
@@ -97,12 +88,19 @@ Ex. When my niece, Kambri, was 4 years old, she noticed that most adults she cam
 
 In machine learning, logic, and statistical inference, **transduction is the combination of induction and deduction to go from specific training observations to specific test observations**. Consider machine translation. English sentence → model → Spanish sentence. Here, the model acts as the "general theory". 
 
-Sequence transduction models (unknown term)
-- "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder."
-- "sequence modeling and transduction problems such as language modeling and machine translation"
-- "Attention mechanisms have become an integral part of compelling sequence modeling and transduction models in various tasks, allowing modeling of dependencies without regard to their distance in the input or output sequences."
+#### Handling sequences of varied length
+
+You wonder how sequences of different length are handled as inputs to the Transformer. Sometimes, people go as far as saying that "Transformers can handle inputs of arbitrary length", which is false, or at least, incomplete. What people mean to say is that **Transformers can handle inputs of arbitrary length up to some maximum length threshold**. But how? 
+
+
+
+> "Attention mechanisms have become an integral part of compelling sequence modeling, allowing modeling of dependencies without regard to their distance in the input or output sequences." - Vaswani et al., 2017
+- [ ] Q: How can dependencies in the sequence ignore distance?
 
 Just as in other sequence transduction models, the Transformer uses learned embeddings. These learned embeddings convert input tokens and output tokens into vectors of dimension $d_{\text{model}}$. 
+
+
+#### Input embeddings
 
 
 
@@ -113,8 +111,7 @@ Just as in other sequence transduction models, the Transformer uses learned embe
 
 ---
 
-### Arbitrary-length inputs
-
+### Why use Transformers over RNNs?
 
 - [ ] Q: If the vanilla Transformer is an encoder-decoder architecture why use it instead of the RNN based encoder-decoder?  
 
@@ -863,128 +860,3 @@ treatment of disease.
 [2]: https://www.cancer.gov/publications/dictionaries/genetics-dictionary/def/recurrence-risk 
 [3]: https://ghr.nlm.nih.gov/primer/hgp/genome
 [4]: https://www.merriam-webster.com/medical/allosome
-
----
-
-# Python 
-
-
-### ML Finance Project
-
-#### [example w/ multivariate time series in PyTorch](https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/)
-
-Q: Neural networks can be constructed using the `torch.nn` Python module.
-
-Q: Import the package for constructing neural networks in PyTorch.
-```python
-import torch.nn as nn
-```
-
-Q: Seaborn comes with built-in datasets.
-
-Q: Load seaborn’s flights dataset.
-```python
-flight_data = sns.load_dataset("flights")
-```
-
-Q: Why must time series data be scaled for sequence predictions?
-: When a network is fit on unscaled data, it is possible for large inputs to slow down the learning and convergence of your network and in some cases prevent the network from effectively learning your problem.
-
-Q: What's the sklearn import for min-max scaling data?
-```python
-from sklearn import preprocessing
-scaler = preprocessing.MinMaxScaler()
-```
-
-We know the field is fast moving. If the reader looking for more recent free reading resources, there are some good  introductory/tutorial/survey papers on Arxiv
-
-
----
-
-# Algorithms
-
-## Algorithms
-
-> "4.5 years of learning programming and working as fullstack software
-> engineer ... had interview with one of the FAANG companies this summer
-> in Hong Kong but failed it due to the fact that I suck in DSA (Data
-> Structures & Algorithms)."
-
-> "I’m using to leetcode.com to learn data structures and algorithms
-> since I got a rejection from FAANG after interviewing with them
-> onsite."
-
-[Role of DSA in Programming (July,
-2020)](https://blog.codechef.com/2020/07/24/the-role-of-data-structure-and-algorithms-in-programming/)
-
-## Design Patterns
-
-Why use "design patterns"?
-
-- Design patterns let your write better code more quickly by providing a clearer picture of how to implement the design
-- Design patterns encourage code reuse and accomodate change by supplying well-tested mechanisms for delegation, composition, and other non-inheritance based reuse techniques
-- Design patterns encourage more legible and maintainable code
-
-Delegation? Composition?
-
-- delegation: a pattern where a given object provides an interface to a set of operations. However, the actual work for those operations is performed by one or more other objects.
-- composition: Creating objects with other objects as members. Should be used when a "has-a" relationship appears.
-
-What are design patterns?
-
-Which resources will you use to start learning about design patterns?
-
-GOF patterns (C++). Then, potentially Head First Design Patterns (Java)/
-
-#### References & Further Reading
-
-[Introduction to Design Patterns
-Course](https://www.gofpatterns.com/design-patterns/module1/intro-design-patterns.php)
-
----
-
-## C++
-
-C++ source code files end with a .cpp extension.
-
-Hello world program: Run these and find out which one works.
-```cpp
-#include <iostream>;
-
-int main() 
-{
-  std::cout << "Hello, world!";
-  return 0;
-}
-```
-
-Compiling and executing the C++ program:
-
-1.  Step 1 is to install the gcc compiler.
-2.  Verify the install of g++ and gdb with `whereis g++` and `whereis gdb`. To install gdb (linux or WSL), use `sudo apt-get install build-essential gdb`.
-
-##### [Open MP](https://www.openmp.org//wp-content/uploads/openmp-examples-4.5.0.pdf)
-
-People use OpenMP for shared memory parallelization. To import:
-```cpp
-#include <omp.h>;
-```
-
-#### Header files
-
-C++ programs consist of more than just .cpp files. They also use **header files**, which can have a .h extension, .hpp extension, or even none at all.
-
-Q: What is a `.h` file?
-: header file
-
-Q: What is the purpose of a header file?  
-: Header files allow us to put declarations in one location and then import them wherever we need them. This can save a lot of typing in multi-file programs.
-
-What’s contained in a `.h` file?
-
-..
-
-#### References & Further Reading
-
-- [C header files](https://www.tutorialspoint.com/cprogramming/c_header_files.htm)
-- [learncpp.com/.../header-files](https://www.learncpp.com/cpp-tutorial/header-files/)

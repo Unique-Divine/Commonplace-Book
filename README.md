@@ -4,18 +4,20 @@ Author: Unique Divine
 This repo holds both my commonplace book and some of the notes I've been taking for different independent learning projects this year (late 2020 up to now). Friends and colleagues have found these resources useful enough to convince me to make them public. All references can be found in the respective bibliography sections at the end of both files. 
 
 # Commonplace book [[PDF]](https://github.com/Unique-Divine/Commonplace-Book/blob/master/commonplace_book/Commonplace%20Book.pdf):
-1. Practical Reference: Metalearning, Ultralearning, 
-2. Artificial Intelligence & Deep Learning
+
+1. Artificial Intelligence & Deep Learning
+   - Transformers
    - Deep Reinforcement Learning
-   - Attention Mechanism (Transformers)
    - Generative Adversarial Networks (GANs)
    - Bioinformatics
-3. Math & Code (It's mostly coding stuff)
-   - Git
-   - Java, C++
+2. Code 
+   - Python 
    - Web Development
+   - Git
    - Algorithms 
+   - Java, C++
    - Misc. 
+3. Practical Reference: Metalearning, Ultralearning, 
 4. Journal
    - Quotes
    - Random
