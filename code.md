@@ -109,6 +109,8 @@ A class for a data container is often used differently. Many instances may need 
 
 Regular classes don't provide much built-in convenient functionality for data oriented classes. Classes that build around a behavior may not have as many instances or be conducive to representing data structures. Because of this, some programming languages provide a type of class that is better tuned to storing data, e.g. C#'s struct type that is good for representing data structures. 
 
+##### Simplest data class: All required arguments
+
 Data classes have a built-in initialize that will help you quickly fill in an object with data. There are easy ways to print compare and order them. 
 
 ```python
@@ -124,11 +126,56 @@ class Person:
         self.job = job
         self.age = age
 
-p1 = Person()
+p1 = Person(name='Joe', job='SDE', age=25)
 ```
 
-Reference: ArjanCodes. 2021. If you're not using Python DATA CLASSES yet, you should. 🚀 [[YouTube]](https://youtu.be/vRVVyl9uaZc)
+Implement this as a `dataclass`:
+```python
+from dataclasses import dataclass
 
+@dataclass
+class Person:
+    """A person that has a name, job, and age."""
+    name: str
+    job: str
+    age: int
+```
+
+##### Data class with default arguments
+
+Let's say all of our people usually have the same job title, which is software development engineer ("SDE"). We'd want to set this as a default parameter to save some typing. 
+
+
+```python
+from dataclasses import dataclass
+
+@dataclass
+class Person:
+    """A person that has a name, job, and age."""
+    name: str
+    job: str = "SDE"
+    age: int
+
+p1 = Person(name='Joe', age=25)
+```
+
+##### Data class with attributes that depend on other parameters
+
+Dynamically generated attributes can be defined in data classes using the `field` functionality in combination with `__post_init__`.
+
+```python
+from dataclasses import dataclass, field
+
+@dataclass
+class Person:
+    """A person that has a name, job, and age."""
+    name: str
+    job: str = field(init = False)
+    age: int
+```
+
+
+Reference: ArjanCodes. 2021. If you're not using Python DATA CLASSES yet, you should. 🚀 [[YouTube]](https://youtu.be/vRVVyl9uaZc)
 
 ---
 
