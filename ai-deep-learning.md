@@ -12,8 +12,11 @@
   - [§1.2 Bidirectional Encoder Representations from Transformers (BERT)](#12-bidirectional-encoder-representations-from-transformers-bert)
   - [Image + Attention](#image--attention)
 - [§2. Deep Reinforcement Learning](#2-deep-reinforcement-learning)
+  - [Getting Started](#getting-started)
     - [Review Paper:](#review-paper)
-    - [Mine (Deep RL)](#mine-deep-rl)
+  - [On Policy Algorithms](#on-policy-algorithms)
+    - [Vanilla Policy Gradient (VPG)](#vanilla-policy-gradient-vpg)
+  - [Mine (Deep RL)](#mine-deep-rl)
 - [§3. Generative Adversarial Networks](#3-generative-adversarial-networks)
     - [Vanilla GANs](#vanilla-gans)
 - [Bioinformatics](#bioinformatics)
@@ -21,7 +24,6 @@
     - [Computational Genomics (course, Rob Edwards)](#computational-genomics-course-rob-edwards)
 
 ---
-
 
 
 <!-- ------------------------------------------------------------------ -->
@@ -65,7 +67,11 @@ Note that $\bm{x} = (x_1, \ldots, x_n)$ and $\bm{z} = (z_1, \ldots, z_n)$ must b
 
 ### Input Embeddings and the Encoder Stack
 
-A single encoder layer is composed of two main blocks, the multi-head attention block and a feed-forward block. Before a sequence can be passed into encoder stack, it has to be embedded and given positional encodings/ embeddings.  
+A single encoder layer is composed of two main blocks, the multi-head attention block and a feed-forward block. Before a sequence can be passed into encoder stack, it has to be embedded and given positional encodings/embeddings. Here, embedding a sequence means converting each element of the sequence into a vector representation. 
+
+
+
+
 
 #### Sequence transduction models
 
@@ -108,6 +114,7 @@ Just as in other sequence transduction models, the Transformer uses learned embe
 - Attention is All You Need. Vaswani et al. 2017. [[paper]][vaswani-2017-attention]
 - Transduction (machine learning). [Wikipedia](https://en.wikipedia.org/wiki/Transduction_(machine_learning)).
 - Gentle Introduction to Transduction in Machine Learning. Brownlee. 2017. [[article]](https://machinelearningmastery.com/transduction-in-machine-learning/)
+- tsu on [[Artificial Intelligence Stack Exchange]](https://ai.stackexchange.com/questions/22957/how-can-transformers-handle-arbitrary-length-input)
 
 ---
 
@@ -367,7 +374,7 @@ Q: Contrastive learning?
 <!-- ------------------------------------------------------------------ -->
 
 
-#### Getting Started
+## Getting Started
 
 From Lex Fridman’s intro lecture on deep reinforcement learning
 [[video]](https://youtu.be/zR11FLZ-O9M?t=0).
@@ -466,7 +473,51 @@ In a step towards even more capable agents, DRL has been used to create agents t
 
 One of the driving forces behind DRL is the vision of creating systems that are capable of learning how to adapt in the real world.
 
-### Mine (Deep RL)
+---
+
+## On Policy Algorithms
+
+### Vanilla Policy Gradient (VPG)
+
+Goal: Learn a distribution of action probabilities where each probability reflects how likely an action is to yield high rewards. Naturally, actions that lead to lower rewards have lower probabilites. Train in this manner until an optimal policy is reached. 
+
+Policy gradient methods produce **stochastic policy**, $\pi_w$, which outputs a probability distribution. This policy is described as being the agent's brain. 
+- Here, the $w$ in $\pi_w$ denotes the parameters, or weights and biases, of a neural network module. 
+
+Let $\mathcal{A} = \{a_t\}$ denote the space of possible actions and $\mathcal{S} =\{s_t\}$ the space of states. A stochastic policy gradient approach essentially models $a_t \sim \pi_w(s_t)$, meaning that actions are sampled from the policy distribution.  
+
+How do we train and optimize this policy, $\pi_w(s)$?
+
+Learn a state value function $V_{\pi_w}(s) = \mathbb{E}_{\tau\sim\pi}[R(\tau) | s ]$, where
+- $\tau$ is a trajectory, a sequence of state-action pairs.
+- $R(\tau)$ is a reward function. A reward function accepts a state or sequence of states (i.e., a trajectory) and outputs a reward value. If the trajectories in an environment cannot be described only by states, they are instead defined as sequences of state-action pairs, in which case the reward function accepts a state-action pair of sequence of such pairs and outputs a reward value.
+
+To state the equation, $V_{\pi_w}(s) = \mathbb{E}_{\tau\sim\pi}[R(\tau) | s ],$ in words, the value of state $s$, $V_{\pi_w}(s)$, is taken to be the expected rewards for acting in accordance with policy $\pi_w$ in state $s$ along trajectory $\tau$.
+
+VPG is an on-policy algorithm.  
+
+#### VPG Implementation
+Let's assume you are using a simple mlp for the policy gradient, $\pi_w$.
+```python
+class PolicyNetwork(nn.Module):
+    def __init__(self, in_dim: int, n_actions: int, hidden_dim: int = 50):
+        super().__init__()
+        self.mlp = nn.Sequential(
+            nn.Linear(in_dim, hidden_dim),
+            nn.LeakyReLU(),
+            nn.Linear(hidden_dim, n_actions))
+
+    def forward(self, x):
+        return self.mlp(x)
+```
+
+
+##### References
+- Open AI Spinning Up. Vanilla Policy Gradient. [[web]](https://spinningup.openai.com/en/latest/algorithms/vpg.html)
+
+---
+
+## Mine (Deep RL)
 
 #### [Q-learning](https://en.wikipedia.org/wiki/Q-learning)
 
