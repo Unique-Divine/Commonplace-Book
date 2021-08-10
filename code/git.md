@@ -100,5 +100,24 @@ Delete local branch
 Delete remote branch
 `git push origin --delete [branch-name]`
 
+---
+
+### Git flow
+
 <!-- TODO: Write about git-flow and branching models  -->
-<!-- https://nvie.com/posts/a-successful-git-branching-model/ -->
+
+When working on a new feature, branch off from the `develop` branch:  
+```
+git checkout -b newFeature develop
+```
+
+Merge finished features into the development branch to add them to the upcoming release. Use the "no fast forward" flag, `--no-ff`, to cause the merge to create a new commit object even if the merge could be performed with a fast-forward. This avoids losing information about the historical existence of a feature branch and groups together all commits that together added the feature.
+```
+git checkout develop
+git merge --no-ff newFeature
+git branch -d newFeature
+git push origin develop
+```
+
+##### References:
+- A successful Git branching model. [[web]](https://nvie.com/posts/a-successful-git-branching-model/)
