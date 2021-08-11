@@ -4,6 +4,9 @@
 - [§ Python](#-python)
     - [Reading and Writing Files](#reading-and-writing-files)
   - [Object-Oriented Programming (OOP)](#object-oriented-programming-oop)
+    - [Abstract Base Classes](#abstract-base-classes)
+    - [Data classes](#data-classes)
+    - [Prefer composition over inheritance](#prefer-composition-over-inheritance)
   - [Miscellaneous](#miscellaneous)
 - [§ Web development](#-web-development)
   - [Hugo Web Design](#hugo-web-design)
@@ -76,30 +79,42 @@ Date: 21年6月
 
 <!-- --------------------------------  -->
 
-#### Prefer composition over inheritance
+### Abstract Base Classes
 
-Inheritance makes it difficult to duplicate functionality to different classes. 
+An abstract base class specifies the interface that a class should adhere to and acts as an agreement between different parts of a program.
 
-With composition, our goal is to separate out concepts so that they can be combined in meaningful ways. We're not creating hierarchies of classes. 
-
-If we have a class that we want to make subclasses of, it's beneficial to make the first one an abstract base class. 
-
+Q: Import the abstract base class and abstract method.
 ```python
 from abc import ABC, abstractmethod
-from typing import Optional 
-
-class FFNN(ABC):  
-    """Represents a PyTorch module for a feed-forward neural network."""
-
-    @abstractmethod
-    def forward()
 ```
 
+Q: Define a short abstract base class, "HelloWorld", with an abstract method called "hello" that should return a string.
+```python
+from abc import ABC, abstractmethod
 
-Reference: ArjanCodes. Why COMPOSITION is better than INHERITANCE - detailed Python example. 2021. [[YouTube]](https://youtu.be/0mcP8ZpUR38)
+class HelloWorld(ABC):
+    
+    @abstractmethod
+    def hello(self) -> str:
+        pass
+```
 
+Attempting to create an instance of an abstract base class (ABC) raises an error. You can, however, **create subclasses that inherit from the ABC**. An ABC purely defines the kind of methods that a class that inherits from the ABC should have. 
 
-#### Data classes
+```python
+# Assume the ABC, HelloWorld, is implemented in the same file.
+class JapaneseHelloWorld(HelloWorld):
+    def hello(self) -> str:
+        return "こんにちは、世界！"
+
+class ChineseHelloWorld(HelloWorld):
+    def hello(self) -> str:
+        return "你好世界！"
+```
+
+Attempting to create an instance of one of the concrete classes, "JapaneseHelloWorld" and "ChineseHelloWorld", without implementing the "hello" method would raise an error too.
+
+### Data classes
 
 Python's `dataclass` functionality allows you to write shorter code and initialize, print, compare, and order data much more easily. 
 
@@ -163,6 +178,8 @@ p1 = Person(name='Joe', age=25)
 
 Dynamically generated attributes can be defined in data classes using the `field` functionality in combination with `__post_init__`.
 
+For example, let's say that the 'age' parameter automatically specifies a job if it's low enough. Otherwise, 'job' will default to "SDE" like before.
+
 ```python
 from dataclasses import dataclass, field
 
@@ -170,12 +187,47 @@ from dataclasses import dataclass, field
 class Person:
     """A person that has a name, job, and age."""
     name: str
-    job: str = field(init = False)
+    job: str = field(default = "SDE", init = False)
     age: int
+
+    def __post_init__(self):
+        age = self.age
+        if (self.job == "SDE") and (age <= 18):
+            if age >= 14 and age <= 18:
+                self.job = "Student - high school"
+            elif age >= 12 and age <= 14:
+                self.job = "Student - middle school"
+            elif age >= 5 and age <= 12:
+                self.job = "Student - elementary school"
+            else:
+                self.job = "Baby, toddler, or pre-K"
 ```
 
 
 Reference: ArjanCodes. 2021. If you're not using Python DATA CLASSES yet, you should. 🚀 [[YouTube]](https://youtu.be/vRVVyl9uaZc)
+
+### Prefer composition over inheritance
+
+Inheritance makes it difficult to duplicate functionality to different classes. 
+
+With composition, our goal is to separate out concepts so that they can be combined in meaningful ways. We're not creating hierarchies of classes. 
+
+If we have a class that we want to make subclasses of, it's beneficial to make the first one an abstract base class. 
+
+```python
+from abc import ABC, abstractmethod
+from typing import Optional 
+
+class FFNN(ABC):  
+    """Represents a PyTorch module for a feed-forward neural network."""
+
+    @abstractmethod
+    def forward()
+        """TODO"""
+```
+
+
+Reference: ArjanCodes. Why COMPOSITION is better than INHERITANCE - detailed Python example. 2021. [[YouTube]](https://youtu.be/0mcP8ZpUR38)
 
 ---
 
