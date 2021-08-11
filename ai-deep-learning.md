@@ -4,11 +4,11 @@
 
 - [§1. Transformers](#1-transformers)
   - [§1.1 Vanilla Transformer Architecture](#11-vanilla-transformer-architecture)
-    - [Input Embeddings and the Encoder Stack](#input-embeddings-and-the-encoder-stack)
-    - [Why use Transformers over RNNs?](#why-use-transformers-over-rnns)
-    - [Multi-Head Attention](#multi-head-attention)
-    - [Positional embeddings](#positional-embeddings)
-    - [Alignment Score Functions](#alignment-score-functions)
+    - [1.1.1 Input Embeddings and the Encoder Stack](#111-input-embeddings-and-the-encoder-stack)
+    - [1.1.2 Why use Transformers over RNNs?](#112-why-use-transformers-over-rnns)
+    - [1.1.3 Positional embeddings](#113-positional-embeddings)
+    - [1.1.4 Self-attention](#114-self-attention)
+    - [1.1.5 Multi-Head Attention](#115-multi-head-attention)
   - [§1.2 Bidirectional Encoder Representations from Transformers (BERT)](#12-bidirectional-encoder-representations-from-transformers-bert)
   - [Image + Attention](#image--attention)
 - [§2. Deep Reinforcement Learning](#2-deep-reinforcement-learning)
@@ -65,12 +65,9 @@ Decoder: Takes the sequence of representations, $\bm{z}_{enc}$, created by the e
 
 Note that $\bm{x} = (x_1, \ldots, x_n)$ and $\bm{z} = (z_1, \ldots, z_n)$ must be equidimensional, whereas $\bm{y} = (y_1, \ldots, y_m)$ can have a different dimension. In the context of machine translation, this says that an input sentence represented by $\bm{x}$ with length $n$ may translate to an output sentence represented by $\bm{y}$ with length $m$ and $n$ doesn't necessarily equal $m$.  
 
-### Input Embeddings and the Encoder Stack
+### 1.1.1 Input Embeddings and the Encoder Stack
 
 A single encoder layer is composed of two main blocks, the multi-head attention block and a feed-forward block. Before a sequence can be passed into encoder stack, it has to be embedded and given positional encodings/embeddings. Here, embedding a sequence means converting each element of the sequence into a vector representation. 
-
-
-
 
 
 #### Sequence transduction models
@@ -110,15 +107,10 @@ Just as in other sequence transduction models, the Transformer uses learned embe
 
 
 
-##### References
-- Attention is All You Need. Vaswani et al. 2017. [[paper]][vaswani-2017-attention]
-- Transduction (machine learning). [Wikipedia](https://en.wikipedia.org/wiki/Transduction_(machine_learning)).
-- Gentle Introduction to Transduction in Machine Learning. Brownlee. 2017. [[article]](https://machinelearningmastery.com/transduction-in-machine-learning/)
-- tsu on [[Artificial Intelligence Stack Exchange]](https://ai.stackexchange.com/questions/22957/how-can-transformers-handle-arbitrary-length-input)
 
 ---
 
-### Why use Transformers over RNNs?
+### 1.1.2 Why use Transformers over RNNs?
 
 - [ ] Q: If the vanilla Transformer is an encoder-decoder architecture why use it instead of the RNN based encoder-decoder?  
 
@@ -158,7 +150,32 @@ for word_idx, word in enumerate(sentence):
 
 ---
 
-### Self-attention <!-- omit in toc -->
+### 1.1.3 Positional embeddings
+
+positional embedding is synonymous with positional encoding 
+
+Transformers proven to work well on any kind of data, especially when there is a large amount of data to train on with self-supervision.
+Transformers do not process inputs sequentially but all at one time (in parallel). For each element of the input, information is combined from the other elements through self-attention. Each element does this aggregation on its own independently of what the other elements do. The transformer architecture does not model the order of the input anywhere. Thus, positional information in the input sequence must be explicitly encoded. 
+
+Positional embeddings are identifiers or hints that tell the Transformer where an element of the input lies within the sequence. These positional embeddings are then added to the original vector representation of the input sequence. Positional embeddings are order, or position, vectors added to vectors for the Transformers to know the order of the sequence. 
+
+Positional embeddings requirements:
+1. Every position must have the same identifier regardless of the length of the input sequence length or what the input is. I.e., swapping out sequence should not change the positional embedding vector. 
+2. The values of a positional embedding should not be too large, or they will push vectors into super distinct subspaces, where the positional similarity is too powerful for semantic similarity to take effect in the vector space. 
+
+In "Attention is All You Need", the choice of positional embeddings was not obvious. We'll discuss simple examples. 
+1. Let's say we have an input sequence $x$. Why not use integer encodings for each element of $x$, i.e. a linear function? These integer values are too large. People tend to aim for keeping the values in a positional embedding between 0 and 1.
+2. What about a sigmoid? It's bounded between 0 and 1 and can handle values that are infinitely large. → We also want variability in the positional embeddings. The sigmoid doesn't differentiate values that are extremely positive or extremely negative because it's asymptotic at the ends. An example of a function that has some variability and still accepts all reals would be sine and cosine.   
+
+What are some issues with sine and cosine? These functions are periodic, meaning that we'll see the same positional embedding at different values. What's a possible solution? Use such a low frequency for the trig functions such that, even for the longest sequence lengths, our function will not repeat. This solves some of the aforementioned problems, but it's still not optimal because:
+- the positional embeddings must push far enough in the vector space to make reasonable clusters, but they also shouldn't push too far or their signal will outshine that of the semantic information. Distances between points in the representation space should not be dominated by either positional or semantic information. What's the solution here? → Herein lies using the alternating sine and cosines with increasing frequency. 
+- (Video notes in progress)
+
+Date: 21年8月1日
+
+---
+
+### 1.1.4 Self-attention
 
 
 Self-attention is when a model makes predictions for each part of an input sample using other parts the same sample. A self-attention module returns the same number of outputs as inputs it receives. 
@@ -186,43 +203,8 @@ Ex. Inter-attention can quantify dependencies between an image and its descripti
 
 - [ ] How does self-attention work?
 
----
 
-### Multi-Head Attention
-
----
-
-### Positional embeddings
-
-positional embedding is synonymous with positional encoding 
-
-Transformers proven to work well on any kind of data, especially when there is a large amount of data to train on with self-supervision.
-Transformers do not process inputs sequentially but all at one time (in parallel). For each element of the input, information is combined from the other elements through self-attention. Each element does this aggregation on its own independently of what the other elements do. The transformer architecture does not model the order of the input anywhere. Thus, positional information in the input sequence must be explicitly encoded. 
-
-Positional embeddings are identifiers or hints that tell the Transformer where an element of the input lies within the sequence. These positional embeddings are then added to the original vector representation of the input sequence. Positional embeddings are order, or position, vectors added to vectors for the Transformers to know the order of the sequence. 
-
-Positional embeddings requirements:
-1. Every position must have the same identifier regardless of the length of the input sequence length or what the input is. I.e., swapping out sequence should not change the positional embedding vector. 
-2. The values of a positional embedding should not be too large, or they will push vectors into super distinct subspaces, where the positional similarity is too powerful for semantic similarity to take effect in the vector space. 
-
-In "Attention is All You Need", the choice of positional embeddings was not obvious. We'll discuss simple examples. 
-1. Let's say we have an input sequence $x$. Why not use integer encodings for each element of $x$, i.e. a linear function? These integer values are too large. People tend to aim for keeping the values in a positional embedding between 0 and 1.
-2. What about a sigmoid? It's bounded between 0 and 1 and can handle values that are infinitely large. → We also want variability in the positional embeddings. The sigmoid doesn't differentiate values that are extremely positive or extremely negative because it's asymptotic at the ends. An example of a function that has some variability and still accepts all reals would be sine and cosine.   
-
-What are some issues with sine and cosine? These functions are periodic, meaning that we'll see the same positional embedding at different values. What's a possible solution? Use such a low frequency for the trig functions such that, even for the longest sequence lengths, our function will not repeat. This solves some of the aforementioned problems, but it's still not optimal because:
-- the positional embeddings must push far enough in the vector space to make reasonable clusters, but they also shouldn't push too far or their signal will outshine that of the semantic information. Distances between points in the representation space should not be dominated by either positional or semantic information. What's the solution here? → Herein lies using the alternating sine and cosines with increasing frequency. 
-- (Video notes in progress)
-
-
-##### References: 
-- AI Coffee Break with Letita. 2021. Positional embeddings in transformers EXPLAINED | Demystifying positional encodings. [[video]](https://youtu.be/1biZfFLPRSY)
-- AI Coffee Break with Letita. 2021. Self Attention with Relative Position Representations – Paper explained. [[video]](https://youtu.be/DwaBQbqh5aE)  
-
-Date: 21年8月1日
-
----
-
-### Alignment Score Functions
+#### Alignment Score Functions
 
 Each type of attention has an alignment score function. Some examples of alignment score functions are  content-base, additive, location-based, general, dot-product, and scaled dot-product.
 
@@ -243,6 +225,35 @@ Neural Machine Translation by Jointly Learning to Align and Translate. Badhanau,
 
 ---
 
+### 1.1.5 Multi-Head Attention
+
+---
+
+
+##### §1.1 References
+
+Transformers 
+- Attention is All You Need. Vaswani et al. 2017. [[paper]][vaswani-2017-attention]
+- Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. (2018). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv preprint arXiv:1810.04805. [[paper]](https://arxiv.org/pdf/1810.04805.pdf)
+- Adalogou, Nikolas. (2021). Transformers in Computer Vision. AI Summer. [[github-repo]](https://github.com/The-AI-Summer/self-attention-cv)
+
+Input Embeddings
+- Alammar, Jay. (2019). The Illustrated Word 2 Vec. [[blog]](https://jalammar.github.io/illustrated-word2vec/)
+- Tsu. (2020). [[Artificial Intelligence Stack Exchange]](https://ai.stackexchange.com/questions/22957/how-can-transformers-handle-arbitrary-length-input)
+
+
+Sequence Transduction Models
+- Transduction (machine learning). [Wikipedia](https://en.wikipedia.org/wiki/Transduction_(machine_learning)).
+- Gentle Introduction to Transduction in Machine Learning. Brownlee. 2017. [[article]](https://machinelearningmastery.com/transduction-in-machine-learning/)
+
+Positional Embeddings
+- Adalogou, Nikolas. (2021). How Positional Embeddings work in Self-Attention (code in PyTorch). AI Summer. [[blog]](https://theaisummer.com/positional-embeddings/)
+- Parcalabescu, Letitia. (2021). Positional embeddings in transformers EXPLAINED | Demystifying positional encodings. AI Coffee Break with Letita. [[video]](https://youtu.be/1biZfFLPRSY)
+- Parcalabescu, Letitia. (2021). Self Attention with Relative Position Representations – Paper explained. AI Coffee Break with Letita. [[video]](https://youtu.be/DwaBQbqh5aE)   
+
+
+---
+
 ## §1.2 Bidirectional Encoder Representations from Transformers (BERT)
 
 
@@ -253,6 +264,9 @@ BERT: pre-Training of Deep Bidirectional Transformers for Language Understanding
 
 
 BERT does not include a Transformer decoder.
+
+
+Alammar, Jay. (2020). The Illustrated BERT, ELMo, and co. (How NLP Cracked Transfer Learning) [[blog]](https://jalammar.github.io/illustrated-bert/)
 
 ---
 
