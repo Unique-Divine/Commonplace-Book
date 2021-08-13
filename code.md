@@ -14,6 +14,7 @@
   - [HTML, CSS](#html-css)
 - [§ Algorithms](#-algorithms)
   - [Algorithms](#algorithms)
+    - [Linked lists](#linked-lists)
   - [Design Patterns](#design-patterns)
 - [§ C++](#-c)
 
@@ -493,7 +494,7 @@ communications in computer networks worldwide.
 
 ---
 
-# § Algorithms
+# § Algorithms 
 
 ---
 
@@ -502,11 +503,99 @@ communications in computer networks worldwide.
 
 ## Algorithms
 
+Algorithm
+: A fancy word for a simple thing: A program that solves a problem.
+
+Resources: 
+- Python implementations of tons of algorithms: https://github.com/TheAlgorithms/Python/blob/master/DIRECTORY.md
+- Udacity course: https://classroom.udacity.com/courses/ud513/lessons/7174469398/concepts/71201055390923
+- Python Algorithms book
+
+Algorithms topics
+- Sorting: Insertion sort, merge sort, divide and conquer, quicksort, counting sort, Radix sort
+- Stacks, queues
+- Heaps, heapsort
+- Binary search trees, Red-black trees
+- Graphs, Breadth-first search, Depth-first search
+- Shortest paths, Negative cycles, All-pairs shortest paths
+- Hashing
+- NP-Completeness
+- Linked lists, arrays
+
+#### Why study data structures and algorithms (DSA)?
+
 > "4.5 years of learning programming and working as fullstack software engineer ... had interview with one of the FAANG companies this summer in Hong Kong but failed it due to the fact that I suck in DSA (Data Structures & Algorithms)."
 
 > "I’m using to leetcode.com to learn data structures and algorithms since I got a rejection from FAANG after interviewing with them onsite."
 
 [Role of DSA in Programming (July, 2020)](https://blog.codechef.com/2020/07/24/the-role-of-data-structure-and-algorithms-in-programming/)
+
+---
+
+### Linked lists
+
+Python lists aren't lists in the traditional computer science sense. That would be a linked list. A **linked list** is a data structure consisting of a collection of nodes which together represent a sequence.
+
+A **singly linked list** is a sequence of **nodes**. Each node in a singly linked list holds a value and keeps reference to the next node. This reference is the single link.
+
+Q: Implement a `dataclass` for a node of a **singly** linked list.
+
+```python
+import dataclasses
+from typing import Any, Optional
+
+@dataclasses.dataclass
+class Node:
+    """Node of a singly linked list."""
+    value: Any
+    next: Optional['Node'] = None
+```
+
+A **doubly linked list** is a sequence of nodes that each hold a value and keep a reference to both the previous and next node. 
+
+Q: Implement a `dataclass` for a node of a **doubly** linked list.
+
+```python
+import dataclasses
+from typing import Any, Optional
+
+@dataclasses.dataclass
+class DLNode:
+    """Node of a doubly linked list."""
+    value: Any
+    next: Optional['DLNode'] = None
+    prev: Optional['DLNode'] = None
+```
+
+- [ ] Q: Similar to the array, the linked list is a linear data structure. What makes it linear?
+
+The **head node** of a linked list is the first, or outermost, node. Singly and doubly linked lists can be implemented based just on the head node.
+
+Q: Write a method-less class for a singly linked list.
+```python
+@dataclasses.dataclass
+class Node:
+    value: Any
+    next: Optional['Node'] = None
+
+@dataclasses.dataclass
+class LinkedList:
+    head: Node
+
+    # ... methods
+```
+
+Q: Using the above `LinkedList` and `Node` classes, create a linked list instance that describes `"a" → "b" → "c"`, where arrows represent the node pointers and "a".
+
+```python
+ll = LinkedList(head = Node('a', Node('b', Node('c'))))
+```
+
+Insert an element at the beginning of a linked list.
+
+
+
+---
 
 ## Design Patterns
 
