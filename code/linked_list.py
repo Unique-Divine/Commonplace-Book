@@ -45,18 +45,16 @@ class LinkedList:
         curr.next = Node(value)
 
     def insert_at_idx(self, value: Any, idx: int):
+        if idx == 0:
+            self.head = Node(value, next = self.head)
         curr: Node = self.head
         curr_idx: int = 0
-        if curr_idx == idx:
-            self.head = Node(value, next = self.head)
-        if curr_idx + 1 == idx:
-            self.head.next = Node(value, next = self.head.next.next)
-        while curr.next.next:
-            curr = curr.next
-            curr_idx += 1
+        while curr.next:
             if curr_idx + 1 == idx:
                 curr.next = Node(value, next = curr.next)
                 break
+            curr = curr.next
+            curr_idx += 1
     
     def delete_beginning(self):
         self.head = self.head.next
