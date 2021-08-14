@@ -13,8 +13,9 @@
   - [HTTP, TCP, IP](#http-tcp-ip)
   - [HTML, CSS](#html-css)
 - [§ Algorithms](#-algorithms)
-  - [Algorithms](#algorithms)
+  - [List-Based Collections](#list-based-collections)
     - [Linked lists](#linked-lists)
+    - [Stacks](#stacks)
   - [Design Patterns](#design-patterns)
 - [§ C++](#-c)
 
@@ -501,8 +502,6 @@ communications in computer networks worldwide.
 <!-- ------------------------------------------------------------------ -->
 <!-- ------------------------------------------------------------------ -->
 
-## Algorithms
-
 Algorithm
 : A fancy word for a simple thing: A program that solves a problem.
 
@@ -532,9 +531,19 @@ Algorithms topics
 
 ---
 
+## List-Based Collections
+
+---
+
+<!-- blurb on CSLists -->
+
+An array (`CSArray`) is an ordered collection of elements that each have an address called an index.
+
 ### Linked lists
 
-Python lists aren't lists in the traditional computer science sense. That would be a linked list. A **linked list** is a data structure consisting of a collection of nodes which together represent a sequence.
+Python lists aren't lists in the traditional computer science sense. That would be a linked list. A **linked list** is a data structure consisting of a collection of nodes which together represent a sequence. 
+- Linked lists are ordered like arrays, but there are no indices. The order is purely kept by the links.
+- Each node is unaware of its location in the linked list because it's unindexed. The nodes are also unaware of how long the list is.
 
 A **singly linked list** is a sequence of **nodes**. Each node in a singly linked list holds a value and keeps reference to the next node. This reference is the single link.
 
@@ -592,6 +601,18 @@ ll = LinkedList(head = Node('a', Node('b', Node('c'))))
 ```
 
 Insert an element at the beginning of a linked list.
+
+### Stacks
+
+Stacks are also list-based data strucures. Imagine a stack of pancakes. You can keep stacking elements on top and have easy access to the top-most element. 
+
+Adding an element to a stack is called **pushing** and taking an element from the top of a stack is called **popping**. Both `Stack.pop` and `Stack.push` are $O(1)$ (constant time).
+
+The value and pointers of the elements aren't specified by a stack, meaning that stacks can actually be implemented as linked lists, where the top of the stack is the head of a singly linked list. It just needs to have methods for adding and removing elements.
+
+You may see the notation L.I.F.O. associated with stacks. It stands for "Last In, First Out". The last element pushed is the first one popped.
+
+Python lists (PyList) have stack functionality built in with `PyList.pop()` and `PyList.append()`. 
 
 
 

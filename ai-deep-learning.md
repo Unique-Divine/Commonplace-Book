@@ -268,6 +268,8 @@ BERT does not include a Transformer decoder.
 
 Alammar, Jay. (2020). The Illustrated BERT, ELMo, and co. (How NLP Cracked Transfer Learning) [[blog]](https://jalammar.github.io/illustrated-bert/)
 
+CodeEmporium. (2020). BERT Neural Network - EXPLAINED! [[YouTube]](https://youtu.be/xI0HHN5XKDo)
+
 ---
 
 ## Image + Attention
