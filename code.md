@@ -1,30 +1,164 @@
 # Code Commonplace <!-- omit in toc -->
 
 #### Table of Contents<!-- omit in toc -->
-- [§ Python](#-python)
+- [Data Structures & Algorithms (DSA)](#data-structures--algorithms-dsa)
+  - [List-Based Collections](#list-based-collections)
+    - [Linked lists](#linked-lists)
+    - [Stacks](#stacks)
+- [Python](#python)
     - [Reading and Writing Files](#reading-and-writing-files)
   - [Object-Oriented Programming (OOP)](#object-oriented-programming-oop)
     - [Abstract Base Classes](#abstract-base-classes)
     - [Data classes](#data-classes)
     - [Prefer composition over inheritance](#prefer-composition-over-inheritance)
   - [Miscellaneous](#miscellaneous)
-- [§ Web development](#-web-development)
+- [Web development](#web-development)
   - [Hugo Web Design](#hugo-web-design)
   - [HTTP, TCP, IP](#http-tcp-ip)
   - [HTML, CSS](#html-css)
-- [§ Algorithms](#-algorithms)
-  - [List-Based Collections](#list-based-collections)
-    - [Linked lists](#linked-lists)
-    - [Stacks](#stacks)
+- [Git](#git)
+  - [Fundamental Concepts](#fundamental-concepts)
+  - [Branching](#branching)
+  - [Special Topics](#special-topics)
+- [Misc.](#misc)
+  - [C++](#c)
   - [Design Patterns](#design-patterns)
-- [§ C++](#-c)
+
 
 <!-- ------------------------------------------------------------------ -->
 <!-- ------------------------------------------------------------------ -->
 
 ---
 
-# § Python
+# Data Structures & Algorithms (DSA)
+
+---
+
+<!-- ------------------------------------------------------------------ -->
+<!-- ------------------------------------------------------------------ -->
+
+Algorithm
+: A fancy word for a simple thing: A program that solves a problem.
+
+
+Algorithms topics
+- Sorting: Insertion sort, merge sort, divide and conquer, quicksort, counting sort, Radix sort
+- Stacks, queues
+- Heaps, heapsort
+- Binary search trees, Red-black trees
+- Graphs, Breadth-first search, Depth-first search
+- Shortest paths, Negative cycles, All-pairs shortest paths
+- Hashing
+- NP-Completeness
+- Linked lists, arrays
+
+#### Why study data structures and algorithms (DSA)?
+
+> "4.5 years of learning programming and working as fullstack software engineer ... had interview with one of the FAANG companies this summer in Hong Kong but failed it due to the fact that I suck in DSA (Data Structures & Algorithms)."
+
+> "I’m using to leetcode.com to learn data structures and algorithms since I got a rejection from FAANG after interviewing with them onsite."
+
+[Role of DSA in Programming (July, 2020)](https://blog.codechef.com/2020/07/24/the-role-of-data-structure-and-algorithms-in-programming/)
+
+---
+
+## List-Based Collections
+
+---
+
+<!-- blurb on CSLists -->
+
+An array (`CSArray`) is an ordered collection of elements that each have an address called an index.
+
+### Linked lists
+
+Python lists aren't lists in the traditional computer science sense. That would be a linked list. A **linked list** is a data structure consisting of a collection of nodes which together represent a sequence. 
+- Linked lists are ordered like arrays, but there are no indices. The order is purely kept by the links.
+- Each node is unaware of its location in the linked list because it's unindexed. The nodes are also unaware of how long the list is.
+
+A **singly linked list** is a sequence of **nodes**. Each node in a singly linked list holds a value and keeps reference to the next node. This reference is the single link.
+
+Q: Implement a `dataclass` for a node of a **singly** linked list.
+
+```python
+import dataclasses
+from typing import Any, Optional
+
+@dataclasses.dataclass
+class Node:
+    """Node of a singly linked list."""
+    value: Any
+    next: Optional['Node'] = None
+```
+
+A **doubly linked list** is a sequence of nodes that each hold a value and keep a reference to both the previous and next node. 
+
+Q: Implement a `dataclass` for a node of a **doubly** linked list.
+
+```python
+import dataclasses
+from typing import Any, Optional
+
+@dataclasses.dataclass
+class DLNode:
+    """Node of a doubly linked list."""
+    value: Any
+    next: Optional['DLNode'] = None
+    prev: Optional['DLNode'] = None
+```
+
+- [ ] Q: Similar to the array, the linked list is a linear data structure. What makes it linear?
+
+The **head node** of a linked list is the first, or outermost, node. Singly and doubly linked lists can be implemented based just on the head node.
+
+Q: Write a method-less class for a singly linked list.
+```python
+@dataclasses.dataclass
+class Node:
+    value: Any
+    next: Optional['Node'] = None
+
+@dataclasses.dataclass
+class LinkedList:
+    head: Node
+
+    # ... methods
+```
+
+Q: Using the above `LinkedList` and `Node` classes, create a linked list instance that describes `"a" → "b" → "c"`, where arrows represent the node pointers and "a".
+
+```python
+ll = LinkedList(head = Node('a', Node('b', Node('c'))))
+```
+
+Insert an element at the beginning of a linked list.
+
+### Stacks
+
+Stacks are also list-based data strucures. Imagine a stack of pancakes. You can keep stacking elements on top and have easy access to the top-most element. 
+
+Adding an element to a stack is called **pushing** and taking an element from the top of a stack is called **popping**. Both `Stack.pop` and `Stack.push` are $O(1)$ (constant time).
+
+The value and pointers of the elements aren't specified by a stack, meaning that stacks can actually be implemented as linked lists, where the top of the stack is the head of a singly linked list. It just needs to have methods for adding and removing elements.
+
+You may see the notation L.I.F.O. associated with stacks. It stands for "Last In, First Out". The last element pushed is the first one popped.
+
+Python lists (PyList) have stack functionality built in with `PyList.pop()` and `PyList.append()`. 
+
+---
+
+#### DSA Resources: 
+
+- Python implementations of tons of algorithms: https://github.com/TheAlgorithms/Python/blob/master/DIRECTORY.md
+- Udacity course: https://classroom.udacity.com/courses/ud513/lessons/7174469398/concepts/71201055390923
+- Python Algorithms book
+
+<!-- ------------------------------------------------------------------ -->
+<!-- ------------------------------------------------------------------ -->
+
+---
+
+# Python
 
 ---
 
@@ -269,7 +403,7 @@ We know the field is fast moving. If the reader looking for more recent free rea
 
 ---
 
-# § Web development
+#  Web development
 
 ---
 
@@ -490,170 +624,160 @@ communications in computer networks worldwide.
 ## HTML, CSS
 
 
+
 <!-- ------------------------------------------------------------------ -->
 <!-- ------------------------------------------------------------------ -->
 
 ---
 
-# § Algorithms 
+# Git
 
 ---
 
 <!-- ------------------------------------------------------------------ -->
 <!-- ------------------------------------------------------------------ -->
 
-Algorithm
-: A fancy word for a simple thing: A program that solves a problem.
+Git (cookbook)
 
-Resources: 
-- Python implementations of tons of algorithms: https://github.com/TheAlgorithms/Python/blob/master/DIRECTORY.md
-- Udacity course: https://classroom.udacity.com/courses/ud513/lessons/7174469398/concepts/71201055390923
-- Python Algorithms book
+## Fundamental Concepts
 
-Algorithms topics
-- Sorting: Insertion sort, merge sort, divide and conquer, quicksort, counting sort, Radix sort
-- Stacks, queues
-- Heaps, heapsort
-- Binary search trees, Red-black trees
-- Graphs, Breadth-first search, Depth-first search
-- Shortest paths, Negative cycles, All-pairs shortest paths
-- Hashing
-- NP-Completeness
-- Linked lists, arrays
+#### Local branch vs. remote branch
 
-#### Why study data structures and algorithms (DSA)?
+- **local branch**: a branch only the local user can see. It exists only on your local machine.
+  - Ex. Create local branch named "myNewBranch": `git branch myNewBranch`
 
-> "4.5 years of learning programming and working as fullstack software engineer ... had interview with one of the FAANG companies this summer in Hong Kong but failed it due to the fact that I suck in DSA (Data Structures & Algorithms)."
+- **remote branch**: a branch on a remote location (in most cases 'origin'). Local branches can be pushed to 'origin' (a remote branch), where other users can track it.
+  - Ex. Push local branch, "myNewBranch", to the remote, "origin" so that a new branch named "myNewBranch" is created on the remote machine ("origin"):  
+  `git push -u origin myNewBranch`
 
-> "I’m using to leetcode.com to learn data structures and algorithms since I got a rejection from FAANG after interviewing with them onsite."
+- **remote tracking branch**: A local copy of a remote branch. When 'myNewBranch' is pushed to 'origin' using the command above, a remote tracking branch named 'origin/myNewBranch' is created on your local machine.
+- **local tracking branch**: a local branch that is tracking another
+branch.
 
-[Role of DSA in Programming (July, 2020)](https://blog.codechef.com/2020/07/24/the-role-of-data-structure-and-algorithms-in-programming/)
+source(s): [SNce & Brian Webster.stackoverflow.com](https://stackoverflow.com/questions/16408300/what-are-the-differences-between-local-branch-local-tracking-branch-remote-bra)
+
+#### HEAD, master, and origin
+
+I highly recommend the book "Pro Git" by Scott Chacon. Take time and
+really read it, while exploring an actual git repo as you do.
+
+- **HEAD**: the current commit your repo is on. Most of the time HEAD points to the latest commit in your current branch, but that doesn't have to be the case. HEAD really just means "what is my repo currently pointing at".  
+  In the event that the commit HEAD refers to is not the tip of any branch, this is called a "**detached head**".
+- **master**: the name of the default branch that git creates for you when first creating a repo. In most cases, "master" means "the main branch". Most shops have everyone pushing to master, and master is considered the definitive view of the repo. But it's also common for release branches to be made off of master for releasing. Your local repo has its own master branch, that almost always follows the master of a remote repo.
+- **origin**: the default name that git gives to your main remote repo. Your box has its own repo, and you most likely push out to some remote repo that you and all your coworkers push to. That remote repo is almost always called origin, but it doesn't have to be.
+- `HEAD` is an official notion in git. `HEAD` always has a well-defined meaning. `master` and `origin` are common names usually used in git, but they don't have to be.
+
+source: [HEAD, master, and origin. Matt Greer & Jacqueline P. via
+stackoverflow.com](https://stackoverflow.com/questions/8196544/what-are-the-git-concepts-of-head-master-origin)
 
 ---
 
-## List-Based Collections
+## Branching
+
+Suppose your application is stable. Later, you discover a gigantic bug
+that was passing silently. You want to write some tests, fix the bug,
+and eventually have a stable, passing application once again. To do
+this, you'd create a branch for the fix and push the branch to the
+remote so that all of the developers on your team can collaborate and
+make the fix.
+
+Once all of the necessary changes have been made and the application is
+stable, someone from the team would commit merge the commits from the
+other branch into master. Since the commit history from the branch will
+have been saved to master, the new branch could be deleted without loss
+of information (if you no longer wanted to work on this branch).
+
+View branches:  `git branch`
+
+Switch branches:  `git checkout [branch-name]`
+
+#### Merging
+
+Merge the specified branch's history into the current one.
+`git merge [branch]`
+
+#### Deleting branches
+
+Delete local branch
+`git branch -d [branch-name]`
+
+Delete remote branch
+`git push origin --delete [branch-name]`
 
 ---
 
-<!-- blurb on CSLists -->
+#### Git flow
 
-An array (`CSArray`) is an ordered collection of elements that each have an address called an index.
+<!-- TODO: Write about git-flow and branching models  -->
 
-### Linked lists
-
-Python lists aren't lists in the traditional computer science sense. That would be a linked list. A **linked list** is a data structure consisting of a collection of nodes which together represent a sequence. 
-- Linked lists are ordered like arrays, but there are no indices. The order is purely kept by the links.
-- Each node is unaware of its location in the linked list because it's unindexed. The nodes are also unaware of how long the list is.
-
-A **singly linked list** is a sequence of **nodes**. Each node in a singly linked list holds a value and keeps reference to the next node. This reference is the single link.
-
-Q: Implement a `dataclass` for a node of a **singly** linked list.
-
-```python
-import dataclasses
-from typing import Any, Optional
-
-@dataclasses.dataclass
-class Node:
-    """Node of a singly linked list."""
-    value: Any
-    next: Optional['Node'] = None
+When working on a new feature, branch off from the `develop` branch:  
+```
+git checkout -b newFeature develop
 ```
 
-A **doubly linked list** is a sequence of nodes that each hold a value and keep a reference to both the previous and next node. 
-
-Q: Implement a `dataclass` for a node of a **doubly** linked list.
-
-```python
-import dataclasses
-from typing import Any, Optional
-
-@dataclasses.dataclass
-class DLNode:
-    """Node of a doubly linked list."""
-    value: Any
-    next: Optional['DLNode'] = None
-    prev: Optional['DLNode'] = None
+Merge finished features into the development branch to add them to the upcoming release. Use the "no fast forward" flag, `--no-ff`, to cause the merge to create a new commit object even if the merge could be performed with a fast-forward. This avoids losing information about the historical existence of a feature branch and groups together all commits that together added the feature.
+```
+git checkout develop
+git merge --no-ff newFeature
+git branch -d newFeature
+git push origin develop
 ```
 
-- [ ] Q: Similar to the array, the linked list is a linear data structure. What makes it linear?
-
-The **head node** of a linked list is the first, or outermost, node. Singly and doubly linked lists can be implemented based just on the head node.
-
-Q: Write a method-less class for a singly linked list.
-```python
-@dataclasses.dataclass
-class Node:
-    value: Any
-    next: Optional['Node'] = None
-
-@dataclasses.dataclass
-class LinkedList:
-    head: Node
-
-    # ... methods
-```
-
-Q: Using the above `LinkedList` and `Node` classes, create a linked list instance that describes `"a" → "b" → "c"`, where arrows represent the node pointers and "a".
-
-```python
-ll = LinkedList(head = Node('a', Node('b', Node('c'))))
-```
-
-Insert an element at the beginning of a linked list.
-
-### Stacks
-
-Stacks are also list-based data strucures. Imagine a stack of pancakes. You can keep stacking elements on top and have easy access to the top-most element. 
-
-Adding an element to a stack is called **pushing** and taking an element from the top of a stack is called **popping**. Both `Stack.pop` and `Stack.push` are $O(1)$ (constant time).
-
-The value and pointers of the elements aren't specified by a stack, meaning that stacks can actually be implemented as linked lists, where the top of the stack is the head of a singly linked list. It just needs to have methods for adding and removing elements.
-
-You may see the notation L.I.F.O. associated with stacks. It stands for "Last In, First Out". The last element pushed is the first one popped.
-
-Python lists (PyList) have stack functionality built in with `PyList.pop()` and `PyList.append()`. 
-
-
-
 ---
 
-## Design Patterns
+## Special Topics
 
-Why use "design patterns"?
+#### SSH keys
 
-- Design patterns let your write better code more quickly by providing a clearer picture of how to implement the design
-- Design patterns encourage code reuse and accomodate change by supplying well-tested mechanisms for delegation, composition, and other non-inheritance based reuse techniques
-- Design patterns encourage more legible and maintainable code
+An SSH key is an alternative to username/password authorization on
+GitHub. This will allow you to bypass entering your username and
+password for future GitHub commands.
 
-Delegation? Composition?
+SSH keys come in pairs, a public key that gets shared with services like
+GitHub, and a private key that is stored only on your computer. If the
+keys match, you're granted access.
 
-- delegation: a pattern where a given object provides an interface to a set of operations. However, the actual work for those operations is performed by one or more other objects.
-- composition: Creating objects with other objects as members. Should be used when a "has-a" relationship appears.
+The cryptography behind SSH keys ensures that no one can reverse
+engineer your private key from the public one.
 
-What are design patterns?
+[SSH Keys for GitHub [article]](https://jdblischak.github.io/2014-09-18-chicago/novice/git/05-sshkeys.html)
 
-Which resources will you use to start learning about design patterns?
+Generating a new SSH key: Follow [Generating a new SSH key and adding it to the ssh-agent [article]](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
-GOF patterns (C++). Then, potentially Head First Design Patterns (Java)/
+#### Permanently removing files from commit history
 
-#### References & Further Reading
+WHy do this? You may have commited a password, some other sensitive
+information, or a large file that you want to remove from github. If the
+change is only a few commits back, you can "rebase" changes out of the
+history. I actually need to do this for a much older set of files and
+accidentally uploaded a textbook that takes up almost a GB of space.
 
-[Introduction to Design Patterns Course](https://www.gofpatterns.com/design-patterns/module1/intro-design-patterns.php)
+`git filter-branch --force --index-filter "git rm --cached --ignore-unmatch PathToSensitiveFile" --prune-empty --tag-name-filter cat -- --all`
 
----
+All you need to change is the `PathToSensitiveFile` item. Once you've used this command for all of the files you'd like to get rid of, update the origin by typing `git push origin --force --all`.
+
+#### Large File Storage
+
+See https://git-lfs.github.com
+
+##### References:
+- A successful Git branching model. [[web]](https://nvie.com/posts/a-successful-git-branching-model/)
+
 
 <!-- ------------------------------------------------------------------ -->
 <!-- ------------------------------------------------------------------ -->
 
 ---
 
-# § C++
+#  Misc. 
 
 ---
 
 <!-- ------------------------------------------------------------------ -->
 <!-- ------------------------------------------------------------------ -->
+
+## C++ 
+
 
 C++ source code files end with a .cpp extension.
 
@@ -698,3 +822,30 @@ What’s contained in a `.h` file?
 
 - [C header files](https://www.tutorialspoint.com/cprogramming/c_header_files.htm)
 - [learncpp.com/.../header-files](https://www.learncpp.com/cpp-tutorial/header-files/)
+
+
+---
+
+## Design Patterns
+
+Why use "design patterns"?
+
+- Design patterns let your write better code more quickly by providing a clearer picture of how to implement the design
+- Design patterns encourage code reuse and accomodate change by supplying well-tested mechanisms for delegation, composition, and other non-inheritance based reuse techniques
+- Design patterns encourage more legible and maintainable code
+
+Delegation? Composition?
+
+- delegation: a pattern where a given object provides an interface to a set of operations. However, the actual work for those operations is performed by one or more other objects.
+- composition: Creating objects with other objects as members. Should be used when a "has-a" relationship appears.
+
+What are design patterns?
+
+Which resources will you use to start learning about design patterns?
+
+GOF patterns (C++). Then, potentially Head First Design Patterns (Java)/
+
+#### References & Further Reading
+
+[Introduction to Design Patterns Course](https://www.gofpatterns.com/design-patterns/module1/intro-design-patterns.php)
+
