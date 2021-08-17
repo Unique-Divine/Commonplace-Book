@@ -574,7 +574,9 @@ ORDER BY AmountSpent DESC
 
 Q: How do you sort a column in ascending order? A: Ascending order is the default order with `ORDER BY`. Only descending order needs a keyword (`DESC`).
 
-Cloze: The `ORDER BY` clause goes after the `WHERE` clause at the **end** of the `SELECT` statement.
+Cloze: 
+- The `ORDER BY` clause goes after the `WHERE` clause at the **end** of the `SELECT` statement.
+- You can explicitly specify ascending order with the `ASC` keyword: `ORDER BY col1, col2, ... ASC`.
 
 Note: `TOP` queries with percent don't really make sense without an `ORDER BY` clause.
 
@@ -656,6 +658,71 @@ Keep in mind that some flavors of SQL use asterisk, `*`, for the percentage symb
 
 <!-- checkpoint, bookmark, page 61 -->
 
+#### Practice Questions from Hackerrank
+
+Q: CITY is a table with the following fields: ID, Name, CountrCode, District, Population. Query the number of cities with a population larger than 100,000.
+```sql
+SELECT COUNT(Name) 
+FROM CITY 
+WHERE Population > 100000
+```
+
+Q: CITY is a table with the following fields: ID, Name, CountrCode, District, Population. Query the total population in the "California" district.
+```sql
+SELECT SUM(Population)
+FROM CITY 
+WHERE District = "California"
+```
+
+Q: Write a minimal example for the syntax of `ORDER BY` in descending order.
+```sql
+SELECT col0, ...
+FROM TableName
+ORDER BY col0, ... DESC;
+```
+
+Q: Write a minimal example for the syntax of `INSERT INTO`.
+```sql
+INSERT INTO TableName 
+    (col0, ...)
+VALUES
+    (val0, ...);
+    <optional-value-tuples>
+```
+
+Q: How can you find null values in a table? A: Use `IS NULL` and `IS NOT NULL` keywords in a conditional expression.
+
+Q: Write a minimal example for the syntax of `IS NULL`.
+```sql
+SELECT col0, ...
+FROM TableName
+WHERE col_name IS NULL;
+```
+
+Q: Write a minimal example for the syntax of `IS NULL`.
+```sql
+SELECT col0, ...
+FROM TableName
+WHERE col_name IS NOT NULL;
+```
+
+Q: How can you modify existing records in a table? A: Use the `UPDATE` and `SET` keywords.
+
+Q: Write a minimal example for the syntax of `UPDATE`.
+```sql
+UPDATE TableName
+SET col0 = value0, ...
+WHERE <condition>; 
+```
+
+Q: Write a minimal example for the syntax of `DELETE`.
+```sql
+DELETE FROM TableName WHERE <condition>
+```
+
+Cloze:
+- `MIN()` and `MAX()` accept a column name as an argument. Ex.  
+  `SELECT MIN(col_name) FROM TableName`
 
 
 ### Miscellanous Database Topics <!-- omit in toc -->
@@ -702,6 +769,7 @@ source: [Oracle. What is a Database?](https://www.oracle.com/database/what-is-da
 - Connolly, Thomas M.; Begg, Carolyn E. (2014). Database Systems – A Practical Approach to Design Implementation and Management (6th ed.). Pearson. ISBN 978-1292061184
 - Data access object. [[Wikipedia]][wiki-DAO]. 
 - Persistence (computer science). [[Wikipedia]][wiki-persistence].
+- https://www.w3schools.com/sql/default.asp
 
 [wiki-DAO]: https://en.wikipedia.org/wiki/Data_access_object#:~:text=In%20computer%20software%2C%20a%20data,exposing%20details%20of%20the%20database.
 [wiki-persistence]: https://en.wikipedia.org/wiki/Persistence_(computer_science)#:~:text=complicated%20to%20debug.-,Persistence%20layers,an%20underlying%20database%20management%20system.
