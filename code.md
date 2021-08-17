@@ -554,7 +554,109 @@ FROM Coworkers
 ```
 will only discard records that have the same "FirstName" and "Role". If two  co-workers have the same first name and different job titles, that counts as a distinct record, so there will be a duplicate entry in the first column.
 
-<!-- continue with TOP, page 31 -->
+##### TOP (Keyword)
+
+`TOP` is a predicate keyword used with `SELECT` that returns the first "n" records or the top "n" percent of records. The `TOP` predicate is applied after all other criteria such as joins, other predicates, grouping, and sorts.
+
+Q: Return the first 5 records from the PRODUCTS table (all columns). 
+```sql
+SELECT TOP 5 *
+FROM PRODUCTS
+```
+
+Q: Return top 8% of users from the CUSTOMERS table, sorted by amount spent. Query the columns, UserID, Plan, and AmountSpent.
+
+```sql
+SELECT TOP 8 PERCENT UserID, Plan, AmountSpent
+FROM CUSTOMERS
+ORDER BY AmountSpent DESC
+```
+
+Q: How do you sort a column in ascending order? A: Ascending order is the default order with `ORDER BY`. Only descending order needs a keyword (`DESC`).
+
+Cloze: The `ORDER BY` clause goes after the `WHERE` clause at the **end** of the `SELECT` statement.
+
+Note: `TOP` queries with percent don't really make sense without an `ORDER BY` clause.
+
+
+##### **WHERE (Keyword)**
+<!-- WHERE -->
+
+Q: Query all columns for all American cities in the "CITY" table with populations larger than 100000. The "CountryCode" for America is "USA". The "CITY" table is described as follows:
+
+<p align="center">
+<img height="200" src="img/2021-08-sql-hackerrank0.png">
+</p>
+
+<!-- ![](img/2021-08-sql-hackerrank0.png) -->
+
+```sql
+SELECT * 
+FROM CITY
+    WHERE CountryCode = "USA" 
+    AND Population > 100000
+```
+
+Q: Return the "ProductName" and "Price" of the top 5% of products in the "PRODUCTS" table. Order by price and only include records with a price greater than 10.
+```sql
+SELECT TOP 5 PERCENT ProductName, Price
+FROM PRODUCTS
+WHERE Price > 10
+```
+
+
+##### Comparison Operators
+
+Comparison operators are used to set conditions because they return booleans. Text comparison is alphabetical. Numerical comparison is numerical, and dates are compared chronologically.
+
+Q: Query the "Name" field of the "CUSTOMERS" table filtered by "Country" for customers outside the United States.
+```sql
+SELECT Name FROM CUSTOMERS
+WHERE Country <> "United States"
+```
+
+##### Logical Operators
+
+To find records that do not meet a certain condition, use `WHERE NOT [condition]`.
+
+You can use the keywords `AND` and `OR` to combine conditions in a `WHERE` clause.
+
+Q: Query from the "CUSTOMERS" table for companies ("CompanyName") in either New York or New Jersey.
+```sql
+SELECT CompanyName
+FROM CUSTOMERS 
+WHERE State = "New York" OR State = "New Jersey"
+```  
+
+Q: Convert the following Python expression into a SQL clause:
+```python
+df['Price'] >= 5 & df['Price'] <= 20
+```
+```sql
+WHERE Price BETWEEN 5 AND 20
+```
+
+##### Wildcard Characters | LIKE
+
+The underscore, `_`, leaves one wildcard value. The percentage symbol, `%`, is for an arbitrary number of wildcard values. 
+
+Q: Query all fields of the "PRODUCTS" table with a 2-digit "Price" that begin with a "9" using a wildcard expression.
+```sql
+SELECT * FROM PRODUCTS
+WHERE Price LIKE "9_"
+```
+
+Q: Query all fields of the "PRODUCTS" table with a "Price" that begins with a 9 and ends with a 0, e.g. 90, 900, 9720, etc.
+```sql
+SELECT * FROM PRODUCTS
+WHERE Price LIKE "9%0".
+```
+
+Keep in mind that some flavors of SQL use asterisk, `*`, for the percentage symbol wildcard and a question mark for the underscore wildcard. 
+
+<!-- checkpoint, bookmark, page 61 -->
+
+
 
 ### Miscellanous Database Topics <!-- omit in toc -->
 
