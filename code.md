@@ -3,16 +3,16 @@
 #### Table of Contents<!-- omit in toc -->
 - [Data Structures & Algorithms (DSA)](#data-structures--algorithms-dsa)
   - [List-Based Collections](#list-based-collections)
+    - [Arrays and Python Lists](#arrays-and-python-lists)
     - [Linked lists](#linked-lists)
     - [Stacks](#stacks)
+    - [Queues](#queues)
+  - [Searching and Sorting](#searching-and-sorting)
+    - [Binary search](#binary-search)
 - [Python](#python)
   - [Standard Libarry](#standard-libarry)
-    - [Reading and Writing Files](#reading-and-writing-files)
   - [Writing Tests](#writing-tests)
   - [Object-Oriented Programming (OOP)](#object-oriented-programming-oop)
-    - [Abstract Base Classes](#abstract-base-classes)
-    - [Data classes](#data-classes)
-    - [Prefer composition over inheritance](#prefer-composition-over-inheritance)
   - [Miscellaneous](#miscellaneous)
 - [Databases, SQL, DBMS](#databases-sql-dbms)
   - [Database Crash Course](#database-crash-course)
@@ -45,26 +45,21 @@ Algorithm
 : A fancy word for a simple thing: A program that solves a problem.
 
 
-Algorithms topics
+Topics
+- Linked lists, arrays, stacks, queues 
 - Sorting: Insertion sort, merge sort, divide and conquer, quicksort, counting sort, Radix sort
-- Stacks, queues
 - Heaps, heapsort
 - Binary search trees, Red-black trees
 - Graphs, Breadth-first search, Depth-first search
 - Shortest paths, Negative cycles, All-pairs shortest paths
-- Hashing
+- Hashing, hash tables, dictionaries
 - NP-Completeness
-- Linked lists, arrays
 - Greedy algorithms
 - Dynamic programming
 
 Introduction to Algorithms by Thomas H Cormen, Charles E Leiserson, buncha others (third edition)
 
 #### Why study data structures and algorithms (DSA)?
-
-> "4.5 years of learning programming and working as fullstack software engineer ... had interview with one of the FAANG companies this summer in Hong Kong but failed it due to the fact that I suck in DSA (Data Structures & Algorithms)."
-
-> "I’m using to leetcode.com to learn data structures and algorithms since I got a rejection from FAANG after interviewing with them onsite."
 
 [Role of DSA in Programming (July, 2020)](https://blog.codechef.com/2020/07/24/the-role-of-data-structure-and-algorithms-in-programming/)
 
@@ -74,9 +69,88 @@ Introduction to Algorithms by Thomas H Cormen, Charles E Leiserson, buncha other
 
 ---
 
+### Arrays and Python Lists
+
+We can broadly define a **collection** as a group of things. A list (`CSList`) is a kind of collection with a few properties.
+1. Lists are ordered.
+2. Elements of a list can have various types.
+3. Lists are fully mutable and have no fixed length, thus insert, delete, replace/swap, and concatenate/append are all viable operations.
+
+In computer science, arrays are an implementation of a list with additional constraints, i.e.
+```python
+class CSArray(CSList):
+    ...
+```
+
+An **array** (`CSArray`) is an ordered collection of elements that each have an address called an index.
+- In some languages, arrays must contain elements of the same type. Q: Why? A: Memory is often pre-allocated for arrays.
+- Arrays often have a set size upon creation rather than being described just by a starting point (like linked lists and stacks).
+
+Q: What key factor differentiates arrays from lists? A: Arrays store a location for each element as a number. That number is called an index. 
+
+##### Ex. Pivot Index | [leetcode](https://leetcode.com/explore/learn/card/array-and-string/201/introduction-to-array/1147/):  
+You are given an integer array, `nums`, where the largest integer is unique. Determine whether the largest element in the array is at least twice as much as every other number in the array. If it is, return the index of the alrgest element. Otherwise, return `-1`.
+```python
+def dominant_idx(nums: list[int]) -> int:
+    if not nums:
+        return -1
+    max_val: int = max(nums)
+    max_val_idx: int = nums.index(max_val)
+    for i, num in enumerate(nums):
+        if i == max_val_idx:
+            continue
+        if max_val < num * 2:
+            return -1
+    return max_val_idx
+```
+
+##### Ex. Diagonal Traverse | [leetcode](https://leetcode.com/explore/learn/card/array-and-string/202/introduction-to-2d-array/1167/)
+
+Given an m by n matrix `mat`, return an array of all the elements of the array in the following diagonal order.
+
+<div align="center">
+  <img src="img/code-array-diagonal-traverse.png">
+</div>
+
+#### Python Lists
+
+```python
+class PyList(CSArray):
+    """Python lists""" ...
+```
+
+Inserting into a PyList is $O(n)$. Q: Why? → A Python list is really a CSArray. It has indices and inserting requires shifting up to $n$ values.
+
+Retrieving an alement from a PyList is $O(1)$, or "constant time". Q: Why? → It's indexed. A PyList is a CSArray.
+
+```python
+ell: PyList # Given ell
+>>> len(ell)
+n
+>>> import copy
+>>> ell.copy()      # O(n) -> Copying n elements
+>>> ell.append(...) # O(1) -> Doesn't require changing the other values
+```
+
+```python
+idx: int 
+item: Any
+>>> ell.insert(idx, item)  # O(n) -> Worst case, you have to shift n items
+>>> ell[idx]               # O(1) -> Retrieval
+>>> del ell[idx]           # O(n) -> Deleting changes up to n indices
+```
+Deleting an element changes all of the indices following that position. Thus, deletion can cause up to $n$ re-writes. 
+
+A for loop through `ell` is $O(n)$ because there are $n$ iterations.
+
+Slices
+1. Get
+2. Delete
+3. Set
+
+
 <!-- blurb on CSLists -->
 
-An array (`CSArray`) is an ordered collection of elements that each have an address called an index.
 
 ### Linked lists
 
@@ -133,13 +207,25 @@ class LinkedList:
     # ... methods
 ```
 
-Q: Using the above `LinkedList` and `Node` classes, create a linked list instance that describes `"a" → "b" → "c"`, where arrows represent the node pointers and "a".
+Q: Using the above `LinkedList` and `Node` classes, create a linked list instance that describes `"a" → "b" → "c"`, where arrows represent the node pointers and the letters represent values.
 
 ```python
 ll = LinkedList(head = Node('a', Node('b', Node('c'))))
 ```
 
-Insert an element at the beginning of a linked list.
+Q: Insert an element at the beginning of a linked list.
+
+
+#### Time complexity of insert and delete
+
+- Delete @ beginning of a linked list: $O(1)$.
+- Delete @ end: $O(n)$
+- Delete @ a given index: $O(n)$. At worst, you have to visit $n$ nodes. 
+- Insert @ beginning: $O(1)$.
+- Insert @ end: $O(n)$.
+- Insert @ idx: $O(n)$. 
+
+To traverse a linked list, you have to start from the head. Traversing has $O(n)$ time compelxity because there are $n$ references to go through.
 
 ### Stacks
 
@@ -152,6 +238,30 @@ The value and pointers of the elements aren't specified by a stack, meaning that
 You may see the notation L.I.F.O. associated with stacks. It stands for "Last In, First Out". The last element pushed is the first one popped.
 
 Python lists (PyList) have stack functionality built in with `PyList.pop()` and `PyList.append()`. 
+
+### Queues
+
+Queues are similar to stacks, except they are are "first in, first out" (FIFO). 
+
+Terminology:
+- enqueue(): Adding on to the end of the queue.
+- dequeue(): Removing an item from the front of the queue.
+
+Queues are used for breadth-first search, whereas stacks are used for depth-first search.
+
+
+## Searching and Sorting
+
+### Binary search
+
+Suppose you have an array sorted in numerical order. If you want to check whether a number, `search_value`, exists in the array, you could start at the front and check every element, and this could be $O(n)$ if the number is large and close to $O(1)$ if the number is small. 
+
+With binary search, you can take advantage of the fact the array is sorted. Compare the `search_value` with the middle element of the array. If `search_value` is bigger, you only need look at the half of the array with bigger values. You can keep bisecting the these subsections of that array and comparing with the middle element reduce the search space.
+
+
+Cloze: 
+- The main constraint for binary search is that the elements of the array need to be sorted. 
+- Binary search time complexity is $O(\log_2(n) + 1) \to O(\log_2(n))$. 
 
 ---
 
@@ -178,7 +288,7 @@ Python lists (PyList) have stack functionality built in with `PyList.pop()` and 
 
 ---
 
-### Reading and Writing Files
+#### Reading and Writing Files
 
 `open()` returns a file object.
 
@@ -217,6 +327,50 @@ Date: 21年6月
 
 ---
 
+#### Sort() and sorted()
+
+
+```python
+import dataclasses
+
+@dataclasses.dataclass
+class Student:
+    name: str
+    grade: str
+    age: int
+
+    def __repr__(self):
+        return repr((self.name, self.grade, self.age))
+
+students = [Student('John', 'A', 15),
+            Student('Jane', 'B', 12),
+            Student('Dave', 'B', 10),]
+```
+
+Q: Sort the students by age in ascending order.
+```python
+sorted(students, key = lambda student: student.age)
+```
+
+Q: Sort the students by age in descending order.
+```python
+sorted(students, key = lambda student: student.age, reverse=True)
+```
+
+Q: What is sorting stability? → **Stable** sorting algorithms maintain the relative order of records with equal keys, sorting repeated elements in the same order that they appear in the input.
+
+Cloze: 
+- Python sorts are guaranteed to be stable. 
+- Because of this, when multiple records have the same key, their original order is preserved.
+
+Q: Sort the students by descending grade and then ascending age.
+```python
+students = sorted(students, key=lambda s: s.age)
+students = sorted(students, key=lambda s: s.grade, reverse=True)
+```
+
+---
+
 ## Writing Tests 
 
 ---
@@ -242,7 +396,7 @@ See: https://docs.pytest.org/en/latest/how-to/capture-warnings.html#disabling-wa
 
 <!-- --------------------------------  -->
 
-### Abstract Base Classes
+#### Abstract Base Classes
 
 An abstract base class specifies the interface that a class should adhere to and acts as an agreement between different parts of a program.
 
@@ -277,7 +431,7 @@ class ChineseHelloWorld(HelloWorld):
 
 Attempting to create an instance of one of the concrete classes, "JapaneseHelloWorld" and "ChineseHelloWorld", without implementing the "hello" method would raise an error too.
 
-### Data classes
+#### Data classes
 
 Python's `dataclass` functionality allows you to write shorter code and initialize, print, compare, and order data much more easily. 
 
@@ -369,7 +523,7 @@ class Person:
 
 Reference: ArjanCodes. 2021. If you're not using Python DATA CLASSES yet, you should. 🚀 [[YouTube]](https://youtu.be/vRVVyl9uaZc)
 
-### Prefer composition over inheritance
+#### Prefer composition over inheritance
 
 Inheritance makes it difficult to duplicate functionality to different classes. 
 
