@@ -371,6 +371,121 @@ students = sorted(students, key=lambda s: s.grade, reverse=True)
 
 ---
 
+####
+
+Q: Return a binary representation of the given number.
+```python
+def int2binary(i: int) -> str:
+    ...
+```
+
+→
+```python
+def int2binary(i: int) -> str:
+    return bin(i)
+
+>>> int2binary(3)
+'0b11'
+```
+
+Q: A binary representation string has "0b" at the front. If you have an integer, `i`, and want its binary representation without the "0b", how can you return that efficiently?
+```python
+i: int
+>>> f"{i:b}"
+>>> format(i, "b")  # equivalent
+```
+See https://www.programiz.com/python-programming/methods/built-in/format
+
+Q: 
+```python
+def add_binary(a: str, b: str):
+    ...
+```
+Given two binary strings, `a` and `b`, return their sum as a binary string. As binary strings, `a` and `b` consist only of "0" and "1" characters.
+
+```python
+def add_binary(a: str, b: str) -> str:
+    a: int = int(a, base=2)
+    b: int = int(b, base=2)
+    return f"{a + b:b}"
+    # return format(a + b, "b") # equivalent 
+```
+
+Q: Return the index of the first occurence of 'needle' in 'haystack', or return -1 if 'needle' is not part of 'haystack'. Return 0 if 'needle' is an empty string.
+```python
+def find_needle(haystack: str, needle: str) -> int:
+    ...
+```
+
+```python
+def find_needle(haystack: str, needle: str) -> int:
+    if needle == "":
+        return 0
+    str_len: int = len(needle)
+    for i in range(len(haystack) - str_len + 1):
+        if haystack[i:i + str_len] == needle:
+            return i
+    return -1
+```
+
+Q: How do you combine an iterable of strings into one string in Python?
+A: Use `s.join(txt)`, where `s` is a string that specifies how to join and `txt` is the iterable of strings.
+
+Q: Return the strings combined into one.
+```python
+text = ['Stay', 'gold,', 'Ponyboy.']
+```
+```python
+>>> " ".join(text)
+'Stay gold, Ponyboy.'
+```
+
+Q: Implement a function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string.
+```python
+def longest_common_prefix(strs: List[str]) -> str:
+    ...
+```
+
+A:
+```python
+def longest_common_prefix(strs: List[str]) -> str:
+    member: str = strs[0]
+    common_prefix: List[str] = []
+    max_idx: int = min([len(s) for s in strs])
+    for i, char in enumerate(member):
+        if i == max_idx:
+            break
+        if all([char == s[i] for s in strs]):
+            common_prefix.append(char)
+        else:
+            break
+    if len(common_prefix) == 0:
+        return ""
+    else:
+        return "".join(common_prefix)
+```
+
+Q: Implement a function that reverses an array of strings in-place without creating another array.
+```python
+def reverse(strs: List[str]) -> None:
+    ...
+```
+A:
+```python
+def reverse(strs: List[str]) -> None:
+    stop_idx = len(strs) // 2
+    for i, s in enumerate(strs):
+        if i == stop_idx:
+            break
+        back_s = strs[-(i + 1)]
+        strs[i] = back_s
+        strs[-(i + 1)] = s
+```
+
+
+
+---
+
 ## Writing Tests 
 
 ---
