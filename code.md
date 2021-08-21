@@ -7,6 +7,9 @@
     - [Linked lists](#linked-lists)
     - [Stacks](#stacks)
     - [Queues](#queues)
+  - [Trees](#trees)
+    - [Binary Trees](#binary-trees)
+    - [Binary Search Tree (BST)](#binary-search-tree-bst)
   - [Searching and Sorting](#searching-and-sorting)
     - [Binary search](#binary-search)
 - [Python](#python)
@@ -249,6 +252,120 @@ Terminology:
 
 Queues are used for breadth-first search, whereas stacks are used for depth-first search.
 
+## Trees
+
+A tree is basically an extension of a linked list. A linked list has a head node that may have a pointer to the next node. The first element of a tree is called the **root**.
+
+Each element of a tree holds some data. The elements of a tree are often called **nodes**.
+
+Properties
+
+1. A tree must be connected. Starting from the root, there must be some path to reach every node in the tree. 
+2. There must not be any cycles. A cycle is present when there's a way to encounter the same node twice. 
+   - If A, B, and C are nodes of a tree, we can't have A → B, B → C, and C → A, for example.
+
+Terminology:
+
+1. Edges, path: The connections between nodes are called **edges**. A group of edges is called a **path**.
+2. The nodes at the end, or bottom, of a tree are called **leaves**, or **external nodes**.
+3. Level and depth: The **level** of a node, `level: int = connections_to_root + 1`, where `connections_to_root` is the number of pointers between the given node and the root of the tree. Thus, the root is level one and nodes immediately connected to it are on level two.
+   - **Depth** of a node: Number of edges between a node and the root of the tree. Thus, `level = depth + 1`.
+4. Nodes in a tree have their pointer(s) described in terms of a parent-child relationship. If nodes $N_1$ and $N_2$ are such that $N_1 → N_2$, then we say $N_1$ is the **parent** and $N_2$ is the **child**. 
+   - A node in the body of the tree can be both a parent and a child. It just depends what it points to. The root is only a parent. 
+   - Each child can only have one parent. Why? Having two would violate the cycle property.
+   - If a parent node has multiple children, those children are considered **siblings**.
+   - A node at a lower level than another is called a **descendant**. A node at a higher level than another is called an **ancestor**.
+5. **Height** of a node: Number of edges between a node and the deepest leaf that's connected to the node. A leaf has height 0.
+   - The **height of a tree** is the height of its root node. The height of a tree is also equivalent to the maximum depth of the nodes in the tree.
+
+Cloze:
+<div align="center">
+  <img src="img/tree-terminology-udacity.png">
+  <!-- ![](img/tree-terminology-udacity.png) -->
+</div>
+- Level of D? 3
+- Height of B? 2
+- Depth of F? 3
+Node B: height 2
+Node D: height 0, depth 2, 
+Node E: height 1
+Node F: height 0, depth 3, 
+
+#### Tree Traversal
+
+There are two main approaches to tree traversal: Depth first search (DFS) and breadth first search (BFS)
+
+The idea behind DFS is to prioritize traversing child nodes. 
+
+In BFS, each node of a level is traversed recurrently before visiting children in the next level. 
+
+**Level order traversal** is an example of a breadth first search. It's described as follows:
+ 
+#### Depth-First Traversals
+
+##### 1. Pre-Order Traversal
+
+In pre-order traversal, you count a node as traversed a node as soon as you reach it before traversing further. Keep in mind that other methods may involve counting a node as traversed only *after* you've traversed all of its children.  
+
+Pre-Order Traversal Algorithm
+1. Start at the root and immediately check it off as seen.
+2. Pick one of the root's children, normally the left child by convention, and check it off too.
+3. Continue traversing down the left children and checking them off until you hit a leaf.
+4. Check off the leaf, `leaf0`, and go back to its parent. Now, traverse to the sibling just to the right of `leaf0` and check it off too (if it exists).
+5. Continue this pattern (step 3 and 4)  of prioritizing left children in the traversal until "go back its parent" leads leads you to the root.
+6. Pick the next child of the root and repeat this pattern of left child prioritization.
+
+<div align="center">
+   <img height="300" src="img/tree-diagram-example.png">
+</div>
+
+This algorithm would give the following traversal on the above example:  
+A, B, E, F, I, C, G, H, J, D
+
+##### 2. In-Order Traversal
+
+In-order traversal is another type of depth-first search. Because of this, we still need to explore all of the children first, so we'll visit the nodes in the same path as in pre-order traversal, however we'll now *check off* the nodes in a different order. We only check off a node once we've seen its left child and come back to the parent. 
+
+<div align="center">
+   <img height="300" src="img/tree-diagram-example.png">
+</div>
+
+In-order traversal on the tree above:  
+E, B, I, F, , G
+
+TODO: Don't really understand this
+
+##### 3. Post-Order Traversal
+
+<div align="center">
+  <img height="260" src="img/tree-terminology-udacity.png">
+  <!-- ![](img/tree-terminology-udacity.png) -->
+</div>
+
+Traversal: D, F, E, B, C, A
+
+<div align="center">
+   <img height="300" src="img/tree-diagram-example.png">
+</div>
+
+Post-order traversal on the tree above:  
+E, I, F, B, G, J, H, C, D, A
+
+### Binary Trees
+
+Binary trees are trees with nodes that can have at most two children. 
+
+
+Binary trees don't have any order by which we can search or sort. Consequently, there's no trick to searching for an element faster than linear time. **Searching for an element/node** in a binary tree is an $O(n)$ operation, where $n$ is the number of nodes in the tree.
+
+Operations to implement: 
+- Search
+- Insert
+- Delete
+
+### Binary Search Tree (BST)
+
+---
 
 ## Searching and Sorting
 
@@ -261,7 +378,9 @@ With binary search, you can take advantage of the fact the array is sorted. Comp
 
 Cloze: 
 - The main constraint for binary search is that the elements of the array need to be sorted. 
-- Binary search time complexity is $O(\log_2(n) + 1) \to O(\log_2(n))$. 
+- Binary search time complexity is $O(\log_2(n) + 1) \to O(\log_2(n))$, where $n$ is the array length.
+
+
 
 ---
 
