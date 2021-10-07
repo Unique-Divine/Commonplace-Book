@@ -1310,42 +1310,26 @@ Front matter is super powerful in its utility.
 #### Shortcodes - [(video)](https://youtu.be/2xkNJL4gJ9E?list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3 ) 
 
 -   Shortcodes are predefined chunks of HTML that you can insert into your markdown files.
-
 -   Let's say you have a md file that you want to spice up by adding in some custom HTML. For instance, maybe you'd like to embed a YouTube video. Normally this would require lots of HTML that you'd have to paste it. Shortcodes can allow you to sidestep this. Hugo comes with a YouTube video shortcode predefined.
-
 -   General shortcode syntax `< shortcode_name param0 >`
-
 -   Youtube shortcode \| For a YouTube video with url, `youtube.com/watch?v=random-text\`, the shortcode we'd use to embed would be `< youtube random-text >` because "random-text" is the id of the youtube video and the only parameter for that shortcode.
 
 #### Taxonomies - [(video)](https://youtu.be/pCPCQgqC8RA?list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3 )
 
--   Taxonomies in hugo are basically ways that you can logically group
-    different pieces of content together in order to organize it in a
-    more efficient way.
-
+-   Taxonomies in hugo are basically ways that you can logically group different pieces of content together in order to organize it in a more efficient way.
 -   Hugo provids 2 defualt taxonomies: tags & categories
-
--   All taxonomy information is declared in front matter. In YAML, tags
-    has the syntax `tags: ["tag0", "tag1", \ldots]`
+-   All taxonomy information is declared in front matter. In YAML, tags has the syntax `tags: ["tag0", "tag1", \ldots]`
 
 #### Templates - [(video)](https://youtu.be/gnJbPO-GFIw)
 
--   Templates here mostly refers to HTML templates. If you're not
-    comfortable writing HTML, CSS, and coding for the web, templates
-    might be a little bit above your head.
-
+-   Templates here mostly refers to HTML templates. If you're not comfortable writing HTML, CSS, and coding for the web, templates might be a little bit above your head.
 -   A hugo theme is actually made up of hugo templates.
-
--   Any template that you use in Hugo is going to be inside
-    `themes/theme-name/layouts`. This is where all the templates live.
-
--   ` /layouts/default` usually contains a default style for list and
-    single pages by use of `list.html` and `single.html`.
+-   Any template that you use in Hugo is going to be inside `themes/theme-name/layouts`. This is where all the templates live.
+-   ` /layouts/default` usually contains a default style for list and single pages by use of `list.html` and `single.html`.
 
 #### List Templates - [(video)](https://youtu.be/8b2YTSMdMps)
 
 -   List templates give default HTML layout to list content files.
-
 -   .
 
 #### Resources 
@@ -1518,9 +1502,12 @@ other branch into master. Since the commit history from the branch will
 have been saved to master, the new branch could be deleted without loss
 of information (if you no longer wanted to work on this branch).
 
-View branches:  `git branch`
+- **View all local branches**:  `git branch`
 
-Switch branches:  `git checkout [branch-name]`
+- **Switch branches**:  `git checkout [branch-name]`
+
+- **Grab a file from a specific branch**: ```git checkout [branch_name] [paths]```. Note that if the files are on a remote branch, you'll have to use  
+`git checkout origin/[branch_name] [paths]` instead.
 
 #### Merging
 
@@ -1586,6 +1573,20 @@ accidentally uploaded a textbook that takes up almost a GB of space.
 `git filter-branch --force --index-filter "git rm --cached --ignore-unmatch PathToSensitiveFile" --prune-empty --tag-name-filter cat -- --all`
 
 All you need to change is the `PathToSensitiveFile` item. Once you've used this command for all of the files you'd like to get rid of, update the origin by typing `git push origin --force --all`.
+
+#### How to merge a specific commit from another branch?
+
+Ex.: `git cherry-pick [commit-codename]`
+
+#### Making a small edit to the most recent commit 
+
+`git commit --amend`
+
+This allows you to combine staged changes with the previous commit without writing a new commit. It simply edits the previous one in-place.
+
+To amend with an updated commit message: `git commit --amend -m "updated message"`
+
+To amend without changing the commit message: `git commit --amend --no-edit`
 
 #### Large File Storage
 
