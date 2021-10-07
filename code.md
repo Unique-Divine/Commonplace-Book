@@ -407,7 +407,7 @@ Cloze:
 
 ---
 
-#### Reading and Writing Files
+### Reading and Writing Files
 
 `open()` returns a file object.
 
@@ -443,6 +443,14 @@ file.closed
 Date: 21年6月
 
 <!-- -------------------------------- -->
+
+---
+
+### Functools
+
+Python's [functools](https://docs.python.org/3/library/functools.html#module-functools) module is used for higher-order functions and operations on callable objects. It's a part of the standard library 
+
+Date: 21年8月
 
 ---
 
