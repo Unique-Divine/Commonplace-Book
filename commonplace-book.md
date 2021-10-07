@@ -201,17 +201,13 @@ Your priorities are set by a hierarchy of levels or perspective. From top down, 
 
 Review is a key component of GTD, to the point that **if you do not do it effectively, you are probably not following the methodology the right way**. It is a time we spend to ensure that we are always working on what is actually important, a way to be proactive and take control.
 
-**Get clear**: The first phase of review is to do clean-up, collecting everything and
-processing it. The result should be that everything is in the GTD system
-and the Inbox is empty. Clarify and assign dates to tasks.
+**Get clear**: The first phase of review is to do clean-up, collecting everything and processing it. The result should be that everything is in the GTD system and the Inbox is empty. Clarify and assign dates to tasks.
 
-**Get current**: The second stage is to keep your system up to date. This is **absolutely
-necessary for you to fully trust your system**. Review the:
+**Get current**: The second stage is to keep your system up to date. This is **absolutely necessary for you to fully trust your system**. Review the:
 -   **Inbox, past, and upcoming events** | Is there aything pending? Confirm that everything is done or update deadlines if necessary.
 -   **Projects** \| Evaluate the status of each project. Review the support material and add new actions if necessary. Make sure there is a next action for each active project.
 
-**Get creative**: You have everything under control. Now it is time to dig up old
-longings, to imagine, to dream, and to invent.
+**Get creative**: You have everything under control. Now it is time to dig up old longings, to imagine, to dream, and to invent.
 
 - **Someday/Maybe list** \| Is it time to activate a project that was put off or abandoned? Are there things that no longer make sense?
 - **Imagine** \| What are your big picture ambitions? How can you improve? What new ideas should you add to the system?
@@ -225,46 +221,20 @@ longings, to imagine, to dream, and to invent.
 
 Structured Resources:
 
-- [Deep Learning Book](http://www.deeplearningbook.org/)
+- [Deep Learning Book](http://www.deeplearningbook.org/): Good reference book for deep learning concepts. Too theoretical to be read cover to cover.
 -   [sentdex's PyTorch |Tutorial](https://www.youtube.com/results?search_query=sentdex+pytorch+pt.+3)
--   [freeCodeCamp | Tutorial](https://youtu.be/GIsg-ZUy0MY)
-    -   (0:00:00) Introduction
-    -   (0:03:25) PyTorch Basics & Linear Regression
-    -   (1:32:15) Image Classification with Logistic Regression
-    -   (3:06:59) Training Deep Neural Networks on a GPU with PyTorch
-    -   (4:44:51) Image Classification using Convolutional Neural
-        Networks
-    -   (6:35:11) Residual Networks, Data Augmentation and
-        Regularization
-    -   (8:12:08) Training Generative Adverserial Networks (GANs)
+-   [freeCodeCamp | Tutorial](https://youtu.be/GIsg-ZUy0MY) | PyTorch Basics & Linear Regression | Image Classification with Logistic Regression | Training Deep Neural Networks on a GPU with PyTorch | Image Classification using Convolutional Neural Networks | Residual Networks, Data Augmentation and Regularization | Training Generative Adverserial Networks (GANs)
 -   [Intro to PyTorch | Tutorial](https://youtu.be/pWrwyOsho5A)
 -   [MIT Deep Learning | Course](http://introtodeeplearning.com/)
 -   [MIT Deep Learning and AI | Lectures](https://deeplearning.mit.edu/)
 
-##### 2.1.3.1.1. Keywords: 
+##### 2.1.3.1.1. Keywords:     <!-- omit in toc -->
 
 Backpropagation, Hyperparameter, Feed-forward neural nets, Convolutional
 neural nets, Regularization
 
-#### 2.1.3.2. Meta Project: 
 
-There's a list of tasks below. You can mix up the steps and bounce
-between tutorials or start working on the project before you've finished
-everything else, that's completely fine. The same goes for the reading.
-As long as everything gets done, consider this mini project a success.
-
--   Read through some of the deep learning book.
--   Learn from sentdex's tutorial
--   Complete a small project with PyTorch. Write it as a tutorial and share it with a few people.
-- [freeCodeCamp | Tutorial](https://youtu.be/GIsg-ZUy0MY)
-- Gain high-level understanding of the keywords, enough that you could explain these concepts off the top of your head. Understand how they work and their significance.
-- [Intro to PyTorch | Tutorial](https://youtu.be/pWrwyOsho5A)
-
-##### 2.1.3.2.1. Libraries | PyTorch 
-
-ignite, fastai, skorch
-
-#### 2.1.3.3. Blogging
+#### 2.1.3.2. Blogging
 
 ---
 
@@ -292,7 +262,7 @@ this video.
 4.  **Action items**: Write down some principles you want to put into action after reading every book, especially if it's a productivity book or a book about a specific skill. Aun recommends drafting 5-10 principles up with each book that fits this description.
 6.  **Review**: Review sessions. Derived from *The 7 Habits of Highly Effective People*: Sharpening the saw. Review your notes rigorously. Aun does this every single week and schedules in time to do so. This can be as simple as transferring notes from a notebook to the computer. Schedule at least an hour every single week to review your notes.
 
-Having a structured reading routine and structured notetaking strategy is of paramount importance for effective learning. This is key to getting the most out of what you read.
+Having a structured reading routine and structured notetaking strategy is critical for effective learning. This is key to getting the most out of what you read.
 
 How many times have you read something, got to the end of the page, and forgot what you just read? And you go back and you reread it, and you still don't know what you read? That's a big problem because you're wasting your most valuable asset: your time. 
 
@@ -304,11 +274,11 @@ A simple notetaking method for maximizing retention and expansion of knowledge:
 1. **Capture and create**: Split a page in half. On one side, take notes and on the other make notes. One side for capturing and one side for creating. 
 2. What are you creating? What goes on this side? Write down your impressions about what you're capturing. If you get distracted, it's better that you get distracted using your imagination on the "create" side of the page because this will both speed up your learning process and make things stick. 
 3. And what are the main questions you should try to answer in the create section?
-   1. **How** → How can I use this? Make the things that are going to yield the highest return as simple and easy to understand as you can. 
-   2. **Why** → Why must I use this? Who's counting on you to win today? Some people are willing to do much more for other people than they'll do for themselves. Who's counting on you to be at your best? You need to find your motivation in your reading so that you can complete the task and remember key information. 
+   1. **How** can I use this? → Make the things that are going to yield the highest return as simple and easy to understand as you can. 
+   2. **Why** must I use this? → Who's counting on you to win today? Some people are willing to do much more for other people than they'll do for themselves. Who's counting on you to be at your best? You need to find your motivation in your reading so that you can complete the task and remember key information. 
    > "If it's not a must, you're not going to do it because you have plenty other things to do." - Jim Kwik. 
    > "Reasons reap results."- Jim Kwik. 
-   3. **When** → When will I use this? The calendar is one of the strongest productivity tools you have. Many say they want to work out or worry about self care and self love. You may know lots of actionable information, but how does your calendar reflect that? 
+   3. **When** will I use this? → The calendar is one of the strongest productivity tools you have. Many say they want to work out or worry about self care and self love. You may know lots of actionable information, but how does your calendar reflect that? 
 
 > "If you're not going to use what you're learning [from reading], you're no better off than someone who can't read at all." - Jim Kwik. 
 
