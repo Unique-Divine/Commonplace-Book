@@ -498,7 +498,7 @@ students = sorted(students, key=lambda s: s.grade, reverse=True)
 
 ---
 
-####
+#### Binary and other bases
 
 Q: Return a binary representation of the given number.
 ```python
@@ -537,6 +537,8 @@ def add_binary(a: str, b: str) -> str:
     return f"{a + b:b}"
     # return format(a + b, "b") # equivalent 
 ```
+
+---
 
 Q: Return the index of the first occurence of 'needle' in 'haystack', or return -1 if 'needle' is not part of 'haystack'. Return 0 if 'needle' is an empty string.
 ```python
@@ -627,6 +629,45 @@ To ignore pytest warnings at the command line:
 
 See: https://docs.pytest.org/en/latest/how-to/capture-warnings.html#disabling-warnings-summary
 
+### Pytest Mock
+
+The standard solution to creating mock objects in python is the [`unittest.mock` library](https://docs.python.org/3/library/unittest.mock.html). This section goes over how to create mocks in pytest with [pytest-mock](https://github.com/pytest-dev/pytest-mock) 
+
+
+<!-- -------------------------------- -->
+
+---
+
+## Working with Databases
+
+---
+
+<!-- --------------------------------  -->
+
+### MongoDB (pymongo)
+
+
+Pymongo assumes MongoDB is installed and running on the default host and 
+port. If this is not the case, go to: https://docs.mongodb.com/manual/installation/ . 
+
+You'll notice there are two installation types to choose from: community and enterprise edition. According to [a thread on the mongodb forums](https://www.mongodb.com/community/forums/t/difference-between-enterprise-and-community-server-and-will-they-conflict-if-both-are-installed/76695), 
+> "Core server features for developers are generally the same, but a MongoDB Enterprise subscription includes additional operational and management features, a commercial license (warranty & idemnification), as well as access to proactice support and on-demand training.   
+
+In my case, I only needed the community edition. 
+
+There are two main steps for this installation.
+1. Install MondoDB Server: [[installation instructions (Windows)]](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
+2. Install MongoDB Shell (mongosh): [[installation instructions]](https://docs.mongodb.com/mongodb-shell/install/)
+
+The installation instructions for Community Edition are toward the bottom of the page (at the above link) where it says "Procedure". You're finished with step 1 when you can start MongoDB with  
+`"C:\Program Files\MongoDB\Server\5.0\bin\mongod.exe" --dbpath="c:\data\db"`
+
+
+3. Connect to a MongoDB deployment using the mongosh [[docs]](https://docs.mongodb.com/mongodb-shell/connect/#std-label-mdb-shell-connect). 
+
+[Continue from here](https://docs.mongodb.com/mongodb-shell/connect/#std-label-mdb-shell-connect)
+
+[Pymongo tutorial](https://pymongo.readthedocs.io/en/stable/tutorial.html)
 
 <!-- -------------------------------- -->
 
@@ -791,6 +832,15 @@ Reference: ArjanCodes. Why COMPOSITION is better than INHERITANCE - detailed Pyt
 ---
 
 ## Miscellaneous
+
+#### Google Code Styling with YAPF
+
+Insall YAPF via pip: `pip install yapf`
+
+To see usage instructions: `yapf --help`
+
+
+
 
 #### ML Finance Project
 
