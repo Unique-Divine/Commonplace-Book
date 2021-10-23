@@ -451,6 +451,29 @@ Date: 21年6月
 
 ---
 
+### HTTP Requests
+
+`pip install requests`
+
+[Hypertext Transfer Protocol (HTTP)](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) is a request-response protocol commonly used for sending data through web browsers.
+
+#### GET 
+
+The GET request is for retrieving data without altering its state. 
+
+```python
+url: str
+response: requests.Response = requests.get(url)
+```
+
+#### POST 
+
+POST 
+
+The two simplest kinds of 
+
+---
+
 ### Functools
 
 Python's [functools](https://docs.python.org/3/library/functools.html#module-functools) module is used for higher-order functions and operations on callable objects. It's a part of the standard library 
