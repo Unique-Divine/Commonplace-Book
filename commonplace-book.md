@@ -258,19 +258,22 @@ this video.
 2.  **Question everything**: Have a question in mind before you start. In general, ask lots of questions and look into them.
 3.  **Resonance**: Whilst you read, highlight and write down any ideas that resonate with you. Anything that keeps you engaged and active in the reading process is a plus. 
     - Pro tip: Make sure to read the full page/section before you highlight or take any notes. This helps prevent you from highlighting everything instead of prioritizing the important bits.
-    - Some people don't like that notetaking breaks their flow. If you find this happening, take notes after full chapters. You might find that this helps with retention because it requires extra efforts for active recall. Try writing a summary at the close of a chapter.
+    - Some people don't like that notetaking breaks their flow. If you find this happening, take notes after full chapters. You might find that this helps with retention because it requires extra effort for active recall. Try writing a summary at the close of a chapter.
 4.  **Action items**: Write down some principles you want to put into action after reading every book, especially if it's a productivity book or a book about a specific skill. Aun recommends drafting 5-10 principles up with each book that fits this description.
-6.  **Review**: Review sessions. Derived from *The 7 Habits of Highly Effective People*: Sharpening the saw. Review your notes rigorously. Aun does this every single week and schedules in time to do so. This can be as simple as transferring notes from a notebook to the computer. Schedule at least an hour every single week to review your notes.
+5.  **Review**: Review sessions. Derived from *The 7 Habits of Highly Effective People*: Sharpening the saw. Review your notes rigorously. Aun does this every single week and schedules in time to do so. This can be as simple as transferring notes from a notebook to the computer. Schedule at least an hour every single week to review your notes.
 
 Having a structured reading routine and structured notetaking strategy is critical for effective learning. This is key to getting the most out of what you read.
 
 How many times have you read something, got to the end of the page, and forgot what you just read? And you go back and you reread it, and you still don't know what you read? That's a big problem because you're wasting your most valuable asset: your time. 
 
-> "The key to reading comprehension is asking more questions... Questions are the answer." 
+#### Questions are the answer. <!-- omti in toc -->
+
+A simple notetaking method for maximizing retention and expansion of knowledge:
 
 Never just pick up a book and read it. Never just listen to a podcast. You must go into a state where you're going to be more receptive. 
 
-A simple notetaking method for maximizing retention and expansion of knowledge:
+> "The key to reading comprehension is asking more questions... Questions are the answer." -Jim Kwik.
+
 1. **Capture and create**: Split a page in half. On one side, take notes and on the other make notes. One side for capturing and one side for creating. 
 2. What are you creating? What goes on this side? Write down your impressions about what you're capturing. If you get distracted, it's better that you get distracted using your imagination on the "create" side of the page because this will both speed up your learning process and make things stick. 
 3. And what are the main questions you should try to answer in the create section?
@@ -299,6 +302,8 @@ Date: 21年5月23日
 
 - Bill Gates takes notes in the margins of books.
 - Maintenance rehearsal versus elaborative rehearsal $\to$ You want elaborative rehearsal with your reading, new pieces of information hooking into old memories. Taking notes in the margin will help you do this.
+
+Article: [Maintenance and Elaborative Rehearsal](https://sites.psu.edu/intropsychf19grp5/2019/10/15/maintenance-and-elaborative-rehearsal/). 2019.
 
 ####  2.2.2.2. Get the Most Out of Your Books - Be an Active Reader. 
 
@@ -474,31 +479,17 @@ clean, distraction-free, and yours.
 
 #### 2.4.1.4. Mindset
 
--   Don't frame things as "I have to" but rather as "I get to". I get to
-    learn. I get to work with these people.
-
--   Silence the noise. Only focus on the task at hand, what you have to
-    do right now.
-
--   How to Stop Worrying and Start Living by Dale Carnegie (book):
-    "Live in day-tight compartments." Only focus on the thing you're
-    going to complete today. Don't worry about what you have to do
-    later. Remember, don't count the costs.
-
+-   Don't frame things as "I have to" but rather as "I get to". I get to learn. I get to work with these people.
+-   Silence the noise. Only focus on the task at hand, what you have to do right now.
+-   How to Stop Worrying and Start Living by Dale Carnegie (book): "Live in day-tight compartments." Only focus on the thing you're going to complete today. Don't worry about what you have to do later. Remember, don't count the costs.
 -   Formulate a specific study plan for the day that is specific.
 
 #### 2.4.1.5. Increasing developer productivity 
 
 1.  Be less random. Try to add structure to your day.
-
-2.  Stop wasting time: Cut down use of social media, analytics, etc.
-    Turn off notifications for things.
-
-3.  Have well-planned project structure: Create a template/framework for
-    your projects and chunk work into small tasks.
-
-4.  Use project management tools rather than email. Use your external
-    brain rather than keeping stuff in your head.
+2.  Stop wasting time: Cut down use of social media, analytics, etc. Turn off notifications for things.
+3.  Have well-planned project structure: Create a template/framework for your projects and chunk work into small tasks.
+4.  Use project management tools rather than email. Use your external brain rather than keeping stuff in your head.
 5.  Code faster by doing the following:
     -  Use snippets, keyboard shortcuts, vim, etc.
     -  Find tools that speed up tasks.
