@@ -766,7 +766,7 @@ class ChineseHelloWorld(HelloWorld):
 
 Attempting to create an instance of one of the concrete classes, "JapaneseHelloWorld" and "ChineseHelloWorld", without implementing the "hello" method would raise an error too.
 
-#### Data classes
+### Data classes
 
 Python's `dataclass` functionality allows you to write shorter code and initialize, print, compare, and order data much more easily. 
 
@@ -858,7 +858,7 @@ class Person:
 
 Reference: ArjanCodes. 2021. If you're not using Python DATA CLASSES yet, you should. 🚀 [[YouTube]](https://youtu.be/vRVVyl9uaZc)
 
-#### Prefer composition over inheritance
+### Prefer composition over inheritance
 
 Inheritance makes it difficult to duplicate functionality to different classes. 
 
@@ -880,6 +880,12 @@ class FFNN(ABC):
 
 
 Reference: ArjanCodes. Why COMPOSITION is better than INHERITANCE - detailed Python example. 2021. [[YouTube]](https://youtu.be/0mcP8ZpUR38)
+
+### `NamedTuple` and `TypedDict`
+
+
+
+
 
 ---
 
@@ -1635,6 +1641,12 @@ To amend with an updated commit message: `git commit --amend -m "updated message
 
 To amend without changing the commit message: `git commit --amend --no-edit`
 
+#### Commit part of a file rather than all of its changes
+
+git add --patch [file-name]
+
+Ref: https://stackoverflow.com/a/1085191
+
 #### Large File Storage
 
 See https://git-lfs.github.com
@@ -1727,4 +1739,3 @@ GOF patterns (C++). Then, potentially Head First Design Patterns (Java)/
 #### References & Further Reading
 
 [Introduction to Design Patterns Course](https://www.gofpatterns.com/design-patterns/module1/intro-design-patterns.php)
-
