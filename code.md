@@ -15,12 +15,16 @@
 - [Python](#python)
   - [Standard Libarry](#standard-libarry)
     - [Reading and Writing Files](#reading-and-writing-files)
+    - [HTTP Requests](#http-requests)
     - [Functools](#functools)
   - [Writing Tests](#writing-tests)
     - [Pytest Mock](#pytest-mock)
   - [Working with Databases](#working-with-databases)
     - [MongoDB (pymongo)](#mongodb-pymongo)
   - [Object-Oriented Programming (OOP)](#object-oriented-programming-oop)
+    - [Data classes](#data-classes)
+    - [Prefer composition over inheritance](#prefer-composition-over-inheritance)
+    - [`NamedTuple` and `TypedDict`](#namedtuple-and-typeddict)
   - [Miscellaneous](#miscellaneous)
 - [Databases, SQL, DBMS](#databases-sql-dbms)
   - [Database Crash Course](#database-crash-course)
@@ -695,7 +699,27 @@ The installation instructions for Community Edition are toward the bottom of the
 
 [Continue from here](https://docs.mongodb.com/mongodb-shell/connect/#std-label-mdb-shell-connect)
 
-[Pymongo tutorial](https://pymongo.readthedocs.io/en/stable/tutorial.html)
+At this point you should be able to type `mongosh` at the prompt and see the MongoDB Shell run. However, the commands `mongo`, `mongod`, and `mongos` won't run on Windows. To enable these commands, you need to add shortcuts to each command's corresponding executable to the system's environment variables.
+1. Hit the Windows key, then type environment variables and hit enter. Alternatively, open the Control Panel and select "Edit the system environment variables".
+2. Under the "Advanced" tab, select `Environment Variables`.
+3. Under "System Variables", select `New`.
+4. Add each command's name to one field its executable path to the other field. For me, `mongo`'s executable was at  
+    ```
+    "C:\Program Files\MongoDB\Server\5.0\bin\mongo.exe"
+    ```
+    The other two executables were in the same directory.
+
+Now, `mongo` and `mongod` work, but what do they do?
+
+`mongo`: Opens the Mongo Shell, an interactive command line interface that uses JavaScript and a related API to interact with the MongoDB client.  Mongo shell is the default client for the MongoDB database server. 
+- Used for data manipulation
+- Used for management of database instances
+
+`mongod`: Manages all of the MongoDB server tasks. `mongod` is a background process used by MongoDB. It's short for "Mongo Daemon".
+
+#### References MongoDB:
+- Jayatilake, Navindu. 2019. How to get started with MongoDB in 10 minutes. [[article]](https://www.freecodecamp.org/news/learn-mongodb-a4ce205e7739/)
+- [Pymongo tutorial](https://pymongo.readthedocs.io/en/stable/tutorial.html)
 
 <!-- -------------------------------- -->
 
