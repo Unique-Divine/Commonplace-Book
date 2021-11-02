@@ -550,5 +550,12 @@ I can appreciate the beauty of a flower. At the same time, I see much more about
 
 > "You have to be odd to be number one" - Dr. Seuss
 
+> Law of conservation of energy: Addiction can't be removed—only replaced
+
+> "Do not ask whether a statement is true until you know what it means."
+
+> "The essential American soul is hard, isolate, stoic, and a killer.  It has never yet melted."
+
+
 --- 
 
