@@ -1575,6 +1575,7 @@ Delete local branch
 Delete remote branch
 `git push origin --delete [branch-name]`
 
+
 ---
 
 #### Git flow
@@ -1650,6 +1651,25 @@ Ref: https://stackoverflow.com/a/1085191
 #### Large File Storage
 
 See https://git-lfs.github.com
+
+#### When the .gitignore just won't ignore
+
+```
+git rm -rf --cached .
+git add .
+```
+
+If you already have unstaged changes, you must run the following after editing the ignore patterns.
+```
+git update-index --skip-worktree <file-list>
+```
+
+You can reverse this with:
+```
+git update-index --no-skip-worktree <file-list>
+```
+
+
 
 ##### References:
 - A successful Git branching model. [[web]](https://nvie.com/posts/a-successful-git-branching-model/)
