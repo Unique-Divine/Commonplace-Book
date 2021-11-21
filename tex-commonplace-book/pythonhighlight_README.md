@@ -1,5 +1,4 @@
-Python highlighting in LaTeX
-============================
+### Python highlighting in LaTeX
 
 A simple Python highlighting style to be used with LaTeX.
 

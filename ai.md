@@ -21,13 +21,6 @@
     - [Deep Learning for Genomic Prediction](#deep-learning-for-genomic-prediction)
     - [Computational Genomics (course, Rob Edwards)](#computational-genomics-course-rob-edwards)
 
-{% page-ref page="transformers.md" %}
-
-{% page-ref page="deep-reinforcement-learning.md" %}
-
-{% page-ref page="generative-adversarial-networks.md" %}
-
-{% page-ref page="bioinformatics.md" %}
 
 <!-- ------------------------------------------------------------------ -->
 <!-- ------------------------------------------------------------------ -->

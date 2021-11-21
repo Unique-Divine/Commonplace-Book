@@ -1,7 +1,10 @@
 # Unique Divine Commonplace book
 
-
 This repo holds both my commonplace book and some of the notes I've been taking for different independent learning projects this year (late 2020 up to now). Friends and colleagues have found these resources useful enough to convince me to make them public. All references can be found in the respective bibliography sections at the end of both files. 
+
+{% page-ref page="ai.md" %}
+
+{% page-ref page="code.md" %}
 
 
 1. Artificial Intelligence & Deep Learning
