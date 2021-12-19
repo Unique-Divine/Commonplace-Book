@@ -474,7 +474,7 @@ Physics
 
 > "We should not only use all the brains we have but all that we can borrow." - Woodrow Wilson
 
-> "This contest, Brian is biggest competitor because this year we are very close. I must look what he do, but still I looking what I do and if I be better than me, I will be winner. " - Žydrūnas Savickas [\[video\]](https://youtu.be/gAVZU94zLkU?t=3875)
+> "This contest, Brian is biggest competitor because this year we are very close. I must look what he do, but still I looking what I do and if I be better than me, I will be winner. " - Žydrūnas Savickas [[video]](https://youtu.be/gAVZU94zLkU?t=3875)
 
 > "Nothing else matters except sitting down everyday and trying. Why is this so important? Because when we sit down day after day and keep grinding, something mysterious starts to happen. A process is set into motion by which, inevitably and infallibly, heaven comes to our aid." - Steven Pressfield, The War of Art
 
