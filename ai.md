@@ -212,14 +212,14 @@ Neural Machine Translation by Jointly Learning to Align and Translate. Badhanau,
 
 Transformers
 
-* Attention is All You Need. Vaswani et al. 2017. [\[paper\]](https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
-* Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. (2018). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv preprint arXiv:1810.04805. [\[paper\]](https://arxiv.org/pdf/1810.04805.pdf)
+* Attention is All You Need. Vaswani et al. 2017. [[paper]](https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
+* Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. (2018). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv preprint arXiv:1810.04805. [[paper]](https://arxiv.org/pdf/1810.04805.pdf)
 * Adalogou, Nikolas. (2021). Transformers in Computer Vision. AI Summer. [\[github-repo\]](https://github.com/The-AI-Summer/self-attention-cv)
 
 Input Embeddings
 
-* Alammar, Jay. (2019). The Illustrated Word 2 Vec. [\[blog\]](https://jalammar.github.io/illustrated-word2vec/)
-* Tsu. (2020). [\[Artificial Intelligence Stack Exchange\]](https://ai.stackexchange.com/questions/22957/how-can-transformers-handle-arbitrary-length-input)
+* Alammar, Jay. (2019). The Illustrated Word 2 Vec. [[blog]](https://jalammar.github.io/illustrated-word2vec/)
+* Tsu. (2020). [[Artificial Intelligence Stack Exchange]](https://ai.stackexchange.com/questions/22957/how-can-transformers-handle-arbitrary-length-input)
 
 Sequence Transduction Models
 
@@ -240,7 +240,7 @@ BERT: pre-Training of Deep Bidirectional Transformers for Language Understanding
 
 * Tags: transfer learning, pre-training, Transformer, NLP, masked language model, bidirectional
 * Affiliations: Google AI Language
-* [\[paper\]](https://arxiv.org/pdf/1810.04805.pdf)
+* [[paper]](https://arxiv.org/pdf/1810.04805.pdf)
 
 BERT does not include a Transformer decoder.
 
@@ -459,26 +459,26 @@ One of the driving forces behind DRL is the vision of creating systems that are 
 
 Goal: Learn a distribution of action probabilities where each probability reflects how likely an action is to yield high rewards. Naturally, actions that lead to lower rewards have lower probabilites. Train in this manner until an optimal policy is reached.
 
-Policy gradient methods produce **stochastic policy**, $\pi\_w$, which outputs a probability distribution. This policy is described as being the agent's brain.
+Policy gradient methods produce **stochastic policy**, $\pi_w$, which outputs a probability distribution. This policy is described as being the agent's brain.
 
-* Here, the $w$ in $\pi\_w$ denotes the parameters, or weights and biases, of a neural network module.
+* Here, the $w$ in $\pi_w$ denotes the parameters, or weights and biases, of a neural network module.
 
-Let $\mathcal{A} = {a\_t}$ denote the space of possible actions and $\mathcal{S} ={s\_t}$ the space of states. A stochastic policy gradient approach essentially models $a\_t \sim \pi\_w(s\_t)$, meaning that actions are sampled from the policy distribution.
+Let $\mathcal{A} = {a_t}$ denote the space of possible actions and $\mathcal{S} ={s\_t}$ the space of states. A stochastic policy gradient approach essentially models $a_t \sim \pi_w(s\_t)$, meaning that actions are sampled from the policy distribution.
 
-How do we train and optimize this policy, $\pi\_w(s)$?
+How do we train and optimize this policy, $\pi_w(s)$?
 
-Learn a state value function $V\_{\pi\_w}(s) = \mathbb{E}\_{\tau\sim\pi}\[R(\tau) | s ]$, where
+Learn a state value function $V_{\pi_w}(s) = \mathbb{E}_{\tau\sim\pi} [R(\tau) | s ]$, where
 
 * $\tau$ is a trajectory, a sequence of state-action pairs.
 * $R(\tau)$ is a reward function. A reward function accepts a state or sequence of states (i.e., a trajectory) and outputs a reward value. If the trajectories in an environment cannot be described only by states, they are instead defined as sequences of state-action pairs, in which case the reward function accepts a state-action pair of sequence of such pairs and outputs a reward value.
 
-To state the equation, $V\_{\pi\_w}(s) = \mathbb{E}_{\tau\sim\pi}\[R(\tau) | s ],$ in words, the value of state $s$, $V_{\pi\_w}(s)$, is taken to be the expected rewards for acting in accordance with policy $\pi\_w$ in state $s$ along trajectory $\tau$.
+To state the equation, $V_{\pi_w}(s) = \mathbb{E}_{\tau\sim\pi} [R(\tau) | s ]$, in words, the value of state $s$, $V_{\pi_w}(s)$, is taken to be the expected rewards for acting in accordance with policy $\pi_w$ in state $s$ along trajectory $\tau$.
 
 VPG is an on-policy algorithm.
 
 **VPG Implementation**
 
-Let's assume you are using a simple mlp for the policy gradient, $\pi\_w$.
+Let's assume you are using a simple mlp for the policy gradient, $\pi_w$.
 
 ```python
 class PolicyNetwork(nn.Module):
@@ -495,7 +495,7 @@ class PolicyNetwork(nn.Module):
 
 **References**
 
-* Open AI Spinning Up. Vanilla Policy Gradient. [\[web\]](https://spinningup.openai.com/en/latest/algorithms/vpg.html)
+* Open AI Spinning Up. Vanilla Policy Gradient. [[web]](https://spinningup.openai.com/en/latest/algorithms/vpg.html)
 
 ***
 
@@ -515,8 +515,21 @@ For set of states $S$ and set of actions $A$, the Q-function is a map s.t. $Q 
 
 In Q-learning, _Q_ is updated according to
 
-$$$
-+ \alpha \cdot \left( r + \gamma \max_{a_b\in A} Q(s', a_b) - Q(s, a) \right). $$ - $Q(s, a)$: The "quality" fn. at the current state *s* - $\alpha$: The learning rate. $0 \leq \alpha \leq 1$. Values close to 1 make faster changes to $Q$. - $r$: Reward received when moving from $s \to s'$ - $γ$: The discount factor. Quantifies how much to "discount" the ... - $\max_{a_b\in A} Q(s', a_b)$: Estimate of optimal future Q-value. This would be the highest $Q(s'|a_b)$, where $a_b$ is the "best" action and $s'$ is the next state. #### Collection of Refs Deep Attention Recurrent Q-Network. 2015. <https://causalai.net/r26.pdf> [Papers with Code - RL](https://paperswithcode.com/methods/area/reinforcement-learning) [Papers with Code - Representation Learning](https://paperswithcode.com/task/representation-learning) [ Near-Optimal Representation Learning for Hierarchical Reinforcement Learning](https://paperswithcode.com/paper/near-optimal-representation-learning-for) [Mastering Atari, Go, Chess and Shogi by Planning with a Learned Model, 2020](https://arxiv.org/pdf/1911.08265.pdf) "... deep RL algorithm based on the maximum entropy reinforcement learning framework. In this framework, the actor aims to maximize expected reward while also maximizing entropy. That is, to succeed at the task while acting as randomly as possible" - [Soft Actor-Critic: Off-Policy Maximum Entropy Deep RL w/ a Stochastic Actor](https://arxiv.org/pdf/1801.01290.pdf) 
+$$+ \alpha \cdot \left( r + \gamma \max_{a_b\in A} Q(s', a_b) - Q(s, a) \right). $$ 
+- $Q(s, a)$: The "quality" fn. at the current state *s* 
+- $\alpha$: The learning rate. $0 \leq \alpha \leq 1$. Values close to 1 make faster changes to $Q$.
+- $r$: Reward received when moving from $s \to s'$
+- $γ$: The discount factor. Quantifies how much to "discount" the ... 
+- $\max_{a_b\in A} Q(s', a_b)$: Estimate of optimal future Q-value. This would be the highest $Q(s'|a_b)$, where $a_b$ is the "best" action and $s'$ is the next state. 
+
+#### Collection of Refs 
+
+- Deep Attention Recurrent Q-Network. 2015. https://causalai.net/r26.pdf 
+- [Papers with Code - RL](https://paperswithcode.com/methods/area/reinforcement-learning) 
+- [Papers with Code - Representation Learning](https://paperswithcode.com/task/representation-learning) 
+- [ Near-Optimal Representation Learning for Hierarchical Reinforcement Learning](https://paperswithcode.com/paper/near-optimal-representation-learning-for) 
+- [Mastering Atari, Go, Chess and Shogi by Planning with a Learned Model, 2020](https://arxiv.org/pdf/1911.08265.pdf) "... deep RL algorithm based on the maximum entropy reinforcement learning framework. In this framework, the actor aims to maximize expected reward while also maximizing entropy. That is, to succeed at the task while acting as randomly as possible" 
+- [Soft Actor-Critic: Off-Policy Maximum Entropy Deep RL w/ a Stochastic Actor](https://arxiv.org/pdf/1801.01290.pdf) 
 
 <!-- ------------------------------------------------------------------ --> 
 <!-- ------------------------------------------------------------------ --> 
