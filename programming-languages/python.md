@@ -1,16 +1,27 @@
 <!-- python.md -->
 
+## Python     <!-- omit in toc -->
+
+- [Standard Library](#standard-library)
+  - [Reading and Writing Files](#reading-and-writing-files)
+  - [HTTP Requests](#http-requests)
+  - [Functools](#functools)
+  - [Sort() and sorted()](#sort-and-sorted)
+  - [Binary and other bases](#binary-and-other-bases)
+- [Writing Tests](#writing-tests)
+- [Working with Databases](#working-with-databases)
+  - [MongoDB (pymongo)](#mongodb-pymongo)
+- [Object-Oriented Programming (OOP)](#object-oriented-programming-oop)
+- [Protocol Buffers](#protocol-buffers)
+- [Miscellaneous](#miscellaneous)
+
 ***
 
-## Python
+## Standard Library
 
 ***
 
-### Standard Library
-
-***
-
-#### Reading and Writing Files
+### Reading and Writing Files
 
 `open()` returns a file object.
 
@@ -44,13 +55,13 @@ file.closed
 
 `True`
 
-* Python glossary - file object [\[docs\]](https://docs.python.org/3/glossary.html#term-file-object)
+* Python glossary - file object [[docs]](https://docs.python.org/3/glossary.html#term-file-object)
 
 Date: 21年6月
 
 ***
 
-#### HTTP Requests
+### HTTP Requests
 
 `pip install requests`
 
@@ -73,7 +84,7 @@ The two simplest kinds of
 
 ***
 
-#### Functools
+### Functools
 
 Python's [functools](https://docs.python.org/3/library/functools.html#module-functools) module is used for higher-order functions and operations on callable objects. It's a part of the standard library
 
@@ -81,7 +92,7 @@ Date: 21年8月
 
 ***
 
-**Sort() and sorted()**
+### Sort() and sorted()
 
 ```python
 import dataclasses
@@ -128,7 +139,7 @@ students = sorted(students, key=lambda s: s.grade, reverse=True)
 
 ***
 
-**Binary and other bases**
+### Binary and other bases
 
 Q: Return a binary representation of the given number.
 
@@ -254,9 +265,18 @@ def reverse(strs: List[str]) -> None:
         strs[-(i + 1)] = s
 ```
 
+#### Display number in scientific notation.
+
+```python
+def num_in_scientific_notation(num: float) -> str: 
+    return "{:e}".format(num)
+```
+
+
+
 ***
 
-### Writing Tests
+## Writing Tests
 
 ***
 
@@ -272,11 +292,11 @@ The standard solution to creating mock objects in python is the [`unittest.mock`
 
 ***
 
-### Working with Databases
+## Working with Databases
 
 ***
 
-#### MongoDB (pymongo)
+### MongoDB (pymongo)
 
 Pymongo assumes MongoDB is installed and running on the default host and port. If this is not the case, go to: https://docs.mongodb.com/manual/installation/ .
 
@@ -288,8 +308,8 @@ In my case, I only needed the community edition.
 
 There are two main steps for this installation.
 
-1. Install MondoDB Server: [\[installation instructions (Windows)\]](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
-2. Install MongoDB Shell (mongosh): [\[installation instructions\]](https://docs.mongodb.com/mongodb-shell/install/)
+1. Install MondoDB Server: [[installation instructions (Windows)]](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
+2. Install MongoDB Shell (mongosh): [[installation instructions]](https://docs.mongodb.com/mongodb-shell/install/)
 
 The installation instructions for Community Edition are toward the bottom of the page (at the above link) where it says "Procedure". You're finished with step 1 when you can start MongoDB with\
 `"C:\Program Files\MongoDB\Server\5.0\bin\mongod.exe" --dbpath="c:\data\db"`
@@ -315,19 +335,19 @@ Now, `mongo` and `mongod` work, but what do they do?
 
 `mongo`: Opens the Mongo Shell, an interactive command line interface that uses JavaScript and a related API to interact with the MongoDB client. Mongo shell is the default client for the MongoDB database server.
 
-* Used for data manipulation
-* Used for management of database instances
+- Used for data manipulation
+- Used for management of database instances
 
 `mongod`: Manages all of the MongoDB server tasks. `mongod` is a background process used by MongoDB. It's short for "Mongo Daemon".
 
 **References MongoDB:**
 
-* Jayatilake, Navindu. 2019. How to get started with MongoDB in 10 minutes. [\[article\]](https://www.freecodecamp.org/news/learn-mongodb-a4ce205e7739/)
-* [Pymongo tutorial](https://pymongo.readthedocs.io/en/stable/tutorial.html)
+- Jayatilake, Navindu. 2019. How to get started with MongoDB in 10 minutes. [[article]](https://www.freecodecamp.org/news/learn-mongodb-a4ce205e7739/)
+- [Pymongo tutorial](https://pymongo.readthedocs.io/en/stable/tutorial.html)
 
 ***
 
-### Object-Oriented Programming (OOP)
+## Object-Oriented Programming (OOP)
 
 ***
 
@@ -398,7 +418,7 @@ class Person:
 p1 = Person(name='Joe', job='SDE', age=25)
 ```
 
-Implement this as a `dataclass`:
+Q: Implement this as a `dataclass`:
 
 ```python
 from dataclasses import dataclass
@@ -485,7 +505,7 @@ Reference: ArjanCodes. Why COMPOSITION is better than INHERITANCE - detailed Pyt
 
 ***
 
-### Protocol Buffers
+## Protocol Buffers
 
 Terms to know: .proto file, protocol buffer compiler, protcol buffer API, messages of a protocol buffer API
 
@@ -503,7 +523,7 @@ References:
 
 ***
 
-### Miscellaneous
+## Miscellaneous
 
 **Google Code Styling with YAPF**
 
