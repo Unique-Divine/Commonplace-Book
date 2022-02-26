@@ -576,9 +576,37 @@ References:
 
 **Google Code Styling with YAPF**
 
-Insall YAPF via pip: `pip install yapf`
+Install YAPF via pip: `pip install yapf`
 
 To see usage instructions: `yapf --help`
+
+The main command you'll use is `yapf -i [python-file]`
+
+**Writing to Excel Files with XlsxWriter**
+
+Installation 
+- Conda install
+  ```conda install -c conda-forge XlsxWriter```
+- Pip install
+  ```pip install XlsxWriter```
+
+```python
+# hello-xlsx-writer.py
+import xlsxwriter
+
+workbook = xlsxwriter.Workbook('hello.xlsx')
+worksheet = workbook.add_worksheet()
+
+worksheet.write('A1', 'Hello world')
+
+workbook.close()
+```
+
+References: 
+- https://xlsxwriter.readthedocs.io/
+- https://xlsxwriter.readthedocs.io/tutorial02.html
+- https://stackoverflow.com/questions/16560289/using-python-write-an-excel-file-with-columns-copied-from-another-excel-file
+
 
 **ML Finance Project**
 
