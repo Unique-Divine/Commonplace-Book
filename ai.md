@@ -127,7 +127,7 @@ for word_idx, word in enumerate(sentence):
 
 **References**
 
-* Illustrated Guide to Transformer: A component by component breakdown analysis. [\[article\]](https://jinglescode.github.io/2020/05/27/illustrated-guide-transformer/)
+* Illustrated Guide to Transformer: A component by component breakdown analysis. [[article]](https://jinglescode.github.io/2020/05/27/illustrated-guide-transformer/)
 
 ***
 
@@ -193,7 +193,7 @@ Alignment score functions dictate how inputs are multiplied and added together t
 
 * [ ] Q:
 
-Neural Machine Translation by Jointly Learning to Align and Translate. Badhanau, Cho, and Bengio. 2016. [\[paper\]](https://arxiv.org/pdf/1409.0473.pdf)
+Neural Machine Translation by Jointly Learning to Align and Translate. Badhanau, Cho, and Bengio. 2016. [[paper]](https://arxiv.org/pdf/1409.0473.pdf)
 
 * [ ] Q: What is machine translation?
 * [ ] Q: What makes neural machine translation neural?

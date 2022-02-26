@@ -3,23 +3,25 @@
 ## Python     <!-- omit in toc -->
 
 - [Standard Library](#standard-library)
-  - [Reading and Writing Files](#reading-and-writing-files)
-  - [HTTP Requests](#http-requests)
-  - [Functools](#functools)
-  - [Sort() and sorted()](#sort-and-sorted)
-  - [Binary and other bases](#binary-and-other-bases)
+    - [Reading and Writing Files](#reading-and-writing-files)
+    - [HTTP Requests](#http-requests)
+    - [Functools](#functools)
+    - [Sort() and sorted()](#sort-and-sorted)
+    - [Binary and other bases](#binary-and-other-bases)
 - [Writing Tests](#writing-tests)
 - [Working with Databases](#working-with-databases)
-  - [MongoDB (pymongo)](#mongodb-pymongo)
+    - [MongoDB (pymongo)](#mongodb-pymongo)
 - [Object-Oriented Programming (OOP)](#object-oriented-programming-oop)
-- [Protocol Buffers](#protocol-buffers)
-- [Miscellaneous](#miscellaneous)
+- [Else](#else)
+  - [Publishing Packages on PyPi](#publishing-packages-on-pypi)
+  - [Protocol Buffers](#protocol-buffers)
+  - [Miscellaneous](#miscellaneous)
 
-***
+---
 
-## Standard Library
+# Standard Library
 
-***
+---
 
 ### Reading and Writing Files
 
@@ -39,9 +41,9 @@ The two arguments of `open()` are 'file' and 'mode'.
 
 Modes of `open()`:
 
-* Mode `'a'`: For appending data to the end of 'file'.
-* Mode `'w'`: For writing only. An existing file with the same name as 'file' will be erased.
-* Mode `'r+'`: opens a file for both reading and writing.
+- Mode `'a'`: For appending data to the end of 'file'.
+- Mode `'w'`: For writing only. An existing file with the same name as 'file' will be erased.
+- Mode `'r+'`: opens a file for both reading and writing.
 
 Q: Why use the `with` keyword with the `open` method?
 
@@ -55,7 +57,7 @@ file.closed
 
 `True`
 
-* Python glossary - file object [[docs]](https://docs.python.org/3/glossary.html#term-file-object)
+- Python glossary - file object [[docs]](https://docs.python.org/3/glossary.html#term-file-object)
 
 Date: 21年6月
 
@@ -274,11 +276,11 @@ def num_in_scientific_notation(num: float) -> str:
 
 
 
-***
+---
 
-## Writing Tests
+# Writing Tests
 
-***
+---
 
 **Disabling warnings**
 
@@ -292,7 +294,7 @@ The standard solution to creating mock objects in python is the [`unittest.mock`
 
 ***
 
-## Working with Databases
+# Working with Databases
 
 ***
 
@@ -347,7 +349,7 @@ Now, `mongo` and `mongod` work, but what do they do?
 
 ***
 
-## Object-Oriented Programming (OOP)
+# Object-Oriented Programming (OOP)
 
 ***
 

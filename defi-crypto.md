@@ -165,7 +165,7 @@ References:
 
 # DeFi Concepts
 
-[[Vampire-Attacks]](crypto/vampire-attacks)
+[[Vampire-Attacks]](crypto/vampire-attacks.md)
 
 ---
 
