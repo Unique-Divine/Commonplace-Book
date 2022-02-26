@@ -505,7 +505,54 @@ Reference: ArjanCodes. Why COMPOSITION is better than INHERITANCE - detailed Pyt
 
 #### `NamedTuple` and `TypedDict`
 
-***
+---
+
+# Else
+
+---
+
+## Publishing Packages on PyPi
+
+Reference: https://packaging.python.org/en/latest/tutorials/packaging-projects/
+
+Suppose you're in the root directory of a GitHub repository.
+
+Create a Python package as a subdirectory of `src` in the repo's root. We'll call this `pkg` (repo/src/pkg). 
+
+Create a blank module called "setup.py" (repo/setup.py), then open it up in your favorite text editor. 
+
+```python
+import setuptools
+
+setuptools.setup(
+    name="pkg-pypi-name", # The name on PyPi. What you pip install. 
+    version="0.0.1",
+    description=("A Python package description"),
+    package_dir={'': 'src'},
+)
+```
+
+Think of each line of the `setup()` method as configuration for the package. 
+
+Arguments of `setuptools.setup`:
+- `name`: The name on PyPi. This is the "x" in "pip install x". 
+- `version`: Version number for the package. 0.0.x version numbers imply that the package is unstable. It's good to start out with an unstable version number before publishing the package so that the people won't see failing code flags just because there's some packaging issue. 
+- `package_dir`: A map (dictionary) that tells setuptools the name of the package's parent directory.
+
+
+Now, run `python setup.py bdist_wheel`. This will create `build`, `build/lib`, and `dist` directories inside the repository.
+- `dist`: Houses the outputted wheel file. 
+- Running the `bdist_wheel` also creates a `src/pkg.egg-info` directory. You should git ignore this. 
+
+Testing the local package install.
+
+```bash
+pip install -e .
+```
+
+
+
+---
 
 ## Protocol Buffers
 
