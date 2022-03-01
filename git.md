@@ -2,7 +2,28 @@
 
 Git (cookbook)
 
-### Fundamental Concepts
+- [Initial Repo Configuration](#initial-repo-configuration)
+- [Fundamental Concepts](#fundamental-concepts)
+  - [Branching](#branching)
+  - [Merging](#merging)
+  - [Deleting branches](#deleting-branches)
+  - [Git flow](#git-flow)
+- [Editting commit history](#editting-commit-history)
+- [Convenience Functionality](#convenience-functionality)
+  - [Git Aliases](#git-aliases)
+- [Special Topics](#special-topics)
+  - [Changing remote after a repo name change](#changing-remote-after-a-repo-name-change)
+  - [SSH keys](#ssh-keys)
+
+
+## Initial Repo Configuration
+
+```
+git config user.name "UserName"
+git config user.email gitHubAccount@email.address 
+```
+
+## Fundamental Concepts
 
 #### Local branch vs. remote branch**
 
@@ -41,11 +62,11 @@ Once all of the necessary changes have been made and the application is stable, 
 * **Grab a file from a specific branch**: `git checkout [branch_name] [paths]`. Note that if the files are on a remote branch, you'll have to use\
   `git checkout origin/[branch_name] [paths]` instead.
 
-#### Merging
+### Merging
 
 Merge the specified branch's history into the current one. `git merge [branch]`
 
-#### Deleting branches
+### Deleting branches
 
 Delete local branch `git branch -d [branch-name]`
 
@@ -53,7 +74,7 @@ Delete remote branch `git push origin --delete [branch-name]`
 
 ------------------------------------------------------------
 
-#### Git flow
+### Git flow
 
 When working on a new feature, branch off from the `develop` branch:
 
@@ -73,7 +94,7 @@ git push origin develop
 ------------------------------------------------------------
 
 
-### Editting commit history 
+## Editting commit history 
 
 #### Permanently removing files from commit history
 
@@ -105,7 +126,7 @@ Ref: https://stackoverflow.com/a/1085191
 
 --------------------------------------------------
 
-### Convenience Functionality
+## Convenience Functionality
 
 ### Git Aliases
 
@@ -121,9 +142,9 @@ git config --global alias.st status
 ------------------------------------------------------------
 
 
-### Special Topics
+## Special Topics
 
-#### Changing remote after a repo name change
+### Changing remote after a repo name change
 
 If you change the name of a repository, the fetch/pull commands may stop working. Git will show you an error along the lines of "`error: failed to push some refs to '{repo_url}.git'`". 
 
@@ -135,7 +156,7 @@ git remote set-url origin {new_repo_url}
 
 
 
-#### SSH keys
+### SSH keys
 
 An SSH key is an alternative to username/password authorization on GitHub. This will allow you to bypass entering your username and password for future GitHub commands.
 
