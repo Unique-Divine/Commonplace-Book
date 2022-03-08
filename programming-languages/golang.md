@@ -1,9 +1,17 @@
 <!-- go.md -->
 # Golang <!-- omit in toc -->
 
-### Installation
+- [Init](#init)
+  - [1. Installation](#1-installation)
+  - [2. Basics](#2-basics)
+  - [Structures](#structures)
+- [Debugging](#debugging)
 
-On linux: 
+## Init
+
+### 1. Installation
+
+On linux:
 ```bash
 sudo apt-get upgrade
 sudo apt-get update
@@ -15,8 +23,9 @@ After resetting the terminal window, run `go version` to verify that this worked
 
 Ref: https://sal.as/post/install-golan-on-wsl/
 
+### 2. Basics
 
-Write a hello world golang program: 
+Write a hello world golang program:
 ```go
 // hello.go
 package main
@@ -30,19 +39,19 @@ func main() {
 
 There's a similar function to `fmt.Println` called `println`. Why use `fmt`?
 
-In the "Bootstrapping" section of the [spec](), it says that "Current implementations provide several built-in functions useful during bootstrapping. These functions are documented for completeness but are not guaranteed to stay in the language. They do not return a result." 
+In the "Bootstrapping" section of the [spec](), it says that "Current implementations provide several built-in functions useful during bootstrapping. These functions are documented for completeness but are not guaranteed to stay in the language. They do not return a result."
 "Thus, [functions like `println` that are built into the language] are useful to developers because they lack dependencies (being built into the compiler) but not in production code. It also important to note that print and println report to `stderr`, not `stdout`." - Alexander on StackOverflow
 
-Q: Run a golang code file named `hello.go` without building.  
+Q: Run a golang code file named `hello.go` without building.
 Use `go run hello.go` at the command prompt.
 
-Q: Run a golang code file, `hello.go`, saving the compiled result for later use.  
+Q: Run a golang code file, `hello.go`, saving the compiled result for later use.
 Use `go build hello.go`.
 
-Q: After compiling with `go build hello.go`, run the file by...  
+Q: After compiling with `go build hello.go`, run the file by...
 executing the binary file with `./hello` at the prompt
 
-Q: Import the packages for dealing with the operating system and and printing formatted output.   
+Q: Import the packages for dealing with the operating system and and printing formatted output.
 ```go
 import (
   "fmt"
@@ -52,7 +61,7 @@ import (
 
 All of your projects live in the same place, your workspace. By default, this is a folder called "go" in your user directory. You can check this location by running `go env GOPATH`.
 
-Functions start with the `func` keyword. 
+Functions start with the `func` keyword.
 
 Write a function that sums two integers.
 
