@@ -31,7 +31,7 @@ This repo holds both my commonplace book and some of the notes I've been taking 
    * Quotes
    * Random
 
-## Notes from 2021 [\[PDF\]](notes-21/spring2021.tex):
+## Notes from 2021 [\[PDF\]](notes-21/spring2021.pdf):
 
 * Transformer architectures, performers, deep reinforcement learning, and evolutionary algorithms to solve non-differentiable problems
 * Fundamentals in measure theory, stochastic processes, stochastic simulation, hidden markov models, and stochastic calculus

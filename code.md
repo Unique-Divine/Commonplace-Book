@@ -5,11 +5,10 @@
 **Table of Contents**
 - [Code Commonplace](#code-commonplace)
 - [Data Structures & Algorithms (DSA)](#data-structures--algorithms-dsa)
-- [Programming Languages](#programming-languages)
-  - [Python](#python)
-  - [Golang](#golang)
-  - [Typescript](#typescript)
-  - [Solidity](#solidity)
+- [Python](#python)
+- [Golang](#golang)
+- [Typescript](#typescript)
+- [Solidity](#solidity)
 - [Databases, SQL, DBMS](#databases-sql-dbms)
 - [Web development](#web-development)
 - [Git](#git)
@@ -23,7 +22,7 @@
 
 ## [Python](programming-languages/python.md)
 
-## [Golang](programming-languages/go.md)
+## [Golang](programming-languages/golang.md)
 
 ## [Typescript](programming-languages/typescript.md)
 
