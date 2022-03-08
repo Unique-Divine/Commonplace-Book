@@ -88,7 +88,7 @@ if x > 0 {
 }
 ```
 
-Write conditional logic that prints "whale" if `x` is greater than 10, "minnow" if `x` is less than 1, and "shark" otherwise. 
+Write conditional logic that prints "whale" if `x` is greater than 10, "minnow" if `x` is less than 1, and "shark" otherwise.
 ```golang
 if x > 10 {
   fmt.Println("whale")
@@ -99,7 +99,7 @@ if x > 10 {
 }
 ```
 
-Create and an array, "point", that holds 2 ints. 
+Create and an array, "point", that holds 2 ints.
 ```golang
 var point [2]int
 ```
@@ -113,15 +113,15 @@ What will this function return?
 ```golang
 func foo() {
   var arr []int
-  return point
+  return arr
 }
 ```
 A: An empty slice, `[]`.
 
-Write the type definition for a dictionary that maps strings to integers.  
+Write the type definition for a dictionary that maps strings to integers.
 `map[string]int`
 
-Write the type definition for a dictionary that maps `wallet` (`Wallet`) to `balance` (int).  
+Write the type definition for a dictionary that maps `wallet` (`Wallet`) to `balance` (int).
 `map[Wallet]int`
 
 Declare a dictionary variable, `strIntMap`, that maps strings to integers.
@@ -135,7 +135,7 @@ Def: To **Declare** a variable is to introduce the variable to the program by de
 
 To **initialize** a variable is to assign the variable with an intitial value.
 
-**Instantiate** means to "create an instance of". 
+**Instantiate** means to "create an instance of".
 
 Will the following code run?
 ```golang
@@ -154,11 +154,12 @@ var goku = make(map[string]int)
 goku["powerLevel"] = 9001
 ```
 
-What's another way to write this that will work?
+Q: What's another way to write this that will work?
 ```golang
 var facts = make(map[int]string)
 ```
 
+A:
 ```golang
 facts := make(map[int]string)
 ```
@@ -173,7 +174,7 @@ A: `delete(goku, "age")`
 
 Cl: The `delete` method operates on `map`s.
 
-Print the values 0 through 4 going incrementing by 1.
+Q: Print the values 0 through 4 going incrementing by 1.
 ```golang
 func main() {
   for i := 0; i < 4; i++ {
@@ -182,20 +183,20 @@ func main() {
 }
 ```
 
-Initalize a slice, `letters`, containing the letters "a", "b", "c" 
+Q: Initalize a slice, `letters`, containing the letters "a", "b", "c"
 ```golang
 arr := []string{"a", "b", "c"}
 // var arr = []string{"a", "b", "c"}
 ```
 
-Given that `arr := []string{"a", "b", "c"}`, iterate through the slice printing the indices and values.
+Q: Given that `arr := []string{"a", "b", "c"}`, iterate through the slice printing the indices and values.
 ```golang
 for index, value := range arr {
   fmt.Println(index, value)
 }
 ```
 
-Given that 
+Given that
 ```golang
 goku := make(map[string]int)
 goku["powerLevel"] = 9001
@@ -208,7 +209,7 @@ for key, value := range goku {
 }
 ```
 
-Q: What method allows you to take the square root of a number?  
+Q: What method allows you to take the square root of a number?
 A: `math.Sqrt`
 
 Q: Create a "person" struct with name (string) and age (int) fields.
@@ -232,6 +233,128 @@ naruto := person{name: "Naruto", age: 22}
 fmt.Println(naruto)
 ```
 
-Q: If I give you a variable `x := 7`, how do you find its memory address?  
+Q: If I give you a variable `x := 7`, how do you find its memory address?
 A: `&x`
+
+
+### Structures
+
+<!-- Anki placeholder -->
+
+Q: GO is not an object-oriented language like C++ or Java.
+
+Q: Define a `Saiyan` structure with a name (string) and power (int).
+
+A:
+```golang
+type Saiyan struct {
+    name string
+    power int
+}
+```
+
+Q: Initialize a `Saiyan`, "Goku", with a power of 9001.
+
+```golang
+type Saiyan struct {
+    name string
+    power int
+}
+```
+
+A:
+```golang
+goku := Saiyan{
+    name: "Goku",
+    power: 9001,
+}
+```
+
+
+Q:
+
+```golang
+type Saiyan struct {
+    name string
+    power int
+}
+```
+
+Is it valid to write the following?
+```golang
+goku := Saiyan{}
+// or
+goku := Saiyan{name: "Goku"}
+```
+
+A: Yes, structures can have unassigned fields just like variables can have unassigned values.
+
+Cl: Structures can have unassigned fields just like variables can have unassigned values.
+
+Cl: Go passes arguments to a function as copies.
+
+Q: What does the following print?
+```golang
+package main
+
+import "fmt"
+
+type Saiyan struct {
+  name  string
+  power int
+}
+
+func main() {
+  goku := Saiyan{"Goku", 9000}
+  Super(goku)
+  fmt.Println(goku.power)
+}
+
+func Super(s Saiyan) {
+  s.power *= 2
+}
+```
+
+A: Still 9000 because only the copy of `goku` became super, not the original variable. Changes made in `Super` weren't reflected in the caller.
+
+Q: 
+
+```golang
+type Saiyan struct {
+  name  string
+  power int
+}
+
+func main() {
+  goku := Saiyan{"Goku", 9000}
+  Super(goku)
+  fmt.Println(goku.power)
+}
+
+func Super(s Saiyan) {
+  s.power *= 2
+}
+```
+
+## Debugging
+
+```shell
+go mod tidy
+```
+
+Opens permissions for the go directories that were unable to see the staandard library dependencies.
+
+```shell
+chown -R realu:realu $GOPATH
+```
+
+
+```shell
+go clean -modcache
+```
+
+
+
+
+
 
