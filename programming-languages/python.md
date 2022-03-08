@@ -5,6 +5,7 @@
 - [Standard Library](#standard-library)
     - [Reading and Writing Files](#reading-and-writing-files)
     - [HTTP Requests](#http-requests)
+    - [Command Line Applications - Argparse](#command-line-applications---argparse)
     - [Functools](#functools)
     - [Sort() and sorted()](#sort-and-sorted)
     - [Binary and other bases](#binary-and-other-bases)
@@ -85,6 +86,12 @@ POST
 The two simplest kinds of
 
 ***
+
+### Command Line Applications - Argparse
+
+
+
+
 
 ### Functools
 
@@ -513,7 +520,9 @@ Reference: ArjanCodes. Why COMPOSITION is better than INHERITANCE - detailed Pyt
 
 ## Publishing Packages on PyPi
 
-Reference: https://packaging.python.org/en/latest/tutorials/packaging-projects/
+References: 
+- https://packaging.python.org/en/latest/tutorials/packaging-projects/
+- Publishing (Perfect) Python Packages on PyPi. 2020. https://youtu.be/GIF3LaRqgXo
 
 Suppose you're in the root directory of a GitHub repository.
 
@@ -539,6 +548,7 @@ Arguments of `setuptools.setup`:
 - `version`: Version number for the package. 0.0.x version numbers imply that the package is unstable. It's good to start out with an unstable version number before publishing the package so that the people won't see failing code flags just because there's some packaging issue. 
 - `package_dir`: A map (dictionary) that tells setuptools the name of the package's parent directory.
 
+python3 -m pip install --upgrade build
 
 Now, run `python setup.py bdist_wheel`. This will create `build`, `build/lib`, and `dist` directories inside the repository.
 - `dist`: Houses the outputted wheel file. 
@@ -550,6 +560,26 @@ Testing the local package install.
 pip install -e .
 ```
 
+
+
+Check out gitignore.io for standard ignores for common frameworks.
+
+
+
+Try running:
+```
+python -m twine upload --repository testpypi dist/* --verbose
+```
+If the command fails, you'll need to make source code or configuration changes and re-run `python -m build` in the same directory as your `pyproject.toml`. Then, you can keep checking the "twine" command.
+
+After this command runs successfully, you should be able to view your published packaged on test.pypi.org and install it locally with 
+```bash
+python -m pip install --index-url https://test.pypi.org/simple/ --no-deps your-package-name
+```
+To uninstall this local installation, run 
+```bash
+python -m pip uninstall your-package-name
+```
 
 
 ---
