@@ -1,5 +1,6 @@
 
 
+### Node and npm
 
 
 Q: What is Node.js?
@@ -32,8 +33,18 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 ```
 
+#### Install npm
+
+On Ubuntu:  
 `sudo apt install npm`
 
+
+### yarn 
+
+Install yarn with npm.
+```sh
+npm install -g yarn
+```
 
 #### References - Node JS
 
@@ -80,8 +91,8 @@ npm install --save-dev assemblyscript
 
 Graph TS
 ```
-yarn add --dev @graphprotocol/graph-ts
 npm install --save-dev @graphprotocol/graph-ts
+yarn add --dev @graphprotocol/graph-ts
 ```
 
 Graph CLI
@@ -89,10 +100,12 @@ Graph CLI
 npm install -g @graphprotocol/graph-cli
 yarn global add @graphprotocol/graph-cli
 ```
-Enables `graph` commands 
+This enables `graph` commands. 
+Restart your shell after completing the installation in order ot use `graph`.   
 
 Instructions here: [AssemblyScript API](https://thegraph.com/docs/en/developer/assemblyscript-api/)
-1. Run `graph codegen`: This generates AssemblyScript types for a subgraph.
+1. Run `graph codegen`: This generates AssemblyScript types for a subgraph. You can run this command in the same directory as the "subgraph.yaml" or specify the path manually using `graph codegen path/to/subgraph.yaml`.
+  - Successful completion 
 
 Q: What are the types `u8` and `u32`?  
 These are `number` types corresponding to the common, unsigned integer types (8-bit unsigned integer) in WebAssembly. In `node_modules/assemblyscript/std/assembly`, they're defined like follows:
