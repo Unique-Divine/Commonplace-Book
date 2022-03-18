@@ -11,7 +11,10 @@
 
 ### 1. Installation
 
-On linux:
+#### Installation with sudo: not recommended
+
+To install go version 1.13 on linux:
+
 ```bash
 sudo apt-get upgrade
 sudo apt-get update
@@ -19,6 +22,17 @@ sudo apt-get install golang-go
 ```
 
 After resetting the terminal window, run `go version` to verify that this worked properly.
+
+To uninstall golang with sudo, use
+```sh
+sudo apt-get remove golang-go
+sudo apt-get remove --auto-remove golang-go
+```
+
+Q: When might you want to uninstall golang on Ubuntu?  
+A: If you find that `go version` and `sudo go version` are returning different results, you most likely have installed using `sudo apt-get` and it's causing problems. 
+
+#### Installation 
 
 
 Ref: https://sal.as/post/install-golan-on-wsl/
