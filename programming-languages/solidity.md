@@ -1,11 +1,11 @@
-### Getting Started
+## Installation and Getting Started
 
 Solidity is an object-oriented language for implementing smart contracts. Smart contracts are programs that govern the behavior of accounts within the Ethereum state. 
 - Statically typed
 - Supports inheritance
 - Compiled language
 
-#### Install the Solidity Compiler
+### Install the Solidity Compiler
 
 There are a few ways to install a Solidity compiler and each method has some tradeoffs.
 
@@ -36,7 +36,7 @@ References:
 [help-ubuntu-ppa]: https://help.ubuntu.com/stable/ubuntu-help/addremove-ppa.html.en#:~:text=Personal%20Package%20Archives%20(PPAs)%20are,that%20it%20can%20be%20tested. 
 
 
-#### Getting a professional development setup with Hardhat 
+### Getting a professional development setup with Hardhat 
 
 ```
 npm install yarn
@@ -60,3 +60,9 @@ Request some funds from the Kovan faucet via Chainlink's website at https://fauc
 Hardhat tutorial:
 
 All solidity code goes in the contracts directory. 
+
+
+Node Package Execute (npx): Executes npm package binaries.
+1. Install with `npm install -g npx`
+2. Run `npx hardhat compile` to compile the smart contracts in a hardhat project. Compiled artifacts will go in the `artifacts/` directory.
+3. 
