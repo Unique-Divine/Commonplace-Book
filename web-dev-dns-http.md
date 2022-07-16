@@ -1,6 +1,83 @@
 <!-- web-dev.md -->
+# Web Dev: HTML, CSS, etc.              <!-- omit in toc -->
 
-### Hugo Web Design
+- [HTML, CSS](#html-css)
+  - [Flex Boxes](#flex-boxes)
+    - [Margin](#margin)
+    - [Padding](#padding)
+    - [Scaling Vector Graphic (SVG)](#scaling-vector-graphic-svg)
+- [Other](#other)
+  - [Hugo Web Design](#hugo-web-design)
+  - [HTTP, TCP, IP](#http-tcp-ip)
+  - [Domain Name System (DNS)](#domain-name-system-dns)
+
+---
+
+# HTML, CSS
+
+
+## Flex Boxes
+
+Flex box: 
+
+Flex item: elements of a flex box
+
+Once a parent elemtent is configured with "`display: flex;`", the children no longer behave like blocks. They behave like "flex items".
+What a flex item wants to do is be as small is it possibly can while staying on one line *if* they can stay within the parent flex. 
+
+
+How to make flex items equal: Set "`flex: 1;`" in the style of the items. You can also use 
+```css
+.flex-box > * {
+  flex-basis: 100%;
+  /* or */ width: 100%;
+}
+```
+
+
+### Margin 
+
+Margin creates space around elements outside of any defined borders. For individual sides, there are properties like: `margin-top`, `margin-left`, `margin-bottom`, and `margin-right`.
+
+Margin properties can have the following values: 
+- auto: browser calculates the margin
+- length: specify a margin in px, pt, cm, etc.
+- %: specifies a margin in % of the width of the containing element
+- inherit: specifies that the margin should be inherited from the parent element.
+
+You can specify margin with four values as a shorthand for each direction:
+```css
+p {
+  margin: 25px 50px 75px 100px;
+  /* margin: top, right, bottom, left */
+}
+```
+
+### Padding 
+
+Padding is the space between the border and content of an element. Thus, padding is located inside the border of an element. 
+```css
+some-class {
+  padding: 25px 50px;
+  /* paddding - 2 vals: vertical, horizontal */
+}
+```
+
+- 3 values: top, horizontal, right
+- 4 values: top, right, bottom, left (clockwise from the top)
+
+### Scaling Vector Graphic (SVG)
+
+Useful command for converting svg files to React SVG Functional Components using [SVGR](https://react-svgr.com/docs/cli/):
+```sh
+npx @svgr/cli icon.svg > icon.tsx  
+```
+
+---
+
+# Other
+
+## Hugo Web Design
 
 Start Sep 16 (Mike Dane Tutorial Series)
 
@@ -93,7 +170,7 @@ Front matter is super powerful in its utility.
 * [A clear and concise beginner hugo tutorial](https://www.linkedin.com/learninglearning-static-site-building-with-hugo-2/build-a-static-site-with-hugoresume=false)
 * [CSS Crash Course for Absolute Beginners](https://youtu.be/yfoY53QXEnI)
 
-### HTTP, TCP, IP
+## HTTP, TCP, IP
 
 **HTTP**
 
@@ -146,7 +223,7 @@ Packet loss? : Packet loss occurs when one or more packets of data travelling ac
 
 Packet switching : Packet switching is a method of grouping data that is transmitted over a digital netowrk into packets. Packets are made of a header and a payload. Data in the header is used by networking hardware to direct the packet to its destination, where the payload is extracted and used by application software. Packet switching is the primary basis for data communications in computer networks worldwide.
 
-### Domain Name System (DNS)
+## Domain Name System (DNS)
 
 The Domain Name System is the phonebook fo the internet. Humans access information online through **domain** names like google.com and tim.blog. Web browsers interact through Internet Protocol (IP) addresses. DNS translates domain names into IP addresses so that browsers can load internet resources.
 
@@ -191,7 +268,3 @@ A CNAME reord allows a site to resolve to a different domain while pointing the 
 - [What is a domain name? | Domain name vs. URL](https://www.cloudflare.com/learning/dns/glossary/what-is-a-domain-name/)
 - [DNS A record](https://www.cloudflare.com/learning/dns/dns-records/dns-a-record/)
 - [DNS resolver](https://www.cloudflare.com/learning/dns/dns-server-types/) 
-
-### HTML, CSS
-
-
