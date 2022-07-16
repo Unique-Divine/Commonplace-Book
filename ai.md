@@ -30,7 +30,7 @@ The Transformer architecture was introduced in "[Attention is All You Need](http
 
 Papers to mine:
 
-* Rethinking Attention with Performers. Choromanski et al. 2021. [\[paper\]](https://arxiv.org/pdf/2009.14794.pdf)
+* Rethinking Attention with Performers. Choromanski et al. 2021. [[paper]](https://arxiv.org/pdf/2009.14794.pdf)
   * Tags: transformer, efficient transformer
   * Affiliations: Google Brain
 
@@ -258,7 +258,7 @@ CodeEmporium. (2020). BERT Neural Network - EXPLAINED! [\[YouTube\]](https://you
 
 * Tags:
 * Affiliations: Facebook AI
-* [\[paper\]](https://ai.facebook.com/research/publications/end-to-end-object-detection-with-transformers) [\[article\]](https://venturebeat.com/2020/05/28/facebook-ai-research-applies-transformer-architecture-to-streamline-object-detection-models/)
+* [[paper]](https://ai.facebook.com/research/publications/end-to-end-object-detection-with-transformers) [\[article\]](https://venturebeat.com/2020/05/28/facebook-ai-research-applies-transformer-architecture-to-streamline-object-detection-models/)
 
 **An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale. Dosovitsky et al., 2021.**
 

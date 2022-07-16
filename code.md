@@ -8,6 +8,7 @@
 - [Python](#python)
 - [Golang](#golang)
 - [Typescript](#typescript)
+- [React](#react)
 - [Solidity](#solidity)
 - [Databases, SQL, DBMS](#databases-sql-dbms)
 - [Web development](#web-development)
@@ -20,13 +21,15 @@
 
 ## [Data Structures & Algorithms (DSA)](data-structures-algorithms.md)
 
-## [Python](programming-languages/python.md)
+## [Python](programming/python.md)
 
-## [Golang](programming-languages/golang.md)
+## [Golang](programming/golang.md)
 
-## [Typescript](programming-languages/typescript.md)
+## [Typescript](programming/typescript.md)
 
-## [Solidity](programming-languages/solidity.md)
+## [React](programming/react.md)
+
+## [Solidity](programming/solidity.md)
 
 ## [Databases, SQL, DBMS](databases-sql-dbms.md)
 
@@ -34,9 +37,11 @@
 
 ## [Git](git.md)
 
+
+
 ## Misc.
 
-### [C++](programming-languages/c++.md)
+### [C++](programming/c++.md)
 
 
 ------------------------------------------------------------

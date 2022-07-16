@@ -6,6 +6,7 @@
   - [2. Basics](#2-basics)
   - [Structures](#structures)
 - [Debugging](#debugging)
+- [Testing](#testing)
 
 ## Init
 
@@ -250,7 +251,7 @@ fmt.Println(naruto)
 Q: If I give you a variable `x := 7`, how do you find its memory address?
 A: `&x`
 
-
+  
 ### Structures
 
 <!-- Anki placeholder -->
@@ -350,6 +351,23 @@ func Super(s Saiyan) {
 }
 ```
 
+Q: If you have an interface, `Spec`, and want to verify that the type, `MyType`, implements `spec`, how can you check this at compile time?
+
+```go
+var _ Spec = (*MyType)(nil)
+```
+
+This will error at compile time: 
+```
+prog.go:23: cannot use (*MyType)(nil) (type *MyType) as type Spec in assignment:
+    *MyType does not implement Spec (missing Method method)
+ [process exited with non-zero status]
+```
+
+Q:  `*MyType` means pointer to `MyType`.
+
+
+
 ## Debugging
 
 ```shell
@@ -368,7 +386,31 @@ go clean -modcache
 ```
 
 
+## Testing
+
+#### Testify assert vs. require
+
+In the [stretch/testify](github.com/stretchr/testify) package, the two packages "assert" and "require" can both be used to give a flavor of assert statements. 
+
+```golang
+import (
+  "github.com/stretchr/testify/assert"
+  "github.com/stretchr/testify/require"
+)
+```
+
+Q: When is it better to use require versus assert?
+
+It depends on the behavior you need. You get a log entry for each assertion with `assert`. However with `require`, the first failed requirement interrups and fails the complete test. This means that any requirements after the first failed one won't be evaluated; they'll be skipped.
 
 
+Q: Test all go files visible from the current path.
+```sh
+go test ./...
+```
 
+To test with code coverage:
+```sh
+go test ./... -cover
+```
 

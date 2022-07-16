@@ -25,7 +25,7 @@ git config user.email gitHubAccount@email.address
 
 ## Fundamental Concepts
 
-#### Local branch vs. remote branch**
+#### Local branch vs. remote branch
 
 - **local branch**: a branch only the local user can see. It exists only on your local machine.
   * Ex. Create local branch named "myNewBranch": `git branch myNewBranch`
