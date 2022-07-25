@@ -14,6 +14,8 @@
 - [Resources](#resources)
 - [Debugging](#debugging)
 
+<img src="/book/img/React-icon.svg" width="400px">
+
 ## React Introduction
 
 Q: What is a React in one sentence?  

@@ -2,15 +2,16 @@
 
 ## Introduction
 
-- [Unique Divine Commonplace book](README.md)
+- [About the Commonplace](README.md)
 
 ## 💻 Code 
 
-- [Code](code.md)
-- [Python](programming/python.md)
-- [Golang](programming/golang.md)
-- [Typescript](programming/typescript.md)
-- [Solidity](programming/solidity.md)
+- [Code Intro](code/code.md)
+- [Python](code/python.md)
+- [Golang and Cosmos SDK](code/golang.md)
+- [Typescript](code/typescript.md)
+- [React](code/react.md) 
+- [Web Dev: HTML, CSS, Figma](code/web-dev-dns-http.md)
 
 ## Else 
 

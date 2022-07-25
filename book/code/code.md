@@ -1,4 +1,4 @@
-# 💻 Code  <!-- omit in toc -->
+# Code  <!-- omit in toc -->
 
 ## Code Commonplace
 
