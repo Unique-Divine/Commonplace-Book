@@ -1,5 +1,4 @@
-<!-- go.md -->
-# Golang <!-- omit in toc -->
+# Golang              <!-- omit in toc -->
 
 - [Init](#init)
   - [1. Installation](#1-installation)

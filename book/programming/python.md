@@ -1,6 +1,5 @@
+# Python     <!-- omit in toc -->
 <!-- python.md -->
-
-## Python     <!-- omit in toc -->
 
 - [Standard Library](#standard-library)
     - [Reading and Writing Files](#reading-and-writing-files)

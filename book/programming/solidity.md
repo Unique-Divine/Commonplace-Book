@@ -1,3 +1,9 @@
+# Solidity            <!-- omit in toc -->
+
+- [Installation and Getting Started](#installation-and-getting-started)
+  - [Install the Solidity Compiler](#install-the-solidity-compiler)
+  - [Getting a professional development setup with Hardhat](#getting-a-professional-development-setup-with-hardhat)
+
 ## Installation and Getting Started
 
 Solidity is an object-oriented language for implementing smart contracts. Smart contracts are programs that govern the behavior of accounts within the Ethereum state. 

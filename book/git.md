@@ -195,5 +195,9 @@ git update-index --no-skip-worktree <file-list>
 
 * A successful Git branching model. [[web]](https://nvie.com/posts/a-successful-git-branching-model/)
 
+---
+
+# GitHub Workflows
 
 
+Run and test workflows locally with [nektos/act](https://github.com/nektos/act). Note that it depends on `docker` to run the workflows.

@@ -260,7 +260,9 @@ Here, the buttons of `ComponentFoo` and `ComponentBar` change different counters
 
 `useMemo` is a hook that returns a value that only recomputes when one of its dependencies has changed.
 Q: dependencies?
+
 Q: What recomputes?
+
 
 > "side effects belong in `useEffect`, not `useMemo`"
 Q: What does this mean? Why is it true?
