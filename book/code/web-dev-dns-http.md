@@ -10,6 +10,7 @@
   - [Hugo Web Design](#hugo-web-design)
   - [HTTP, TCP, IP](#http-tcp-ip)
   - [Domain Name System (DNS)](#domain-name-system-dns)
+  - [Web Design for Beginners](#web-design-for-beginners)
 
 ---
 
@@ -268,3 +269,35 @@ A CNAME reord allows a site to resolve to a different domain while pointing the 
 - [What is a domain name? | Domain name vs. URL](https://www.cloudflare.com/learning/dns/glossary/what-is-a-domain-name/)
 - [DNS A record](https://www.cloudflare.com/learning/dns/dns-records/dns-a-record/)
 - [DNS resolver](https://www.cloudflare.com/learning/dns/dns-server-types/) 
+
+## Web Design for Beginners
+
+**A simple but complete guide - webflow blog**
+
+Content Management System == CMS
+
+Web development centers around the following languages: HTML, CSS, and JavaScript.
+
+Create an inspiration doc with links to sites you love, or bookmark them as you go. Pinterest is a great place to find great site design -- you can find and pin illustrations, book covers, posters, blogs, and other types of design work to refer to.
+
+Curated collections of good design:
+- Awwwards : themed collections
+- Behance : compilation of web design work, where the focus is on quality and creativity
+- Dribble : focuses on individual designers
+
+#### Have content ready before you start.
+
+Putting content first means having content ready to work with before you start designing your first website. 
+
+It doesn't have to be perfect. But, having at least a rough draft of what will go live will give you a better representation of how the website will look and function.
+
+#### Understand UX and UI basics
+
+- Make things simple and intuitive
+- Meet your audience's needs and resist the temptation to showboat your skills at the expense of usability
+
+- the difference b/w UI and UX:
+  - Where user experience (UX) is concerned with understanding your audience and the overall feel of a design, UI is about the specifics.
+  - UI is about giving someone the tools they need to experience your website free from complications.
+
+neophyte | A neophyte is someone who's brand new at something. You're a neophyte the first time you pick up a guitar and start learning to play. Neo- means new, and -phyte is from the Greek phuton, "plant" — like a baby plant, a neophyte is someone who is new to an activity.
