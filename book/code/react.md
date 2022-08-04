@@ -11,6 +11,7 @@
   - [`useRef` hook](#useref-hook)
   - [`useMemo` hook](#usememo-hook)
 - [Context and the `useContext` hook](#context-and-the-usecontext-hook)
+- [Class Components](#class-components)
 - [Resources](#resources)
 - [Debugging](#debugging)
 
@@ -257,6 +258,49 @@ Here, the buttons of `ComponentFoo` and `ComponentBar` change different counters
 
 ### `useRef` hook
 
+Q: What are React refs?
+
+> "Refs provide a way to access DOM nodes or React elements created in the render method." - [React docs](https://reactjs.org/docs/refs-and-the-dom.html)
+
+A `React.RefObject`, or "ref", allows DOM access from a component. It is a reference to some object like a POJO, DOM node, etc. Attaching a "ref" to an HTML or React element provides access to the element's DOM from anywhere in a component. 
+
+Q: When should refs be used?
+
+Only when the required interaction cannot be achieved using state and props. 
+- Refs are appropriate when integrating with third-party DOM libraries. Q: Why?
+- Deep interactions with text selections or media playback behavior
+
+```tsx
+const inputRef = useRef<HTMLInputElement>(null)
+```
+This call of the `useRef` hook returns a `{current: null}` object because `nul` was passed in as the initial value.
+
+```tsx
+import React, { useRef } from 'react';
+
+const SimpleRef = () => {
+    const inputRef = useRef<HTMLInputElement>(null);
+    const onClick = () => {
+      console.log("inputRef.current?.value ...", inputRef.current?.value);
+    const onClickFocus = () => {
+      console.log("inputRef.current?.focus() ...")
+      inputRef.current?.focus();
+      }
+    return (<div>
+      <input ref={inputRef} />
+      <button onClick={onClick}> />
+      <button onClick={onClickFocus} />
+    </div>)
+```
+
+- Q: Why is the `inputRef` reference defined as an `HTMLInputElement` type?  A: The reference is put on an `<input>` element.
+- Q: Why use the question marks on `inputRef.current?`?  A: This is called ["optional chaining"](https://javascript.info/optional-chaining). 
+
+#### Using the `React.createRef` function to create refs?
+
+
+
+
 ### `useMemo` hook
 
 
@@ -279,6 +323,12 @@ Q: When should you use `Context`?
 
 Context is designed to share "global" variables for a tree of React components.
 
+## Class Components
+
+TODO
+
+---
+
 ## Resources
 
 - useRef: https://reactjs.org/docs/hooks-reference.html#useref
@@ -290,7 +340,6 @@ Context is designed to share "global" variables for a tree of React components.
 - [A re-introduction to JavaScript (JS tutorial)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
 - [Learn React in 30 Minutes](https://youtu.be/hQAHSlTtcmY)
 - [React Hooks Course - All React Hooks Explained](https://youtu.be/LlvBzyy-558)
-
 
 ## Debugging
 
@@ -317,4 +366,5 @@ yarn list react-dom
 │  └─ react-dom@16.14.0
 └─ react-dom@18.2.0
 ```
+
 
