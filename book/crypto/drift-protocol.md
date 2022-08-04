@@ -1,6 +1,6 @@
 # drift-protocol.md           <!-- omit in toc -->
 
-Drift Protocol is a decentralized exchange on Solana. Drift's first product is perpetual swaps. It is the first perpetual swaps exchange to leverage the novel Dynamic AMM (DAMM) design based on a virtual AMM (VAMM).
+Drift Protocol is an open-sourced decentralized exchange on Solana powering the novel Dynamic AMM (DAMM) in addition to a decentralized orderbook (DLOB). Drift's first product is perpetual swaps, similar to what you see on Binance, FTX, and Huobi. 
 
 Table of Contents
 - [Drift Qualitative Analysis](#drift-qualitative-analysis)
@@ -19,6 +19,8 @@ Table of Contents
   - [Code Notes - Repegging](#code-notes---repegging)
     - [`#[derive(Default)]`](#derivedefault)
     - [Traits](#traits)
+- [Technical Incident: Withdrawal Bug](#technical-incident-withdrawal-bug)
+- [Resources](#resources)
 
 --- 
 
@@ -26,21 +28,19 @@ Table of Contents
 
 #### Quick primer on perpetual swaps
 
-Perps are a very crypto native invention. They came out around 2016/2017 and we invented by BitMex. No cash is exchanged with a perpetual swap. A perp s a futures contract that never expires. Counterparties are not needed as the swap can be done with the exchange. 
+Perps are a very crypto native invention. They came out around 2016/2017 and were invented by BitMex. No cash is exchanged with a perpetual swap. A perp is a futures contract that never expires. Counterparties are not needed as the swap can be done with the exchange. 
 
-The bane of perpetual swaps existence is the mechanism for the price of the derivative in line  with oracle prices. This is called the funding rate. 
+The bane of perpetual swaps existence is the mechanism for keeping the price of the derivative in line with oracle prices. This is called the funding rate. 
 
-Funding rates are essentially charged to participants who are on the wrong side or the aggressive side of the contract. For example, if there's a $1000 difference between the mark and index prices, the goal is to make this difference amortized over a period of 24 hours. Some exchanges do continuous funding, so do 8 hour chunks. If the mark price is above the oracle price, people who are long the contract pay the funding rate.
+Funding rates are essentially charged to participants who are on the wrong side or the aggressive side of the contract. For example, if there's a $1000 difference between the mark and index prices, the goal is to make this difference amortized over a period of 24 hours. Some exchanges do continuous funding. Some do 8 hour chunks. If the mark price is above the oracle price, people who are long the contract pay the funding rate.
 
-Think of funding rate like a penalty for being against the oracle.  This incentives arbitrageurs to come in and correct the trade because they know that they can collect the funding rate as a reward for making the markets ore in line with each other.
+Think of funding rate like a penalty for being against the oracle.  This incentives arbitrageurs to come in and correct the trade because they know that they can collect the funding rate as a reward for making the markets more in line with each other.
 
 #### Background on the Drift team
 
 Drift has a team of four co-founders with a mixture of trading, traditional finance, crypto, and software engineering backgrounds. 
 
-Cindy Leow is one of the cofounders of Drift Protocol. Drift is  decentralized futures exchange on Solana. Their first product is perpetual swaps, similar to what you see on Binance, FTX, and Huobi. 
-
-Cindy began in the crypto space in 2016. She started out trading as an exchange student in Korea. She noticed huge spreads betweeen US and Korean markets for BTC, sometimes as much as a 30% gap between the two. Cindy would use a Korean and American bank account to buy a coin in the US and sell it in Korea. Over time, she delved into other trading opportunities and found other market inefficiencies in crypto.
+Cindy Leow is one of the cofounders of Drift Protocol. She began in the crypto space in 2016 and started out trading as an exchange student in Korea. She noticed huge spreads betweeen US and Korean markets for BTC, sometimes as much as a 30% gap between the two. Cindy would use a Korean and American bank account to buy a coin in the US and sell it in Korea. Over time, she delved into other trading opportunities and found other market inefficiencies in crypto.
 
 Then, she started automating on-chain strategies. Cindy started running a small prop fund and then got into DeFi during 2021.
 
@@ -62,23 +62,24 @@ Ref: [Delta One Trading](https://www.fe.training/free-resources/financial-market
 
 ### Q: Why did Drift make a perpetual swap exchange?
 
-They wanted to do options early on but decided that perpetual swaps were a lot more liquid and easier to implement than standard options. Given how much bigger the market for perps is, the team assumed it would be easier and more condusive to growth to start with a delta one product rather of convex product. 
+They wanted to do options early on but decided that perpetual swaps were a lot more liquid and easier to implement than standard options. Given how much bigger the market for perps is, the team assumed it would be easier and more condusive to growth to start with a delta one product rather than a convex product. 
 
-The Drift founders decided to focus on building out the margining engine of the perps because it can be used to expand to other types of derivatives in the future. E.g., things like power perps, perps that track the square root of the underlying, or NFT floor perps. Those are some innovations Drift wants to build in the future. They wanted to start out witha  simple delta-one product as a base.
+The Drift founders decided to focus on building out the margining engine of the perps because it can be used to expand to other types of derivatives in the future. E.g., things like power perps, perps that track the square root of the underlying, or NFT floor perps. Those are some innovations Drift wants to build in the future. They wanted to start out with a  simple delta-one product as a base.
 
 - ref: Floor Perps. Dave White: https://www.paradigm.xyz/2021/08/floor-perps
 
 ### Q: Why did Drift decide to build perps?
 
-Perps are the killer product in crypto. They create the easiest way to get exposure on an asset. Speculatively, it's also the easiest way to hedge against other assets. The composability of perps makes them easy to integrate on-chain. 
+- Perps are the killer product in crypto. They create the easiest way to get exposure on an asset. Speculatively, it's also the easiest way to hedge against other assets. The composability of perps makes them easy to integrate on-chain. 
 
-Perps have an elegance in that, as long as you have an oracle, you can build a market on top of something. As long as it has a continuous underlying numerical value, it'll work. You could make perps for COVID 19 vaccination rates. It doesn't have to be a binary.
+- Perps enable traders to get leveraged exposure and provide incentives for arbitrage, bringing about additional captial efficiency.
 
-Perps enable traders to get leveraged exposure and provide incentives for arbitrage, bringing about additional captial efficiency.
+- Perps have an elegance in that, if have an oracle and an underlying with a continuous numerical value, you can build a market on top of something. It doesn't have to be crypto. You could make perps for COVID 19 vaccination rates, for example. 
+
 
 ### Q: Why build perps fully on-chain?
 
-There are tons of perps out there. Some of the biggest markets exist on Binance and FTX, for instance. In other words, major centralized exchanges. Why to build them on-chain goes back to why we care about decentralization in the first place: it's ironic that the most liquid contracts in crypto are hosted in a centralized context where every single participant has to trust a centralized exchange to hold the funds, make sure that pricing is transparent, and they're not actually trading against client orders.
+Some of the biggest markets exist on Binance and FTX, for instance. In other words, major centralized exchanges. The reason to build perps on-chain goes back to why we care about decentralization in the first place: it's ironic that the most liquid contracts in crypto are hosted in a centralized context, where every single participant has to trust a centralized exchange to hold the funds, make sure that pricing is transparent, and they're not actually trading against client orders.
 
 Q: client orders?
 
@@ -92,7 +93,8 @@ A "B-book" is an order book where the traders are processed with a dealing desk 
 
 An on-chain solution to this where everything from the matching engine all the way to price discovery and the way funds are held being truly decentralized ensures full participation in the crypto world and enables users to custody their own funds.
 
-TODO
+... TBC
+<!-- TODO -->
 
 ---
 
@@ -110,8 +112,6 @@ Questions:
 - Q: <!-- TODO --> What is meant by "demand for trading" here? How is that measured?   
 - Q: <!-- TODO --> What makes the DAMM "adaptable"? Does it adapt itself, or is it adapted (manually)?
 - Q: <!-- TODO --> How exactly does the DAMM reduce the divergence between oracle and terminal price?
-
-
 
 ## Slippage and Virtual AMM pools
 
@@ -422,17 +422,30 @@ pub adjust_peg_cost(market: &must Market, new_peg: u128) -> ClearingHouseResult<
 }
 ```
 
+---
+# Technical Incident: Withdrawal Bug
+
+- See [`protocol-v1/tests/driftDrain.ts`](https://github.com/drift-labs/protocol-v1/blob/crispheaney/drift-drain/tests/driftDrain.ts)
+
+- See [`protocol-v1/tests/driftDrain10M.ts`](https://github.com/drift-labs/protocol-v1/blob/crispheaney/drift-drain/tests/driftDrain10M.ts)
+
+- See [Drift Protocol Technical Incident Report - 2022/05/11](https://driftprotocol.medium.com/drift-protocol-technical-incident-report-2022-05-11-eedea078b6d4) 
+
+TODO notes
 
 
-Resources:
+# Resources
+
 - Drift's Dynamic AMM. https://docs.drift.trade/drifts-dynamic-amm
 - [drift-labs/protocol-v1](https://github.com/drift-labs/protocol-v1): Rust code for the contracts
+- [Drift Protocol Technical Incident Report - 2022/05/11](https://driftprotocol.medium.com/drift-protocol-technical-incident-report-2022-05-11-eedea078b6d4)
 - Drift TypeScript SDK. [@drift-labs/sdk](https://www.npmjs.com/package/@drift-labs/sdk). 
 - Examples for Drift TS SDK: [drift-labs/example-bots](https://github.com/drift-labs/example-bots)
 - [drift-labs/driftpy](https://github.com/drift-labs/driftpy): Drift Python SDK
 
+
 Date: 22年8月2日
-Tags: ["drift", "repeg", "drift cover", "repegging", "DAMM"]
+Tags: ["drift", "DAMM", "perpetual swaps", "perps", "repeg", "drift cover", "withdrawal bug"]
 
 ---
 
