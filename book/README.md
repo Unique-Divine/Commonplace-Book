@@ -6,6 +6,8 @@ coverY: 0
 
 This repo holds both my commonplace book and some of the notes I've been taking for different independent learning projects this year (late 2020 up to now). Friends and colleagues liked the resources and convinced me to make them public. 
 
+<!-- docs for the (now deprecated) gitbook cli: https://snowdreams1006.github.io/gitbook-official/en/ -->
+
 ## Programming 
 
 {% content-ref url="code.md" %}
