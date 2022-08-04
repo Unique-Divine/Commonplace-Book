@@ -8,6 +8,8 @@
     - [Functools](#functools)
     - [Sort() and sorted()](#sort-and-sorted)
     - [Binary and other bases](#binary-and-other-bases)
+- [Pipenv Cheat Sheet](#pipenv-cheat-sheet)
+- [Pyenv Cheat Sheet](#pyenv-cheat-sheet)
 - [Writing Tests](#writing-tests)
 - [Working with Databases](#working-with-databases)
     - [MongoDB (pymongo)](#mongodb-pymongo)
@@ -280,7 +282,27 @@ def num_in_scientific_notation(num: float) -> str:
     return "{:e}".format(num)
 ```
 
+---
 
+# Pipenv Cheat Sheet
+
+Install 
+```sh
+pip install pipenv
+```
+
+Activate: `pipenv shell`
+
+Install package via pip: `pipenv install package_name`
+
+Uninstall package: `pipenv uninstall package_name`
+
+
+Reference: [bradtraversy/pipenv_cheat_sheet.md](https://gist.github.com/bradtraversy/c70a93d6536ed63786c434707b898d55
+
+# Pyenv Cheat Sheet
+
+Reference: [malexer/cheatsheets/pyenv.md](https://github.com/malexer/cheatsheets/blob/master/pyenv.md)
 
 ---
 
@@ -590,6 +612,7 @@ Terms to know: .proto file, protocol buffer compiler, protcol buffer API, messag
 Protocol buffers are the flexible, efficient, automated solution to solve the problem of how to serialize and retrieve structured data between programming interfaces, e.g. C++ and Python.
 
 #### How does a protocol buffer solve this problem?
+
 A **protocol buffer compiler** creates a class that implements automatic encoding and parsing of the protocol buffer data with an efficient binary format. The generated class provides attributes and fields for the objects that make up a protocol buffer, abstracting away the complexity of reading and writing the protocol buffer as a unit.
 - The protocol buffer format supports future development efforts by making it easy to extend the format over time in such that the code can still read data encoded with an  old format. 
 
