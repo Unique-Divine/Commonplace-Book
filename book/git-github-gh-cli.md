@@ -2,19 +2,17 @@
 
 Git (cookbook)
 
-- [Initial Repo Configuration](#initial-repo-configuration)
-- [Fundamental Concepts](#fundamental-concepts)
-  - [Branching](#branching)
-  - [Merging](#merging)
-  - [Deleting branches](#deleting-branches)
-  - [Git flow](#git-flow)
-- [Editting commit history](#editting-commit-history)
-- [Convenience Functionality](#convenience-functionality)
-  - [Git Aliases](#git-aliases)
-- [Special Topics](#special-topics)
-  - [Changing remote after a repo name change](#changing-remote-after-a-repo-name-change)
-  - [SSH keys](#ssh-keys)
+- [Git](#git)
+  - [Initial Repo Configuration](#initial-repo-configuration)
+  - [Fundamental Concepts](#fundamental-concepts)
+  - [Editting commit history](#editting-commit-history)
+  - [Special Topics](#special-topics)
+- [GitHub (gh)](#github-gh)
+  - [GitHub CLI (gh) Cheatsheet](#github-cli-gh-cheatsheet)
+  - [GitHub Workflows](#github-workflows)
 
+
+# Git
 
 ## Initial Repo Configuration
 
@@ -51,7 +49,7 @@ source: [HEAD, master, and origin. Matt Greer & Jacqueline P. via stackoverflow.
 
 ***
 
-### Branching
+#### Branching
 
 Suppose your application is stable. Later, you discover a gigantic bug that was passing silently. You want to write some tests, fix the bug, and eventually have a stable, passing application once again. To do this, you'd create a branch for the fix and push the branch to the remote so that all of the developers on your team can collaborate and make the fix.
 
@@ -62,11 +60,11 @@ Once all of the necessary changes have been made and the application is stable, 
 * **Grab a file from a specific branch**: `git checkout [branch_name] [paths]`. Note that if the files are on a remote branch, you'll have to use\
   `git checkout origin/[branch_name] [paths]` instead.
 
-### Merging
+#### Merging
 
 Merge the specified branch's history into the current one. `git merge [branch]`
 
-### Deleting branches
+#### Deleting branches
 
 Delete local branch `git branch -d [branch-name]`
 
@@ -74,7 +72,7 @@ Delete remote branch `git push origin --delete [branch-name]`
 
 ------------------------------------------------------------
 
-### Git flow
+#### Git flow
 
 When working on a new feature, branch off from the `develop` branch:
 
@@ -124,11 +122,12 @@ git add --patch \[file-name]
 
 Ref: https://stackoverflow.com/a/1085191
 
---------------------------------------------------
+----------------------------------------------
 
-## Convenience Functionality
 
-### Git Aliases
+## Special Topics
+
+#### Git Aliases
 
 Ref: [Git Basics - Git Alises](https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases)
 
@@ -139,12 +138,7 @@ git config --global alias.ci commit
 git config --global alias.st status
 ```
 
-------------------------------------------------------------
-
-
-## Special Topics
-
-### Changing remote after a repo name change
+#### Changing remote after a repo name change
 
 If you change the name of a repository, the fetch/pull commands may stop working. Git will show you an error along the lines of "`error: failed to push some refs to '{repo_url}.git'`". 
 
@@ -154,9 +148,7 @@ To check which URL the remote references to, use `git remote -v`. Then, set a ne
 git remote set-url origin {new_repo_url}
 ```
 
-
-
-### SSH keys
+#### SSH keys
 
 An SSH key is an alternative to username/password authorization on GitHub. This will allow you to bypass entering your username and password for future GitHub commands.
 
@@ -197,7 +189,86 @@ git update-index --no-skip-worktree <file-list>
 
 ---
 
-# GitHub Workflows
+# GitHub (gh)
+
+## GitHub CLI (gh) Cheatsheet
+
+
+Set the editor as vim instead of the default, nano.
+```sh
+gh config set editor vim 
+```
+
+Other examples of [`gh config set`](https://cli.github.com/manual/gh_config_set):
+```sh
+gh config set git_protocol ssh --host github.com
+gh config set prompt disabled
+```
+
+
+
+```sh
+# list commands
+gh issue list
+gh pr list
+```
+
+```sh
+# list commands
+gh pr status
+gh repo view
+```
+
+`gh pr create`: Creates a pull-request
+`gh pr checks`: 
+
+
+GH Issues: 
+- `gh issue close`: 
+
+```sh
+gh issue list
+gh issue create --label bug
+gh issue view 123 --web
+```
+
+
+## GitHub Workflows
 
 
 Run and test workflows locally with [nektos/act](https://github.com/nektos/act). Note that it depends on `docker` to run the workflows.
+
+Installation bash script
+```sh
+curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
+```
+
+Example commands:
+
+```sh
+# Command structure:
+act [<event>] [options]
+If no event name passed, will default to "on: push"
+
+# List the actions for the default event:
+act -l
+
+# List the actions for a specific event:
+act workflow_dispatch -l
+
+# Run the default (`push`) event:
+act
+
+# Run a specific event:
+act pull_request
+
+# Run a specific job:
+act -j test
+
+# Run in dry-run mode:
+act -n
+
+# Enable verbose-logging (can be used with any of the above commands)
+act -v
+```
+
