@@ -1,33 +1,169 @@
 # Python     <!-- omit in toc -->
 <!-- python.md -->
 
+- [Setting up a Profession Development Environment](#setting-up-a-profession-development-environment)
+  - [Pyenv for managing multiple Python interpreters](#pyenv-for-managing-multiple-python-interpreters)
+  - [Poetry for dependency management and publishing packages](#poetry-for-dependency-management-and-publishing-packages)
+    - [Using poetry](#using-poetry)
+  - [Environment variables and `python-dotenv`](#environment-variables-and-python-dotenv)
 - [Standard Library](#standard-library)
-    - [Reading and Writing Files](#reading-and-writing-files)
+    - [File Handling - Reading and Writing Files](#file-handling---reading-and-writing-files)
     - [HTTP Requests](#http-requests)
     - [Command Line Applications - Argparse](#command-line-applications---argparse)
     - [Functools](#functools)
     - [Sort() and sorted()](#sort-and-sorted)
     - [Binary and other bases](#binary-and-other-bases)
-- [Pipenv Cheat Sheet](#pipenv-cheat-sheet)
-- [Pyenv Cheat Sheet](#pyenv-cheat-sheet)
-- [Writing Tests](#writing-tests)
+- [Writing Tests with `pytest`](#writing-tests-with-pytest)
+    - [Fixtures](#fixtures)
+    - [Choosing which tests to run in a suite with `-k`](#choosing-which-tests-to-run-in-a-suite-with--k)
+    - [Else](#else)
 - [Working with Databases](#working-with-databases)
     - [MongoDB (pymongo)](#mongodb-pymongo)
 - [Object-Oriented Programming (OOP)](#object-oriented-programming-oop)
-- [Else](#else)
+- [Else](#else-1)
   - [Publishing Packages on PyPi](#publishing-packages-on-pypi)
   - [Protocol Buffers](#protocol-buffers)
   - [Miscellaneous](#miscellaneous)
 
 ---
 
+# Setting up a Profession Development Environment
+
+## Pyenv for managing multiple Python interpreters
+
+The [pyenv repo](https://github.com/pyenv/pyenv) contains usage and installation instructions. If you're on MacOS or a common Linux distro, you can install `pyenv` with brew.
+
+```sh
+brew install pyenv
+```
+
+You'll then need to add the following snippet to your shell config, e.g. your `.bash_profile`, `.bashrc`, or `.zshrc`.
+```sh
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv init --path)"
+```
+
+After using `source` on your config or restarting the shell, you should have the `pyenv` root command.
+
+
+The command use to install any version of python is `pyenv install`. Display additional info for this command with `pyenv install --help`.
+
+```sh
+pyenv install 3.9.13 # example
+```
+
+Once you have a version installed, you can print out the versions on your machine with:
+```sh
+pyenv versions
+```
+
+```
+# example output
+  system
+* 3.9.13 (set by /home/realu/.python-version)
+  3.10.4
+```
+
+In this example, I have 2 different interpreters installed on my machine. The one with the `*` is currently set as my **global interpreter**. This is set manually using the `pyenv global` command.
+
+```sh
+pyenv global 3.10.4   # switches the global interpreter to 3.10.4
+```
+
+You can verify this works as expected using `python --version`. You may be familiar with using `python3` as the command instead of `python`. With `pyenv`, this is not necessary.
+
+
+Reference: [malexer/cheatsheets/pyenv.md](https://github.com/malexer/cheatsheets/blob/master/pyenv.md)
+
+
+## Poetry for dependency management and publishing packages
+
+Reference: [Poetry docs](https://python-poetry.org/docs/)
+
+Poetry can be installed with both `curl` and `pip`. I recommended using `curl` so that it will be global to your machine. 
+
+NOTE I highly, highly, highly recommend that you DO NOT use `brew` to install `poetry`. If you use `brew`, it's going to install directly to your system, which prevents you from being able to leverage `pyenv` to seamlessly switch between Python interpreters.
+
+```sh 
+# installation with pip: recommended option in tandem with pyenv
+pip install poetry
+```
+
+```sh
+# For UNIX systems - installation with curl 
+curl -sSL https://install.python-poetry.org/ | python -
+```
+
+After this installation command, add the `poetry` binary to the path in your shell config.
+
+```sh
+export PATH=$PATH:$HOME/.poetry/bin
+```
+
+### Using poetry
+
+To create a project from scratch, call `poetry new [pkg-name]`
+
+To create a project from a pre-existing codebase, `cd` to the root where the package is located (the parent repo or directory to the package) and call:
+```sh
+poetry init
+```
+
+Both of these commands will prompt you to interactively create a `pyproject.toml`.
+
+After confirming the generation of the project, you can find all of the options you specified inside the `pyproject.toml`. You can now install the packages.
+
+```sh
+poetry install
+```
+
+This will resolve dependencies between each of the project's packages and install them into a virtual environment.
+
+
+
+
+## Environment variables and `python-dotenv`
+
+Q: Difference between `os.getenv` and `os.environ`
+
+#### When the environment variable has been set, there is no difference. 
+
+```sh
+$ python -m timeit -s 'import os' 'os.environ.get("ENV_VAR_FOO")'
+200000 loops, best of 5: 1.65 usec per loop
+
+$ python -m timeit -s 'import os' 'os.getenv("ENV_VAR_FOO")'
+200000 loops, best of 5: 1.83 usec per loop
+```
+
+
+
+`os.environ` is of the built-in type `_Environ`, which is a `MutableMapping`.
+
+```python
+from _collections_abc import MutableMapping
+class _Environ(MutableMapping):
+  ...
+```
+
+In other words, `os.environ` is a dictionary. Its keys-value pairs are formed by your environment variables.
+
+```python
+import dotenv # poetry add python-dotenv
+
+dotenv.load_dotenv()
+```
+
+---
 # Standard Library
 
 ---
 
-### Reading and Writing Files
+### File Handling - Reading and Writing Files
 
-`open()` returns a file object.
+The `open()` function returns a file object.
 
 File objects mediate access to on-disk files. File objects are also called streams.
 
@@ -54,10 +190,22 @@ It is good practice to use the `with` keyword when dealing with file objects bec
 ```python
 with open(file="some_file") as file:
     pass
-file.closed
+file.closed # returns True
 ```
 
-`True`
+Q: Creating a blank file.
+
+```python
+# Creates blank.txt 
+
+# some_path represents a path to some existing directory. 
+import os
+path_to_file = os.path.join(some_path, "blank.txt")
+with open(path_to_file, "w") as fh:
+    pass
+# Verify this worked with...
+print(f"Directories and files at {some_path}: {os.listdir(some_path)}")
+```
 
 - Python glossary - file object [[docs]](https://docs.python.org/3/glossary.html#term-file-object)
 
@@ -284,31 +432,37 @@ def num_in_scientific_notation(num: float) -> str:
 
 ---
 
-# Pipenv Cheat Sheet
+# Writing Tests with `pytest`
 
-Install 
-```sh
-pip install pipenv
+---
+
+### Fixtures
+
+```python
+import pytest
+
+@pytest.fixture
+def foo_obj() -> SomeType:
+  foo_val: SomeType
+  // ... 
+  return foo_val
 ```
 
-Activate: `pipenv shell`
+Other tests can access this fixture by specifying it as a required argument.
 
-Install package via pip: `pipenv install package_name`
+```python
+def test_a(foo_obj):
+  ... // test logic here
 
-Uninstall package: `pipenv uninstall package_name`
+def test_b(foo_obj):
+  ... // test logic here 
+```
+
+### Choosing which tests to run in a suite with `-k`
 
 
-Reference: [bradtraversy/pipenv_cheat_sheet.md](https://gist.github.com/bradtraversy/c70a93d6536ed63786c434707b898d55
 
-# Pyenv Cheat Sheet
-
-Reference: [malexer/cheatsheets/pyenv.md](https://github.com/malexer/cheatsheets/blob/master/pyenv.md)
-
----
-
-# Writing Tests
-
----
+### Else
 
 **Disabling warnings**
 
