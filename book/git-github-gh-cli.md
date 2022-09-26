@@ -7,9 +7,16 @@ Git (cookbook)
   - [Fundamental Concepts](#fundamental-concepts)
   - [Editting commit history](#editting-commit-history)
   - [Special Topics](#special-topics)
+    - [Git Aliases](#git-aliases)
+    - [SSH keys](#ssh-keys)
+    - [**Large File Storage**](#large-file-storage)
+    - [When the .gitignore just won't ignore](#when-the-gitignore-just-wont-ignore)
 - [GitHub (gh)](#github-gh)
   - [GitHub CLI (gh) Cheatsheet](#github-cli-gh-cheatsheet)
-  - [GitHub Workflows](#github-workflows)
+  - [Releases and Tags](#releases-and-tags)
+    - [Releasing Projects on GitHub](#releasing-projects-on-github)
+  - [GitHub Workflows and `act`](#github-workflows-and-act)
+  - [GitHub Badges](#github-badges)
 
 
 # Git
@@ -122,12 +129,13 @@ git add --patch \[file-name]
 
 Ref: https://stackoverflow.com/a/1085191
 
+
 ----------------------------------------------
 
 
 ## Special Topics
 
-#### Git Aliases
+### Git Aliases
 
 Ref: [Git Basics - Git Alises](https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases)
 
@@ -136,6 +144,7 @@ git config --global alias.co checkout
 git config --global alias.br branch
 git config --global alias.ci commit
 git config --global alias.st status
+git config --global alias.ac '!git add -A && git commit'
 ```
 
 #### Changing remote after a repo name change
@@ -148,7 +157,7 @@ To check which URL the remote references to, use `git remote -v`. Then, set a ne
 git remote set-url origin {new_repo_url}
 ```
 
-#### SSH keys
+### SSH keys
 
 An SSH key is an alternative to username/password authorization on GitHub. This will allow you to bypass entering your username and password for future GitHub commands.
 
@@ -160,11 +169,11 @@ The cryptography behind SSH keys ensures that no one can reverse engineer your p
 
 Generating a new SSH key: Follow [Generating a new SSH key and adding it to the ssh-agent \[article\]](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
-**Large File Storage**
+### **Large File Storage**
 
 See https://git-lfs.github.com
 
-**When the .gitignore just won't ignore**
+### When the .gitignore just won't ignore
 
 ```
 git rm -rf --cached .
@@ -232,8 +241,37 @@ gh issue create --label bug
 gh issue view 123 --web
 ```
 
+## Releases and Tags
 
-## GitHub Workflows
+A Git tag is similar to a Git reference, but the Git commit that it points to never changes. Git tags are helpful when you want to point to specific releases.
+
+Tag objects (created with `-a`, `-s`, or `-u`) are called "annotated" tags; they contain a creation date, the tagger name and e-mail, a tagging message, and an optional GnuPG signature. Whereas a "lightweight" tag is simply a name for an object (usually a commit object).
+
+```sh
+git tag -s v0.0.16 -m "Release description for v0.0.16" 
+```
+
+Refs:
+- [Managing Tags - GitHub docs](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/managing-commits/managing-tags)
+- [`git tag` docs](https://git-scm.com/docs/git-tag)
+
+```sh
+# set env var in sh script
+export GPG_TTY=$(tty)
+```
+
+
+
+### Releasing Projects on GitHub
+
+Releases are deployable software iterations you can package and make available for a wider audience to download and use.
+
+Ref: https://docs.github.com/en/repositories/releasing-projects-on-github
+
+About Releases (Docs): https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases
+
+
+## GitHub Workflows and `act`
 
 
 Run and test workflows locally with [nektos/act](https://github.com/nektos/act). Note that it depends on `docker` to run the workflows.
