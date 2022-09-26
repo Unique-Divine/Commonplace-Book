@@ -1,12 +1,99 @@
-# Typescript
+# Typescript                <!-- omit in toc -->
 
-- [Typescript](#typescript)
-    - [Node and npm](#node-and-npm)
-    - [yarn](#yarn)
-    - [tsconfig.json](#tsconfigjson)
-    - [TypeScript Basics](#typescript-basics)
-    - [AssemblyScript](#assemblyscript)
+#### Table of Contents
+- [Types](#types)
+- [Typescript Syntax](#typescript-syntax)
+  - [JSON](#json)
+- [Style](#style)
+- [Tooling](#tooling)
+  - [Node and npm](#node-and-npm)
+  - [yarn](#yarn)
+  - [tsconfig.json](#tsconfigjson)
+  - [TypeScript Basics](#typescript-basics)
+  - [Eslint and Prettier with TypeScript and React](#eslint-and-prettier-with-typescript-and-react)
+  - [AssemblyScript](#assemblyscript)
+  - [`depcheck` to track and remove unnecessary dependencies](#depcheck-to-track-and-remove-unnecessary-dependencies)
 
+
+## Types
+
+#### Union type
+
+A union type can be any one of some set of options.
+```ts
+type Response = "yes" | "no" | undefined
+```
+
+#### Intersection type
+
+Intersecting types lets you define a type with both attributes. 
+
+```ts
+type Point = {x: number} & {y: number}
+// equivalent to 
+type Point = {x: number, y: number}
+```
+- [ ] TODO mine https://www.typescriptlang.org/cheatsheets
+  - [ ] TODO mine control flow - https://www.typescriptlang.org/static/TypeScript%20Control%20Flow%20Analysis-8a549253ad8470850b77c4c5c351d457.png
+  - [ ] TODO mine types - https://www.typescriptlang.org/static/TypeScript%20Types-4cbf7b9d45dc0ec8d18c6c7a0c516114.png
+  - [ ] TODO mine interfaces - https://www.typescriptlang.org/static/TypeScript%20Interfaces-34f1ad12132fb463bd1dfe5b85c5b2e6.png
+  - [ ] TODO mine classes - https://www.typescriptlang.org/static/TypeScript%20Classes-83cc6f8e42ba2002d5e2c04221fa78f9.png
+
+## Typescript Syntax
+
+
+Interfaces
+
+Interfaces are like structures, or structs, in Go or abstract classes in Python (sort of). Anything that has the properties of the interface is compliant and considered an instance of it.
+
+```ts
+interface Point {
+  x: number;
+  y: number;
+}
+
+function move(pt: Point, dx: number, dy: number): Point {
+  return {
+    x: pt.x + dx, 
+    y: pt.y + dy,
+  }
+};
+
+```
+
+TODO mine reference: https://stackoverflow.com/a/41915551
+
+### JSON 
+
+```ts
+var pojo: Object 
+JSON.stringify(pojo) // returns the JSON string compactly
+JSON.stringify(pojo, null, 2) // JSON string with 2-space pretty formatting
+```
+
+
+## Style 
+
+[Google Style Guide - JS](https://google.github.io/styleguide/jsguide.html#jsdoc)
+
+
+JSDocs use Markdown syntax and special "tags" the begin with `@` such as `@param` and `@returns`. For example, 
+
+```ts
+/**
+ * @fileoverview High-level description of the file.
+ *
+ * Heading for a bulleted list:
+ * - item 0
+ * - item 1
+ */
+```
+
+[Top/file-level comments](https://google.github.io/styleguide/jsguide.html#jsdoc-top-file-level-comments)
+
+
+
+## Tooling
 
 ### Node and npm
 
@@ -67,6 +154,35 @@ The tsconfig.json file allows you to specify the root level files and the compil
 
 Compiler options
 
+Q: What happens when you set `"type": "module"` in the `package.json`?
+
+When you set `"type": "module"` in the `package.json` file, it specifies the project as an ES module. Omitting this from the `package.json` has the same effect as setting it to `"type": "commonjs"`, where JS files are treated as CommonJS.
+
+Q: What is an ES module? And what is CommonJS?
+
+The default behavior for Node.js is to treat JS code as CommonJS modules. Common JS modules are characterized by the `require()` statement for module imports and `module.exports` for module exports.
+
+Example exports for a CommonJS module
+```js
+// util.js
+module.exports.add = function(a, b) {
+  return a + b;
+} 
+```
+
+```js
+const {add} = require('./util')
+
+console.log(add(5, 5)) // 10
+```
+
+
+Q: When should one use CommonJS versus an ES module for a project?  
+
+
+
+
+
 ### TypeScript Basics
 
 Q: Write a "hello, World!" program in Typescript.
@@ -86,6 +202,13 @@ ts-node code.js
 ```
 
 Q: `tsc` stands for TypeScript Compiler.
+
+### Eslint and Prettier with TypeScript and React
+
+ESLint is a tool for identifying and reporting on patterns found in EMCAScript/JavaScript code with the goal ofmaking code more consistent and avoiding bugs. It is similar to JSLint in many ways.
+
+[ESLint - Getting Started with ESLint](https://eslint.org/docs/latest/user-guide/getting-started)
+
 
 
 
@@ -139,4 +262,16 @@ I saw this in contexts like the following:
 function changetype<Address>(value: any): Address
 ```
 
+
+
 ---
+
+### `depcheck` to track and remove unnecessary dependencies
+
+```sh
+yarn global add depcheck # install
+depcheck                 # usage
+```
+
+Ref: https://www.pluralsight.com/guides/how-to-remove-unused-dependencies-in-react
+
