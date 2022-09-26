@@ -313,7 +313,6 @@ On Drift, funding payments, repegs, and
 
 # Repegging, a.k.a Drift Cover - Drift V1
 
-
 Peg multiplier:
 
 Suppose there is a two-dimensional constant product curve defined by the `x * y = k` swap invariant.
@@ -328,7 +327,6 @@ markPrice = (quoteReserves / baseReserves) * pegMultiplier
 The price can be multiplied by an arbitrary constant `C` (essentially a scaling factor for `y`).
 
 TODO Q: "relative scarcity"?
-
 
 ## Code Notes - Repegging
 

@@ -281,12 +281,20 @@ Installation bash script
 curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
 ```
 
+On MacOS:
+```sh
+brew install act
+```
+
 Example commands:
 
 ```sh
 # Command structure:
 act [<event>] [options]
 If no event name passed, will default to "on: push"
+
+# Run a specific job:
+act -j test
 
 # List the actions for the default event:
 act -l
@@ -300,13 +308,40 @@ act
 # Run a specific event:
 act pull_request
 
-# Run a specific job:
-act -j test
-
 # Run in dry-run mode:
 act -n
 
 # Enable verbose-logging (can be used with any of the above commands)
 act -v
 ```
+
+## GitHub Badges
+
+Badges are concise, consistent, legible images for open source projects. They are common in GitHub `README`s and other webpages and support many package registries, distributions, continuous integration services, and social networks. They look like this:
+
+![Python 3.8+] ![Contributions welcome][contributions-badge] [![License: MIT][mit-license-badge]][license] ![PyTorch][torch-badge]
+
+[Python 3.8+]: https://img.shields.io/badge/python-3.7+-blue.svg
+[mit-license-badge]: https://img.shields.io/badge/License-MIT-g.svg 
+[license]: https://github.com/eskalnes/grid_world_plus/blob/main/LICENSE
+[contributions-badge]: https://img.shields.io/badge/contributions-welcome-yellow.svg 
+[torch-badge]: https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?&logo=PyTorch&logoColor=white
+
+Badges come from [shields.io](https://shields.io/). Its source code is hosted at [github.com/badges/shields](https://github.com/badges/shields) and serves roughly a billion images each month.
+
+#### Colors 
+
+![](./img/badge-colors.png)
+
+Color options are available with keywords, 6-symbol hex codes, and 3-symbol hex codes.
+
+
+#### Template for a Custom Badge
+
+```sh
+https://img.shields.io/badge/<leftLabel>-<rightMsg>-<color>
+```
+
+![](https://img.shields.io/badge/left-right-f39f37)
+![](https://img.shields.io/badge/LABEL-MESSAGE-blue)  
 
