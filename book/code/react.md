@@ -1,23 +1,29 @@
 # React           <!-- omit in toc -->
 
 - [React Introduction](#react-introduction)
-  - [Scaffolding React Apps](#scaffolding-react-apps)
-  - [Functional Components](#functional-components)
-  - [Props](#props)
+    - [Scaffolding React Apps](#scaffolding-react-apps)
+    - [Functional Components](#functional-components)
+    - [Props](#props)
 - [Event Handlers: onClick, onBlur, and onChange](#event-handlers-onclick-onblur-and-onchange)
 - [Hooks: useState, useContext, useEffect, and useRef](#hooks-usestate-usecontext-useeffect-and-useref)
   - [`useState` hook](#usestate-hook)
-  - [Sharing State](#sharing-state)
+    - [Sharing State](#sharing-state)
   - [`useRef` hook](#useref-hook)
+  - [`useEffect` hook](#useeffect-hook)
+    - [`useEffect` Usage Guide](#useeffect-usage-guide)
+    - [Optimizing Performance by Skipping Effects](#optimizing-performance-by-skipping-effects)
+  - [Context and the `useContext` hook](#context-and-the-usecontext-hook)
+  - [Class Components](#class-components)
   - [`useMemo` hook](#usememo-hook)
-- [Context and the `useContext` hook](#context-and-the-usecontext-hook)
-- [Class Components](#class-components)
-- [Resources](#resources)
-- [Debugging](#debugging)
+  - [Resources](#resources)
+  - [Debugging](#debugging)
+    - [Uncaught Invariant Violation: Invalid hook call](#uncaught-invariant-violation-invalid-hook-call)
+    - [Blocked by CORS policy: No 'Access-Control-Allow-Origin'](#blocked-by-cors-policy-no-access-control-allow-origin)
+    - [Gradient background on text](#gradient-background-on-text)
 
 <img src="/book/img/React-icon.svg" width="400px">
 
-## React Introduction
+# React Introduction
 
 Q: What is a React in one sentence?  
 A: React is a declarative and flexible JS library for building user interfaces that lets you compose complex UIs from isolated pieces of code called "components".
@@ -131,14 +137,14 @@ export const Greeting = ({name}) => {
 ```
 Object deconstruction is the more common way to get this behavior. 
 
-## Event Handlers: onClick, onBlur, and onChange
+# Event Handlers: onClick, onBlur, and onChange
 
 - ANKI React events begin with the prefix "on".
 
 https://youtu.be/m_477l0Er9w?list=PLL5bKmA1evMlBbH9_yxsydTmyrtnerCn4&t=410
 
 
-## Hooks: useState, useContext, useEffect, and useRef
+# Hooks: useState, useContext, useEffect, and useRef
 
 Q: What are React hooks?
 
@@ -146,7 +152,7 @@ React Hooks are functions that manipulate state variables of functional componen
 
 - ANKI React hooks begin with the prefix "use".
 
-### `useState` hook
+## `useState` hook
 
 Q: `useState` is a hook that allows you to have state variables in functional components. 
 
@@ -256,7 +262,7 @@ function ComponentBar() {
 Here, the buttons of `ComponentFoo` and `ComponentBar` change different counters because each call of the `useCounter` hook creates a fresh copy of `count`.
 
 
-### `useRef` hook
+## `useRef` hook
 
 Q: What are React refs?
 
@@ -301,18 +307,58 @@ const SimpleRef = () => {
 
 
 
-### `useMemo` hook
+## `useEffect` hook
+
+> The "effect" hook, `useEffect`, lets you perform side effects in functions.
+
+Q What consistutes a side effect?  Why would we want side effects?
+
+Examples of side effects include: 
+- Fetching external data
+- Setting up a subscription
+- Manually changing the DOM in a component
+
+You may see people call these "effects" instead of "side effects".
+
+> If you're familiar with class components, you can think of the `useEffect` hook as `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` combined.
+
+Q: What does the `componentDidMount` function do in a class component?
+
+For executing logic when the component is initially mounted.
+
+Q: What does the ``componentDidUpdate` function do in a class component?
+
+For executing logic whenever the component gets updated.
+Q: What counts as a component update? TODO
+
+Q: What does the `componentWillUnmount` function do in a class component? TODO
+
+There are two common kinds of side effects in React components: those that require cleanup and those that don't.
+
+#### Effects without cleanup
+
+When to use: when you want to **run additional code after React updates the DOM**. The `render` method of the component shouldn't cause side effects because it would be too early. We typically want effects after React updates the DOM.
+
+Common examples:
+- Network requests
+- (manual) DOM mutations
+- Logging
+
+### `useEffect` Usage Guide
+
+Template: 
+```ts
+useEffect = (effect: React.EffectCallback, deps?: React.DependencyList | undefined): void
+```
+
+The `effect` is a function that implements the side effect.
+The `deps` specify an array of values that, if changed, will cause the effect to fire off. 
+
+### Optimizing Performance by Skipping Effects
 
 
-`useMemo` is a hook that returns a value that only recomputes when one of its dependencies has changed.
-Q: dependencies?
 
-Q: What recomputes?
-
-
-> "side effects belong in `useEffect`, not `useMemo`"
-Q: What does this mean? Why is it true?
-
+Reference: https://reactjs.org/docs/hooks-effect.html
 
 ## Context and the `useContext` hook
 

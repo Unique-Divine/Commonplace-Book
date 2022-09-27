@@ -64,7 +64,7 @@ some-class {
 }
 ```
 
-- 3 values: top, horizontal, right
+- 3 values: top, horizontal, bottom
 - 4 values: top, right, bottom, left (clockwise from the top)
 
 ### Scaling Vector Graphic (SVG)
