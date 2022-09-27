@@ -1,9 +1,6 @@
 # Code  <!-- omit in toc -->
 
-## Code Commonplace
-
 **Table of Contents**
-- [Code Commonplace](#code-commonplace)
 - [Data Structures & Algorithms (DSA)](#data-structures--algorithms-dsa)
 - [Python](#python)
 - [Golang](#golang)
@@ -12,62 +9,37 @@
 - [Solidity](#solidity)
 - [Databases, SQL, DBMS](#databases-sql-dbms)
 - [Web development](#web-development)
-- [Git](#git)
-- [Misc.](#misc)
+- [Git and GitHub](#git-and-github)
+- [Miscellaneous](#miscellaneous)
   - [C++](#c)
   - [Design Patterns](#design-patterns)
 
 ***
 
-## [Data Structures & Algorithms (DSA)](data-structures-algorithms.md)
+## [Data Structures & Algorithms (DSA)](../data_structures//data-structures-algorithms.md)
 
-## [Python](programming/python.md)
+## [Python](./python.md)
 
-## [Golang](programming/golang.md)
+## [Golang](./golang.md)
 
-## [Typescript](programming/typescript.md)
+## [Typescript](./typescript.md)
 
-## [React](programming/react.md)
+## [React](./react.md)
 
-## [Solidity](programming/solidity.md)
+## [Solidity](./solidity.md)
 
-## [Databases, SQL, DBMS](databases-sql-dbms.md)
+## [Databases, SQL, DBMS](./databases-sql-dbms.md)
 
-## [Web development](web-dev-dns-http.md)
+## [Web development](./web-dev-dns-http.md)
 
-## [Git](git.md)
-
-
-
-## Misc.
-
-### [C++](programming/c++.md)
+## [Git and GitHub](./git-github-gh-cli.md)
 
 
-------------------------------------------------------------
 
+---
 
-***
+## Miscellaneous
 
-### Design Patterns
+### [C++](./c++.md)
 
-Why use "design patterns"?
-
-* Design patterns let your write better code more quickly by providing a clearer picture of how to implement the design
-* Design patterns encourage code reuse and accomodate change by supplying well-tested mechanisms for delegation, composition, and other non-inheritance based reuse techniques
-* Design patterns encourage more legible and maintainable code
-
-Delegation? Composition?
-
-* delegation: a pattern where a given object provides an interface to a set of operations. However, the actual work for those operations is performed by one or more other objects.
-* composition: Creating objects with other objects as members. Should be used when a "has-a" relationship appears.
-
-What are design patterns?
-
-Which resources will you use to start learning about design patterns?
-
-GOF patterns (C++). Then, potentially Head First Design Patterns (Java)/
-
-**References & Further Reading**
-
-[Introduction to Design Patterns Course](https://www.gofpatterns.com/design-patterns/module1/intro-design-patterns.php)
+### [Design Patterns](./design-patterns.md)

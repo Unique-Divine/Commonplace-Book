@@ -1,4 +1,4 @@
-# 📝 Commonplace
+# 📝 Commonplace — Meta            <!-- omit in toc -->
 
 ## Commonplace Book
 
@@ -8,23 +8,17 @@ Created May 2020
 
 ### Contents
 
-* [1. Introduction](commonplace-book.md#1-introduction)
-  * [1.1. What is a Commonplace (Book)?](commonplace-book.md#11-what-is-a-commonplace-book)
-  * [1.2. Why? | The Purpose of this Commonplace Book](commonplace-book.md#12-why--the-purpose-of-this-commonplace-book)
-* [2. Metalearning & Doing](commonplace-book.md#2-metalearning--doing)
-  * [2.1. Project-based Learning](commonplace-book.md#21-project-based-learning)
-    * [2.1.1. Ultralearning](commonplace-book.md#211-ultralearning)
-    * [2.1.2. Getting Things Done (GTD)](commonplace-book.md#212-getting-things-done-gtd)
-    * [2.1.3. Project Proposals](commonplace-book.md#213-project-proposals)
-  * [2.2. Reading, Notetaking, and Depth of Processing](commonplace-book.md#22-reading-notetaking-and-depth-of-processing)
-    * [2.2.1. Learning Deeply: Knowing versus Understanding](commonplace-book.md#221-learning-deeply-knowing-versus-understanding)
-    * [2.2.2. How to Take Effective Notes When Reading](commonplace-book.md#222-how-to-take-effective-notes-when-reading)
-    * [2.2.3. How to read scientific papers](commonplace-book.md#223-how-to-read-scientific-papers)
-  * [2.3. Software Projects](commonplace-book.md#23-software-projects)
-  * [2.4. Endurance](commonplace-book.md#24-endurance)
-    * [2.4.1. Studying 80+ hours a week](commonplace-book.md#241-studying-80-hours-a-week)
-  * [2.5. Further reading:](commonplace-book.md#25-further-reading)
-* [3. Quotes](commonplace-book.md#3-quotes)
+- [Commonplace Book](#commonplace-book)
+  - [Contents](#contents)
+- [1. Introduction](#1-introduction)
+  - [1.1. What is a Commonplace (Book)?](#11-what-is-a-commonplace-book)
+  - [1.2. Why? | The Purpose of this Commonplace Book](#12-why--the-purpose-of-this-commonplace-book)
+- [2. Metalearning & Doing](#2-metalearning--doing)
+  - [2.1. Project-based Learning](#21-project-based-learning)
+  - [2.2. Reading, Notetaking, and Depth of Processing](#22-reading-notetaking-and-depth-of-processing)
+  - [2.3. Software Projects](#23-software-projects)
+  - [2.4. Endurance](#24-endurance)
+  - [2.5. Further reading:](#25-further-reading)
 
 ***
 
@@ -446,46 +440,5 @@ Philosphy
 Physics
 
 * Astrophysics for People in a Hurry. Neil DeGrasse Tyson.
-
-***
-
-## 3. Quotes
-
-> "your mind is for having ideas, not holding them." - David Allen
-
-> "Some very specific but seemingly mundane behaviors, when applied, produce the capacity to exist in a kind of sophisticated spontaneity, which, in my experience, is a key element to a successful life." - David Allen
-
-> "We should hunt out the helpful pieces of teaching and the spirited and noble-minded sayings which are capable of immediate practical application--not far far-fetched or archaic expressions or extravagant metaphors and figures of speech--and learn them so well that words become works." - Seneca
-
-> "I have a friend who's an artist and has sometimes taken a view which I don't agree with very well. He'll hold up a flower and say "look how beautiful it is," and I'll agree. Then he says "I as an artist can see how beautiful this is but you as a scientist take this all apart and it becomes a dull thing," and I think that he's kind of nutty. First of all, the beauty that he sees is available to other people and to me too, I believe...\
-> I can appreciate the beauty of a flower. At the same time, I see much more about the flower than he sees. I could imagine the cells in there, the complicated actions inside, which also have a beauty. I mean it's not just beauty at this dimension, at one centimeter; there's also beauty at smaller dimensions, the inner structure, also the processes. The fact that the colors in the flower evolved in order to attract insects to pollinate it is interesting; it means that insects can see the color. It adds a question: does this aesthetic sense also exist in the lower forms? Why is it aesthetic? All kinds of interesting questions which the science knowledge only adds to the excitement, the mystery and the awe of a flower. It only adds. I don't understand how it subtracts." - Richard Feynman on the beauty of a flower
-
-> "AI began with an ancient wish to forge the gods." - Pamela McCorduck, Machines Who Think, 1979
-
-> "We cannot solve our problems with the same thinking we used when we created them." - Albert Einstein
-
-> "I can calculate the motion of heavenly bodies, but not the madness of people." - Isaac Newton
-
-> "Everyone considers changing the world, but no one considers changing himself." - Leo Tolstory, Author of War and Peace.
-
-> "Knowing yourself is the beginning of all wisdom." - Aristotle
-
-> "Games are won by players who focus on the playing field, not by those whose eyes are glued to the scoreboard." - Warren Buffett
-
-> "We should not only use all the brains we have but all that we can borrow." - Woodrow Wilson
-
-> "This contest, Brian is biggest competitor because this year we are very close. I must look what he do, but still I looking what I do and if I be better than me, I will be winner. " - Žydrūnas Savickas [[video]](https://youtu.be/gAVZU94zLkU?t=3875)
-
-> "Nothing else matters except sitting down everyday and trying. Why is this so important? Because when we sit down day after day and keep grinding, something mysterious starts to happen. A process is set into motion by which, inevitably and infallibly, heaven comes to our aid." - Steven Pressfield, The War of Art
-
-> "Nobody changes because someone tells them to. People change because they're inspired to change. " - Peter Sage
-
-> "You have to be odd to be number one" - Dr. Seuss
-
-> Law of conservation of energy: Addiction can't be removed—only replaced
-
-> "Do not ask whether a statement is true until you know what it means."
-
-> "The essential American soul is hard, isolate, stoic, and a killer.  It has never yet melted."
 
 ***
