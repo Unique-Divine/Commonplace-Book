@@ -373,6 +373,18 @@ Context is designed to share "global" variables for a tree of React components.
 
 TODO
 
+## `useMemo` hook
+
+
+`useMemo` is a hook that returns a value that only recomputes when one of its dependencies has changed.
+Q: dependencies? TODO
+
+Q: What recomputes? TODO
+
+
+> "side effects belong in `useEffect`, not `useMemo`"
+Q: What does this mean? Why is it true? TODO
+
 ---
 
 ## Resources
@@ -388,6 +400,9 @@ TODO
 - [React Hooks Course - All React Hooks Explained](https://youtu.be/LlvBzyy-558)
 
 ## Debugging
+
+
+### Uncaught Invariant Violation: Invalid hook call
 
 If you see the error:
 > Uncaught Invariant Violation: Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
@@ -413,4 +428,55 @@ yarn list react-dom
 └─ react-dom@18.2.0
 ```
 
+### Blocked by CORS policy: No 'Access-Control-Allow-Origin'
 
+
+
+
+### Gradient background on text
+
+
+TODO mine
+
+
+```ts
+const WalletButton: React.FC = () => {
+  return (
+    <WalletButtonSC className={`wallet-button ${keplrClass}`}>
+      <p className="keplr-wallet-text">{displayText}</p>
+    </WalletButtonSC>
+  );
+}
+
+const WalletButtonSC = styled.div`
+  order: 3;
+  position: relative;
+  height: calc(${HEADER_HEIGHT} * 2 / 3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 160px;
+  background-size: 100% 100%;
+  background: ${Colors.GradientNavBar};
+  border: 1px solid;
+  border-radius: 4px;
+  border-width: 2px;
+  border-image-source: ${Colors.GradientBorderMain};
+  border-image-slice: 1;
+  border-width: 1px;
+
+  .keplr-active {
+  }
+
+  .keplr-inactive {
+    background: ${Colors.MainTurq};
+  }
+
+  .keplr-wallet-text {
+    font-family: ${FontFamilies.Main};
+    font-size: ${FontSizes.BodySmall14px};
+    text-align: center;
+    letter-spacing: 0;
+  }
+`;
+```
