@@ -11,7 +11,9 @@ Table of Contents
   - [Slippage and Virtual AMM pools](#slippage-and-virtual-amm-pools)
   - [Effects of Altering the Swap Invariant](#effects-of-altering-the-swap-invariant)
     - [Dangers of Increasing or Decreasing `k`](#dangers-of-increasing-or-decreasing-k)
-- [Dynamically adjusting the  swap invariant (`k`)](#dynamically-adjusting-the--swap-invariant-k)
+- [Just in Time (JIT) Liquidity](#just-in-time-jit-liquidity)
+    - [Inventory adjusted spreads](#inventory-adjusted-spreads)
+- [Dynamically adjusting the swap invariant (`k`)](#dynamically-adjusting-the-swap-invariant-k)
   - [Code Implementation - Dynamic `k`](#code-implementation---dynamic-k)
 - [Funding Payments on Drift](#funding-payments-on-drift)
 - [Rebates](#rebates)
@@ -240,7 +242,26 @@ Drift "does not intend to decrease `k`", however it will in in the case of speci
 
 In the event of a "market failure", when arbitrage trading demand is not enough to converge the mark price to the oracle price, `k` may be lowered. This causes trades to have a larger effect on the mark price, making it easier for arbitragers to converge mark and index. 
 
-# Dynamically adjusting the  swap invariant (`k`) 
+---
+
+# Just in Time (JIT) Liquidity
+
+VAMM produces a guaranteed backstop for liquidity on the exchange
+
+Layers to add on top of what's currently on testnet 
+1. Inventory-adjusted spreads.
+2. Curve V2 improvements to address issues with a pure VAMM model: adjusting k to be offer better terminal pricing 
+
+### Inventory adjusted spreads
+
+-  3 points are tracked along the constant product curve, a bid price, ask price, and VAMM price.
+- The underlying AMM produces the VAMM price as the instantaneous price from the reserves.
+- This band is derived from the AMM's inentory, long-short skew, and buy/sell pressure
+- `bid_price (or ask price) = vamm_price \pm base_spread + f(inventory, balancel)`
+
+---
+
+# Dynamically adjusting the swap invariant (`k`) 
 
 At all times, the base reserve amount `x` and quote reserve amount  `y` obey the equation `xy = k`. This gives rise to an instantaneous price for the virtual pool, `y / x`. Altering `k` means changing `k` while holding the instantanous price constant. This is achieved by scaling both `x` and `y` by the same factor. 
 $$
@@ -421,6 +442,7 @@ pub adjust_peg_cost(market: &must Market, new_peg: u128) -> ClearingHouseResult<
 ```
 
 ---
+
 # Technical Incident: Withdrawal Bug
 
 - See [`protocol-v1/tests/driftDrain.ts`](https://github.com/drift-labs/protocol-v1/blob/crispheaney/drift-drain/tests/driftDrain.ts)

@@ -37,5 +37,5 @@
 
 > "The essential American soul is hard, isolate, stoic, and a killer.  It has never yet melted."
 
-
+> "Don't count the days; make the days count." - Muhammad Ali
 
