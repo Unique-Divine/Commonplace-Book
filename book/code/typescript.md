@@ -1,6 +1,8 @@
 # Typescript                <!-- omit in toc -->
 
 #### Table of Contents
+- [JavaScript](#javascript)
+  - [Custom Errors](#custom-errors)
 - [Types](#types)
 - [Typescript Syntax](#typescript-syntax)
   - [JSON](#json)
@@ -11,9 +13,70 @@
   - [tsconfig.json](#tsconfigjson)
   - [TypeScript Basics](#typescript-basics)
   - [Eslint and Prettier with TypeScript and React](#eslint-and-prettier-with-typescript-and-react)
+  - [Apollo for GraphQL](#apollo-for-graphql)
   - [AssemblyScript](#assemblyscript)
   - [`depcheck` to track and remove unnecessary dependencies](#depcheck-to-track-and-remove-unnecessary-dependencies)
+- [References](#references)
 
+## JavaScript
+
+If the `return` statement has no return value specified, `undefined` is returned instead. 
+
+
+### Custom Errors
+
+To write a custom error, a class should inherit from the built-in `Error` class.
+
+```js
+// The "pseudocode" for the built-in Error class defined by JavaScript itself
+class Error {
+  constructor(message) {
+    this.message = message;
+    this.name = "Error"; // (different names for different built-in error classes)
+    this.stack = <call stack>; // non-standard, but most environments support it
+  }
+}
+```
+
+```js
+class CustomError extends Error {
+  constructor(message) {
+    super(message); // (1)
+    this.name = "CustomError"; // (2)
+  }
+}
+
+function test() {
+  throw new CustomError("Whoops!");
+}
+
+try {
+  test();
+} catch(err) {
+  alert(err.message); // Whoops!
+  alert(err.name); // CustomError
+  alert(err.stack); // a list of nested calls with line numbers for each
+}
+```
+
+1. JS requires calling the `super` fn in the child's `constructor`.
+2. The parent constructor (for `Error`) sets the `name` property to "Error", so it has to be reset to the custom name manually.
+
+Finally, a catch block that handles `CustomError` could look something like this:
+
+```js
+try {
+  // ...
+} catch (err) {
+  if (err instanceof CustomError) {
+    alert(err.message);
+  } else {
+    throw err; // unknown error, re-throw
+  }
+}
+```
+
+JOT more info here: https://javascript.info/custom-errors
 
 ## Types
 
@@ -41,7 +104,6 @@ type Point = {x: number, y: number}
 
 ## Typescript Syntax
 
-
 Interfaces
 
 Interfaces are like structures, or structs, in Go or abstract classes in Python (sort of). Anything that has the properties of the interface is compliant and considered an instance of it.
@@ -58,7 +120,6 @@ function move(pt: Point, dx: number, dy: number): Point {
     y: pt.y + dy,
   }
 };
-
 ```
 
 TODO mine reference: https://stackoverflow.com/a/41915551
@@ -209,9 +270,6 @@ ESLint is a tool for identifying and reporting on patterns found in EMCAScript/J
 
 [ESLint - Getting Started with ESLint](https://eslint.org/docs/latest/user-guide/getting-started)
 
-
-
-
 ### AssemblyScript
 
 #### Install AssemblyScript 
@@ -275,3 +333,7 @@ depcheck                 # usage
 
 Ref: https://www.pluralsight.com/guides/how-to-remove-unused-dependencies-in-react
 
+
+## References 
+
+- [The `return` statement. MDN Web docs.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return)
