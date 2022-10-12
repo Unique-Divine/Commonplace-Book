@@ -17,6 +17,8 @@ Git (cookbook)
     - [Releasing Projects on GitHub](#releasing-projects-on-github)
   - [GitHub Workflows and `act`](#github-workflows-and-act)
   - [GitHub Badges](#github-badges)
+  - [GitHub Events](#github-events)
+    - [Pull Request Events](#pull-request-events)
 
 
 # Git
@@ -260,8 +262,6 @@ Refs:
 export GPG_TTY=$(tty)
 ```
 
-
-
 ### Releasing Projects on GitHub
 
 Releases are deployable software iterations you can package and make available for a wider audience to download and use.
@@ -345,3 +345,12 @@ https://img.shields.io/badge/<leftLabel>-<rightMsg>-<color>
 ![](https://img.shields.io/badge/left-right-f39f37)
 ![](https://img.shields.io/badge/LABEL-MESSAGE-blue)  
 
+
+## GitHub Events
+
+
+### Pull Request Events
+
+[`pull_request` docs](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#pull_request)
+
+`synchronize` (GitHubEvent): Triggered when a pull request's head branch is updated. For example, when the head branch is updated from the base branch, when new commits are pushed to the head branch, or when the base branch is changed.
