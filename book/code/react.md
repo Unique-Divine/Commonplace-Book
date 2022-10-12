@@ -16,6 +16,7 @@
   - [Class Components](#class-components)
   - [`useMemo` hook](#usememo-hook)
   - [Resources](#resources)
+- [React Redux](#react-redux)
   - [Debugging](#debugging)
     - [Uncaught Invariant Violation: Invalid hook call](#uncaught-invariant-violation-invalid-hook-call)
     - [Blocked by CORS policy: No 'Access-Control-Allow-Origin'](#blocked-by-cors-policy-no-access-control-allow-origin)
@@ -398,6 +399,31 @@ Q: What does this mean? Why is it true? TODO
 - [A re-introduction to JavaScript (JS tutorial)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
 - [Learn React in 30 Minutes](https://youtu.be/hQAHSlTtcmY)
 - [React Hooks Course - All React Hooks Explained](https://youtu.be/LlvBzyy-558)
+
+# React Redux
+
+Redux is a state management tool for large applications. 
+
+A lot of people don't like that it creates a bunch of boilerplate to do very simple things. 
+It also introduces a bunch of jargon: e.g., dispatch, map state, combined reducer, store 
+
+
+Store - globalized state
+
+Action - something performed on the data; a fn that returns an object
+
+Reducer - 
+
+Dispatch - execution of an action
+
+
+```js
+import { createStore } from "redux";
+let store = createStore(reducerFn)
+```
+
+Continue video: https://youtu.be/CVpUuw9XSjY?t=867
+
 
 ## Debugging
 
