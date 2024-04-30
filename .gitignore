@@ -21,6 +21,8 @@ elegant*-cn.pdf
 elegant*-en.pdf
 *.dates
 
+*.pytest_cache
+
 ## Intermediate documents:
 *.dvi
 *.xdv
