@@ -1,36 +1,68 @@
-<!-- git.md -->
 
-Git (cookbook)
+# Git, GitHub, and GitHub CLI (cookbook)
 
+<!-- git-github-gh-cli.md -->
 - [Git](#git)
-  - [Initial Repo Configuration](#initial-repo-configuration)
-  - [Fundamental Concepts](#fundamental-concepts)
-  - [Editting commit history](#editting-commit-history)
-  - [Special Topics](#special-topics)
-    - [Git Aliases](#git-aliases)
-    - [SSH keys](#ssh-keys)
-    - [**Large File Storage**](#large-file-storage)
-    - [When the .gitignore just won't ignore](#when-the-gitignore-just-wont-ignore)
+- [Initial Repo Configuration](#initial-repo-configuration)
+- [Fundamental Concepts](#fundamental-concepts)
+    - [Local branch vs. remote branch](#local-branch-vs-remote-branch)
+    - [HEAD, master, and origin](#head-master-and-origin)
+    - [Branching](#branching)
+    - [Merging](#merging)
+    - [Deleting branches](#deleting-branches)
+    - [Git flow](#git-flow)
+- [Editting commit history](#editting-commit-history)
+    - [Permanently removing files from commit history](#permanently-removing-files-from-commit-history)
+    - [How to merge a specific commit from another branch?](#how-to-merge-a-specific-commit-from-another-branch)
+    - [Making a small edit to the most recent commit](#making-a-small-edit-to-the-most-recent-commit)
+    - [Commit part of a file rather than all of its changes](#commit-part-of-a-file-rather-than-all-of-its-changes)
+- [Special Topics](#special-topics)
+  - [Git Aliases](#git-aliases)
+    - [Changing remote after a repo name change](#changing-remote-after-a-repo-name-change)
+  - [SSH keys](#ssh-keys)
+  - [Large File Storage](#large-file-storage)
+  - [When the .gitignore just won't ignore](#when-the-gitignore-just-wont-ignore)
+- [Commit SHA Hashes](#commit-sha-hashes)
+- [Submodules](#submodules)
 - [GitHub (gh)](#github-gh)
-  - [GitHub CLI (gh) Cheatsheet](#github-cli-gh-cheatsheet)
-  - [Releases and Tags](#releases-and-tags)
-    - [Releasing Projects on GitHub](#releasing-projects-on-github)
-  - [GitHub Workflows and `act`](#github-workflows-and-act)
-  - [GitHub Badges](#github-badges)
-  - [GitHub Events](#github-events)
-    - [Pull Request Events](#pull-request-events)
+- [GitHub CLI (gh) Cheatsheet](#github-cli-gh-cheatsheet)
+- [Releases and Tags](#releases-and-tags)
+  - [Releasing Projects on GitHub](#releasing-projects-on-github)
+- [GitHub Workflows and `act`](#github-workflows-and-act)
+- [GitHub Badges](#github-badges)
+    - [Colors](#colors)
+    - [Template for a Custom Badge](#template-for-a-custom-badge)
+- [GitHub Markdown](#github-markdown)
+  - [Notes, Tips, and Warnings](#notes-tips-and-warnings)
+  - [Collapsible sections in markdown](#collapsible-sections-in-markdown)
+    - [Understanding collapsible sections](#understanding-collapsible-sections)
+    - [Customizing the clickable `summary` block](#customizing-the-clickable-summary-block)
+    - [Expanding details by default](#expanding-details-by-default)
+    - [Nesting collapsible sections](#nesting-collapsible-sections)
+- [GitHub Events](#github-events)
+  - [Pull Request Events](#pull-request-events)
+  - [Pull-request checklist](#pull-request-checklist)
+- [Cloning without Cloning](#cloning-without-cloning)
+
+!markdown-toc % --bullets="-" --max-depth=2 --no-firsth1 | clip.exe
+
+max depth 1
+
+max depth 2
+
+max depth 3
 
 
-# Git
+## Git
 
-## Initial Repo Configuration
+### Fundamental Concepts
+
+#### Initial Repo Configuration
 
 ```
 git config user.name "UserName"
 git config user.email gitHubAccount@email.address 
 ```
-
-## Fundamental Concepts
 
 #### Local branch vs. remote branch
 
@@ -44,7 +76,7 @@ git config user.email gitHubAccount@email.address
 
 source(s): [SNce & Brian Webster.stackoverflow.com](https://stackoverflow.com/questions/16408300/what-are-the-differences-between-local-branch-local-tracking-branch-remote-bra)
 
-#### **HEAD, master, and origin**
+#### HEAD, master, and origin
 
 I highly recommend the book "Pro Git" by Scott Chacon. Take time and really read it, while exploring an actual git repo as you do.
 
@@ -55,8 +87,6 @@ I highly recommend the book "Pro Git" by Scott Chacon. Take time and really read
 - `HEAD` is an official notion in git. `HEAD` always has a well-defined meaning. `master` and `origin` are common names usually used in git, but they don't have to be.
 
 source: [HEAD, master, and origin. Matt Greer & Jacqueline P. via stackoverflow.com](https://stackoverflow.com/questions/8196544/what-are-the-git-concepts-of-head-master-origin)
-
-***
 
 #### Branching
 
@@ -100,8 +130,7 @@ git push origin develop
 
 ------------------------------------------------------------
 
-
-## Editting commit history 
+### Git: Editting commit history 
 
 #### Permanently removing files from commit history
 
@@ -135,9 +164,9 @@ Ref: https://stackoverflow.com/a/1085191
 ----------------------------------------------
 
 
-## Special Topics
+### Git: Special Topics
 
-### Git Aliases
+#### Git Aliases
 
 Ref: [Git Basics - Git Alises](https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases)
 
@@ -159,23 +188,11 @@ To check which URL the remote references to, use `git remote -v`. Then, set a ne
 git remote set-url origin {new_repo_url}
 ```
 
-### SSH keys
-
-An SSH key is an alternative to username/password authorization on GitHub. This will allow you to bypass entering your username and password for future GitHub commands.
-
-SSH keys come in pairs, a public key that gets shared with services like GitHub, and a private key that is stored only on your computer. If the keys match, you're granted access.
-
-The cryptography behind SSH keys ensures that no one can reverse engineer your private key from the public one.
-
-[SSH Keys for GitHub \[article\]](https://jdblischak.github.io/2014-09-18-chicago/novice/git/05-sshkeys.html)
-
-Generating a new SSH key: Follow [Generating a new SSH key and adding it to the ssh-agent \[article\]](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-
-### **Large File Storage**
+#### Large File Storage
 
 See https://git-lfs.github.com
 
-### When the .gitignore just won't ignore
+#### When the .gitignore just won't ignore
 
 ```
 git rm -rf --cached .
@@ -194,9 +211,69 @@ You can reverse this with:
 git update-index --no-skip-worktree <file-list>
 ```
 
+### SSH keys
+
+An SSH key is an alternative to username/password authorization on GitHub. This will allow you to bypass entering your username and password for future GitHub commands.
+
+SSH keys come in pairs, a public key that gets shared with services like GitHub, and a private key that is stored only on your computer. If the keys match, you're granted access.
+
+The cryptography behind SSH keys ensures that no one can reverse engineer your private key from the public one.
+
+[SSH Keys for GitHub \[article\]](https://jdblischak.github.io/2014-09-18-chicago/novice/git/05-sshkeys.html)
+
+Generating a new SSH key: Follow [Generating a new SSH key and adding it to the ssh-agent \[article\]](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+
+
 **References:**
 
 * A successful Git branching model. [[web]](https://nvie.com/posts/a-successful-git-branching-model/)
+
+### Commit SHA Hashes 
+
+Secure Hash Algorithm (SHA) in git refers to a cryptographic hash algorithm.
+There are variants like SHA-1, SHA-256, etc. In git, "SHA" usually refers specifically to SHA-1 hashes.
+
+- A commit SHA is a 40-character hexadecimal string that uniquely identifies a
+  git commit. It is calculated by applying the SHA-1 hash to the commit
+  contents. This allows referring to commits by an ID that is based on the
+  commit contents.
+
+- "SHA reference" means referring to a commit by its actual SHA hash rather
+  than by a symbolic name such as the branch or tag name. This is unambiguous
+  since the SHA is unique to that exact commit.
+
+The main differences between the SHA-1 and SHA-256 hash algorithms are:
+
+| Topic | SHA-1 | SHA-256 |
+| ----- | ----- | ------- |
+| Digest Length | SHA-1 produces a 160-bit (20 byte) hash value. | SHA-256 produces a 256-bit (32 byte) hash value. |
+| Security | There are known cryptanalytic attacks against SHA-1. | Considered more secure against brute force collisions and attacks than SHA-1. |
+| Speed | SHA-1 is generally faster to compute than SHA-256. The simpler process results in better performance. |  |
+| Adoption | SHA-1 is still more widely used and is the default git
+  algorithm. | SHA-256 adoption is growing due to the security weaknesses of SHA-1. |
+
+SHA-256 trades some speed for significantly improved cryptographic strength
+over the now dated SHA-1 algorithm.
+
+## Submodules
+
+Submodules allow you to embed a git repository as a subdirectory inside another
+git repository. They allow using another project while still maintaining
+separation between the two projects.
+
+The outer project contains just the [commit SHA](#commit-sha-hashes) of the inner project. This
+reference is stored in `.gitmodules`. Cloning the outer project doesn't
+automatically clone the submodule's code. You need to initialize and update
+submodules expressly.
+
+- `git submodule add`: Command for including submodules.
+- `git submodule init`: Clones the submodule contents to the proper location. 
+- `git submodule update`: Syncs the submodule to the correct reference commit.
+
+Submodules allow nested git repos with separate histories and pushing. Making
+changes in the submodule requires pushing from within the submodule itself.
+Committing in the outer project records a new SHA reference to the submodule.
+The parent repo controls which submodule commit is used via the SHA reference.
 
 ---
 
@@ -260,6 +337,18 @@ Refs:
 ```sh
 # set env var in sh script
 export GPG_TTY=$(tty)
+```
+
+Delete a tag locally:
+
+```bash
+git tag -d [tag-name]
+```
+
+Delete a tag on origin:
+
+```bash
+git push origin --delete [tag-name]
 ```
 
 ### Releasing Projects on GitHub
@@ -345,12 +434,148 @@ https://img.shields.io/badge/<leftLabel>-<rightMsg>-<color>
 ![](https://img.shields.io/badge/left-right-f39f37)
 ![](https://img.shields.io/badge/LABEL-MESSAGE-blue)  
 
+## GitHub Markdown
+
+### Notes, Tips, and Warnings
+
+```markdown
+> [!NOTE]  
+> Highlights information that users should take into account, even when skimming.
+
+> [!TIP]
+> Optional information to help a user be more successful.
+
+> [!IMPORTANT]  
+> Crucial information necessary for users to succeed.
+
+> [!WARNING]  
+> Critical content demanding immediate user attention due to potential risks.
+
+> [!CAUTION]
+> Negative potential consequences of an action.
+```
+
+Becomes:
+
+![](../img/gh-markdown-note-warning.png)
+
+Ref: https://github.com/orgs/community/discussions/16925
+
+### Collapsible sections in markdown
+
+<img src="../img/gh-md-collapse-0.png">
+<img src="../img/gh-md-collapse-1.png">
+
+```markdown
+<details>
+  <summary>[Display Text]</summary>
+  
+  ### Markdown Content
+
+</details>
+```
+
+<details>
+  <summary>[Show SVG text to copy]</summary>
+
+  ```html
+  <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M6 7V54H61C61.7956 54 62.5587 54.3161 63.1213 54.8787C63.6839 55.4413 64 56.2044 64 57C64 57.7956 63.6839 58.5587 63.1213 59.1213C62.5587 59.6839 61.7956 60 61 60H3C2.20435 60 1.44129 59.6839 0.87868 59.1213C0.31607 58.5587 0 57.7956 0 57L0 7C0 6.20435 0.31607 5.44129 0.87868 4.87868C1.44129 4.31607 2.20435 4 3 4C3.79565 4 4.55871 4.31607 5.12132 4.87868C5.68393 5.44129 6 6.20435 6 7ZM63.12 17.12L42.12 38.12C41.5575 38.6818 40.795 38.9974 40 38.9974C39.205 38.9974 38.4425 38.6818 37.88 38.12L28 28.24L17.12 39.12C16.551 39.6496 15.7987 39.938 15.0215 39.9246C14.2442 39.9112 13.5024 39.597 12.952 39.048C12.403 38.4976 12.0888 37.7558 12.0754 36.9785C12.062 36.2013 12.3504 35.449 12.88 34.88L25.88 21.88C26.4425 21.3182 27.205 21.0026 28 21.0026C28.795 21.0026 29.5575 21.3182 30.12 21.88L40 31.76L58.88 12.88C59.449 12.3504 60.2013 12.062 60.9785 12.0754C61.7558 12.0888 62.4976 12.403 63.048 12.952C63.597 13.5024 63.9112 14.2442 63.9246 15.0215C63.938 15.7987 63.6496 16.551 63.12 17.12Z" />
+  </svg>
+  ```
+
+</details>
+
+
+
+#### Understanding collapsible sections
+
+The `summary` block dictates what will be visible, and the remainder of the
+`details` block is the content of the collapsible section. 
+
+NOTE: When including headings within collapsible sections, remember to add a new
+line after the `summary` tag. In general, if you're finding that something fails
+to render, add a line break after the closing `</summary>` tag.
+
+#### Customizing the clickable `summary` block
+
+Simply add normal HTML modifications to the `summary` block.
+
+```markdown
+<details>
+  <summary><i>Wow, so fancy</i></summary>
+  <b>WOW, SO BOLD</b>
+</details>
+```
+
+#### Expanding details by default
+
+You can start out the collapsible section by including the `open` attribute
+within the `<details>` tag.
+
+```markdown
+<details open>
+  <summary>Summay block</summary>
+  Text open by default!
+</details>
+```
+
+#### Nesting collapsible sections
+
+```markdown
+<details>
+<summary>Section A</summary>
+<details>
+<summary>Section A.B</summary>
+<details>
+<summary>Section A.B.C</summary>
+<details>
+<summary>Section A.B.C.D</summary>
+  Done!
+</details>
+</details>
+</details>
+</details>
+```
+
+- Ref: [Gist - How to add a collapsible section in GitHub markdown](https://gist.github.com/pierrejoubert73/902cc94d79424356a8d20be2b382e1ab)
 
 ## GitHub Events
-
 
 ### Pull Request Events
 
 [`pull_request` docs](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#pull_request)
 
 `synchronize` (GitHubEvent): Triggered when a pull request's head branch is updated. For example, when the head branch is updated from the base branch, when new commits are pushed to the head branch, or when the base branch is changed.
+
+### Pull-request checklist
+
+- [ ] Describe how to test the PR
+- [ ] Screenshot the new behavior if applicable
+- [ ] Add a description for context on the chosen implementation strategy
+- [ ] Refer to related issues/tasks/cards
+- [ ] Resolve merge conflicts: Make sure the target branch is merged into the PR branch.
+
+Self-review
+- [ ] Add code comments for lines that reviewer might not understand correctly. Consider refactoring the names of variables and functions for clarity. 
+- [ ] DRY: Don't repeat yourself
+- [ ] KISS: Keep it simple, sweetie
+- [ ] YAGNI: You aren't gonna need it. Check that you are not overcomplicating something for the sake of "making it future-proof". Fowler said "Yagni only applies to capabilities built into the software to support a presumptive feature, it does not apply to effort to make the software easier to modify".
+
+## Cloning without Cloning
+
+This can be accomplished with subversion's `svn export`. This command allows
+you to download a single folder.
+
+```bash
+svn export https://github.com/<Owner>/<Repo>/trunk/<Path to Directory>
+```
+
+Installing subversion:
+```bash
+sudo apt-get update
+sudo apt-get install subversion
+# on mac
+# brew install svn
+```
+

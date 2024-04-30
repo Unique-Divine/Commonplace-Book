@@ -6,6 +6,9 @@
     - [Margin](#margin)
     - [Padding](#padding)
     - [Scaling Vector Graphic (SVG)](#scaling-vector-graphic-svg)
+  - [Semantic Elements](#semantic-elements)
+    - [nav element](#nav-element)
+- [Test a local website on your phone](#test-a-local-website-on-your-phone)
 - [Other](#other)
   - [Hugo Web Design](#hugo-web-design)
   - [HTTP, TCP, IP](#http-tcp-ip)
@@ -15,7 +18,6 @@
 ---
 
 # HTML, CSS
-
 
 ## Flex Boxes
 
@@ -33,6 +35,16 @@ How to make flex items equal: Set "`flex: 1;`" in the style of the items. You ca
   flex-basis: 100%;
   /* or */ width: 100%;
 }
+```
+
+#### Center a text inside a flex box.
+
+```css
+.flex-box {
+  display: flex;
+  align-items: center;
+}
+
 ```
 
 
@@ -54,6 +66,25 @@ p {
 }
 ```
 
+#### 3 values: top, sides, bottom
+
+```css
+p {
+  margin: 25px 50px 75px;
+  /* margin: top, left-right, bottom */
+}
+```
+
+#### 2 values: vertical, horizontal
+
+```css
+p {
+  margin: 25px 50px;
+  /* margin: top-bottom, left-right */
+}
+```
+
+
 ### Padding 
 
 Padding is the space between the border and content of an element. Thus, padding is located inside the border of an element. 
@@ -73,6 +104,55 @@ Useful command for converting svg files to React SVG Functional Components using
 ```sh
 npx @svgr/cli icon.svg > icon.tsx  
 ```
+
+## Semantic Elements
+
+### nav element
+
+The nav element communicates that we're dealing with a major navigation block. The unordered list element, `ul`, communicates that the elements form a list.
+
+```html
+<!-- Example nav element -->
+<nav>
+  <ul>
+    <li><a href="#foo">foo</a></li>
+    <li><a href="#bar">bar</a></li>
+    <li><a href="#baz">baz</a></li>
+  </ul>
+</nav>
+```
+
+# Test a local website on your phone
+
+Get `localtunnel` from `npm`:
+
+```bash
+yarn global add localtunnel
+```
+
+Run you web application on a local port. For example, if you're app is on `localhost:5173`, you then run 
+
+```bash
+lt --port 5173
+```
+
+You will receive a URL that you can share with anyone for as long as your local instance of `lt` remains active. Any requests will be routed to your local service at the specified port.
+
+Ref: https://localtunnel.github.io/www/
+
+
+## Tailwind CSS
+
+Conditional rendering of Tailwind CSS
+
+TODO: Document findings from https://stackoverflow.com/questions/71779219/programmatically-craft-tailwind-classes-with-vue#:~:text=Instead%2C%20make%20sure%20any%20class%20names%20you%E2%80%99re%20using%20exist%20in%20full%3A
+
+> "Make sure any class names you're using exist in full."
+
+> "As long as you always use complete class names in your code, Tailwind will
+  generate all of your CSS perfectly every time."
+
+- [Tailwind CSS Content Configuration](https://tailwindcss.com/docs/content-configuration#class-detection-in-depth=)
 
 ---
 
@@ -200,7 +280,11 @@ Communication prootocl: A system of rules that allow two or more entitites of a 
 
 **Internet Protocol (IP):**
 
-IP has the task of delivering packets from from the source host to the destination host solely based on the IP addresses in the packet headers. For this purpose, IP defines packet structures that encapsulate the data to be delivered.It also defines addressing methods that are used to label the datagrame with source and destination information.
+IP has the task of delivering packets from from the source host to the
+destination host solely based on the IP addresses in the packet headers. For this
+purpose, IP defines packet structures that encapsulate the data to be
+delivered.It also defines addressing methods that are used to label the datagrame
+with source and destination information.
 
 * (network) packets: Formatted units of data carried by a packet-switched network. A packet consists of control information and user data; the latter is also known as the payload. Control information provides data for delivering the payload (e.g. source and destination network addresses, error detection codes, or sequencing information).
 
@@ -301,3 +385,14 @@ It doesn't have to be perfect. But, having at least a rough draft of what will g
   - UI is about giving someone the tools they need to experience your website free from complications.
 
 neophyte | A neophyte is someone who's brand new at something. You're a neophyte the first time you pick up a guitar and start learning to play. Neo- means new, and -phyte is from the Greek phuton, "plant" — like a baby plant, a neophyte is someone who is new to an activity.
+
+### Figma
+
+- `k`: Scale element
+- `I`: Quick insert component instance
+- `Alt 2`: Component menu
+- `C-\`: Show/hide sidebar menus
+- `C-R`: [R]eplace paste
+- `C-v`: Normal paste
+- `C-c`: Normal copy
+

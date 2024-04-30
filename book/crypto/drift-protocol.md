@@ -259,6 +259,15 @@ Layers to add on top of what's currently on testnet
 - This band is derived from the AMM's inentory, long-short skew, and buy/sell pressure
 - `bid_price (or ask price) = vamm_price \pm base_spread + f(inventory, balancel)`
 
+
+#### Dutch Auctions
+
+- [Basic Primer on Dutch Auctions](https://medium.com/coinlist/a-primer-on-dutch-auctions-525036d24d10)
+
+JIT does not prevent MM from getting picked in adverse selection.
+
+
+
 ---
 
 # Dynamically adjusting the swap invariant (`k`) 

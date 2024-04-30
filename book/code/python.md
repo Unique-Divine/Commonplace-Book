@@ -1,5 +1,4 @@
-# Python     <!-- omit in toc -->
-<!-- python.md -->
+!-- python.md -->
 
 - [Setting up a Profession Development Environment](#setting-up-a-profession-development-environment)
   - [Pyenv for managing multiple Python interpreters](#pyenv-for-managing-multiple-python-interpreters)
@@ -16,11 +15,12 @@
 - [Writing Tests with `pytest`](#writing-tests-with-pytest)
     - [Fixtures](#fixtures)
     - [Choosing which tests to run in a suite with `-k`](#choosing-which-tests-to-run-in-a-suite-with--k)
-    - [Else](#else)
+    - [Testing: Else](#testing-else)
 - [Working with Databases](#working-with-databases)
     - [MongoDB (pymongo)](#mongodb-pymongo)
+- [Discord.py](#discordpy)
 - [Object-Oriented Programming (OOP)](#object-oriented-programming-oop)
-- [Else](#else-1)
+- [Python Else](#python-else)
   - [Publishing Packages on PyPi](#publishing-packages-on-pypi)
   - [Protocol Buffers](#protocol-buffers)
   - [Miscellaneous](#miscellaneous)
@@ -462,7 +462,7 @@ def test_b(foo_obj):
 
 
 
-### Else
+### Testing: Else
 
 **Disabling warnings**
 
@@ -528,6 +528,86 @@ Now, `mongo` and `mongod` work, but what do they do?
 
 - Jayatilake, Navindu. 2019. How to get started with MongoDB in 10 minutes. [[article]](https://www.freecodecamp.org/news/learn-mongodb-a4ce205e7739/)
 - [Pymongo tutorial](https://pymongo.readthedocs.io/en/stable/tutorial.html)
+
+***
+
+# Discord.py
+
+***
+
+To interface with Discord programmatically, you'll need a Discord token.
+1. Head to https://discord.com/login
+2. Open the browser's developer console with either `Ctrl + Shift + I` or by right clicking.  
+3. Refresh the page
+4. Go under the "Network" tab in the console. 
+5. Enter "/api" as the filter and then hit `Enter`.
+6. One of the items in the table should have a name starting with "library". Click this row.
+7. In the "Headers" tab, find the place that says "authorization: ". The text for this field is your Discord token.
+
+
+
+
+Resources
+- [API Reference. discord.py](https://discordpy.readthedocs.io/en/v1.0.0/api.html#)
+- [Channel history in discord.py](https://stackoverflow.com/questions/64211658/how-could-i-grab-all-chat-messages-in-a-specific-channel-in-a-discord-server-usi)
+- [Webhook Resource. Discord Developer Portal.](https://discord.com/developers/docs/resources/webhook)
+- [Discord.py add role command. Stack Overflow.](https://stackoverflow.com/questions/49076798/discord-py-add-role-to-someone)
+
+
+--- 
+
+# Anki 
+
+> "Python's Qt GUI is in the `aqt/` directory"
+
+Qt is a free and open-source widget toolkit for creating graphical user
+interfaces (GUIs) and cross-platform applications that will run on Linux, macOS,
+Windows, Android, and embedded systems. It has support for multiple programming
+languages, but its primary language is C++.
+
+Anki's desktop version is built using Python and utilizes the PyQt framework,
+which is a set of Python bindings for the Qt application framework. PyQt provides
+interfaces to Qt classes and enables the creation of Qt GUIs using Python.
+
+- [Anki Source Code: ankitects/anki](https://github.com/ankitects/anki/tree/59d89dd9f19f60d95970e4e2f8510e2aef11b87f)
+- The [PyQt docs](https://www.riverbankcomputing.com/static/Docs/PyQt6/sip-classes.html) are invaluable for learning how to display GUI widgets.
+
+### Remove cloze
+
+Start here: [cloze_overlapper/editor.py](https://github.com/glutanimate/cloze-overlapper/blob/0b6300430e4cb05191ef88c1405f8f772d5cd937/src/cloze_overlapper/editor.py).
+
+```python
+from aqt.qt import *
+from aqt import mw
+from aqt.editor import Editor
+from aqt.addcards import AddCards
+from aqt.editcurrent import EditCurrent
+from aqt.utils import tooltip, showInfo
+```
+
+
+```python
+@editorSaveThen
+def onRemoveClozes(self):
+    """Remove cloze markers and hints from selected text"""
+    if checkModel(self.note.model(), fields=False, notify=False):
+        cloze_re = r"\[\[oc(\d+)::(.*?)(::(.*?))?\]\]"
+    else:
+        cloze_re = r"\{\{c(\d+)::(.*?)(::(.*?))?\}\}"
+    self.web.eval(js_cloze_remove % cloze_re)
+``` 
+
+```python
+def editorSaveThen(callback):
+    if ANKI20:
+        return callback
+
+    def onSaved(editor, *args, **kwargs):
+        # uses evalWithCallback internally:
+        editor.saveNow(lambda: callback(editor, *args, **kwargs))
+
+    return onSaved
+```
 
 ***
 
@@ -687,9 +767,26 @@ Reference: ArjanCodes. Why COMPOSITION is better than INHERITANCE - detailed Pyt
 
 #### `NamedTuple` and `TypedDict`
 
+[PEP 589 – TypedDict: Type Hints for Dictionaries with a Fixed Set of Keys](https://peps.python.org/pep-0589/)
+
+> Representing an object or structured data using (potentially nested) dictionaries with string keys (instead of a user-defined class) is a common pattern in Python programs. Representing JSON objects is perhaps the canonical use case, and this is popular enough that Python ships with a JSON library. This PEP proposes a way to allow such code to be type checked more effectively.
+
+```python
+from typing import TypedDict
+
+class Movie(TypedDict):
+    name: str
+    year: int
+
+# a type checker should accept this code:
+movie: Movie = {'name': 'Blade Runner',
+                'year': 1982}
+```
+
+
 ---
 
-# Else
+# Python Else
 
 ---
 

@@ -4,8 +4,10 @@
 - [JavaScript](#javascript)
   - [Custom Errors](#custom-errors)
 - [Types](#types)
+- [Set](#set)
 - [Typescript Syntax](#typescript-syntax)
   - [JSON](#json)
+  - [Custom use of instanceof](#custom-use-of-instanceof)
 - [Style](#style)
 - [Tooling](#tooling)
   - [Node and npm](#node-and-npm)
@@ -13,9 +15,9 @@
   - [tsconfig.json](#tsconfigjson)
   - [TypeScript Basics](#typescript-basics)
   - [Eslint and Prettier with TypeScript and React](#eslint-and-prettier-with-typescript-and-react)
-  - [Apollo for GraphQL](#apollo-for-graphql)
   - [AssemblyScript](#assemblyscript)
   - [`depcheck` to track and remove unnecessary dependencies](#depcheck-to-track-and-remove-unnecessary-dependencies)
+- [Browser Object Model](#browser-object-model)
 - [References](#references)
 
 ## JavaScript
@@ -27,16 +29,15 @@ If the `return` statement has no return value specified, `undefined` is returned
 
 To write a custom error, a class should inherit from the built-in `Error` class.
 
-```js
-// The "pseudocode" for the built-in Error class defined by JavaScript itself
-class Error {
-  constructor(message) {
-    this.message = message;
-    this.name = "Error"; // (different names for different built-in error classes)
-    this.stack = <call stack>; // non-standard, but most environments support it
-  }
+```ts
+// The TypeScript interface for an error 
+interface Error {
+    name: string; // (different names for error classes)
+    message: string; 
+    stack?: string; // non-standard, but most environments support it
 }
 ```
+
 
 ```js
 class CustomError extends Error {
@@ -78,6 +79,7 @@ try {
 
 JOT more info here: https://javascript.info/custom-errors
 
+
 ## Types
 
 #### Union type
@@ -101,6 +103,50 @@ type Point = {x: number, y: number}
   - [ ] TODO mine types - https://www.typescriptlang.org/static/TypeScript%20Types-4cbf7b9d45dc0ec8d18c6c7a0c516114.png
   - [ ] TODO mine interfaces - https://www.typescriptlang.org/static/TypeScript%20Interfaces-34f1ad12132fb463bd1dfe5b85c5b2e6.png
   - [ ] TODO mine classes - https://www.typescriptlang.org/static/TypeScript%20Classes-83cc6f8e42ba2002d5e2c04221fa78f9.png
+
+## Set
+
+`Set` is a built-in type for storing collections of unique values of any type. 
+You can iterate through elements of a set in insertion order.
+
+Create a set with the `new Set()` constructor.
+
+```ts
+let directions = new Set<string>(['east', 'west'])
+// generic syntax can be used to type the set 
+// initial values passed to teh constructor
+```
+
+Core methods
+- `Set.add(v)`: Adds `v` to the set
+- `Set.has(v)`: Checks if `v` is in the set
+- `Set.delete(v)`: deletes `v` from the set if it's included
+- `Set.clear`: Clears all values from the set
+- `Set.size`: Number of elements in the set
+Add elements to a set with `Set.add`
+
+
+#### Iterating over sets
+
+```ts
+let letters = new Set<string>(["a", "b", "c"]) 
+letters.add("d").add("e").add("f")
+
+// Way 1: for elem of Set
+for (const letter of letters) {
+  // ...
+}
+
+// Way 2: Set.forEach
+letters.forEach((letter: string) => {
+  // ...
+})
+```
+
+
+
+
+
 
 ## Typescript Syntax
 
@@ -132,6 +178,45 @@ JSON.stringify(pojo) // returns the JSON string compactly
 JSON.stringify(pojo, null, 2) // JSON string with 2-space pretty formatting
 ```
 
+### Custom use of instanceof
+
+Here, we have an interface, `BusinessDay`, and a function that tells the TypeScript whether an object is na instance of this type. 
+
+```ts
+export interface BusinessDay {
+	year: number;
+	month: number;
+	day: number;
+}
+
+export function instanceOfBusinessDay(obj: any): obj is BusinessDay {
+  return ["year", "month", "day"].every((value) => value in obj)
+}
+```
+
+The `[object] is [type]` pattern is a boolean value, so the `instanceOfBusinessDay` function technically returns a boolean, however, some extra magic happens when using `is` because TS will be aware of the object's type in the scope of the function's usage. For example, in the following code, we get to add a type for `time` in the local scope of its `else if` block.
+
+```ts
+const time = args.time
+if (typeof time === "string") {
+  const unixTs = dateToUnix(new Date(time as string))
+  this.time = unixTs as UTCTimestamp
+} else if (instanceOfBusinessDay(time)) {
+  // 'time' has type, 'BusinessDay', in this scope <--------------------------
+  const unixTs = dateToUnix(new Date(time.year, time.month, time.day))
+  this.time = unixTs as UTCTimestamp
+} else {
+  if (!isUTCTimestamp(time)) {
+    throw new Error("incorrect type passed for 'time")
+  }
+  this.time = time as UTCTimestamp
+}
+```
+
+```ts
+  const businessDay = businessDayFromDate(new Date(blockTimeStamp))
+  expect(instanceOfBusinessDay(businessDay)).toBeTruthy()
+```
 
 ## Style 
 
@@ -202,12 +287,71 @@ Install yarn with npm.
 npm install -g yarn
 ```
 
+#### Cleaning nvm
+
+To delete all `nvm` versions beside the one you're currently using:
+```bash
+# Note, $NVM_DIR is usually set to $HOME/.nvim
+cd $NVM_DIR/versions/node; ls -A | grep -v `nvm current` | xargs rm -rf
+```
+
+I actually keep this as a function in my shell rc.
+
 #### References - Node JS
 
 - Introduction to JavaScript Runtime Environments. [[codecademy]](https://www.codecademy.com/article/introduction-to-javascript-runtime-environments)
 - kaizer1v. 2018. [[StackOverflow]](https://stackoverflow.com/questions/30838412/what-is-javascript-runtime#:~:text=Javascript%20runtime%20refers%20to%20where,on%20node%2C%20again%20its%20v8.)
 - About npm. [[docs.npmjs]](https://docs.npmjs.com/about-npm)
 
+### symlinking with `yarn link`
+
+Run the following inside the the source package to make it the target of a symlink.
+
+```bash
+yarn link
+```
+
+```
+yarn link v1.22.19
+success Registered "@nibiruchain/vuepress-theme-docs".
+info You can now run `yarn link "@nibiruchain/vuepress-theme-docs"` in the projects where you want to use this package and it will be used instead.
+```
+
+In the destination package, run 
+
+```bash
+yarn link "destination-pkg-name"
+```
+
+When inside a package that is using symlinks, you inspectwhich ones are available with:
+```bash
+ls -l node_modules/* | grep "^l"
+```
+
+### tsc TypeScript Compiler
+
+The `tsc` command is the TypeScript compiler and is used to compile `.ts` and
+`.tsx` files into `.js`. Running `tsc` creates JS files. More specifically,
+here's what happens when you run `tsc`:
+
+1. TypeScript files are parsed and the types in these files are checked
+   according to the rules specified in your `tsconfig.json` file. If there are
+   any type errors in your code, `tsc` will report them.
+
+2. If there are no type errors, or if you've set the `noEmitOnError` compiler
+   option to `false`, `tsc` will emit JavaScript code. This JavaScript is
+   equivalent to your TypeScript code but without the types. It can be run in
+   any JavaScript environment (browser, Node.js, etc.)
+
+3. The compiled JavaScript files are by default placed in the same directory as
+   the source TypeScript files. However, you can specify a different output
+   directory by using the `outDir` option in `tsconfig.json`.
+
+In addition to JavaScript files, `tsc` may also generate **source map files (.js.map)** and **declaration files (.d.ts)** if the `sourceMap` and `declaration` compiler options are set to `true`, respectively. 
+- Source map files help in debugging by providing a mapping between the JavaScript code and the original TypeScript code. 
+- Declaration files are used when you want to distribute your TypeScript library to others, but still give them the benefit of TypeScript's type checking.
+
+You can check the effect of running `tsc` by looking at the output JavaScript files and by running these files in a JavaScript environment. If there are any type errors in your TypeScript code, `tsc` will also print these errors to the console.
 
 ### tsconfig.json
 
@@ -272,6 +416,8 @@ ESLint is a tool for identifying and reporting on patterns found in EMCAScript/J
 
 ### AssemblyScript
 
+Ref: [AssemblyScript API docs from The Graph]](https://thegraph.com/docs/en/developer/assemblyscript-api/)
+
 #### Install AssemblyScript 
 ```
 npm install --save @assemblyscript/loader
@@ -320,8 +466,6 @@ I saw this in contexts like the following:
 function changetype<Address>(value: any): Address
 ```
 
-
-
 ---
 
 ### `depcheck` to track and remove unnecessary dependencies
@@ -333,6 +477,20 @@ depcheck                 # usage
 
 Ref: https://www.pluralsight.com/guides/how-to-remove-unused-dependencies-in-react
 
+## Browser Object Model
+
+The Broswer Object Model (or BOM for short) is a collection of properties and methods that contain information about the browser and computer screen. 
+Although the BOM has no official standard, many properties and functions are supported by all major browsers, making a de facto standard.
+
+JS can run in different environments. The BOM only makes sense in a browser environment. Node.js is an example of another environment
+- NodeJS doesn't have a `window` object.
+- Both NodeJS and the BOM have a `global` object
+
+Global JS variables are variables created without the `const`, `let`, or `var` keywords.
+- Global vars can be accessed in all parts of a program.
+- Global vars are properties of a global object.
+- In a browser environment, the global object is the `window` object. 
+- Any global variable created is actually a property of the `window` object.
 
 ## References 
 

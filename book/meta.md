@@ -111,7 +111,6 @@ Designing your own ultralearning project has three parts:
 | ---------- | ---------- | ----------- |
 | 1. Capture | 2. Clarify | 3. Organize |
 | 4. Reflect | 5. Engage  |             |
-|            |            |             |
 
 **2.1.2.1. GTD | Overview**
 

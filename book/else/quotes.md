@@ -39,3 +39,6 @@
 
 > "Don't count the days; make the days count." - Muhammad Ali
 
+> On arguments and debate: "...what’s happening is that people pick their sides
+> in advance, and then try to use whatever evidence they can to make their case
+> instead of taking in the evidence and then making up their mind"

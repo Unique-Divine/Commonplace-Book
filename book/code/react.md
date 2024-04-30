@@ -1,26 +1,40 @@
 # React           <!-- omit in toc -->
 
 - [React Introduction](#react-introduction)
-    - [Scaffolding React Apps](#scaffolding-react-apps)
-    - [Functional Components](#functional-components)
-    - [Props](#props)
+  - [Scaffolding React Apps](#scaffolding-react-apps)
+    - [Scaffolding a fresh app](#scaffolding-a-fresh-app)
+  - [Functional Components](#functional-components)
+  - [Props](#props)
 - [Event Handlers: onClick, onBlur, and onChange](#event-handlers-onclick-onblur-and-onchange)
 - [Hooks: useState, useContext, useEffect, and useRef](#hooks-usestate-usecontext-useeffect-and-useref)
-  - [`useState` hook](#usestate-hook)
-    - [Sharing State](#sharing-state)
-  - [`useRef` hook](#useref-hook)
-  - [`useEffect` hook](#useeffect-hook)
-    - [`useEffect` Usage Guide](#useeffect-usage-guide)
-    - [Optimizing Performance by Skipping Effects](#optimizing-performance-by-skipping-effects)
-  - [Context and the `useContext` hook](#context-and-the-usecontext-hook)
-  - [Class Components](#class-components)
-  - [`useMemo` hook](#usememo-hook)
-  - [Resources](#resources)
-- [React Redux](#react-redux)
-  - [Debugging](#debugging)
-    - [Uncaught Invariant Violation: Invalid hook call](#uncaught-invariant-violation-invalid-hook-call)
-    - [Blocked by CORS policy: No 'Access-Control-Allow-Origin'](#blocked-by-cors-policy-no-access-control-allow-origin)
-    - [Gradient background on text](#gradient-background-on-text)
+- [`useState` hook](#usestate-hook)
+    - [State](#state)
+  - [Sharing State](#sharing-state)
+- [`useRef` hook](#useref-hook)
+    - [Using the `React.createRef` function to create refs?](#using-the-reactcreateref-function-to-create-refs)
+- [`useEffect` hook](#useeffect-hook)
+    - [Effects without cleanup](#effects-without-cleanup)
+  - [`useEffect` Usage Guide](#useeffect-usage-guide)
+  - [Optimizing Performance by Skipping Effects](#optimizing-performance-by-skipping-effects)
+- [Context and the `useContext` hook](#context-and-the-usecontext-hook)
+- [`useMemo` hook](#usememo-hook)
+- [Resources](#resources)
+- [State: Zustand](#state-zustand)
+- [Create Reusable Components](#create-reusable-components)
+- [State: React Redux](#state-react-redux)
+    - [Redux Toolkit](#redux-toolkit)
+    - [Redux Concepts](#redux-concepts)
+  - [Action, ActionType, and Action Payload](#action-actiontype-and-action-payload)
+  - [Reducers](#reducers)
+  - [Redux Project Structure](#redux-project-structure)
+- [Notifications with Toast](#notifications-with-toast)
+- [Material UI (MUI)](#material-ui-mui)
+  - [Styled Divider](#styled-divider)
+- [Debugging](#debugging)
+  - [Uncaught Invariant Violation: Invalid hook call](#uncaught-invariant-violation-invalid-hook-call)
+  - [Blocked by CORS policy: No 'Access-Control-Allow-Origin'](#blocked-by-cors-policy-no-access-control-allow-origin)
+  - [Gradient background on text](#gradient-background-on-text)
+
 
 <img src="/book/img/React-icon.svg" width="400px">
 
@@ -280,7 +294,8 @@ Only when the required interaction cannot be achieved using state and props.
 ```tsx
 const inputRef = useRef<HTMLInputElement>(null)
 ```
-This call of the `useRef` hook returns a `{current: null}` object because `nul` was passed in as the initial value.
+
+This call of the `useRef` hook returns a `{current: null}` object because `null` was passed in as the initial value.
 
 ```tsx
 import React, { useRef } from 'react';
@@ -306,8 +321,6 @@ const SimpleRef = () => {
 #### Using the `React.createRef` function to create refs?
 
 
-
-
 ## `useEffect` hook
 
 > The "effect" hook, `useEffect`, lets you perform side effects in functions.
@@ -327,7 +340,7 @@ Q: What does the `componentDidMount` function do in a class component?
 
 For executing logic when the component is initially mounted.
 
-Q: What does the ``componentDidUpdate` function do in a class component?
+Q: What does the `componentDidUpdate` function do in a class component?
 
 For executing logic whenever the component gets updated.
 Q: What counts as a component update? TODO
@@ -357,8 +370,6 @@ The `deps` specify an array of values that, if changed, will cause the effect to
 
 ### Optimizing Performance by Skipping Effects
 
-
-
 Reference: https://reactjs.org/docs/hooks-effect.html
 
 ## Context and the `useContext` hook
@@ -369,10 +380,6 @@ Context provides a way to pass data through the component tree without having to
 Q: When should you use `Context`?
 
 Context is designed to share "global" variables for a tree of React components.
-
-## Class Components
-
-TODO
 
 ## `useMemo` hook
 
@@ -400,32 +407,145 @@ Q: What does this mean? Why is it true? TODO
 - [Learn React in 30 Minutes](https://youtu.be/hQAHSlTtcmY)
 - [React Hooks Course - All React Hooks Explained](https://youtu.be/LlvBzyy-558)
 
-# React Redux
+# State: Zustand
 
-Redux is a state management tool for large applications. 
+# Create Reusable Components
 
-A lot of people don't like that it creates a bunch of boilerplate to do very simple things. 
-It also introduces a bunch of jargon: e.g., dispatch, map state, combined reducer, store 
+First, ask yourself if this component should be reusable. Is it actually going to
+be shared, or has the component just grown and become difficult to manage? 
+If it has become large, consider splitting it into multiple components rather
+than approaching it from a reusability perspective.
 
+You don't need to split to make the component reusable across the codebase but to
+make it easier to support.
 
-Store - globalized state
+2023 React Rally Points:
+1. Start with a small audience. Grow organically.
+1. Use a design system.
+1. Start rigid. Add flexibility as needed.
+1. Use third parties. Wrap, fork, or generate.
+1. Honor HTML
+1. Use the rule of three. Don't abstract until you have 3 of something.
+1. Reusable components are a product. They need docs, brand, publicity, and support.
 
-Action - something performed on the data; a fn that returns an object
+# State: React Redux
 
-Reducer - 
+Redux is a state management tool well-suited to large, complex applications. It is for managing global state. Redux takes the opinionated stance of using one "store" of truth that holds an immtable state updated by copies.
 
-Dispatch - execution of an action
+Q: When should one use Redux?
 
+If you have many interdependencies in global state. If you find yourself with too many `React.Context` providers, or excessive "prop drilling", it may be time to use a state management tool like Redux or Mobx.
+
+The main idea of Redux is to provide a separation between the code that manages and updates state and the code that says "here's something that happened" in the application. 
+1. You only have to look in one place to trace when, how, and why state updates occur.
+2. You can easily see a history of actions. There's a nice browser tool for this. 
+
+#### Redux Toolkit
+
+Redux is a standalone tool that can run in pure JS (`npm install redux`). You don't need React to use it. You can use Redux in any framework (e.g. React, Vue), but it is most commonly used with React.
 
 ```js
+// example on creating a store in vanilla redux
 import { createStore } from "redux";
 let store = createStore(reducerFn)
 ```
 
+These notes will focus instead on using the `react-redux` package, which comes with the [Redux Toolkit](https://react-redux.js.org/introduction/getting-started).
+
+```bash
+yarn add react-redux
+```
+
+#### Redux Concepts
+
+Action - something performed on the data; a fn that returns an object
+
+Dispatch - execution of an action. Components `dispatch` `Action`s.
+
+Reducer(s) - Handles an `Action` and changes state. State changes are stored in the `Store`. There can be many reducers, but there is only one store. You may equivalently here this expressed as "reducing" state.
+
+Store - Globalized state. A component can subscribe to parts of to `Store`. Whenever the state is updated, i.e. whenever a new state is passed to the `Store` the `Reducer` set, the `Store` will automatically pass state to all of the subscribed components.
+
+In pseudo-code, here's a high-level explanation of the relationship between each of these Redux objects:
+
+```js
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "actionTypeFoo":
+      break;
+    case "actionTypeBar":
+      break;
+  }
+}
+
+```
+
 Continue video: https://youtu.be/CVpUuw9XSjY?t=867
 
+### Action, ActionType, and Action Payload
 
-## Debugging
+Suppose there's a bank UI with a component for depositing and withdrawing money. In order to deposit money, we must call the function that is associated with depositing money. If we instead want to withdraw money, we'd call a different function.  
+
+Q: What is an action?
+
+An action is essentially a data structure containing and `ActionType` and `ActionPayload`.
+
+```ts
+interface IAction {
+  payload: any;
+  type: string;
+}
+```
+
+
+An `ActionCreator` is the function we call to create an `Action`. 
+
+```js
+import { createAction } from "@reduxjs/toolkit";
+type 
+const actionType: string = "chain/updateBalances"
+const PayloadType = CoinMap;
+export const updateBalances = createAction<PayloadType>(actionType);
+// notice that actionType is simply a string, whereas PayloadType is an actual type.
+```
+
+In this example, "chain/updateBalances" is the `ActionType` and `updateBalances` is the hook that creates the action, or `ActionCreator`. 
+
+### Reducers
+
+
+
+### Redux Project Structure
+
+Ex. Flat Structure: [markerikson/remotedev-app](https://github.com/markerikson/remotedev-app/tree/master/src/app)
+
+---
+
+# Notifications with Toast
+
+```bash
+yarn add react-toastify
+```
+
+# Material UI (MUI)
+
+### Styled Divider
+
+```tsx
+import Divider from "@mui/material/Divider"
+
+<Divider
+  orientation="vertical"
+  flexItem
+  sx={{ bgcolor: Colors.MainGreyDark }}
+  style={{
+    position: "relative",
+    left: "-20px",
+  }}
+/>
+```
+
+# Debugging
 
 
 ### Uncaught Invariant Violation: Invalid hook call
