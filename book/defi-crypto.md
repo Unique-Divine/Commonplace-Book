@@ -165,7 +165,7 @@ References:
 
 # DeFi Concepts
 
-[[Vampire-Attacks]](crypto/vampire-attacks.md)
+[[Vampire-Attacks](crypto/vampire-attacks.md)]
 
 ---
 
@@ -253,7 +253,7 @@ Tether tokens can be transacted on popular exchanges like Binance, CoinSpot, Kra
 #### Sources 
 
 - [Fiat money - Investopedia](https://www.investopedia.com/terms/f/fiatmoney.asp#:~:text=Fiat%20money%20is%20a%20government,U.S.%20dollar%2C%20are%20fiat%20currencies.)
-- O'Connell, B. 2019.  What is Fiat Currency? TheStreet. [[url]](https://www.thestreet.com/how-to/what-is-fiat-currency-14947321)
+- O'Connell, B. 2019.  What is Fiat Currency? TheStreet. [[url](https://www.thestreet.com/how-to/what-is-fiat-currency-14947321)]
 
 ---
 
@@ -298,7 +298,7 @@ Q: What is meant by "standardized for quality and quantity" in "futurues contrac
 Q: Why have a futures exchange?
 
 References:
-- Investopedia. Futures Contract. 2021. [[link]](https://www.investopedia.com/terms/f/futurescontract.asp)
+- Investopedia. Futures Contract. 2021. [[link](https://www.investopedia.com/terms/f/futurescontract.asp)]
 
 ---
 

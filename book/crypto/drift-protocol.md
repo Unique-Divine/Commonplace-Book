@@ -30,31 +30,59 @@ Table of Contents
 
 #### Quick primer on perpetual swaps
 
-Perps are a very crypto native invention. They came out around 2016/2017 and were invented by BitMex. No cash is exchanged with a perpetual swap. A perp is a futures contract that never expires. Counterparties are not needed as the swap can be done with the exchange. 
+Perps are a very crypto native invention. They came out around 2016/2017 and were
+invented by BitMex. No cash is exchanged with a perpetual swap. A perp is a
+futures contract that never expires. Counterparties are not needed as the swap
+can be done with the exchange. 
 
-The bane of perpetual swaps existence is the mechanism for keeping the price of the derivative in line with oracle prices. This is called the funding rate. 
+The bane of perpetual swaps existence is the mechanism for keeping the price of
+the derivative in line with oracle prices. This is called the funding rate. 
 
-Funding rates are essentially charged to participants who are on the wrong side or the aggressive side of the contract. For example, if there's a $1000 difference between the mark and index prices, the goal is to make this difference amortized over a period of 24 hours. Some exchanges do continuous funding. Some do 8 hour chunks. If the mark price is above the oracle price, people who are long the contract pay the funding rate.
+Funding rates are essentially charged to participants who are on the wrong side
+or the aggressive side of the contract. For example, if there's a $1000
+difference between the mark and index prices, the goal is to make this difference
+amortized over a period of 24 hours. Some exchanges do continuous funding. Some
+do 8 hour chunks. If the mark price is above the oracle price, people who are
+long the contract pay the funding rate.
 
-Think of funding rate like a penalty for being against the oracle.  This incentives arbitrageurs to come in and correct the trade because they know that they can collect the funding rate as a reward for making the markets more in line with each other.
+Think of funding rate like a penalty for being against the oracle.  This
+incentives arbitrageurs to come in and correct the trade because they know that
+they can collect the funding rate as a reward for making the markets more in line
+with each other.
 
 #### Background on the Drift team
 
-Drift has a team of four co-founders with a mixture of trading, traditional finance, crypto, and software engineering backgrounds. 
+Drift has a team of four co-founders with a mixture of trading, traditional
+finance, crypto, and software engineering backgrounds. 
 
-Cindy Leow is one of the cofounders of Drift Protocol. She began in the crypto space in 2016 and started out trading as an exchange student in Korea. She noticed huge spreads betweeen US and Korean markets for BTC, sometimes as much as a 30% gap between the two. Cindy would use a Korean and American bank account to buy a coin in the US and sell it in Korea. Over time, she delved into other trading opportunities and found other market inefficiencies in crypto.
+Cindy Leow is one of the cofounders of Drift Protocol. She began in the crypto
+space in 2016 and started out trading as an exchange student in Korea. She
+noticed huge spreads betweeen US and Korean markets for BTC, sometimes as much as
+a 30% gap between the two. Cindy would use a Korean and American bank account to
+buy a coin in the US and sell it in Korea. Over time, she delved into other
+trading opportunities and found other market inefficiencies in crypto.
 
-Then, she started automating on-chain strategies. Cindy started running a small prop fund and then got into DeFi during 2021.
+Then, she started automating on-chain strategies. Cindy started running a small
+prop fund and then got into DeFi during 2021.
 
 #### What is meant by "delta one product"?
 
-A delta one product is a a product that gives the investor the same exposure as if she were to own the underlying asset. A non-delta one product could something liek an option with an asymmetric payoff, causing price changes in the derivative to be different from the underlying asset.
+A delta one product is a a product that gives the investor the same exposure as
+if she were to own the underlying asset. A non-delta one product could something
+liek an option with an asymmetric payoff, causing price changes in the derivative
+to be different from the underlying asset.
 
-Examples: All of the below examples give the investor exposure on the index, while outsourcing the actual replication  to another party.
-- Exactly replicating an index: An investor would like to “own” the S&P500. The first alternative for the investor would be to buy all the 500 different shares that make up the S&P500, in the same proportions as the S&P500. If done correctly, the returns to the investor will now be the same as the return of the index. 
+Examples: All of the below examples give the investor exposure on the index,
+while outsourcing the actual replication  to another party.
+- Exactly replicating an index: An investor would like to “own” the S&P500. The
+first alternative for the investor would be to buy all the 500 different shares
+that make up the S&P500, in the same proportions as the S&P500. If done
+correctly, the returns to the investor will now be the same as the return of the
+index. 
 - Buy shares in an exchange traded fund (ETF) that tracks the underlying
 - Buy futures on the underlying
-- Trade an Index Swap derivative: This index swap would be designed to give the same returns, as if the investor were to own the index 
+- Trade an Index Swap derivative: This index swap would be designed to give the
+same returns, as if the investor were to own the index 
 
 Ref: [Delta One Trading](https://www.fe.training/free-resources/financial-markets/delta-one-trading/)
 

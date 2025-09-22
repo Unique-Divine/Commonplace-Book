@@ -1,10 +1,9 @@
 # curve-wars.md
 
-# Curve 
+## Curve 
 
 
-
-# Convex Finance
+## Convex Finance
 
 <img src="img/convex-finance.png" >
 
@@ -12,6 +11,6 @@
 
 References:
 
-- ConvexFinance. Why Convex? [[docs]](https://docs.convexfinance.com/convexfinance/general-information/why-convex)
-- Convex Finance. Convex for CRV Stakers. [[docs]](https://docs.convexfinance.com/convexfinance/general-information/convex-for-crv-stakers)
+- ConvexFinance. Why Convex? [[docs](https://docs.convexfinance.com/convexfinance/general-information/why-convex)]
+- Convex Finance. Convex for CRV Stakers. [[docs](https://docs.convexfinance.com/convexfinance/general-information/convex-for-crv-stakers)]
 

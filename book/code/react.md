@@ -407,9 +407,68 @@ Q: What does this mean? Why is it true? TODO
 - [Learn React in 30 Minutes](https://youtu.be/hQAHSlTtcmY)
 - [React Hooks Course - All React Hooks Explained](https://youtu.be/LlvBzyy-558)
 
-# State: Zustand
+## State: Zustand
 
-# Create Reusable Components
+Zustand is a newer state management library akin to th likes of Redux and Mobx.
+It uses a global state storage pattern that does not require a `useContext`.
+
+Suppose you have some global state defined with a hook that lets you access
+fields. These fields can be primitives and objects holding a snapshot of state,
+or they can be functions that update those state.
+```tsx
+export const useGlobalState = create<IGlobalState>((set) => ({
+  // ... Global State fields
+})
+```
+
+Often time, we want to access mutliple fields from thisglobal state. Let's say I
+want to read `foo` and `bar` fields from an instance of  `IGlobalState`.
+
+```tsx
+export interface IGlobalState {
+  foo, 
+  bar, 
+  alpha, 
+  bravo,   
+  charlie, 
+  delta,
+}
+```
+
+The naive approach would be to do the following.
+```tsx
+const { foo , bar } = useGlobalState()
+```
+
+Q: What's wrong with this approach? 
+
+A: The hook will trigger re-renders in your component when any of the fields from
+`IGlobalState` change. That includes the ones we didn't access like "alpha" and "bravo".
+
+Q: How then can I access more isolated versions of the global state? One field at
+a time, for example.
+
+A: Zustand's `create` hooks 
+
+
+
+```tsx
+import { useShallow } from "zustand/shallow"
+
+
+const { foo, bar } = useGlobalState(
+  useShallow((s) => {
+    return {
+      foo: s.foo,
+      bar: s.bar,
+    }
+  }),
+)
+```
+
+
+
+## Create Reusable Components
 
 First, ask yourself if this component should be reusable. Is it actually going to
 be shared, or has the component just grown and become difficult to manage? 
@@ -428,7 +487,7 @@ make it easier to support.
 1. Use the rule of three. Don't abstract until you have 3 of something.
 1. Reusable components are a product. They need docs, brand, publicity, and support.
 
-# State: React Redux
+## State: React Redux
 
 Redux is a state management tool well-suited to large, complex applications. It is for managing global state. Redux takes the opinionated stance of using one "store" of truth that holds an immtable state updated by copies.
 
@@ -626,3 +685,49 @@ const WalletButtonSC = styled.div`
   }
 `;
 ```
+
+## Next.js
+
+```typescript
+(alias) interface Metadata
+import Metadata
+```
+Metadata interface to describe all the metadata fields that can be set in a document.
+
+*@remarks*  
+This interface covers all the metadata fields available in Next.js including
+title, description, icons, openGraph, twitter, and more. Fields such as
+`metadataBase` help in composing absolute URLs from relative ones. The `title`
+field supports both simple strings and a template object with `default`,
+`template`, and `absolute` properties.  
+
+*@example*  
+```tsx
+// Static metadata export in a layout or page:
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://example.com'),
+  title: { default: 'My Site', template: '%s | My Site' },
+  description: 'Welcome to My Site',
+  alternates: {
+    canonical: 'https://example.com',
+    languages: {
+      'en-US': 'https://example.com/en-US',
+      'de-DE': 'https://example.com/de-DE'
+    }
+  },
+  openGraph: {
+    title: 'My Site',
+    description: 'Welcome to My Site',
+    url: 'https://example.com',
+    siteName: 'My Site',
+    images: [{ url: 'https://example.com/og.png' }]
+  },
+}
+```
+
+
+
+
+

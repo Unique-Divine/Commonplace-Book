@@ -1,6 +1,6 @@
 # 📝 Commonplace — Meta            <!-- omit in toc -->
 
-## Commonplace Book
+# Commonplace Book
 
 Unique Divine
 
@@ -26,9 +26,15 @@ Created May 2020
 
 ### 1.1. What is a Commonplace (Book)?
 
-A commonplace book is a system for writing down and sorting all manner of tidbits: quotes, anecdotes, observations, and information gleaned from books, conversations, movies, song lyrics, social posts, podcasts, life experiences, or anything else that you might want to return to later.
+A commonplace book is a system for writing down and sorting all manner of
+tidbits: quotes, anecdotes, observations, and information gleaned from books,
+conversations, movies, song lyrics, social posts, podcasts, life experiences, or
+anything else that you might want to return to later.
 
-It's called a commonplace it's an aggregate, an all-encompassing system for storing all of the the most important points you learn in one common place---a central resource that makes it easy to find, re-read, and utilize each piece of wisdom you have obtained.
+It's called a commonplace it's an aggregate, an all-encompassing system for
+storing all of the the most important points you learn in one common place, a
+central resource that makes it easy to find, re-read, and utilize each piece of
+wisdom you have obtained.
 
 \[^1]
 
@@ -441,3 +447,4 @@ Physics
 * Astrophysics for People in a Hurry. Neil DeGrasse Tyson.
 
 ***
+

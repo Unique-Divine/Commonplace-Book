@@ -52,5 +52,4 @@ THe Keplr Wallet is essentially the Metamask of Cosmos. It has a simple user int
 
 
 #### References: Osmosis 
-- Klauder. Sep., 2021. Osmosis: The Best Kept Secret in Yield Farming. [[article]](https://newsletter.defitimes.io/p/osmosis-the-best-kept-secret-in-yield)
-- . 
+- Klauder. Sep., 2021. Osmosis: The Best Kept Secret in Yield Farming. [[article](https://newsletter.defitimes.io/p/osmosis-the-best-kept-secret-in-yield)]

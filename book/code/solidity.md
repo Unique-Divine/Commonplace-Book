@@ -15,7 +15,7 @@ Solidity is an object-oriented language for implementing smart contracts. Smart 
 
 There are a few ways to install a Solidity compiler and each method has some tradeoffs.
 
-Note that there are two compilers, `solcjs` and `solc`. The solc compiler has more features than solcjs, however it's portable and easy to install. See [[solcjs docs]](https://github.com/ethereum/solc-js). The commandline options of `solcjs` are not compatible with `solc` and tools such as `geth` that expect that behavior of `solc` will not work with `solcjs`.
+Note that there are two compilers, `solcjs` and `solc`. The solc compiler has more features than solcjs, however it's portable and easy to install. See [[solcjs docs](https://github.com/ethereum/solc-js)]. The commandline options of `solcjs` are not compatible with `solc` and tools such as `geth` that expect that behavior of `solc` will not work with `solcjs`.
 
 
 - **Remix**: Remix is good for small contracts and quickly learning Solidity. 
@@ -31,7 +31,7 @@ Note that there are two compilers, `solcjs` and `solc`. The solc compiler has mo
   sudo apt-get update
   sudo apt-get install solc
   ```
-- MacOS, Windows, static binaries, and/or building from source: [[More information here]][solidity-docs-installation]
+- MacOS, Windows, static binaries, and/or building from source: [[More information here][solidity-docs-installation]
 
 
 References:

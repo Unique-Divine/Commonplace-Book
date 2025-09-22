@@ -265,7 +265,7 @@ npm is the world's largest software registry. "npm" was originally short for Nod
 
 Installation
 
-It is recommended to use a version manager for Node JS such as `nvm` [[github.com/nvm-sh/nvm]](https://github.com/nvm-sh/nvm). To install nvm, use cURL or Wget:
+It is recommended to use a version manager for Node JS such as `nvm` [[github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm)]. To install nvm, use cURL or Wget:
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 ```
@@ -299,9 +299,9 @@ I actually keep this as a function in my shell rc.
 
 #### References - Node JS
 
-- Introduction to JavaScript Runtime Environments. [[codecademy]](https://www.codecademy.com/article/introduction-to-javascript-runtime-environments)
-- kaizer1v. 2018. [[StackOverflow]](https://stackoverflow.com/questions/30838412/what-is-javascript-runtime#:~:text=Javascript%20runtime%20refers%20to%20where,on%20node%2C%20again%20its%20v8.)
-- About npm. [[docs.npmjs]](https://docs.npmjs.com/about-npm)
+- Introduction to JavaScript Runtime Environments. [[codecademy](https://www.codecademy.com/article/introduction-to-javascript-runtime-environments)]
+- kaizer1v. 2018. [[StackOverflow](https://stackoverflow.com/questions/30838412/what-is-javascript-runtime#:~:text=Javascript%20runtime%20refers%20to%20where,on%20node%2C%20again%20its%20v8.)]
+- About npm. [[docs.npmjs](https://docs.npmjs.com/about-npm)]
 
 ### symlinking with `yarn link`
 

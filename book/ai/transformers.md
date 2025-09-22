@@ -6,7 +6,7 @@ The Transformer architecture was introduced in "[Attention is All You Need](http
 
 Papers to mine:
 
-* Rethinking Attention with Performers. Choromanski et al. 2021. [[paper]](https://arxiv.org/pdf/2009.14794.pdf)
+* Rethinking Attention with Performers. Choromanski et al. 2021. [[paper](https://arxiv.org/pdf/2009.14794.pdf)
   * Tags: transformer, efficient transformer
   * Affiliations: Google Brain
 
@@ -103,7 +103,7 @@ for word_idx, word in enumerate(sentence):
 
 **References**
 
-* Illustrated Guide to Transformer: A component by component breakdown analysis. [[article]](https://jinglescode.github.io/2020/05/27/illustrated-guide-transformer/)
+* Illustrated Guide to Transformer: A component by component breakdown analysis. [[article](https://jinglescode.github.io/2020/05/27/illustrated-guide-transformer/)
 
 ***
 
@@ -169,7 +169,7 @@ Alignment score functions dictate how inputs are multiplied and added together t
 
 * [ ] Q:
 
-Neural Machine Translation by Jointly Learning to Align and Translate. Badhanau, Cho, and Bengio. 2016. [[paper]](https://arxiv.org/pdf/1409.0473.pdf)
+Neural Machine Translation by Jointly Learning to Align and Translate. Badhanau, Cho, and Bengio. 2016. [[paper](https://arxiv.org/pdf/1409.0473.pdf)
 
 * [ ] Q: What is machine translation?
 * [ ] Q: What makes neural machine translation neural?
@@ -188,14 +188,14 @@ Neural Machine Translation by Jointly Learning to Align and Translate. Badhanau,
 
 Transformers
 
-* Attention is All You Need. Vaswani et al. 2017. [[paper]](https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
-* Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. (2018). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv preprint arXiv:1810.04805. [[paper]](https://arxiv.org/pdf/1810.04805.pdf)
+* Attention is All You Need. Vaswani et al. 2017. [[paper](https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
+* Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. (2018). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv preprint arXiv:1810.04805. [[paper](https://arxiv.org/pdf/1810.04805.pdf)
 * Adalogou, Nikolas. (2021). Transformers in Computer Vision. AI Summer. [\[github-repo\]](https://github.com/The-AI-Summer/self-attention-cv)
 
 Input Embeddings
 
-* Alammar, Jay. (2019). The Illustrated Word 2 Vec. [[blog]](https://jalammar.github.io/illustrated-word2vec/)
-* Tsu. (2020). [[Artificial Intelligence Stack Exchange]](https://ai.stackexchange.com/questions/22957/how-can-transformers-handle-arbitrary-length-input)
+* Alammar, Jay. (2019). The Illustrated Word 2 Vec. [[blog](https://jalammar.github.io/illustrated-word2vec/)
+* Tsu. (2020). [[Artificial Intelligence Stack Exchange](https://ai.stackexchange.com/questions/22957/how-can-transformers-handle-arbitrary-length-input)
 
 Sequence Transduction Models
 
@@ -216,7 +216,7 @@ BERT: pre-Training of Deep Bidirectional Transformers for Language Understanding
 
 * Tags: transfer learning, pre-training, Transformer, NLP, masked language model, bidirectional
 * Affiliations: Google AI Language
-* [[paper]](https://arxiv.org/pdf/1810.04805.pdf)
+* [[paper](https://arxiv.org/pdf/1810.04805.pdf)
 
 BERT does not include a Transformer decoder.
 
@@ -234,7 +234,7 @@ CodeEmporium. (2020). BERT Neural Network - EXPLAINED! [\[YouTube\]](https://you
 
 * Tags:
 * Affiliations: Facebook AI
-* [[paper]](https://ai.facebook.com/research/publications/end-to-end-object-detection-with-transformers) [\[article\]](https://venturebeat.com/2020/05/28/facebook-ai-research-applies-transformer-architecture-to-streamline-object-detection-models/)
+* [[paper](https://ai.facebook.com/research/publications/end-to-end-object-detection-with-transformers) [\[article\]]](https://venturebeat.com/2020/05/28/facebook-ai-research-applies-transformer-architecture-to-streamline-object-detection-models/)
 
 **An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale. Dosovitsky et al., 2021.**
 

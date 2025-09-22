@@ -1,35 +1,35 @@
+# GitHub and Git: A Field Guide for Practitioners
 
-# Git, GitHub, and GitHub CLI (cookbook)
+**Context for the reader**: This guide is part of my online commonplace book. It
+serves its purpose as a convenient personal reference, and I put online because
+several friends and work colleagues told me it'd be a good idea. I keep it to
+one page to ease long-term maintenance, to optimize for navigation with grep and Vim
+motions, and to lighten the burdens of cross-page complexity.
+
+**Who This Guide is For**: 
+I've only documented the tidbits on GitHub and Git I found most essential or the
+things that seemed I'd save a lot of time writing down instead of needing to
+figure out again. The goal here wasn't to make a textbook or a beginner's
+resource. Regardless of whether you're junior, advanced, or a "grey beard", some
+piece of this guide should be useful to you. Especially from the GitHub section.
+
+<!--
+TODO: Who this Guide for?
+
+TODO: What Outcomes to Expect
+
+TODO: How to Read This Guide
+-->
 
 <!-- git-github-gh-cli.md -->
-- [Git](#git)
-- [Initial Repo Configuration](#initial-repo-configuration)
-- [Fundamental Concepts](#fundamental-concepts)
-    - [Local branch vs. remote branch](#local-branch-vs-remote-branch)
-    - [HEAD, master, and origin](#head-master-and-origin)
-    - [Branching](#branching)
-    - [Merging](#merging)
-    - [Deleting branches](#deleting-branches)
-    - [Git flow](#git-flow)
-- [Editting commit history](#editting-commit-history)
-    - [Permanently removing files from commit history](#permanently-removing-files-from-commit-history)
-    - [How to merge a specific commit from another branch?](#how-to-merge-a-specific-commit-from-another-branch)
-    - [Making a small edit to the most recent commit](#making-a-small-edit-to-the-most-recent-commit)
-    - [Commit part of a file rather than all of its changes](#commit-part-of-a-file-rather-than-all-of-its-changes)
-- [Special Topics](#special-topics)
-  - [Git Aliases](#git-aliases)
-    - [Changing remote after a repo name change](#changing-remote-after-a-repo-name-change)
-  - [SSH keys](#ssh-keys)
-  - [Large File Storage](#large-file-storage)
-  - [When the .gitignore just won't ignore](#when-the-gitignore-just-wont-ignore)
-- [Commit SHA Hashes](#commit-sha-hashes)
-- [Submodules](#submodules)
-- [GitHub (gh)](#github-gh)
+#### GitHub Section Links
+- [GitHub](#github)
 - [GitHub CLI (gh) Cheatsheet](#github-cli-gh-cheatsheet)
-- [Releases and Tags](#releases-and-tags)
+- [GitHub Releases and Tags](#github-releases-and-tags)
   - [Releasing Projects on GitHub](#releasing-projects-on-github)
 - [GitHub Workflows and `act`](#github-workflows-and-act)
-- [GitHub Badges](#github-badges)
+- [GitHub Templates](#github-templates)
+- [GitHub Badges from Shields](#github-badges-from-shields)
     - [Colors](#colors)
     - [Template for a Custom Badge](#template-for-a-custom-badge)
 - [GitHub Markdown](#github-markdown)
@@ -42,16 +42,397 @@
 - [GitHub Events](#github-events)
   - [Pull Request Events](#pull-request-events)
   - [Pull-request checklist](#pull-request-checklist)
-- [Cloning without Cloning](#cloning-without-cloning)
+- [GitHub: Cloning without Cloning](#github-cloning-without-cloning)
 
-!markdown-toc % --bullets="-" --max-depth=2 --no-firsth1 | clip.exe
+#### Git Section Linsk
+- [Git](#git)
+  - [Fundamental Concepts](#fundamental-concepts)
+    - [Initial Repo Configuration](#initial-repo-configuration)
+    - [Local branch vs. remote branch](#local-branch-vs-remote-branch)
+    - [HEAD, master, and origin](#head-master-and-origin)
+    - [Branching](#branching)
+    - [Merging](#merging)
+    - [Deleting branches](#deleting-branches)
+    - [Git flow](#git-flow)
+  - [Git: Editting commit history](#git-editting-commit-history)
+    - [Permanently removing files from commit history](#permanently-removing-files-from-commit-history)
+    - [How to merge a specific commit from another branch?](#how-to-merge-a-specific-commit-from-another-branch)
+    - [Making a small edit to the most recent commit](#making-a-small-edit-to-the-most-recent-commit)
+    - [Commit part of a file rather than all of its changes](#commit-part-of-a-file-rather-than-all-of-its-changes)
+  - [Git: Special Topics](#git-special-topics)
+    - [Git Aliases](#git-aliases)
+    - [Changing remote after a repo name change](#changing-remote-after-a-repo-name-change)
+    - [Large File Storage](#large-file-storage)
+    - [When the .gitignore just won't ignore](#when-the-gitignore-just-wont-ignore)
+  - [SSH keys](#ssh-keys)
+  - [Commit SHA Hashes](#commit-sha-hashes)
+  - [Git Submodules](#git-submodules)
 
-max depth 1
+---
 
-max depth 2
+# GitHub
 
-max depth 3
+- [GitHub CLI (gh) Cheatsheet](#github-cli-gh-cheatsheet)
+- [GitHub Releases and Tags](#github-releases-and-tags)
+  - [Releasing Projects on GitHub](#releasing-projects-on-github)
+- [GitHub Workflows and `act`](#github-workflows-and-act)
+- [GitHub Templates](#github-templates)
+- [GitHub Badges from Shields](#github-badges-from-shields)
+    - [Colors](#colors)
+    - [Template for a Custom Badge](#template-for-a-custom-badge)
+- [GitHub Markdown](#github-markdown)
+  - [Notes, Tips, and Warnings](#notes-tips-and-warnings)
+  - [Collapsible sections in markdown](#collapsible-sections-in-markdown)
+    - [Understanding collapsible sections](#understanding-collapsible-sections)
+    - [Customizing the clickable `summary` block](#customizing-the-clickable-summary-block)
+    - [Expanding details by default](#expanding-details-by-default)
+    - [Nesting collapsible sections](#nesting-collapsible-sections)
+- [GitHub Events](#github-events)
+  - [Pull Request Events](#pull-request-events)
+  - [Pull-request checklist](#pull-request-checklist)
+- [GitHub: Cloning without Cloning](#github-cloning-without-cloning)
 
+## GitHub CLI (gh) Cheatsheet
+
+
+Set the editor as vim instead of the default, nano.
+```sh
+gh config set editor vim 
+```
+
+Other examples of [`gh config set`](https://cli.github.com/manual/gh_config_set):
+```sh
+gh config set git_protocol ssh --host github.com
+gh config set prompt disabled
+```
+
+
+
+```sh
+# list commands
+gh issue list
+gh pr list
+```
+
+```sh
+# list commands
+gh pr status
+gh repo view
+```
+
+`gh pr create`: Creates a pull-request
+`gh pr checks`: 
+
+
+GH Issues: 
+- `gh issue close`: 
+
+```sh
+gh issue list
+gh issue create --label bug
+gh issue view 123 --web
+```
+
+[[Click here to go back to the "GitHub" section](#github)]
+
+## GitHub Releases and Tags
+
+A Git tag is similar to a Git reference, but the Git commit that it points to never changes. Git tags are helpful when you want to point to specific releases.
+
+Tag objects (created with `-a`, `-s`, or `-u`) are called "annotated" tags; they contain a creation date, the tagger name and e-mail, a tagging message, and an optional GnuPG signature. Whereas a "lightweight" tag is simply a name for an object (usually a commit object).
+
+```sh
+git tag -s v0.0.16 -m "Release description for v0.0.16" 
+```
+
+Refs:
+- [Managing Tags - GitHub docs](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/managing-commits/managing-tags)
+- [`git tag` docs](https://git-scm.com/docs/git-tag)
+
+```sh
+# set env var in sh script
+export GPG_TTY=$(tty)
+```
+
+Delete a tag locally:
+
+```bash
+git tag -d [tag-name]
+```
+
+Delete a tag on origin:
+
+```bash
+git push origin --delete [tag-name]
+```
+
+[[Click here to go back to the "GitHub" section](#github)]
+
+### Releasing Projects on GitHub
+
+Releases are deployable software iterations you can package and make available for a wider audience to download and use.
+
+Ref: https://docs.github.com/en/repositories/releasing-projects-on-github
+
+About Releases (Docs): https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases
+
+
+[[Click here to go back to the "GitHub" section](#github)]
+
+## GitHub Workflows and `act`
+
+
+Run and test workflows locally with [nektos/act](https://github.com/nektos/act). Note that it depends on `docker` to run the workflows.
+
+Installation bash script
+```sh
+curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
+```
+
+On MacOS:
+```sh
+brew install act
+```
+
+Example commands:
+
+```sh
+# Command structure:
+act [<event>] [options]
+If no event name passed, will default to "on: push"
+
+# Run a specific job:
+act -j test
+
+# List the actions for the default event:
+act -l
+
+# List the actions for a specific event:
+act workflow_dispatch -l
+
+# Run the default (`push`) event:
+act
+
+# Run a specific event:
+act pull_request
+
+# Run in dry-run mode:
+act -n
+
+# Enable verbose-logging (can be used with any of the above commands)
+act -v
+```
+
+[[Click here to go back to the "GitHub" section](#github)]
+
+## GitHub Templates
+
+```markdown
+## Problem 
+
+Provide a clear and concise description of what the bug is, including what currently happens and what you expected to happen.
+
+## Steps to Reproduce
+
+Please list the steps to reproduce the bug.
+
+## Possible Solution(s)
+
+Not obligatory, but suggest a fix/reason for the bug, or ideas how to implement the addition or change.
+
+
+## Version
+
+Include info on the commit, tag, release, machine used, or local environment. 
+```
+
+
+[[Click here to go back to the "GitHub" section](#github)]
+
+## GitHub Badges from Shields
+
+Badges are concise, consistent, legible images for open source projects. They are common in GitHub `README`s and other webpages and support many package registries, distributions, continuous integration services, and social networks. They look like this:
+
+![Python 3.8+] ![Contributions welcome][contributions-badge] [![License: MIT][mit-license-badge]][license] ![PyTorch][torch-badge]
+
+[Python 3.8+]: https://img.shields.io/badge/python-3.7+-blue.svg
+[mit-license-badge]: https://img.shields.io/badge/License-MIT-g.svg 
+[license]: https://github.com/eskalnes/grid_world_plus/blob/main/LICENSE
+[contributions-badge]: https://img.shields.io/badge/contributions-welcome-yellow.svg 
+[torch-badge]: https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?&logo=PyTorch&logoColor=white
+
+Badges come from [shields.io](https://shields.io/). Its source code is hosted at [github.com/badges/shields](https://github.com/badges/shields) and serves roughly a billion images each month.
+
+#### Colors 
+
+![](./img/badge-colors.png)
+
+Color options are available with keywords, 6-symbol hex codes, and 3-symbol hex codes.
+
+
+#### Template for a Custom Badge
+
+```sh
+https://img.shields.io/badge/<leftLabel>-<rightMsg>-<color>
+```
+
+![](https://img.shields.io/badge/left-right-f39f37)
+![](https://img.shields.io/badge/LABEL-MESSAGE-blue)  
+
+[[Click here to go back to the "GitHub" section](#github)]
+
+## GitHub Markdown
+
+### Notes, Tips, and Warnings
+
+```markdown
+> [!NOTE]  
+> Highlights information that users should take into account, even when skimming.
+
+> [!TIP]
+> Optional information to help a user be more successful.
+
+> [!IMPORTANT]  
+> Crucial information necessary for users to succeed.
+
+> [!WARNING]  
+> Critical content demanding immediate user attention due to potential risks.
+
+> [!CAUTION]
+> Negative potential consequences of an action.
+```
+
+Becomes:
+
+![](../img/gh-markdown-note-warning.png)
+
+Ref: https://github.com/orgs/community/discussions/16925
+
+### Collapsible sections in markdown
+
+Tags: dropdown, menu, collapse, expand
+
+<img src="../img/gh-md-collapse-0.png">
+<img src="../img/gh-md-collapse-1.png">
+
+```markdown
+<details>
+<summary>[Display Text]</summary>
+  
+### Markdown Content
+
+</details>
+```
+
+<details>
+  <summary>[Show SVG text to copy]</summary>
+
+  ```html
+  <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M6 7V54H61C61.7956 54 62.5587 54.3161 63.1213 54.8787C63.6839 55.4413 64 56.2044 64 57C64 57.7956 63.6839 58.5587 63.1213 59.1213C62.5587 59.6839 61.7956 60 61 60H3C2.20435 60 1.44129 59.6839 0.87868 59.1213C0.31607 58.5587 0 57.7956 0 57L0 7C0 6.20435 0.31607 5.44129 0.87868 4.87868C1.44129 4.31607 2.20435 4 3 4C3.79565 4 4.55871 4.31607 5.12132 4.87868C5.68393 5.44129 6 6.20435 6 7ZM63.12 17.12L42.12 38.12C41.5575 38.6818 40.795 38.9974 40 38.9974C39.205 38.9974 38.4425 38.6818 37.88 38.12L28 28.24L17.12 39.12C16.551 39.6496 15.7987 39.938 15.0215 39.9246C14.2442 39.9112 13.5024 39.597 12.952 39.048C12.403 38.4976 12.0888 37.7558 12.0754 36.9785C12.062 36.2013 12.3504 35.449 12.88 34.88L25.88 21.88C26.4425 21.3182 27.205 21.0026 28 21.0026C28.795 21.0026 29.5575 21.3182 30.12 21.88L40 31.76L58.88 12.88C59.449 12.3504 60.2013 12.062 60.9785 12.0754C61.7558 12.0888 62.4976 12.403 63.048 12.952C63.597 13.5024 63.9112 14.2442 63.9246 15.0215C63.938 15.7987 63.6496 16.551 63.12 17.12Z" />
+  </svg>
+  ```
+
+</details>
+
+#### Understanding collapsible sections
+
+The `summary` block dictates what will be visible, and the remainder of the
+`details` block is the content of the collapsible section. 
+
+NOTE: When including headings within collapsible sections, remember to add a new
+line after the `summary` tag. In general, if you're finding that something fails
+to render, add a line break after the closing `</summary>` tag.
+
+#### Customizing the clickable `summary` block
+
+Simply add normal HTML modifications to the `summary` block.
+
+```markdown
+<details>
+  <summary><i>Wow, so fancy</i></summary>
+  <b>WOW, SO BOLD</b>
+</details>
+```
+
+#### Expanding details by default
+
+You can start out the collapsible section by including the `open` attribute
+within the `<details>` tag.
+
+```markdown
+<details open>
+  <summary>Summay block</summary>
+  Text open by default!
+</details>
+```
+
+#### Nesting collapsible sections
+
+```markdown
+<details>
+<summary>Section A</summary>
+  <details>
+  <summary>Section A.B</summary>
+    <details>
+    <summary>Section A.B.C</summary>
+      <details>
+      <summary>Section A.B.C.D</summary>
+        Done!
+      </details>
+    </details>
+  </details>
+</details>
+```
+
+- Ref: [Gist - How to add a collapsible section in GitHub markdown](https://gist.github.com/pierrejoubert73/902cc94d79424356a8d20be2b382e1ab)
+
+[[Click here to go back to the "GitHub" section](#github)]
+
+## GitHub Events
+
+### Pull Request Events
+
+[`pull_request` docs](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#pull_request)
+
+`synchronize` (GitHubEvent): Triggered when a pull request's head branch is updated. For example, when the head branch is updated from the base branch, when new commits are pushed to the head branch, or when the base branch is changed.
+
+### Pull-request checklist
+
+- [ ] Describe how to test the PR
+- [ ] Screenshot the new behavior if applicable
+- [ ] Add a description for context on the chosen implementation strategy
+- [ ] Refer to related issues/tasks/cards
+- [ ] Resolve merge conflicts: Make sure the target branch is merged into the PR branch.
+
+Self-review
+- [ ] Add code comments for lines that reviewer might not understand correctly.
+Consider refactoring the names of variables and functions for clarity. 
+- [ ] DRY: Don't repeat yourself
+- [ ] KISS: Keep it simple, sweetie
+- [ ] YAGNI: You aren't gonna need it. Check that you are not overcomplicating
+something for the sake of "making it future-proof". Fowler said "Yagni only
+applies to capabilities built into the software to support a presumptive feature,
+it does not apply to effort to make the software easier to modify".
+
+## GitHub: Cloning without Cloning
+
+This can be accomplished with subversion's `svn export`. This command allows
+you to download a single folder.
+
+```bash
+svn export https://github.com/<Owner>/<Repo>/trunk/<Path to Directory>
+```
+
+Installing subversion:
+```bash
+sudo apt-get update
+sudo apt-get install subversion
+# on mac
+# brew install svn
+```
+
+[[Click here to go back to the "GitHub" section](#github)]
 
 ## Git
 
@@ -118,6 +499,9 @@ When working on a new feature, branch off from the `develop` branch:
 ```
 git checkout -b newFeature develop
 ```
+
+- `git checkout -b newBranch`: creates a new branch 
+- `git checkout -m newBranch`: Renames the current branch
 
 Merge finished features into the development branch to add them to the upcoming release. Use the "no fast forward" flag, `--no-ff`, to cause the merge to create a new commit object even if the merge could be performed with a fast-forward. This avoids losing information about the historical existence of a feature branch and groups together all commits that together added the feature.
 
@@ -201,13 +585,13 @@ git add .
 
 If you already have unstaged changes, you must run the following after editing the ignore patterns.
 
-```
+```bash
 git update-index --skip-worktree <file-list>
 ```
 
 You can reverse this with:
 
-```git
+```bash
 git update-index --no-skip-worktree <file-list>
 ```
 
@@ -226,7 +610,7 @@ Generating a new SSH key: Follow [Generating a new SSH key and adding it to the 
 
 **References:**
 
-* A successful Git branching model. [[web]](https://nvie.com/posts/a-successful-git-branching-model/)
+* A successful Git branching model. [[web](https://nvie.com/posts/a-successful-git-branching-model/)]
 
 ### Commit SHA Hashes 
 
@@ -255,7 +639,7 @@ The main differences between the SHA-1 and SHA-256 hash algorithms are:
 SHA-256 trades some speed for significantly improved cryptographic strength
 over the now dated SHA-1 algorithm.
 
-## Submodules
+### Git Submodules
 
 Submodules allow you to embed a git repository as a subdirectory inside another
 git repository. They allow using another project while still maintaining
@@ -274,308 +658,4 @@ Submodules allow nested git repos with separate histories and pushing. Making
 changes in the submodule requires pushing from within the submodule itself.
 Committing in the outer project records a new SHA reference to the submodule.
 The parent repo controls which submodule commit is used via the SHA reference.
-
----
-
-# GitHub (gh)
-
-## GitHub CLI (gh) Cheatsheet
-
-
-Set the editor as vim instead of the default, nano.
-```sh
-gh config set editor vim 
-```
-
-Other examples of [`gh config set`](https://cli.github.com/manual/gh_config_set):
-```sh
-gh config set git_protocol ssh --host github.com
-gh config set prompt disabled
-```
-
-
-
-```sh
-# list commands
-gh issue list
-gh pr list
-```
-
-```sh
-# list commands
-gh pr status
-gh repo view
-```
-
-`gh pr create`: Creates a pull-request
-`gh pr checks`: 
-
-
-GH Issues: 
-- `gh issue close`: 
-
-```sh
-gh issue list
-gh issue create --label bug
-gh issue view 123 --web
-```
-
-## Releases and Tags
-
-A Git tag is similar to a Git reference, but the Git commit that it points to never changes. Git tags are helpful when you want to point to specific releases.
-
-Tag objects (created with `-a`, `-s`, or `-u`) are called "annotated" tags; they contain a creation date, the tagger name and e-mail, a tagging message, and an optional GnuPG signature. Whereas a "lightweight" tag is simply a name for an object (usually a commit object).
-
-```sh
-git tag -s v0.0.16 -m "Release description for v0.0.16" 
-```
-
-Refs:
-- [Managing Tags - GitHub docs](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/managing-commits/managing-tags)
-- [`git tag` docs](https://git-scm.com/docs/git-tag)
-
-```sh
-# set env var in sh script
-export GPG_TTY=$(tty)
-```
-
-Delete a tag locally:
-
-```bash
-git tag -d [tag-name]
-```
-
-Delete a tag on origin:
-
-```bash
-git push origin --delete [tag-name]
-```
-
-### Releasing Projects on GitHub
-
-Releases are deployable software iterations you can package and make available for a wider audience to download and use.
-
-Ref: https://docs.github.com/en/repositories/releasing-projects-on-github
-
-About Releases (Docs): https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases
-
-
-## GitHub Workflows and `act`
-
-
-Run and test workflows locally with [nektos/act](https://github.com/nektos/act). Note that it depends on `docker` to run the workflows.
-
-Installation bash script
-```sh
-curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
-```
-
-On MacOS:
-```sh
-brew install act
-```
-
-Example commands:
-
-```sh
-# Command structure:
-act [<event>] [options]
-If no event name passed, will default to "on: push"
-
-# Run a specific job:
-act -j test
-
-# List the actions for the default event:
-act -l
-
-# List the actions for a specific event:
-act workflow_dispatch -l
-
-# Run the default (`push`) event:
-act
-
-# Run a specific event:
-act pull_request
-
-# Run in dry-run mode:
-act -n
-
-# Enable verbose-logging (can be used with any of the above commands)
-act -v
-```
-
-## GitHub Badges
-
-Badges are concise, consistent, legible images for open source projects. They are common in GitHub `README`s and other webpages and support many package registries, distributions, continuous integration services, and social networks. They look like this:
-
-![Python 3.8+] ![Contributions welcome][contributions-badge] [![License: MIT][mit-license-badge]][license] ![PyTorch][torch-badge]
-
-[Python 3.8+]: https://img.shields.io/badge/python-3.7+-blue.svg
-[mit-license-badge]: https://img.shields.io/badge/License-MIT-g.svg 
-[license]: https://github.com/eskalnes/grid_world_plus/blob/main/LICENSE
-[contributions-badge]: https://img.shields.io/badge/contributions-welcome-yellow.svg 
-[torch-badge]: https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?&logo=PyTorch&logoColor=white
-
-Badges come from [shields.io](https://shields.io/). Its source code is hosted at [github.com/badges/shields](https://github.com/badges/shields) and serves roughly a billion images each month.
-
-#### Colors 
-
-![](./img/badge-colors.png)
-
-Color options are available with keywords, 6-symbol hex codes, and 3-symbol hex codes.
-
-
-#### Template for a Custom Badge
-
-```sh
-https://img.shields.io/badge/<leftLabel>-<rightMsg>-<color>
-```
-
-![](https://img.shields.io/badge/left-right-f39f37)
-![](https://img.shields.io/badge/LABEL-MESSAGE-blue)  
-
-## GitHub Markdown
-
-### Notes, Tips, and Warnings
-
-```markdown
-> [!NOTE]  
-> Highlights information that users should take into account, even when skimming.
-
-> [!TIP]
-> Optional information to help a user be more successful.
-
-> [!IMPORTANT]  
-> Crucial information necessary for users to succeed.
-
-> [!WARNING]  
-> Critical content demanding immediate user attention due to potential risks.
-
-> [!CAUTION]
-> Negative potential consequences of an action.
-```
-
-Becomes:
-
-![](../img/gh-markdown-note-warning.png)
-
-Ref: https://github.com/orgs/community/discussions/16925
-
-### Collapsible sections in markdown
-
-<img src="../img/gh-md-collapse-0.png">
-<img src="../img/gh-md-collapse-1.png">
-
-```markdown
-<details>
-  <summary>[Display Text]</summary>
-  
-  ### Markdown Content
-
-</details>
-```
-
-<details>
-  <summary>[Show SVG text to copy]</summary>
-
-  ```html
-  <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M6 7V54H61C61.7956 54 62.5587 54.3161 63.1213 54.8787C63.6839 55.4413 64 56.2044 64 57C64 57.7956 63.6839 58.5587 63.1213 59.1213C62.5587 59.6839 61.7956 60 61 60H3C2.20435 60 1.44129 59.6839 0.87868 59.1213C0.31607 58.5587 0 57.7956 0 57L0 7C0 6.20435 0.31607 5.44129 0.87868 4.87868C1.44129 4.31607 2.20435 4 3 4C3.79565 4 4.55871 4.31607 5.12132 4.87868C5.68393 5.44129 6 6.20435 6 7ZM63.12 17.12L42.12 38.12C41.5575 38.6818 40.795 38.9974 40 38.9974C39.205 38.9974 38.4425 38.6818 37.88 38.12L28 28.24L17.12 39.12C16.551 39.6496 15.7987 39.938 15.0215 39.9246C14.2442 39.9112 13.5024 39.597 12.952 39.048C12.403 38.4976 12.0888 37.7558 12.0754 36.9785C12.062 36.2013 12.3504 35.449 12.88 34.88L25.88 21.88C26.4425 21.3182 27.205 21.0026 28 21.0026C28.795 21.0026 29.5575 21.3182 30.12 21.88L40 31.76L58.88 12.88C59.449 12.3504 60.2013 12.062 60.9785 12.0754C61.7558 12.0888 62.4976 12.403 63.048 12.952C63.597 13.5024 63.9112 14.2442 63.9246 15.0215C63.938 15.7987 63.6496 16.551 63.12 17.12Z" />
-  </svg>
-  ```
-
-</details>
-
-
-
-#### Understanding collapsible sections
-
-The `summary` block dictates what will be visible, and the remainder of the
-`details` block is the content of the collapsible section. 
-
-NOTE: When including headings within collapsible sections, remember to add a new
-line after the `summary` tag. In general, if you're finding that something fails
-to render, add a line break after the closing `</summary>` tag.
-
-#### Customizing the clickable `summary` block
-
-Simply add normal HTML modifications to the `summary` block.
-
-```markdown
-<details>
-  <summary><i>Wow, so fancy</i></summary>
-  <b>WOW, SO BOLD</b>
-</details>
-```
-
-#### Expanding details by default
-
-You can start out the collapsible section by including the `open` attribute
-within the `<details>` tag.
-
-```markdown
-<details open>
-  <summary>Summay block</summary>
-  Text open by default!
-</details>
-```
-
-#### Nesting collapsible sections
-
-```markdown
-<details>
-<summary>Section A</summary>
-<details>
-<summary>Section A.B</summary>
-<details>
-<summary>Section A.B.C</summary>
-<details>
-<summary>Section A.B.C.D</summary>
-  Done!
-</details>
-</details>
-</details>
-</details>
-```
-
-- Ref: [Gist - How to add a collapsible section in GitHub markdown](https://gist.github.com/pierrejoubert73/902cc94d79424356a8d20be2b382e1ab)
-
-## GitHub Events
-
-### Pull Request Events
-
-[`pull_request` docs](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#pull_request)
-
-`synchronize` (GitHubEvent): Triggered when a pull request's head branch is updated. For example, when the head branch is updated from the base branch, when new commits are pushed to the head branch, or when the base branch is changed.
-
-### Pull-request checklist
-
-- [ ] Describe how to test the PR
-- [ ] Screenshot the new behavior if applicable
-- [ ] Add a description for context on the chosen implementation strategy
-- [ ] Refer to related issues/tasks/cards
-- [ ] Resolve merge conflicts: Make sure the target branch is merged into the PR branch.
-
-Self-review
-- [ ] Add code comments for lines that reviewer might not understand correctly. Consider refactoring the names of variables and functions for clarity. 
-- [ ] DRY: Don't repeat yourself
-- [ ] KISS: Keep it simple, sweetie
-- [ ] YAGNI: You aren't gonna need it. Check that you are not overcomplicating something for the sake of "making it future-proof". Fowler said "Yagni only applies to capabilities built into the software to support a presumptive feature, it does not apply to effort to make the software easier to modify".
-
-## Cloning without Cloning
-
-This can be accomplished with subversion's `svn export`. This command allows
-you to download a single folder.
-
-```bash
-svn export https://github.com/<Owner>/<Repo>/trunk/<Path to Directory>
-```
-
-Installing subversion:
-```bash
-sudo apt-get update
-sudo apt-get install subversion
-# on mac
-# brew install svn
-```
 

@@ -140,7 +140,7 @@ class PolicyNetwork(nn.Module):
 
 **References**
 
-* Open AI Spinning Up. Vanilla Policy Gradient. [[web]](https://spinningup.openai.com/en/latest/algorithms/vpg.html)
+* Open AI Spinning Up. Vanilla Policy Gradient. [[web](https://spinningup.openai.com/en/latest/algorithms/vpg.html)]
 
 ***
 

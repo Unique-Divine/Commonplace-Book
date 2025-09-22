@@ -1,6 +1,6 @@
 !-- python.md -->
 
-- [Setting up a Profession Development Environment](#setting-up-a-profession-development-environment)
+- [Setting up a Professional Development Environment](#setting-up-a-professional-development-environment)
   - [Pyenv for managing multiple Python interpreters](#pyenv-for-managing-multiple-python-interpreters)
   - [Poetry for dependency management and publishing packages](#poetry-for-dependency-management-and-publishing-packages)
     - [Using poetry](#using-poetry)
@@ -18,16 +18,16 @@
     - [Testing: Else](#testing-else)
 - [Working with Databases](#working-with-databases)
     - [MongoDB (pymongo)](#mongodb-pymongo)
-- [Discord.py](#discordpy)
 - [Object-Oriented Programming (OOP)](#object-oriented-programming-oop)
 - [Python Else](#python-else)
   - [Publishing Packages on PyPi](#publishing-packages-on-pypi)
   - [Protocol Buffers](#protocol-buffers)
   - [Miscellaneous](#miscellaneous)
+  - [Discord.py](#discordpy)
 
 ---
 
-# Setting up a Profession Development Environment
+# Setting up a Professional Development Environment
 
 ## Pyenv for managing multiple Python interpreters
 
@@ -207,7 +207,7 @@ with open(path_to_file, "w") as fh:
 print(f"Directories and files at {some_path}: {os.listdir(some_path)}")
 ```
 
-- Python glossary - file object [[docs]](https://docs.python.org/3/glossary.html#term-file-object)
+- Python glossary - file object [[docs](https://docs.python.org/3/glossary.html#term-file-object)]
 
 Date: 21年6月
 
@@ -492,8 +492,8 @@ In my case, I only needed the community edition.
 
 There are two main steps for this installation.
 
-1. Install MondoDB Server: [[installation instructions (Windows)]](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
-2. Install MongoDB Shell (mongosh): [[installation instructions]](https://docs.mongodb.com/mongodb-shell/install/)
+1. Install MondoDB Server: [[installation instructions (Windows)](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)]
+2. Install MongoDB Shell (mongosh): [[installation instructions](https://docs.mongodb.com/mongodb-shell/install/)]
 
 The installation instructions for Community Edition are toward the bottom of the page (at the above link) where it says "Procedure". You're finished with step 1 when you can start MongoDB with\
 `"C:\Program Files\MongoDB\Server\5.0\bin\mongod.exe" --dbpath="c:\data\db"`
@@ -526,32 +526,10 @@ Now, `mongo` and `mongod` work, but what do they do?
 
 **References MongoDB:**
 
-- Jayatilake, Navindu. 2019. How to get started with MongoDB in 10 minutes. [[article]](https://www.freecodecamp.org/news/learn-mongodb-a4ce205e7739/)
+- Jayatilake, Navindu. 2019. How to get started with MongoDB in 10 minutes. [[article](https://www.freecodecamp.org/news/learn-mongodb-a4ce205e7739/)]
 - [Pymongo tutorial](https://pymongo.readthedocs.io/en/stable/tutorial.html)
 
 ***
-
-# Discord.py
-
-***
-
-To interface with Discord programmatically, you'll need a Discord token.
-1. Head to https://discord.com/login
-2. Open the browser's developer console with either `Ctrl + Shift + I` or by right clicking.  
-3. Refresh the page
-4. Go under the "Network" tab in the console. 
-5. Enter "/api" as the filter and then hit `Enter`.
-6. One of the items in the table should have a name starting with "library". Click this row.
-7. In the "Headers" tab, find the place that says "authorization: ". The text for this field is your Discord token.
-
-
-
-
-Resources
-- [API Reference. discord.py](https://discordpy.readthedocs.io/en/v1.0.0/api.html#)
-- [Channel history in discord.py](https://stackoverflow.com/questions/64211658/how-could-i-grab-all-chat-messages-in-a-specific-channel-in-a-discord-server-usi)
-- [Webhook Resource. Discord Developer Portal.](https://discord.com/developers/docs/resources/webhook)
-- [Discord.py add role command. Stack Overflow.](https://stackoverflow.com/questions/49076798/discord-py-add-role-to-someone)
 
 
 --- 
@@ -741,7 +719,7 @@ class Person:
                 self.job = "Baby, toddler, or pre-K"
 ```
 
-Reference: ArjanCodes. 2021. If you're not using Python DATA CLASSES yet, you should. 🚀 [[YouTube]](https://youtu.be/vRVVyl9uaZc)
+Reference: ArjanCodes. 2021. If you're not using Python DATA CLASSES yet, you should. 🚀 [[YouTube](https://youtu.be/vRVVyl9uaZc)]
 
 #### Prefer composition over inheritance
 
@@ -763,7 +741,7 @@ class FFNN(ABC):
         """TODO"""
 ```
 
-Reference: ArjanCodes. Why COMPOSITION is better than INHERITANCE - detailed Python example. 2021. [[YouTube]](https://youtu.be/0mcP8ZpUR38)
+Reference: ArjanCodes. Why COMPOSITION is better than INHERITANCE - detailed Python example. 2021. [[YouTube](https://youtu.be/0mcP8ZpUR38)]
 
 #### `NamedTuple` and `TypedDict`
 
@@ -871,7 +849,7 @@ A **protocol buffer compiler** creates a class that implements automatic encodin
 
 
 References:
-- Google. Protocol Buffer Basics: Python [[docs]](https://developers.google.com/protocol-buffers/docs/pythontutorial)
+- Google. Protocol Buffer Basics: Python [[docs](https://developers.google.com/protocol-buffers/docs/pythontutorial)]
 
 ***
 
@@ -941,4 +919,27 @@ scaler = preprocessing.MinMaxScaler()
 ```
 
 We know the field is fast moving. If the reader looking for more recent free reading resources, there are some good introductory/tutorial/survey papers on Arxiv
+
+
+### Discord.py
+
+***
+
+To interface with Discord programmatically, you'll need a Discord token.
+1. Head to https://discord.com/login
+2. Open the browser's developer console with either `Ctrl + Shift + I` or by right clicking.  
+3. Refresh the page
+4. Go under the "Network" tab in the console. 
+5. Enter "/api" as the filter and then hit `Enter`.
+6. One of the items in the table should have a name starting with "library". Click this row.
+7. In the "Headers" tab, find the place that says "authorization: ". The text for this field is your Discord token.
+
+
+
+
+Resources
+- [API Reference. discord.py](https://discordpy.readthedocs.io/en/v1.0.0/api.html#)
+- [Channel history in discord.py](https://stackoverflow.com/questions/64211658/how-could-i-grab-all-chat-messages-in-a-specific-channel-in-a-discord-server-usi)
+- [Webhook Resource. Discord Developer Portal.](https://discord.com/developers/docs/resources/webhook)
+- [Discord.py add role command. Stack Overflow.](https://stackoverflow.com/questions/49076798/discord-py-add-role-to-someone)
 

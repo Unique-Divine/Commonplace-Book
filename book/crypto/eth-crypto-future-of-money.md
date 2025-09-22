@@ -3,7 +3,7 @@
 eth-crypto-future-of-money
 
 Vitalik Buterin: Ethereum, Cryptocurrency, and the Future of Money - Lex Fridman Podcast #80
-[[Podcast link]](https://youtu.be/3x1b_S6Qp2Q)
+[[Podcast link](https://youtu.be/3x1b_S6Qp2Q)]
 Date: 20年3月16日 
 
 

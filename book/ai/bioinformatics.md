@@ -226,7 +226,7 @@ By the time we’re done with the course, you’ll have the ability to:
 
 #### Central Dogma of Biology
 
-[[lecture video]](https://www.youtube.com/watch?v=FRlNkKhbMAY&list=PLpPXw4zFa0uLMHwSZ7DMeLGjIUgo1IBbn&index=7)
+[[lecture video](https://www.youtube.com/watch?v=FRlNkKhbMAY&list=PLpPXw4zFa0uLMHwSZ7DMeLGjIUgo1IBbn&index=7)]
 
 Dogma (def):
 

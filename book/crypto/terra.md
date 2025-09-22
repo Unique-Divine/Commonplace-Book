@@ -16,8 +16,8 @@ The Terra protocol creates stablecoins that can track the price of fiat currenci
 
 Refs
 
-- The Terra protocol. [[Terra Docs concepts/protocol]](https://docs.terra.money/Concepts/Protocol.html)
-- Algorithmic stablecoin. [[Terra Docs concepts/glossary]](https://docs.terra.money/Concepts/glossary.html#algorithmic-stablecoin)
+- The Terra protocol. [[Terra Docs concepts/protocol](https://docs.terra.money/Concepts/Protocol.html)
+- Algorithmic stablecoin. [[Terra Docs concepts/glossary](https://docs.terra.money/Concepts/glossary.html#algorithmic-stablecoin)
 
 ### TerraUSD (UST)
 

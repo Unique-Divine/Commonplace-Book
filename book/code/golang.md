@@ -365,6 +365,50 @@ prog.go:23: cannot use (*MyType)(nil) (type *MyType) as type Spec in assignment:
 
 Q:  `*MyType` means pointer to `MyType`.
 
+## golangci-lint
+
+The standard linter is `golangci-lint`. You can install it with `go get`, however
+in my experience,
+the runs tend to be inconsistent across different machines with this pattern.
+Likely due to caching.
+
+I recommend using the docker container instead.
+```bash
+docker run --rm \
+  -v "$(pwd)":/app \
+  -v ~/.cache/golangci-lint/v1.64.8:/root/.cache \
+  -w /app \
+  golangci/golangci-lint:v1.64.8 \
+  golangci-lint run -v --fix 2>&1
+```
+
+To clean the cache inside the container, invoke `golangci-lint cache clean` inside the container, wiping everything in `/root/.cache`:
+```bash
+docker_version="v2.1.6"
+docker run --rm \
+  -v ~/.cache/golangci-lint/$docker_version:/root/.cache \
+  golangci/golangci-lint:$docker_version \
+  golangci-lint cache clean
+```
+
+
+## Golang: for loop can be modernized using range over int
+
+For loops can range over integers [as of Go 1.22](https://tip.golang.org/doc/go1.22)
+
+```go
+// Normal way
+for i := 0; i < 42069; i++ {
+  // ... 
+}
+
+// Range over int
+for i := range 42069 {}
+
+// And if you're not using i, go even simpler
+for range 42069 {}
+```
+
 
 ## Bytes in Go
 
@@ -412,5 +456,29 @@ go test ./...
 To test with code coverage:
 ```sh
 go test ./... -cover
+```
+
+Q: What does the `-race` flag do?
+
+This enables the race detector when running tests. The race detector monitors
+memory access at runtime to check for race conditions where goroutines access the
+same variable concurrently, and at least one of them accesses a write operation.
+
+When a race condition is detected, the output looks like:
+```
+==================
+WARNING: DATA RACE
+Read at 0x00c0000a0f70 by goroutine 7:
+  main.main.func1()
+      /path/to/main.go:14 +0x64
+
+Previous write at 0x00c0000a0f70 by main goroutine:
+  main.main()
+      /path/to/main.go:16 +0x84
+
+Goroutine 7 (running) created at:
+  main.main()
+      /path/to/main.go:13 +0x5c
+==================
 ```
 

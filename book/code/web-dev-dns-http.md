@@ -105,6 +105,22 @@ Useful command for converting svg files to React SVG Functional Components using
 npx @svgr/cli icon.svg > icon.tsx  
 ```
 
+## Dark Mode and Light Mode
+
+This is a common pattern for displaying light and dark elements with Tailwind
+Css.
+```tsx
+    <img
+      src={BarcodeLight.src}
+      className="absolute block dark:hidden right-[5%] z-50 pt-10"
+    />
+    <img
+      src={BarcodeDark.src}
+      className="absolute hidden dark:block right-[5%] z-50 pt-10"
+    />
+```
+
+
 ## Semantic Elements
 
 ### nav element
@@ -162,7 +178,7 @@ TODO: Document findings from https://stackoverflow.com/questions/71779219/progra
 
 Start Sep 16 (Mike Dane Tutorial Series)
 
-**Intro to Hugo -** [[video]](https://youtu.be/qtIqKaDlqXo)
+**Intro to Hugo -** [[video](https://youtu.be/qtIqKaDlqXo)]
 
 - Hugo is a static site generator.
 - Static website generators allow you to compromise between writing a bunch of static html pages and using a heavy, and potentially expensive, content management system.
