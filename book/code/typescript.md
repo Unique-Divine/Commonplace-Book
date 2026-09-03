@@ -218,6 +218,20 @@ if (typeof time === "string") {
   expect(instanceOfBusinessDay(businessDay)).toBeTruthy()
 ```
 
+## Bun
+
+Retries with "bun:test": Pass `TestOptions` as the third argument to the `test`
+function.
+```ts
+import { test, type TestOptions } from "bun:test"
+const TX_TEST_OPTIONS: TestOptions = {
+  retry: 3
+}
+```
+
+Retries are only triggered on failure. Contract these with repeats, which always
+reruns tests even if they pass.
+
 ## Style 
 
 [Google Style Guide - JS](https://google.github.io/styleguide/jsguide.html#jsdoc)

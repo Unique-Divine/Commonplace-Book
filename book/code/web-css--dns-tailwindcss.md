@@ -2,18 +2,29 @@
 # Web Dev: HTML, CSS, etc.              <!-- omit in toc -->
 
 - [HTML, CSS](#html-css)
-  - [Flex Boxes](#flex-boxes)
-    - [Margin](#margin)
-    - [Padding](#padding)
-    - [Scaling Vector Graphic (SVG)](#scaling-vector-graphic-svg)
-  - [Semantic Elements](#semantic-elements)
-    - [nav element](#nav-element)
+- [Flex Boxes](#flex-boxes)
+    - [Center a text inside a flex box.](#center-a-text-inside-a-flex-box)
+  - [Margin](#margin)
+    - [3 values: top, sides, bottom](#3-values-top-sides-bottom)
+    - [2 values: vertical, horizontal](#2-values-vertical-horizontal)
+  - [Padding](#padding)
+  - [Scaling Vector Graphic (SVG)](#scaling-vector-graphic-svg)
+- [Dark Mode and Light Mode](#dark-mode-and-light-mode)
+- [Semantic Elements](#semantic-elements)
+  - [nav element](#nav-element)
 - [Test a local website on your phone](#test-a-local-website-on-your-phone)
+- [Tailwind CSS](#tailwind-css)
 - [Other](#other)
-  - [Hugo Web Design](#hugo-web-design)
-  - [HTTP, TCP, IP](#http-tcp-ip)
-  - [Domain Name System (DNS)](#domain-name-system-dns)
-  - [Web Design for Beginners](#web-design-for-beginners)
+- [Hugo Web Design](#hugo-web-design)
+- [HTTP, TCP, IP](#http-tcp-ip)
+- [Domain Name System (DNS)](#domain-name-system-dns)
+    - [Address (A) records: Record that points to the IP address for a given domain.](#address-a-records-record-that-points-to-the-ip-address-for-a-given-domain)
+    - [Canonical name (CNAME) records](#canonical-name-cname-records)
+    - [DNS Resources](#dns-resources)
+- [Web Design for Beginners](#web-design-for-beginners)
+    - [Have content ready before you start.](#have-content-ready-before-you-start)
+    - [Understand UX and UI basics](#understand-ux-and-ui-basics)
+- [Figma](#figma)
 
 ---
 
@@ -138,7 +149,7 @@ The nav element communicates that we're dealing with a major navigation block. T
 </nav>
 ```
 
-# Test a local website on your phone
+## Test a local website on your phone
 
 Get `localtunnel` from `npm`:
 
@@ -170,9 +181,20 @@ TODO: Document findings from https://stackoverflow.com/questions/71779219/progra
 
 - [Tailwind CSS Content Configuration](https://tailwindcss.com/docs/content-configuration#class-detection-in-depth=)
 
+### Screen Breakpoints
+
+Minimum widths for different tailwind class screem markers
+- sm: 640px (40rem)
+- md: 768px (48rem)
+- lg: 1024px (64rem)
+- xl: 1280px (80rem)
+- 2xl: 1536px (96rem)
+
+[Reference: Tailwindcss: Responsive Design](https://tailwindcss.com/docs/responsive-design)
+
 ---
 
-# Other
+## Other
 
 ## Hugo Web Design
 
@@ -385,7 +407,7 @@ Curated collections of good design:
 - Behance : compilation of web design work, where the focus is on quality and creativity
 - Dribble : focuses on individual designers
 
-#### Have content ready before you start.
+##### Have content ready before you start.
 
 Putting content first means having content ready to work with before you start designing your first website. 
 
@@ -402,7 +424,7 @@ It doesn't have to be perfect. But, having at least a rough draft of what will g
 
 neophyte | A neophyte is someone who's brand new at something. You're a neophyte the first time you pick up a guitar and start learning to play. Neo- means new, and -phyte is from the Greek phuton, "plant" — like a baby plant, a neophyte is someone who is new to an activity.
 
-### Figma
+## Figma
 
 - `k`: Scale element
 - `I`: Quick insert component instance

@@ -374,11 +374,12 @@ Likely due to caching.
 
 I recommend using the docker container instead.
 ```bash
+docker_version="v2.1.6"
 docker run --rm \
   -v "$(pwd)":/app \
-  -v ~/.cache/golangci-lint/v1.64.8:/root/.cache \
+  -v ~/.cache/golangci-lint/$docker_version:/root/.cache \
   -w /app \
-  golangci/golangci-lint:v1.64.8 \
+  golangci/golangci-lint:$docker_version \
   golangci-lint run -v --fix 2>&1
 ```
 

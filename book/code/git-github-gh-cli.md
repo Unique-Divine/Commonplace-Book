@@ -179,7 +179,7 @@ About Releases (Docs): https://docs.github.com/en/repositories/releasing-project
 
 [[Click here to go back to the "GitHub" section](#github)]
 
-## GitHub Workflows and `act`
+## GitHub Workflows and `act` (nektos/act)
 
 
 Run and test workflows locally with [nektos/act](https://github.com/nektos/act). Note that it depends on `docker` to run the workflows.
@@ -222,6 +222,20 @@ act -n
 # Enable verbose-logging (can be used with any of the above commands)
 act -v
 ```
+
+Example: Run a `pull_request` event for a specific job using an environment setting and
+the docker image close to in behavior to "ubuntu-latest" from GitHub.
+```bash
+act pull_request \
+  -j webapp-test \
+  -W .github/workflows/tests.yaml \
+  -s NPM_AUTH_TOKEN \
+  -P ubuntu-latest=ghcr.io/catthehacker/ubuntu:full-latest 2>&1 \
+  | tee /tmp/act.log
+```
+ - `-s NPM_AUTH_TOKEN`, short for `--secret`, means read from exported env var NPM_AUTH_TOKEN
+ - `-s NPM_AUTH_TOKEN=ghp_xxx` is the same but with an inline value
+ - `--secret-file .secrets` could use .secrets as an env file.
 
 [[Click here to go back to the "GitHub" section](#github)]
 
@@ -408,7 +422,6 @@ within the `<details>` tag.
 Self-review
 - [ ] Add code comments for lines that reviewer might not understand correctly.
 Consider refactoring the names of variables and functions for clarity. 
-- [ ] DRY: Don't repeat yourself
 - [ ] KISS: Keep it simple, sweetie
 - [ ] YAGNI: You aren't gonna need it. Check that you are not overcomplicating
 something for the sake of "making it future-proof". Fowler said "Yagni only
